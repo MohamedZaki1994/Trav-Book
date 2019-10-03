@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySe-nh-B4S">
+                                <rect key="frame" x="40" y="159" width="334" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="D65-aW-OpR"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1Y-08-A5W">
+                                <rect key="frame" x="40" y="229" width="334" height="50"/>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ml-do-J4f">
+                                <rect key="frame" x="40" y="299" width="334" height="50"/>
+                                <state key="normal" title="Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMO-lN-TOj">
+                                <rect key="frame" x="40" y="432" width="334" height="50"/>
+                                <state key="normal" title="Later"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="later:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RfR-GA-YaJ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHe-Iv-TKB">
+                                <rect key="frame" x="20" y="370" width="374" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="JDk-ue-Rwa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GHe-Iv-TKB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1bF-ig-XSb"/>
+                            <constraint firstItem="YMO-lN-TOj" firstAttribute="trailing" secondItem="2ml-do-J4f" secondAttribute="trailing" id="FAZ-7b-YZ4"/>
+                            <constraint firstItem="ySe-nh-B4S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="115" id="Gxe-Xq-F9j"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GHe-Iv-TKB" secondAttribute="trailing" constant="20" id="Ifv-XV-YTV"/>
+                            <constraint firstItem="YMO-lN-TOj" firstAttribute="height" secondItem="2ml-do-J4f" secondAttribute="height" id="IyC-Bi-elp"/>
+                            <constraint firstItem="P1Y-08-A5W" firstAttribute="trailing" secondItem="ySe-nh-B4S" secondAttribute="trailing" id="JXS-p4-lIh"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="height" secondItem="P1Y-08-A5W" secondAttribute="height" id="Qn6-Jc-lb1"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="top" secondItem="P1Y-08-A5W" secondAttribute="bottom" constant="20" id="TOs-35-ZQR"/>
+                            <constraint firstItem="ySe-nh-B4S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="VgY-YY-aIG"/>
+                            <constraint firstItem="YMO-lN-TOj" firstAttribute="leading" secondItem="2ml-do-J4f" secondAttribute="leading" id="YWA-6q-yb3"/>
+                            <constraint firstItem="YMO-lN-TOj" firstAttribute="top" secondItem="2ml-do-J4f" secondAttribute="bottom" constant="83" id="cDS-dT-Mfw"/>
+                            <constraint firstItem="GHe-Iv-TKB" firstAttribute="top" secondItem="2ml-do-J4f" secondAttribute="bottom" constant="21" id="eOe-Cb-efe"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="trailing" secondItem="P1Y-08-A5W" secondAttribute="trailing" id="lvP-sY-3ep"/>
+                            <constraint firstItem="P1Y-08-A5W" firstAttribute="leading" secondItem="ySe-nh-B4S" secondAttribute="leading" id="nd5-98-cMg"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="leading" secondItem="P1Y-08-A5W" secondAttribute="leading" id="nkd-kl-rX8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ySe-nh-B4S" secondAttribute="trailing" constant="40" id="qHR-tS-y6k"/>
+                            <constraint firstItem="P1Y-08-A5W" firstAttribute="top" secondItem="ySe-nh-B4S" secondAttribute="bottom" constant="20" id="qUZ-KW-Q2C"/>
+                            <constraint firstItem="P1Y-08-A5W" firstAttribute="height" secondItem="ySe-nh-B4S" secondAttribute="height" id="wCn-qV-1Qb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1217" y="-240"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="2MZ-gj-Ym0">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="5Se-eI-103" customClass="HomeViewController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kyg-qM-BfS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="f4Q-rW-O9a"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="gMm-20-hAr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afQ-DB-VmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2998" y="85"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="f49-wZ-9uX">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="qc6-E6-gT5" customClass="ProfileViewController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ucb-Wi-T7T">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6ID-SM-G7e"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="OIq-T9-C70"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i8o-U5-SZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2998" y="-564"/>
+        </scene>
+        <!--Dashbaord Tab Bar Controller-->
+        <scene sceneID="Uq9-Qx-52X">
+            <objects>
+                <tabBarController storyboardIdentifier="DashbaordTabBarController" id="7r8-uf-QVa" customClass="DashbaordTabBarController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="A4s-cX-skL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0uD-ux-ukw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2081" y="-240"/>
+        </scene>
+    </scenes>
+</document>
