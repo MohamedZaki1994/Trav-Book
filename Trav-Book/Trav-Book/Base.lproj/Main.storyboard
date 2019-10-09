@@ -33,20 +33,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1Y-08-A5W">
-                                <rect key="frame" x="40" y="229" width="334" height="50"/>
-                                <state key="normal" title="Button"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ml-do-J4f">
-                                <rect key="frame" x="40" y="299" width="334" height="50"/>
+                                <rect key="frame" x="40" y="309" width="334" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -58,7 +46,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMO-lN-TOj">
-                                <rect key="frame" x="40" y="432" width="334" height="50"/>
+                                <rect key="frame" x="40" y="422" width="334" height="30"/>
                                 <state key="normal" title="Later"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -73,33 +61,35 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHe-Iv-TKB">
-                                <rect key="frame" x="20" y="370" width="374" height="1"/>
+                                <rect key="frame" x="20" y="360" width="374" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="JDk-ue-Rwa"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B_Cards" translatesAutoresizingMaskIntoConstraints="NO" id="0H2-Ct-Msg">
+                                <rect key="frame" x="87" y="520" width="240" height="208"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="GHe-Iv-TKB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1bF-ig-XSb"/>
+                            <constraint firstItem="0H2-Ct-Msg" firstAttribute="top" secondItem="YMO-lN-TOj" secondAttribute="bottom" constant="68" id="6Nq-OE-lGh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0H2-Ct-Msg" secondAttribute="trailing" constant="87" id="9QU-gM-fAN"/>
                             <constraint firstItem="YMO-lN-TOj" firstAttribute="trailing" secondItem="2ml-do-J4f" secondAttribute="trailing" id="FAZ-7b-YZ4"/>
                             <constraint firstItem="ySe-nh-B4S" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="115" id="Gxe-Xq-F9j"/>
+                            <constraint firstItem="0H2-Ct-Msg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="Hc4-R8-isD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GHe-Iv-TKB" secondAttribute="trailing" constant="20" id="Ifv-XV-YTV"/>
                             <constraint firstItem="YMO-lN-TOj" firstAttribute="height" secondItem="2ml-do-J4f" secondAttribute="height" id="IyC-Bi-elp"/>
-                            <constraint firstItem="P1Y-08-A5W" firstAttribute="trailing" secondItem="ySe-nh-B4S" secondAttribute="trailing" id="JXS-p4-lIh"/>
-                            <constraint firstItem="2ml-do-J4f" firstAttribute="height" secondItem="P1Y-08-A5W" secondAttribute="height" id="Qn6-Jc-lb1"/>
-                            <constraint firstItem="2ml-do-J4f" firstAttribute="top" secondItem="P1Y-08-A5W" secondAttribute="bottom" constant="20" id="TOs-35-ZQR"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="top" secondItem="ySe-nh-B4S" secondAttribute="bottom" constant="100" id="QtX-OU-frI"/>
                             <constraint firstItem="ySe-nh-B4S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="VgY-YY-aIG"/>
                             <constraint firstItem="YMO-lN-TOj" firstAttribute="leading" secondItem="2ml-do-J4f" secondAttribute="leading" id="YWA-6q-yb3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0H2-Ct-Msg" secondAttribute="bottom" constant="134" id="bwt-NQ-wDv"/>
                             <constraint firstItem="YMO-lN-TOj" firstAttribute="top" secondItem="2ml-do-J4f" secondAttribute="bottom" constant="83" id="cDS-dT-Mfw"/>
                             <constraint firstItem="GHe-Iv-TKB" firstAttribute="top" secondItem="2ml-do-J4f" secondAttribute="bottom" constant="21" id="eOe-Cb-efe"/>
-                            <constraint firstItem="2ml-do-J4f" firstAttribute="trailing" secondItem="P1Y-08-A5W" secondAttribute="trailing" id="lvP-sY-3ep"/>
-                            <constraint firstItem="P1Y-08-A5W" firstAttribute="leading" secondItem="ySe-nh-B4S" secondAttribute="leading" id="nd5-98-cMg"/>
-                            <constraint firstItem="2ml-do-J4f" firstAttribute="leading" secondItem="P1Y-08-A5W" secondAttribute="leading" id="nkd-kl-rX8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ySe-nh-B4S" secondAttribute="trailing" constant="40" id="qHR-tS-y6k"/>
-                            <constraint firstItem="P1Y-08-A5W" firstAttribute="top" secondItem="ySe-nh-B4S" secondAttribute="bottom" constant="20" id="qUZ-KW-Q2C"/>
-                            <constraint firstItem="P1Y-08-A5W" firstAttribute="height" secondItem="ySe-nh-B4S" secondAttribute="height" id="wCn-qV-1Qb"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="leading" secondItem="ySe-nh-B4S" secondAttribute="leading" id="t80-f4-2KQ"/>
+                            <constraint firstItem="2ml-do-J4f" firstAttribute="trailing" secondItem="ySe-nh-B4S" secondAttribute="trailing" id="wU4-Bo-og6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -124,6 +114,21 @@
             </objects>
             <point key="canvasLocation" x="2998" y="85"/>
         </scene>
+        <!--Ask View Controller-->
+        <scene sceneID="K5b-Oj-d1s">
+            <objects>
+                <viewController storyboardIdentifier="AskViewController" id="8hO-YZ-2Ip" customClass="AskViewController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vwF-Zm-KFL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="xCd-lG-dMQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n8i-fB-3s6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4069" y="151"/>
+        </scene>
         <!--Item 1-->
         <scene sceneID="f49-wZ-9uX">
             <objects>
@@ -140,6 +145,36 @@
             </objects>
             <point key="canvasLocation" x="2998" y="-564"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="ujL-35-VgQ">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="D0A-Lf-WNT" customClass="SearchViewController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8md-FS-3oc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.50936175549999996" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Qkw-gB-X4k"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZEg-nl-oI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4064" y="-577"/>
+        </scene>
+        <!--Notification View Controller-->
+        <scene sceneID="lzK-Yd-Qrf">
+            <objects>
+                <viewController storyboardIdentifier="NotificationViewController" id="BBB-T2-CXS" customClass="NotificationViewController" customModule="Trav_Book" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nDz-Ri-MyQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="HJr-y7-Mlb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jTa-xX-LsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4990" y="-357"/>
+        </scene>
         <!--Dashbaord Tab Bar Controller-->
         <scene sceneID="Uq9-Qx-52X">
             <objects>
@@ -155,4 +190,7 @@
             <point key="canvasLocation" x="2081" y="-240"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="B_Cards" width="321" height="208"/>
+    </resources>
 </document>
