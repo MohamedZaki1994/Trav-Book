@@ -11,11 +11,14 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
+    @IBAction func googleSignInButton(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        let signinGoogle = GIDSignInButton(frame: CGRect(x: 100, y: 250, width: 300, height: 100))
-        view.addSubview(signinGoogle)
+        let signinGoogle = GIDSignInButton(frame: CGRect(x: 20, y: 100, width: view.frame.width - 50, height: 100))
+//        view.addSubview(signinGoogle)
 
     }
 

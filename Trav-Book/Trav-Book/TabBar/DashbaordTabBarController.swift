@@ -21,7 +21,7 @@ class DashbaordTabBarController: UITabBarController, UITabBarControllerDelegate 
         profile.tabBarItem = profiletabBarItem
         let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController")
         let ask = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AskViewController")
-        let saerchTabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "search"), selectedImage: nil)
+        let saerchTabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "search.jpg"), selectedImage: nil)
         let askTabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "ask"), selectedImage: nil)
         search.tabBarItem = saerchTabBarItem
         ask.tabBarItem = askTabBarItem

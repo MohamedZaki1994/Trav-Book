@@ -14,6 +14,8 @@
 		35562ECF234612580092A813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ECE234612580092A813 /* SearchViewController.swift */; };
 		35562ED1234616E70092A813 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED0234616E70092A813 /* AskViewController.swift */; };
 		35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED22346171F0092A813 /* NotificationViewController.swift */; };
+		35EE9017234F3D89008D4FC3 /* travel1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9016234F3D88008D4FC3 /* travel1.jpg */; };
+		35EE9019234F62D0008D4FC3 /* travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9018234F62D0008D4FC3 /* travel.png */; };
 		35F4F3682345E3990006520E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4F3672345E3990006520E /* AppDelegate.swift */; };
 		35F4F36A2345E3990006520E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4F3692345E3990006520E /* ViewController.swift */; };
 		35F4F36D2345E3990006520E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F4F36B2345E3990006520E /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 		35562ECE234612580092A813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		35562ED0234616E70092A813 /* AskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
 		35562ED22346171F0092A813 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		35EE9016234F3D88008D4FC3 /* travel1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = travel1.jpg; sourceTree = "<group>"; };
+		35EE9018234F62D0008D4FC3 /* travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travel.png; sourceTree = "<group>"; };
 		35F4F3642345E3990006520E /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F4F3672345E3990006520E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35F4F3692345E3990006520E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				35F4F3702345E39A0006520E /* LaunchScreen.storyboard */,
 				35F9F6D7234E20DC00A2EDFA /* credentials.plist */,
 				35F4F3732345E39A0006520E /* Info.plist */,
+				35EE9018234F62D0008D4FC3 /* travel.png */,
+				35EE9016234F3D88008D4FC3 /* travel1.jpg */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
@@ -183,6 +189,8 @@
 			files = (
 				35F4F3722345E39A0006520E /* LaunchScreen.storyboard in Resources */,
 				35F9F6D8234E20DC00A2EDFA /* credentials.plist in Resources */,
+				35EE9017234F3D89008D4FC3 /* travel1.jpg in Resources */,
+				35EE9019234F62D0008D4FC3 /* travel.png in Resources */,
 				35F4F36F2345E39A0006520E /* Assets.xcassets in Resources */,
 				35F4F36D2345E3990006520E /* Main.storyboard in Resources */,
 			);
