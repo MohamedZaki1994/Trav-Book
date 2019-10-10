@@ -16,6 +16,8 @@
 		35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED22346171F0092A813 /* NotificationViewController.swift */; };
 		35EE9017234F3D89008D4FC3 /* travel1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9016234F3D88008D4FC3 /* travel1.jpg */; };
 		35EE9019234F62D0008D4FC3 /* travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9018234F62D0008D4FC3 /* travel.png */; };
+		35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */; };
+		35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */; };
 		35F4F3682345E3990006520E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4F3672345E3990006520E /* AppDelegate.swift */; };
 		35F4F36A2345E3990006520E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4F3692345E3990006520E /* ViewController.swift */; };
 		35F4F36D2345E3990006520E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F4F36B2345E3990006520E /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		35562ED22346171F0092A813 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		35EE9016234F3D88008D4FC3 /* travel1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = travel1.jpg; sourceTree = "<group>"; };
 		35EE9018234F62D0008D4FC3 /* travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travel.png; sourceTree = "<group>"; };
+		35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		35F4F3642345E3990006520E /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F4F3672345E3990006520E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35F4F3692345E3990006520E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,14 +75,24 @@
 		35562ECD234612360092A813 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				35EE901A234F72EA008D4FC3 /* Home */,
 				35562EC52345E5160092A813 /* DashbaordTabBarController.swift */,
-				35562EC82345E5160092A813 /* HomeViewController.swift */,
 				35562EC72345E5160092A813 /* ProfileViewController.swift */,
 				35562ECE234612580092A813 /* SearchViewController.swift */,
 				35562ED0234616E70092A813 /* AskViewController.swift */,
 				35562ED22346171F0092A813 /* NotificationViewController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		35EE901A234F72EA008D4FC3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				35562EC82345E5160092A813 /* HomeViewController.swift */,
+				35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */,
+				35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		35F4F35B2345E3990006520E = {
@@ -191,6 +205,7 @@
 				35F9F6D8234E20DC00A2EDFA /* credentials.plist in Resources */,
 				35EE9017234F3D89008D4FC3 /* travel1.jpg in Resources */,
 				35EE9019234F62D0008D4FC3 /* travel.png in Resources */,
+				35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */,
 				35F4F36F2345E39A0006520E /* Assets.xcassets in Resources */,
 				35F4F36D2345E3990006520E /* Main.storyboard in Resources */,
 			);
@@ -267,6 +282,7 @@
 				35562ECF234612580092A813 /* SearchViewController.swift in Sources */,
 				35F4F36A2345E3990006520E /* ViewController.swift in Sources */,
 				35562ECB2345E5160092A813 /* ProfileViewController.swift in Sources */,
+				35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */,
 				35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */,
 				35562EC92345E5160092A813 /* DashbaordTabBarController.swift in Sources */,
 				35F4F3682345E3990006520E /* AppDelegate.swift in Sources */,

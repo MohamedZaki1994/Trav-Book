@@ -30,9 +30,9 @@ class DashbaordTabBarController: UITabBarController, UITabBarControllerDelegate 
         let notificationTabBarItem = UITabBarItem(title: "notification", image: UIImage(named: "notification"), selectedImage: nil)
         notification.tabBarItem = notificationTabBarItem
 
-        viewControllers = [home, profile, search, ask, notification]
+        viewControllers = [profile, home, search, ask, notification]
         delegate = self
-
+        selectedIndex = 1
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
