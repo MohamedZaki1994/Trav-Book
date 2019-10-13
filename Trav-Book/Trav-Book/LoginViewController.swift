@@ -8,10 +8,31 @@
 
 import UIKit
 import GoogleSignIn
+import SDWebImage
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInDelegate {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error != nil {
+            return
+        }
+        guard let user = user else {
+            return
+        }
+        let signedInUser = User(userId: user.userID,
+                                idToken: user.authentication.idToken,
+                                fullName: user.profile.name,
+                                givenName: user.profile.givenName,
+                                familyName: user.profile.familyName,
+                                email: user.profile.email,
+                                imageURL: user.profile.imageURL(withDimension: UInt(200)))
+        imageView.sd_setImage(with: user.profile.imageURL(withDimension: UInt(200)), completed: nil)
+    }
+
     let appFactory = AppFactory()
     @IBAction func googleSignInButton(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance().signIn()
     }
     override func viewDidLoad() {

@@ -7,5 +7,5 @@ target 'Trav-Book' do
 
   # Pods for Trav-Book
 pod 'GoogleSignIn'
-
+pod 'SDWebImage'
 end
