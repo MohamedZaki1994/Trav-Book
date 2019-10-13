@@ -7,23 +7,20 @@
 //
 
 import UIKit
-
+import GoogleSignIn
 class ProfileViewController: UIViewController {
 
+    let user = UserInfo.shared.user
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBAction func singout(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.signOut()
+        UserInfo.shared.resetUser()
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        profileImageView.sd_setImage(with: user?.imageURL, completed: nil)
+        username.text = user?.fullName
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

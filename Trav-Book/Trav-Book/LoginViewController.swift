@@ -28,6 +28,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
                                 email: user.profile.email,
                                 imageURL: user.profile.imageURL(withDimension: UInt(200)))
         imageView.sd_setImage(with: user.profile.imageURL(withDimension: UInt(200)), completed: nil)
+        UserInfo.shared.user = signedInUser
+        goToDashboard()
     }
 
     let appFactory = AppFactory()
@@ -41,11 +43,21 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if GIDSignIn.sharedInstance()?.currentUser != nil {
+            goToDashboard()
+        }
+    }
+
     @IBAction func later(_ sender: Any) {
+        goToDashboard()
+    }
+
+    func goToDashboard() {
         let tabbar = appFactory.makeTabBar() as? UITabBarController
         tabbar?.selectedIndex = 1
         present(tabbar!, animated: true, completion: nil)
     }
-
 }
 

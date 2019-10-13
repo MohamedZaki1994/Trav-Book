@@ -21,14 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             return
         }
-        // Perform any operations on signed in user here.
-        let userId = user.userID                  // For client-side use only!
-        let idToken = user.authentication.idToken // Safe to send to the server
-        let fullName = user.profile.name
-        let givenName = user.profile.givenName
-        let familyName = user.profile.familyName
-        let email = user.profile.email
-        // ...
+        let signedInUser = User(userId: user.userID,
+                                idToken: user.authentication.idToken,
+                                fullName: user.profile.name,
+                                givenName: user.profile.givenName,
+                                familyName: user.profile.familyName,
+                                email: user.profile.email,
+                                imageURL: user.profile.imageURL(withDimension: UInt(200)))
+        UserInfo.shared.user = signedInUser
     }
 
 
@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GIDSignIn.sharedInstance()?.clientID = "912083951596-i4bc0b7guo7t6p6su2l4sk71n14qjamg.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         // Override point for customization after application launch.
         return true
     }

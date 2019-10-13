@@ -16,6 +16,7 @@
 		35562ECF234612580092A813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ECE234612580092A813 /* SearchViewController.swift */; };
 		35562ED1234616E70092A813 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED0234616E70092A813 /* AskViewController.swift */; };
 		35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED22346171F0092A813 /* NotificationViewController.swift */; };
+		35B72BCA235348CE00466D98 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B72BC9235348CE00466D98 /* UserInfo.swift */; };
 		35EE9019234F62D0008D4FC3 /* travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9018234F62D0008D4FC3 /* travel.png */; };
 		35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */; };
 		35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */; };
@@ -38,6 +39,7 @@
 		35562ECE234612580092A813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		35562ED0234616E70092A813 /* AskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
 		35562ED22346171F0092A813 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		35B72BC9235348CE00466D98 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		35EE9018234F62D0008D4FC3 /* travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travel.png; sourceTree = "<group>"; };
 		35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				35F4F3732345E39A0006520E /* Info.plist */,
 				35EE9018234F62D0008D4FC3 /* travel.png */,
 				3528F8CE23531D190099D39D /* AppFactory.swift */,
+				35B72BC9235348CE00466D98 /* UserInfo.swift */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				35562ECB2345E5160092A813 /* ProfileViewController.swift in Sources */,
 				35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */,
 				35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */,
+				35B72BCA235348CE00466D98 /* UserInfo.swift in Sources */,
 				3528F8D2235327FA0099D39D /* User.swift in Sources */,
 				35562EC92345E5160092A813 /* DashbaordTabBarController.swift in Sources */,
 				35F4F3682345E3990006520E /* AppDelegate.swift in Sources */,
