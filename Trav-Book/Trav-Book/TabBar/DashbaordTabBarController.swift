@@ -10,26 +10,28 @@ import UIKit
 
 class DashbaordTabBarController: UITabBarController, UITabBarControllerDelegate {
 
+    let factory = AppFactory()
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeTabBars()
+    }
 
-       let home = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController")
-        let profile = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController")
+    func makeTabBars() {
+        let home = factory.makeHome()
+        let profile = factory.makeProfile()
+        let ask = factory.makeAsk()
+        let notification = factory.makeNotification()
+        let search = factory.makeSearch()
         let hometabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home.png"), selectedImage: nil)
         let profiletabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile.png"), selectedImage: nil)
         home.tabBarItem = hometabBarItem
         profile.tabBarItem = profiletabBarItem
-        let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController")
-        let ask = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AskViewController")
         let saerchTabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "search.jpg"), selectedImage: nil)
         let askTabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "ask"), selectedImage: nil)
         search.tabBarItem = saerchTabBarItem
         ask.tabBarItem = askTabBarItem
-        let notification = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NotificationViewController")
-
         let notificationTabBarItem = UITabBarItem(title: "notification", image: UIImage(named: "notification"), selectedImage: nil)
         notification.tabBarItem = notificationTabBarItem
-
         viewControllers = [profile, home, search, ask, notification]
         delegate = self
         selectedIndex = 1

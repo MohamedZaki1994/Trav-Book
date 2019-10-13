@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3528F8CF23531D190099D39D /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3528F8CE23531D190099D39D /* AppFactory.swift */; };
 		35562EC92345E5160092A813 /* DashbaordTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC52345E5160092A813 /* DashbaordTabBarController.swift */; };
 		35562ECA2345E5160092A813 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC62345E5160092A813 /* LoginViewController.swift */; };
 		35562ECB2345E5160092A813 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC72345E5160092A813 /* ProfileViewController.swift */; };
@@ -14,7 +15,6 @@
 		35562ECF234612580092A813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ECE234612580092A813 /* SearchViewController.swift */; };
 		35562ED1234616E70092A813 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED0234616E70092A813 /* AskViewController.swift */; };
 		35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED22346171F0092A813 /* NotificationViewController.swift */; };
-		35EE9017234F3D89008D4FC3 /* travel1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9016234F3D88008D4FC3 /* travel1.jpg */; };
 		35EE9019234F62D0008D4FC3 /* travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9018234F62D0008D4FC3 /* travel.png */; };
 		35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */; };
 		35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */; };
@@ -28,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3528F8CE23531D190099D39D /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		35562EC52345E5160092A813 /* DashbaordTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashbaordTabBarController.swift; sourceTree = "<group>"; };
 		35562EC62345E5160092A813 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		35562EC72345E5160092A813 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		35562ECE234612580092A813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		35562ED0234616E70092A813 /* AskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
 		35562ED22346171F0092A813 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		35EE9016234F3D88008D4FC3 /* travel1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = travel1.jpg; sourceTree = "<group>"; };
 		35EE9018234F62D0008D4FC3 /* travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travel.png; sourceTree = "<group>"; };
 		35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				35F9F6D7234E20DC00A2EDFA /* credentials.plist */,
 				35F4F3732345E39A0006520E /* Info.plist */,
 				35EE9018234F62D0008D4FC3 /* travel.png */,
-				35EE9016234F3D88008D4FC3 /* travel1.jpg */,
+				3528F8CE23531D190099D39D /* AppFactory.swift */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
@@ -203,7 +203,6 @@
 			files = (
 				35F4F3722345E39A0006520E /* LaunchScreen.storyboard in Resources */,
 				35F9F6D8234E20DC00A2EDFA /* credentials.plist in Resources */,
-				35EE9017234F3D89008D4FC3 /* travel1.jpg in Resources */,
 				35EE9019234F62D0008D4FC3 /* travel.png in Resources */,
 				35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */,
 				35F4F36F2345E39A0006520E /* Assets.xcassets in Resources */,
@@ -278,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35562ED1234616E70092A813 /* AskViewController.swift in Sources */,
+				3528F8CF23531D190099D39D /* AppFactory.swift in Sources */,
 				35562ECA2345E5160092A813 /* LoginViewController.swift in Sources */,
 				35562ECF234612580092A813 /* SearchViewController.swift in Sources */,
 				35F4F36A2345E3990006520E /* ViewController.swift in Sources */,

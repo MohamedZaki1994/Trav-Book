@@ -10,7 +10,7 @@ import UIKit
 import GoogleSignIn
 
 class LoginViewController: UIViewController {
-
+    let appFactory = AppFactory()
     @IBAction func googleSignInButton(_ sender: Any) {
         GIDSignIn.sharedInstance().signIn()
     }
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func later(_ sender: Any) {
-        let tabbar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashbaordTabBarController") as? UITabBarController
+        let tabbar = appFactory.makeTabBar() as? UITabBarController
         tabbar?.selectedIndex = 1
         present(tabbar!, animated: true, completion: nil)
     }

@@ -106,9 +106,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wdd-Ym-Bof">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8xi-YO-aVR">
+                                <rect key="frame" x="0.0" y="59" width="414" height="788"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="8xi-YO-aVR">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -133,9 +133,9 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Wdd-Ym-Bof" firstAttribute="leading" secondItem="f4Q-rW-O9a" secondAttribute="leading" id="EPb-CW-CGG"/>
-                            <constraint firstItem="f4Q-rW-O9a" firstAttribute="bottom" secondItem="Wdd-Ym-Bof" secondAttribute="bottom" id="ViI-jV-rot"/>
+                            <constraint firstItem="f4Q-rW-O9a" firstAttribute="bottom" secondItem="Wdd-Ym-Bof" secondAttribute="bottom" constant="15" id="ViI-jV-rot"/>
                             <constraint firstItem="f4Q-rW-O9a" firstAttribute="trailing" secondItem="Wdd-Ym-Bof" secondAttribute="trailing" id="VpG-z0-Uoy"/>
-                            <constraint firstItem="Wdd-Ym-Bof" firstAttribute="top" secondItem="f4Q-rW-O9a" secondAttribute="top" id="g8i-u5-Th2"/>
+                            <constraint firstItem="Wdd-Ym-Bof" firstAttribute="top" secondItem="f4Q-rW-O9a" secondAttribute="top" constant="15" id="g8i-u5-Th2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="f4Q-rW-O9a"/>
                     </view>
