@@ -11,16 +11,25 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var interactor = HomeInteractor()
+    var viewModel: HomeViewModel? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "home cell")
+        interactor.fetchData { (data) in
+            viewModel = data
+        }
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel?.section?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -28,6 +37,7 @@ extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSou
         guard let homeCell = cell as? HomeCollectionViewCell else {
             return cell
         }
+        homeCell.title.text = viewModel?.section?[indexPath.row].title
         return homeCell
     }
 }

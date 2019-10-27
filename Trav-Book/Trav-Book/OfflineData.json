@@ -1,0 +1,11 @@
+{
+    "section" : [
+        {"title": "One", "profilePic" : "pic", "photo":"icon", "text":"text"},
+        {"title": "Two","profilePic" : "pic", "photo":"icon", "text": "text"} ,
+        {"title": "Three", "profilePic" : "pic","photo":"icon", "text": "text"} ,
+        {"title": "Four", "profilePic" : "pic","photo":"icon", "text": "text"},
+        {"title": "Five","profilePic" : "pic", "photo":"icon", "text": "text"},
+        {"title": "Six", "profilePic" : "pic","photo":"icon", "text":"text"},
+    {"title": "Seven", "profilePic" : "pic","photo":"icon", "text": "text"}
+    ]
+}

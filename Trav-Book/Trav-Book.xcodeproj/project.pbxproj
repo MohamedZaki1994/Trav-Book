@@ -17,6 +17,10 @@
 		35562ED1234616E70092A813 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED0234616E70092A813 /* AskViewController.swift */; };
 		35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED22346171F0092A813 /* NotificationViewController.swift */; };
 		35B72BCA235348CE00466D98 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B72BC9235348CE00466D98 /* UserInfo.swift */; };
+		35ED6E972365A8BC0047927C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED6E962365A8BC0047927C /* HomeInteractor.swift */; };
+		35ED6E992365AA860047927C /* OfflineData.json in Resources */ = {isa = PBXBuildFile; fileRef = 35ED6E982365AA860047927C /* OfflineData.json */; };
+		35ED6E9C2365AAD90047927C /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED6E9B2365AAD90047927C /* Repository.swift */; };
+		35ED6E9E2365AB150047927C /* HomePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED6E9D2365AB150047927C /* HomePosts.swift */; };
 		35EE9019234F62D0008D4FC3 /* travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9018234F62D0008D4FC3 /* travel.png */; };
 		35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */; };
 		35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */; };
@@ -40,6 +44,10 @@
 		35562ED0234616E70092A813 /* AskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
 		35562ED22346171F0092A813 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		35B72BC9235348CE00466D98 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		35ED6E962365A8BC0047927C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		35ED6E982365AA860047927C /* OfflineData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OfflineData.json; sourceTree = "<group>"; };
+		35ED6E9B2365AAD90047927C /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		35ED6E9D2365AB150047927C /* HomePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosts.swift; sourceTree = "<group>"; };
 		35EE9018234F62D0008D4FC3 /* travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travel.png; sourceTree = "<group>"; };
 		35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -80,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				3528F8D1235327FA0099D39D /* User.swift */,
+				35ED6E9D2365AB150047927C /* HomePosts.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -97,10 +106,19 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		35ED6E9A2365AAC40047927C /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				35ED6E9B2365AAD90047927C /* Repository.swift */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
 		35EE901A234F72EA008D4FC3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				35562EC82345E5160092A813 /* HomeViewController.swift */,
+				35ED6E962365A8BC0047927C /* HomeInteractor.swift */,
 				35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */,
 				35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */,
 			);
@@ -128,6 +146,7 @@
 		35F4F3662345E3990006520E /* Trav-Book */ = {
 			isa = PBXGroup;
 			children = (
+				35ED6E9A2365AAC40047927C /* Repo */,
 				3528F8D0235327ED0099D39D /* Model */,
 				35562ECD234612360092A813 /* TabBar */,
 				35562EC62345E5160092A813 /* LoginViewController.swift */,
@@ -141,6 +160,7 @@
 				35EE9018234F62D0008D4FC3 /* travel.png */,
 				3528F8CE23531D190099D39D /* AppFactory.swift */,
 				35B72BC9235348CE00466D98 /* UserInfo.swift */,
+				35ED6E982365AA860047927C /* OfflineData.json */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
@@ -219,6 +239,7 @@
 				35F9F6D8234E20DC00A2EDFA /* credentials.plist in Resources */,
 				35EE9019234F62D0008D4FC3 /* travel.png in Resources */,
 				35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */,
+				35ED6E992365AA860047927C /* OfflineData.json in Resources */,
 				35F4F36F2345E39A0006520E /* Assets.xcassets in Resources */,
 				35F4F36D2345E3990006520E /* Main.storyboard in Resources */,
 			);
@@ -292,6 +313,7 @@
 			files = (
 				35562ED1234616E70092A813 /* AskViewController.swift in Sources */,
 				3528F8CF23531D190099D39D /* AppFactory.swift in Sources */,
+				35ED6E9C2365AAD90047927C /* Repository.swift in Sources */,
 				35562ECA2345E5160092A813 /* LoginViewController.swift in Sources */,
 				35562ECF234612580092A813 /* SearchViewController.swift in Sources */,
 				35F4F36A2345E3990006520E /* ViewController.swift in Sources */,
@@ -301,8 +323,10 @@
 				35B72BCA235348CE00466D98 /* UserInfo.swift in Sources */,
 				3528F8D2235327FA0099D39D /* User.swift in Sources */,
 				35562EC92345E5160092A813 /* DashbaordTabBarController.swift in Sources */,
+				35ED6E9E2365AB150047927C /* HomePosts.swift in Sources */,
 				35F4F3682345E3990006520E /* AppDelegate.swift in Sources */,
 				35562ECC2345E5160092A813 /* HomeViewController.swift in Sources */,
+				35ED6E972365A8BC0047927C /* HomeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
