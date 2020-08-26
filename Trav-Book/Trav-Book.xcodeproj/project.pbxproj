@@ -3,190 +3,129 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3528F8CF23531D190099D39D /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3528F8CE23531D190099D39D /* AppFactory.swift */; };
-		3528F8D2235327FA0099D39D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3528F8D1235327FA0099D39D /* User.swift */; };
-		35562EC92345E5160092A813 /* DashbaordTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC52345E5160092A813 /* DashbaordTabBarController.swift */; };
-		35562ECA2345E5160092A813 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC62345E5160092A813 /* LoginViewController.swift */; };
-		35562ECB2345E5160092A813 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC72345E5160092A813 /* ProfileViewController.swift */; };
-		35562ECC2345E5160092A813 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562EC82345E5160092A813 /* HomeViewController.swift */; };
-		35562ECF234612580092A813 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ECE234612580092A813 /* SearchViewController.swift */; };
-		35562ED1234616E70092A813 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED0234616E70092A813 /* AskViewController.swift */; };
-		35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35562ED22346171F0092A813 /* NotificationViewController.swift */; };
-		35B72BCA235348CE00466D98 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B72BC9235348CE00466D98 /* UserInfo.swift */; };
-		35ED6E972365A8BC0047927C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED6E962365A8BC0047927C /* HomeInteractor.swift */; };
-		35ED6E992365AA860047927C /* OfflineData.json in Resources */ = {isa = PBXBuildFile; fileRef = 35ED6E982365AA860047927C /* OfflineData.json */; };
-		35ED6E9C2365AAD90047927C /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED6E9B2365AAD90047927C /* Repository.swift */; };
-		35ED6E9E2365AB150047927C /* HomePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED6E9D2365AB150047927C /* HomePosts.swift */; };
-		35EE9019234F62D0008D4FC3 /* travel.png in Resources */ = {isa = PBXBuildFile; fileRef = 35EE9018234F62D0008D4FC3 /* travel.png */; };
-		35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */; };
-		35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */; };
-		35F4F3682345E3990006520E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4F3672345E3990006520E /* AppDelegate.swift */; };
-		35F4F36A2345E3990006520E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F4F3692345E3990006520E /* ViewController.swift */; };
-		35F4F36D2345E3990006520E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F4F36B2345E3990006520E /* Main.storyboard */; };
-		35F4F36F2345E39A0006520E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F4F36E2345E39A0006520E /* Assets.xcassets */; };
-		35F4F3722345E39A0006520E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F4F3702345E39A0006520E /* LaunchScreen.storyboard */; };
-		35F9F6D8234E20DC00A2EDFA /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35F9F6D7234E20DC00A2EDFA /* credentials.plist */; };
-		B70864979420B25325939A3D /* Pods_Trav_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D86DF9D7C5880A59C77C80FF /* Pods_Trav_Book.framework */; };
+		353B89AB24F136C20069F664 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B89AA24F136C20069F664 /* DashboardView.swift */; };
+		354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C224EFDD7300F69187 /* AppDelegate.swift */; };
+		354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C424EFDD7300F69187 /* SceneDelegate.swift */; };
+		354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */; };
+		354022CA24EFDD7300F69187 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C924EFDD7300F69187 /* ContentView.swift */; };
+		354022CC24EFDD7600F69187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354022CB24EFDD7600F69187 /* Assets.xcassets */; };
+		354022CF24EFDD7600F69187 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354022CE24EFDD7600F69187 /* Preview Assets.xcassets */; };
+		354022D224EFDD7600F69187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354022D024EFDD7600F69187 /* LaunchScreen.storyboard */; };
+		354022DD24EFDD7600F69187 /* Trav_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022DC24EFDD7600F69187 /* Trav_BookTests.swift */; };
+		35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419D4824EFDDBE00A1A5F8 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		354022D924EFDD7600F69187 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 354022B724EFDD7300F69187 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 354022BE24EFDD7300F69187;
+			remoteInfo = "Trav-Book";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		3528F8CE23531D190099D39D /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
-		3528F8D1235327FA0099D39D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		35562EC52345E5160092A813 /* DashbaordTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashbaordTabBarController.swift; sourceTree = "<group>"; };
-		35562EC62345E5160092A813 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		35562EC72345E5160092A813 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		35562EC82345E5160092A813 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		35562ECE234612580092A813 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		35562ED0234616E70092A813 /* AskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
-		35562ED22346171F0092A813 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		35B72BC9235348CE00466D98 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		35ED6E962365A8BC0047927C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
-		35ED6E982365AA860047927C /* OfflineData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OfflineData.json; sourceTree = "<group>"; };
-		35ED6E9B2365AAD90047927C /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		35ED6E9D2365AB150047927C /* HomePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePosts.swift; sourceTree = "<group>"; };
-		35EE9018234F62D0008D4FC3 /* travel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = travel.png; sourceTree = "<group>"; };
-		35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
-		35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
-		35F4F3642345E3990006520E /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F4F3672345E3990006520E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		35F4F3692345E3990006520E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		35F4F36C2345E3990006520E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		35F4F36E2345E39A0006520E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		35F4F3712345E39A0006520E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		35F4F3732345E39A0006520E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35F9F6D7234E20DC00A2EDFA /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
-		3F15C6A46A23642C00FB1976 /* Pods-Trav-Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.debug.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.debug.xcconfig"; sourceTree = "<group>"; };
-		C17D5D8EC92990253974479D /* Pods-Trav-Book.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.release.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.release.xcconfig"; sourceTree = "<group>"; };
-		D86DF9D7C5880A59C77C80FF /* Pods_Trav_Book.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trav_Book.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		353B89AA24F136C20069F664 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		354022BF24EFDD7300F69187 /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		354022C224EFDD7300F69187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		354022C424EFDD7300F69187 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		354022C724EFDD7300F69187 /* Trav_Book.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Trav_Book.xcdatamodel; sourceTree = "<group>"; };
+		354022C924EFDD7300F69187 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		354022CB24EFDD7600F69187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		354022CE24EFDD7600F69187 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		354022D124EFDD7600F69187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		354022D324EFDD7600F69187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		354022D824EFDD7600F69187 /* Trav-BookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trav-BookTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		354022DC24EFDD7600F69187 /* Trav_BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trav_BookTests.swift; sourceTree = "<group>"; };
+		354022DE24EFDD7600F69187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35419D4824EFDDBE00A1A5F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		35F4F3612345E3990006520E /* Frameworks */ = {
+		354022BC24EFDD7300F69187 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B70864979420B25325939A3D /* Pods_Trav_Book.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		354022D524EFDD7600F69187 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2341693E83D51A63A31E4AC1 /* Frameworks */ = {
+		354022B624EFDD7300F69187 = {
 			isa = PBXGroup;
 			children = (
-				D86DF9D7C5880A59C77C80FF /* Pods_Trav_Book.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3528F8D0235327ED0099D39D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				3528F8D1235327FA0099D39D /* User.swift */,
-				35ED6E9D2365AB150047927C /* HomePosts.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		35562ECD234612360092A813 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				35EE901A234F72EA008D4FC3 /* Home */,
-				35562EC52345E5160092A813 /* DashbaordTabBarController.swift */,
-				35562EC72345E5160092A813 /* ProfileViewController.swift */,
-				35562ECE234612580092A813 /* SearchViewController.swift */,
-				35562ED0234616E70092A813 /* AskViewController.swift */,
-				35562ED22346171F0092A813 /* NotificationViewController.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		35ED6E9A2365AAC40047927C /* Repo */ = {
-			isa = PBXGroup;
-			children = (
-				35ED6E9B2365AAD90047927C /* Repository.swift */,
-			);
-			path = Repo;
-			sourceTree = "<group>";
-		};
-		35EE901A234F72EA008D4FC3 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				35562EC82345E5160092A813 /* HomeViewController.swift */,
-				35ED6E962365A8BC0047927C /* HomeInteractor.swift */,
-				35EE901B234F730E008D4FC3 /* HomeCollectionViewCell.swift */,
-				35EE901C234F730E008D4FC3 /* HomeCollectionViewCell.xib */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		35F4F35B2345E3990006520E = {
-			isa = PBXGroup;
-			children = (
-				35F4F3662345E3990006520E /* Trav-Book */,
-				35F4F3652345E3990006520E /* Products */,
-				6DD76AF26E61732FC4C49BA8 /* Pods */,
-				2341693E83D51A63A31E4AC1 /* Frameworks */,
+				354022C124EFDD7300F69187 /* Trav-Book */,
+				354022DB24EFDD7600F69187 /* Trav-BookTests */,
+				354022C024EFDD7300F69187 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		35F4F3652345E3990006520E /* Products */ = {
+		354022C024EFDD7300F69187 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35F4F3642345E3990006520E /* Trav-Book.app */,
+				354022BF24EFDD7300F69187 /* Trav-Book.app */,
+				354022D824EFDD7600F69187 /* Trav-BookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		35F4F3662345E3990006520E /* Trav-Book */ = {
+		354022C124EFDD7300F69187 /* Trav-Book */ = {
 			isa = PBXGroup;
 			children = (
-				35ED6E9A2365AAC40047927C /* Repo */,
-				3528F8D0235327ED0099D39D /* Model */,
-				35562ECD234612360092A813 /* TabBar */,
-				35562EC62345E5160092A813 /* LoginViewController.swift */,
-				35F4F3672345E3990006520E /* AppDelegate.swift */,
-				35F4F3692345E3990006520E /* ViewController.swift */,
-				35F4F36B2345E3990006520E /* Main.storyboard */,
-				35F4F36E2345E39A0006520E /* Assets.xcassets */,
-				35F4F3702345E39A0006520E /* LaunchScreen.storyboard */,
-				35F9F6D7234E20DC00A2EDFA /* credentials.plist */,
-				35F4F3732345E39A0006520E /* Info.plist */,
-				35EE9018234F62D0008D4FC3 /* travel.png */,
-				3528F8CE23531D190099D39D /* AppFactory.swift */,
-				35B72BC9235348CE00466D98 /* UserInfo.swift */,
-				35ED6E982365AA860047927C /* OfflineData.json */,
+				354022C224EFDD7300F69187 /* AppDelegate.swift */,
+				354022C424EFDD7300F69187 /* SceneDelegate.swift */,
+				354022C924EFDD7300F69187 /* ContentView.swift */,
+				35419D4824EFDDBE00A1A5F8 /* LoginView.swift */,
+				353B89AA24F136C20069F664 /* DashboardView.swift */,
+				354022CB24EFDD7600F69187 /* Assets.xcassets */,
+				354022D024EFDD7600F69187 /* LaunchScreen.storyboard */,
+				354022D324EFDD7600F69187 /* Info.plist */,
+				354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */,
+				354022CD24EFDD7600F69187 /* Preview Content */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
 		};
-		6DD76AF26E61732FC4C49BA8 /* Pods */ = {
+		354022CD24EFDD7600F69187 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				3F15C6A46A23642C00FB1976 /* Pods-Trav-Book.debug.xcconfig */,
-				C17D5D8EC92990253974479D /* Pods-Trav-Book.release.xcconfig */,
+				354022CE24EFDD7600F69187 /* Preview Assets.xcassets */,
 			);
-			path = Pods;
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		354022DB24EFDD7600F69187 /* Trav-BookTests */ = {
+			isa = PBXGroup;
+			children = (
+				354022DC24EFDD7600F69187 /* Trav_BookTests.swift */,
+				354022DE24EFDD7600F69187 /* Info.plist */,
+			);
+			path = "Trav-BookTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		35F4F3632345E3990006520E /* Trav-Book */ = {
+		354022BE24EFDD7300F69187 /* Trav-Book */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35F4F3762345E39A0006520E /* Build configuration list for PBXNativeTarget "Trav-Book" */;
+			buildConfigurationList = 354022E124EFDD7600F69187 /* Build configuration list for PBXNativeTarget "Trav-Book" */;
 			buildPhases = (
-				2DBBC0690B9E9D23A60F3E1A /* [CP] Check Pods Manifest.lock */,
-				35F4F3602345E3990006520E /* Sources */,
-				35F4F3612345E3990006520E /* Frameworks */,
-				35F4F3622345E3990006520E /* Resources */,
-				68E7629F43BBB2FE290EF4CF /* [CP] Embed Pods Frameworks */,
-				082059BC7A031863A557B4A4 /* [CP] Copy Pods Resources */,
+				354022BB24EFDD7300F69187 /* Sources */,
+				354022BC24EFDD7300F69187 /* Frameworks */,
+				354022BD24EFDD7300F69187 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -194,25 +133,47 @@
 			);
 			name = "Trav-Book";
 			productName = "Trav-Book";
-			productReference = 35F4F3642345E3990006520E /* Trav-Book.app */;
+			productReference = 354022BF24EFDD7300F69187 /* Trav-Book.app */;
 			productType = "com.apple.product-type.application";
+		};
+		354022D724EFDD7600F69187 /* Trav-BookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 354022E424EFDD7600F69187 /* Build configuration list for PBXNativeTarget "Trav-BookTests" */;
+			buildPhases = (
+				354022D424EFDD7600F69187 /* Sources */,
+				354022D524EFDD7600F69187 /* Frameworks */,
+				354022D624EFDD7600F69187 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				354022DA24EFDD7600F69187 /* PBXTargetDependency */,
+			);
+			name = "Trav-BookTests";
+			productName = "Trav-BookTests";
+			productReference = 354022D824EFDD7600F69187 /* Trav-BookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		35F4F35C2345E3990006520E /* Project object */ = {
+		354022B724EFDD7300F69187 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Mohamed Mahmoud Zaki";
 				TargetAttributes = {
-					35F4F3632345E3990006520E = {
-						CreatedOnToolsVersion = 10.3;
+					354022BE24EFDD7300F69187 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					354022D724EFDD7600F69187 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 354022BE24EFDD7300F69187;
 					};
 				};
 			};
-			buildConfigurationList = 35F4F35F2345E3990006520E /* Build configuration list for PBXProject "Trav-Book" */;
+			buildConfigurationList = 354022BA24EFDD7300F69187 /* Build configuration list for PBXProject "Trav-Book" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -220,131 +181,74 @@
 				en,
 				Base,
 			);
-			mainGroup = 35F4F35B2345E3990006520E;
-			productRefGroup = 35F4F3652345E3990006520E /* Products */;
+			mainGroup = 354022B624EFDD7300F69187;
+			productRefGroup = 354022C024EFDD7300F69187 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				35F4F3632345E3990006520E /* Trav-Book */,
+				354022BE24EFDD7300F69187 /* Trav-Book */,
+				354022D724EFDD7600F69187 /* Trav-BookTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		35F4F3622345E3990006520E /* Resources */ = {
+		354022BD24EFDD7300F69187 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F4F3722345E39A0006520E /* LaunchScreen.storyboard in Resources */,
-				35F9F6D8234E20DC00A2EDFA /* credentials.plist in Resources */,
-				35EE9019234F62D0008D4FC3 /* travel.png in Resources */,
-				35EE901E234F730F008D4FC3 /* HomeCollectionViewCell.xib in Resources */,
-				35ED6E992365AA860047927C /* OfflineData.json in Resources */,
-				35F4F36F2345E39A0006520E /* Assets.xcassets in Resources */,
-				35F4F36D2345E3990006520E /* Main.storyboard in Resources */,
+				354022D224EFDD7600F69187 /* LaunchScreen.storyboard in Resources */,
+				354022CF24EFDD7600F69187 /* Preview Assets.xcassets in Resources */,
+				354022CC24EFDD7600F69187 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		354022D624EFDD7600F69187 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		082059BC7A031863A557B4A4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2DBBC0690B9E9D23A60F3E1A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Trav-Book-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		68E7629F43BBB2FE290EF4CF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		35F4F3602345E3990006520E /* Sources */ = {
+		354022BB24EFDD7300F69187 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35562ED1234616E70092A813 /* AskViewController.swift in Sources */,
-				3528F8CF23531D190099D39D /* AppFactory.swift in Sources */,
-				35ED6E9C2365AAD90047927C /* Repository.swift in Sources */,
-				35562ECA2345E5160092A813 /* LoginViewController.swift in Sources */,
-				35562ECF234612580092A813 /* SearchViewController.swift in Sources */,
-				35F4F36A2345E3990006520E /* ViewController.swift in Sources */,
-				35562ECB2345E5160092A813 /* ProfileViewController.swift in Sources */,
-				35EE901D234F730F008D4FC3 /* HomeCollectionViewCell.swift in Sources */,
-				35562ED32346171F0092A813 /* NotificationViewController.swift in Sources */,
-				35B72BCA235348CE00466D98 /* UserInfo.swift in Sources */,
-				3528F8D2235327FA0099D39D /* User.swift in Sources */,
-				35562EC92345E5160092A813 /* DashbaordTabBarController.swift in Sources */,
-				35ED6E9E2365AB150047927C /* HomePosts.swift in Sources */,
-				35F4F3682345E3990006520E /* AppDelegate.swift in Sources */,
-				35562ECC2345E5160092A813 /* HomeViewController.swift in Sources */,
-				35ED6E972365A8BC0047927C /* HomeInteractor.swift in Sources */,
+				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
+				353B89AB24F136C20069F664 /* DashboardView.swift in Sources */,
+				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
+				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
+				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,
+				354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		354022D424EFDD7600F69187 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				354022DD24EFDD7600F69187 /* Trav_BookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		35F4F36B2345E3990006520E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				35F4F36C2345E3990006520E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		354022DA24EFDD7600F69187 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 354022BE24EFDD7300F69187 /* Trav-Book */;
+			targetProxy = 354022D924EFDD7600F69187 /* PBXContainerItemProxy */;
 		};
-		35F4F3702345E39A0006520E /* LaunchScreen.storyboard */ = {
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		354022D024EFDD7600F69187 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				35F4F3712345E39A0006520E /* Base */,
+				354022D124EFDD7600F69187 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -352,7 +256,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		35F4F3742345E39A0006520E /* Debug */ = {
+		354022DF24EFDD7600F69187 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -384,7 +288,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -403,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -413,7 +316,7 @@
 			};
 			name = Debug;
 		};
-		35F4F3752345E39A0006520E /* Release */ = {
+		354022E024EFDD7600F69187 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -445,7 +348,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -458,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -468,12 +370,14 @@
 			};
 			name = Release;
 		};
-		35F4F3772345E39A0006520E /* Debug */ = {
+		354022E224EFDD7600F69187 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F15C6A46A23642C00FB1976 /* Pods-Trav-Book.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Trav-Book/Preview Content\"";
+				DEVELOPMENT_TEAM = 8S49K8U3C3;
+				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Trav-Book/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -486,12 +390,14 @@
 			};
 			name = Debug;
 		};
-		35F4F3782345E39A0006520E /* Release */ = {
+		354022E324EFDD7600F69187 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C17D5D8EC92990253974479D /* Pods-Trav-Book.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Trav-Book/Preview Content\"";
+				DEVELOPMENT_TEAM = 8S49K8U3C3;
+				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Trav-Book/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,28 +410,94 @@
 			};
 			name = Release;
 		};
+		354022E524EFDD7600F69187 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S49K8U3C3;
+				INFOPLIST_FILE = "Trav-BookTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Zaki.Trav-BookTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trav-Book.app/Trav-Book";
+			};
+			name = Debug;
+		};
+		354022E624EFDD7600F69187 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S49K8U3C3;
+				INFOPLIST_FILE = "Trav-BookTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Zaki.Trav-BookTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trav-Book.app/Trav-Book";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		35F4F35F2345E3990006520E /* Build configuration list for PBXProject "Trav-Book" */ = {
+		354022BA24EFDD7300F69187 /* Build configuration list for PBXProject "Trav-Book" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35F4F3742345E39A0006520E /* Debug */,
-				35F4F3752345E39A0006520E /* Release */,
+				354022DF24EFDD7600F69187 /* Debug */,
+				354022E024EFDD7600F69187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35F4F3762345E39A0006520E /* Build configuration list for PBXNativeTarget "Trav-Book" */ = {
+		354022E124EFDD7600F69187 /* Build configuration list for PBXNativeTarget "Trav-Book" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35F4F3772345E39A0006520E /* Debug */,
-				35F4F3782345E39A0006520E /* Release */,
+				354022E224EFDD7600F69187 /* Debug */,
+				354022E324EFDD7600F69187 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		354022E424EFDD7600F69187 /* Build configuration list for PBXNativeTarget "Trav-BookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				354022E524EFDD7600F69187 /* Debug */,
+				354022E624EFDD7600F69187 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				354022C724EFDD7300F69187 /* Trav_Book.xcdatamodel */,
+			);
+			currentVersion = 354022C724EFDD7300F69187 /* Trav_Book.xcdatamodel */;
+			path = Trav_Book.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
-	rootObject = 35F4F35C2345E3990006520E /* Project object */;
+	rootObject = 354022B724EFDD7300F69187 /* Project object */;
 }
