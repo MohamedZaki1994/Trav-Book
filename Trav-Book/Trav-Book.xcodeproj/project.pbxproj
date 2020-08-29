@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		353B89AB24F136C20069F664 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B89AA24F136C20069F664 /* DashboardView.swift */; };
+		353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B89AA24F136C20069F664 /* BaseTabView.swift */; };
 		354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C224EFDD7300F69187 /* AppDelegate.swift */; };
 		354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C424EFDD7300F69187 /* SceneDelegate.swift */; };
 		354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */; };
@@ -17,6 +17,9 @@
 		354022D224EFDD7600F69187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354022D024EFDD7600F69187 /* LaunchScreen.storyboard */; };
 		354022DD24EFDD7600F69187 /* Trav_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022DC24EFDD7600F69187 /* Trav_BookTests.swift */; };
 		35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419D4824EFDDBE00A1A5F8 /* LoginView.swift */; };
+		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
+		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
+		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		353B89AA24F136C20069F664 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		353B89AA24F136C20069F664 /* BaseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabView.swift; sourceTree = "<group>"; };
 		354022BF24EFDD7300F69187 /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		354022C224EFDD7300F69187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		354022C424EFDD7300F69187 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,9 @@
 		354022DC24EFDD7600F69187 /* Trav_BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trav_BookTests.swift; sourceTree = "<group>"; };
 		354022DE24EFDD7600F69187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35419D4824EFDDBE00A1A5F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +95,7 @@
 				354022C424EFDD7300F69187 /* SceneDelegate.swift */,
 				354022C924EFDD7300F69187 /* ContentView.swift */,
 				35419D4824EFDDBE00A1A5F8 /* LoginView.swift */,
-				353B89AA24F136C20069F664 /* DashboardView.swift */,
+				355FBAFB24F7B0D6006749AE /* Dashboard */,
 				354022CB24EFDD7600F69187 /* Assets.xcassets */,
 				354022D024EFDD7600F69187 /* LaunchScreen.storyboard */,
 				354022D324EFDD7600F69187 /* Info.plist */,
@@ -114,6 +120,17 @@
 				354022DE24EFDD7600F69187 /* Info.plist */,
 			);
 			path = "Trav-BookTests";
+			sourceTree = "<group>";
+		};
+		355FBAFB24F7B0D6006749AE /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				353B89AA24F136C20069F664 /* BaseTabView.swift */,
+				355FBAFE24F7B1B6006749AE /* DashboardView.swift */,
+				355FBB0024F7C59F006749AE /* DashboardViewModel.swift */,
+				355FBAFC24F7B0FD006749AE /* PostView.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,8 +234,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
+				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
 				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
-				353B89AB24F136C20069F664 /* DashboardView.swift in Sources */,
+				355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */,
+				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
 				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
 				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,
