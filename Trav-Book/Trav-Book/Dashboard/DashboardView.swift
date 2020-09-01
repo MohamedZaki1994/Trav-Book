@@ -19,13 +19,18 @@ struct DashboardView: View {
 //            ScrollView {
 //                GeometryReader { geo in
                 List {
+                    Button("Refresh") {
+                        self.viewModel.refresh()
+
+                    }.buttonStyle(PrimaryButtonStyle())
                     if self.viewModel.isLoading {
                         Text("loading")
                     } else {
                         Text("Hello world")
+
                         ForEach(posts) { post in
                             Section {
-                                PostView(postText: post.postText ?? "", profileImageString: post.imageName ?? "", profileName: post.name ?? "")
+                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "")
                             }
                         }
                         .onDelete { (index) in

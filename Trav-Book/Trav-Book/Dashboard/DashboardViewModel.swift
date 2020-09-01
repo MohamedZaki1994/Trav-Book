@@ -9,20 +9,35 @@
 import Foundation
 import Firebase
 
-//https://github.com/MohamedZaki1994/CMS/blob/master/Test.json
 class DashboardViewModel: ObservableObject {
 
     var ref: DatabaseReference!
-    var postDict: [String : AnyObject]?
+    var postsModelUpdatedRealTime : PostsModel?
+    var postsModel: PostsModel? {
+        didSet {
+            if let postArray = postsModel?.posts {
+                posts = [PostModel]()
+                for post in postArray {
+                    self.posts.append(PostModel(name: post.name, imageName: nil, postText: post.post))
+                }
+
+            }
+        }
+    }
 
     @Published var isLoading = false
 
+    @Published var isRefresh = false
     @Published var posts = [PostModel]()
         {
         didSet {
             print("Fired")
             isLoading = false
         }
+    }
+
+    func refresh(){
+        postsModel = postsModelUpdatedRealTime
     }
 
     func getData() {
@@ -51,7 +66,7 @@ class DashboardViewModel: ObservableObject {
         guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 
         do {
-            let yourStructObject = try JSONDecoder().decode(PostsModel.self, from: data)
+            self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
             print("Done")
         }
             
@@ -145,7 +160,7 @@ struct PostsModel: Codable {
 }
 
 // MARK: - Post
-struct Post: Codable {
+struct Post: Codable{
     let name, post: String
 }
 
