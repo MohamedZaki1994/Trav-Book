@@ -8,20 +8,23 @@
 
 import Foundation
 import Firebase
-
+import Combine
 class DashboardViewModel: ObservableObject {
 
-    var ref: DatabaseReference!
+    var ref: DatabaseReference = Database.database().reference()
     var postsModelUpdatedRealTime : PostsModel?
+    var switchSubscriber = Set<AnyCancellable>()
     var postsModel: PostsModel? {
         didSet {
             if let postArray = postsModel?.posts {
                 posts = [PostModel]()
                 for post in postArray {
-                    self.posts.append(PostModel(name: post.name, imageName: nil, postText: post.post))
+                    self.posts.append(PostModel(name: post.name, imageName: nil, postText: post.post, numberOfLike: post.numberOfLike))
                 }
 
             }
+            print("Fired")
+            isLoading = false
         }
     }
 
@@ -29,44 +32,23 @@ class DashboardViewModel: ObservableObject {
 
     @Published var isRefresh = false
     @Published var posts = [PostModel]()
-        {
-        didSet {
-            print("Fired")
-            isLoading = false
-        }
-    }
 
-    func refresh(){
+    func refresh() {
         postsModel = postsModelUpdatedRealTime
     }
 
     func getData() {
-        //Dummy data
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//
-//            let post1 = PostModel( name: "Zaki", imageName: "nothing", postText: "This is the best App")
-//            let post2 = PostModel(name: "Onikage", imageName: nil, postText: "Agree")
-//            let post3 = PostModel(name: "Omar", imageName: nil, postText: "Jehad")
-//            let post4 = PostModel( name: "Zaki", imageName: "nothing", postText: "This is the best App")
-//            let post5 = PostModel(name: "Onikage", imageName: nil, postText: "Agree")
-//            let post6 = PostModel(name: "Omar", imageName: nil, postText: "Jehad")
-//
-//            self.posts = [post1,post2,post3,post4,post5,post6]
-//        }
-        // dummy data from cms
-//        request { (welcome, error) in
-//            print(welcome)
-//        }
-
         // dummy data from firebase
 
-        ref = Database.database().reference()
        ref.observe(DataEventType.value, with: { [weak self] (snapshot) in
 
         guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 
         do {
             self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
+            if self?.postsModel == nil {
+                self?.refresh()
+            }
             print("Done")
         }
             
@@ -76,6 +58,10 @@ class DashboardViewModel: ObservableObject {
 
 
         })
+    }
+
+    func update(numberOfLikes: Int) {
+        ref.child("posts/0/numberOfLike").setValue(numberOfLikes)
     }
 
     func request(completion:((Welcome?, Error?) -> Void)?) {
@@ -108,6 +94,7 @@ class DashboardViewModel: ObservableObject {
         var name: String?
         var imageName: String?
         var postText: String?
+        var numberOfLike: Int?
 }
 
 
@@ -162,5 +149,6 @@ struct PostsModel: Codable {
 // MARK: - Post
 struct Post: Codable{
     let name, post: String
+    let numberOfLike: Int
 }
 

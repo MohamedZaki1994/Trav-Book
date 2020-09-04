@@ -7,30 +7,29 @@
 //
 
 import SwiftUI
+import Combine
 
 struct DashboardView: View {
 
     @ObservedObject var viewModel: DashboardViewModel = DashboardViewModel()
     @State private var isAlert = false
     @State var indexSet: IndexSet?
-    var body: some View {
-        let posts = viewModel.posts
-        return
-//            ScrollView {
-//                GeometryReader { geo in
-                List {
-                    Button("Refresh") {
-                        self.viewModel.refresh()
+//    private var switchSubscriber = Set<AnyCancellable>()
 
-                    }.buttonStyle(PrimaryButtonStyle())
+    var body: some View {
+        return
+            NavigationView {
+
+                List {
+
                     if self.viewModel.isLoading {
                         Text("loading")
                     } else {
-                        Text("Hello world")
-
-                        ForEach(posts) { post in
+                        ForEach(viewModel.posts) { post in
                             Section {
-                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "")
+                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0) { likes in
+                                    self.viewModel.update(numberOfLikes: likes)
+                                }
                             }
                         }
                         .onDelete { (index) in
@@ -45,12 +44,26 @@ struct DashboardView: View {
                         }
                     }
                     Spacer()
-                }.environment(\.defaultMinListRowHeight, 100)
-                    .onAppear() {
-                        self.viewModel.isLoading = true
-                        self.viewModel.getData()
-//                }.frame(width: geo.size.width)
-//                }
+                }
+                .environment(\.defaultMinListRowHeight, 100)
+                .onAppear() {
+                    self.viewModel.isLoading = true
+                    self.viewModel.getData()
+//             switchSubscriber =       self.viewModel.$posts.sink(receiveValue: { ([PostModel]) in
+//                        print("")
+//                    })
+                   var key = self.viewModel.$posts.sink { (pos) in
+                    print(self.viewModel.switchSubscriber)
+                    print("")
+                    }.store(in: &self.viewModel.switchSubscriber)
+                }
+                .navigationBarItems(leading:
+                    Button(action: {
+                        self.viewModel.refresh()
+                    }) {
+                        Image(systemName:"arrow.counterclockwise.circle.fill")
+                    }
+                    .buttonStyle(DefaultButtonStyle()))
         }
 
     }

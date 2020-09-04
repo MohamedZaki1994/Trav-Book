@@ -12,6 +12,8 @@ struct PostView: View {
     @State var postText: String = "text"
     @State var profileImageString: String = ""
     @State var profileName: String = "Zaki"
+    @State var numberOfLike: Int = 0
+    var action: ((Int) -> Void)?
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -23,9 +25,11 @@ struct PostView: View {
             Divider()
             HStack {
                 Button(action: {
-                    print("dfg")
+                    self.numberOfLike += 1
+                    self.action?(self.numberOfLike)
+                    print("like")
                 }) {
-                    Text("like")}
+                    Text("\(numberOfLike) like")}
                         .buttonStyle(PrimaryButtonStyle())
 
                 Spacer()
@@ -55,11 +59,11 @@ struct PostView: View {
     }
 }
 
-struct PostView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostView()
-    }
-}
+//struct PostView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostView()
+//    }
+//}
 
 struct PrimaryButtonStyle: ButtonStyle {
     let height: CGFloat = 30
