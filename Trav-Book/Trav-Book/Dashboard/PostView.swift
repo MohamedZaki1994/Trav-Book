@@ -13,7 +13,8 @@ struct PostView: View {
     @State var profileImageString: String = ""
     @State var profileName: String = "Zaki"
     @State var numberOfLike: Int = 0
-    var action: ((Int) -> Void)?
+    @State var post: PostModel
+    var action: ((PostModel) -> Void)?
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -25,11 +26,12 @@ struct PostView: View {
             Divider()
             HStack {
                 Button(action: {
-                    self.numberOfLike += 1
-                    self.action?(self.numberOfLike)
+//                    self.numberOfLike += 1
+                    self.post.numberOfLike! += 1
+                    self.action?(self.post)
                     print("like")
                 }) {
-                    Text("\(numberOfLike) like")}
+                    Text("\(self.post.numberOfLike ?? 0) like")}
                         .buttonStyle(PrimaryButtonStyle())
 
                 Spacer()

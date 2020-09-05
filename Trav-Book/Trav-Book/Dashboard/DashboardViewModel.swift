@@ -60,8 +60,14 @@ class DashboardViewModel: ObservableObject {
         })
     }
 
-    func update(numberOfLikes: Int) {
-        ref.child("posts/0/numberOfLike").setValue(numberOfLikes)
+    func update(numberOfLikes: PostModel) {
+        for post in posts.enumerated() {
+            if post.element.id == numberOfLikes.id {
+
+                ref.child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
+            }
+        }
+//        ref.child("posts/0/numberOfLike").setValue(numberOfLikes)
     }
 
     func request(completion:((Welcome?, Error?) -> Void)?) {

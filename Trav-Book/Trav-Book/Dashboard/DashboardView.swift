@@ -27,8 +27,8 @@ struct DashboardView: View {
                     } else {
                         ForEach(viewModel.posts) { post in
                             Section {
-                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0) { likes in
-                                    self.viewModel.update(numberOfLikes: likes)
+                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
+                                    self.viewModel.update(numberOfLikes: updatedPost)
                                 }
                             }
                         }
