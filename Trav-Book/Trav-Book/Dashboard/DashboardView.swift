@@ -14,7 +14,22 @@ struct DashboardView: View {
     @ObservedObject var viewModel: DashboardViewModel = DashboardViewModel()
     @State private var isAlert = false
     @State var indexSet: IndexSet?
+    @Binding var isRefresh: Bool
 //    private var switchSubscriber = Set<AnyCancellable>()
+
+    func isRefreshing() {
+        if self.isRefresh {
+            self.viewModel.refresh()
+        }
+    }
+
+    func dummyView(post: PostModel) -> some View {
+        var postview =  PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
+        //                                    self.viewModel.update(numberOfLikes: updatedPost)
+                                        }
+        postview.post = post
+        return postview
+    }
 
     var body: some View {
         return
@@ -27,9 +42,10 @@ struct DashboardView: View {
                     } else {
                         ForEach(viewModel.posts) { post in
                             Section {
-                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
-                                    self.viewModel.update(numberOfLikes: updatedPost)
-                                }
+                                self.dummyView(post: post)
+//                                 PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
+////                                    self.viewModel.update(numberOfLikes: updatedPost)
+//                                }
                             }
                         }
                         .onDelete { (index) in
@@ -48,6 +64,7 @@ struct DashboardView: View {
                 .environment(\.defaultMinListRowHeight, 100)
                 .onAppear() {
                     self.viewModel.isLoading = true
+                    print(self.isRefresh)
                     self.viewModel.getData()
 //             switchSubscriber =       self.viewModel.$posts.sink(receiveValue: { ([PostModel]) in
 //                        print("")
@@ -56,14 +73,10 @@ struct DashboardView: View {
                     print(self.viewModel.switchSubscriber)
                     print("")
                     }.store(in: &self.viewModel.switchSubscriber)
-                }
-                .navigationBarItems(leading:
-                    Button(action: {
+                    if self.isRefresh {
                         self.viewModel.refresh()
-                    }) {
-                        Image(systemName:"arrow.counterclockwise.circle.fill")
                     }
-                    .buttonStyle(DefaultButtonStyle()))
+                }
         }
 
     }
@@ -72,6 +85,6 @@ struct DashboardView: View {
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         //        DashboardView(viewModel: DashboardViewModel())
-        DashboardView()
+        DashboardView(isRefresh: Binding.constant(false))
     }
 }

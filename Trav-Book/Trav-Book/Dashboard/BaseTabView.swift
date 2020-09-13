@@ -10,9 +10,10 @@ import SwiftUI
 
 struct BaseTabView: View {
     @Binding var isNavigation: Bool
+    @State var isRefresh = false
     var body: some View {
         TabView {
-            DashboardView()
+            DashboardView(isRefresh: $isRefresh)
                 .tabItem {
                     VStack {
                         Image(systemName: "house")
@@ -34,7 +35,16 @@ struct BaseTabView: View {
                 }
             }
 
-        }.navigationBarBackButtonHidden(true)
+        }
+        .navigationBarItems(trailing:
+                           Button(action: {
+                            self.isRefresh = true
+                           }) {
+                               Image(systemName:"arrow.counterclockwise.circle.fill")
+                           }
+                           .buttonStyle(DefaultButtonStyle()))
+        .navigationBarBackButtonHidden(true)
+        
 
     }
 }

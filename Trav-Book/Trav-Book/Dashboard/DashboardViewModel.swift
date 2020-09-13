@@ -29,7 +29,6 @@ class DashboardViewModel: ObservableObject {
     }
 
     @Published var isLoading = false
-
     @Published var isRefresh = false
     @Published var posts = [PostModel]()
 
@@ -67,7 +66,6 @@ class DashboardViewModel: ObservableObject {
                 ref.child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
             }
         }
-//        ref.child("posts/0/numberOfLike").setValue(numberOfLikes)
     }
 
     func request(completion:((Welcome?, Error?) -> Void)?) {
@@ -94,13 +92,19 @@ class DashboardViewModel: ObservableObject {
 }
 
 
-    struct PostModel: Identifiable {
+    class PostModel: Identifiable {
 
         var id = UUID()
         var name: String?
         var imageName: String?
         var postText: String?
         var numberOfLike: Int?
+        init (name: String, imageName: String?,postText:String,numberOfLike: Int) {
+            self.name = name
+            self.imageName = imageName
+            self.postText = postText
+            self.numberOfLike = numberOfLike
+        }
 }
 
 
@@ -109,44 +113,9 @@ struct Welcome: Codable {
     let array: [Int]
     let boolean: Bool
     let color: String
-    let null: JSONNull?
     let number: Int
-    let object: Object
     let string: String
 }
-
-// MARK: - Object
-struct Object: Codable {
-    let a, c: String
-}
-
-// MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
-
-    public var hashValue: Int {
-        return 0
-    }
-
-    public init() {}
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-}
-
 
 struct PostsModel: Codable {
     let posts: [Post]

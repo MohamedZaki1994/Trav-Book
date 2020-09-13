@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+        VStack {
                 LoginView()
                     .padding(.leading,10)
                     .padding(.top,10)
@@ -21,6 +21,7 @@ struct ContentView: View {
                     Text("Log in")
                 }
             }.navigationBarTitle("Log in",displayMode: .inline)
+
         }
     }
 }

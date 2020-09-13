@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct PostView: View {
-    @State var postText: String = "text"
-    @State var profileImageString: String = ""
-    @State var profileName: String = "Zaki"
-    @State var numberOfLike: Int = 0
-    @State var post: PostModel
+   var postText: String// = "text"
+    var profileImageString: String// = ""
+     var profileName: String //= "Zaki"
+    var numberOfLike: Int //= 0
+    var post: PostModel
     var action: ((PostModel) -> Void)?
     var body: some View {
         VStack(alignment: .leading) {
