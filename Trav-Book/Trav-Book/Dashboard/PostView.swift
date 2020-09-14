@@ -43,7 +43,6 @@ struct PostView: View {
                                }) {
                                    Text("dislike")}
                                        .buttonStyle(PrimaryButtonStyle())
-//                }
                 Spacer()
                 Button(action: {
                     print("fsdf")

@@ -10,16 +10,26 @@ import SwiftUI
 
 struct BaseTabView: View {
     @Binding var isNavigation: Bool
-    @State var isRefresh = false
+    @State var isRefresh = true
     var body: some View {
         TabView {
-            DashboardView(isRefresh: $isRefresh)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "house")
-                        Text("Dashboard")
-                    }
+
+            if isRefresh {
+                DashboardView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "house")
+                            Text("Dashboard")
+
+                        }
+                }
             }
+            else {
+                Text("refreshing").onAppear() {
+                    self.isRefresh = true
+                }
+            }
+
 
             VStack {
                 Button(action: {
@@ -37,16 +47,17 @@ struct BaseTabView: View {
 
         }
         .navigationBarItems(trailing:
-                           Button(action: {
-                            self.isRefresh = true
-                           }) {
-                               Image(systemName:"arrow.counterclockwise.circle.fill")
-                           }
-                           .buttonStyle(DefaultButtonStyle()))
+            Button(action: {
+                self.isRefresh = false
+            }) {
+                Image(systemName:"arrow.counterclockwise.circle.fill")
+            }
+            .buttonStyle(DefaultButtonStyle()))
         .navigationBarBackButtonHidden(true)
-        
+
 
     }
+
 }
 
 struct BaseTabView_Previews: PreviewProvider {
