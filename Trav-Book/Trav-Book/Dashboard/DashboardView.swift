@@ -23,13 +23,14 @@ struct DashboardView: View {
         }
     }
 
-    func dummyView(post: PostModel) -> some View {
-        var postview =  PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
-        //                                    self.viewModel.update(numberOfLikes: updatedPost)
-                                        }
-        postview.post = post
-        return postview
-    }
+//    func dummyView(post: PostModel) -> some View {
+////        var postview =  PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
+////        //                                    self.viewModel.update(numberOfLikes: updatedPost)
+////                                        }
+//        var postview = PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0).environmentObject(post)
+////        postview.post = post
+//        return postview
+//    }
 
     var body: some View {
         return
@@ -42,7 +43,9 @@ struct DashboardView: View {
                     } else {
                         ForEach(viewModel.posts) { post in
                             Section {
-                                self.dummyView(post: post)
+//                                self.dummyView(post: post)
+                                PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post).environmentObject(self.viewModel)
+
 //                                 PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post) { updatedPost in
 ////                                    self.viewModel.update(numberOfLikes: updatedPost)
 //                                }

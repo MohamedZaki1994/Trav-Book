@@ -92,13 +92,16 @@ class DashboardViewModel: ObservableObject {
 }
 
 
-    class PostModel: Identifiable {
+    class PostModel: Identifiable, ObservableObject {
 
         var id = UUID()
         var name: String?
         var imageName: String?
         var postText: String?
         var numberOfLike: Int?
+        init() {
+            
+        }
         init (name: String, imageName: String?,postText:String,numberOfLike: Int) {
             self.name = name
             self.imageName = imageName

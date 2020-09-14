@@ -12,9 +12,10 @@ struct PostView: View {
    var postText: String// = "text"
     var profileImageString: String// = ""
      var profileName: String //= "Zaki"
-    var numberOfLike: Int //= 0
-    var post: PostModel
+    @State var numberOfLike: Int //= 0
+    @State var post: PostModel// = PostModel()
     var action: ((PostModel) -> Void)?
+     @EnvironmentObject var model: DashboardViewModel
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -26,12 +27,14 @@ struct PostView: View {
             Divider()
             HStack {
                 Button(action: {
-//                    self.numberOfLike += 1
                     self.post.numberOfLike! += 1
+                    self.numberOfLike += 1
+                    self.model.update(numberOfLikes: self.post)
+
                     self.action?(self.post)
                     print("like")
                 }) {
-                    Text("\(self.post.numberOfLike ?? 0) like")}
+                    Text("\(self.numberOfLike) like")}
                         .buttonStyle(PrimaryButtonStyle())
 
                 Spacer()
@@ -40,7 +43,6 @@ struct PostView: View {
                                }) {
                                    Text("dislike")}
                                        .buttonStyle(PrimaryButtonStyle())
-                //
 //                }
                 Spacer()
                 Button(action: {
@@ -49,14 +51,10 @@ struct PostView: View {
                     Text("comment")
 
                 }.buttonStyle(PrimaryButtonStyle())
-//                Spacer()
-//                Button(action: {
-//                    print("asgfa")
-//                }) {
-//                    Text("add to favorite")
-//
-//                }
+
             }.padding()
+        }.onAppear() {
+            self.numberOfLike = self.post.numberOfLike ?? 0
         }
     }
 }

@@ -141,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				353B89AA24F136C20069F664 /* BaseTabView.swift */,
-				355FBAFE24F7B1B6006749AE /* DashboardView.swift */,
 				355FBB0024F7C59F006749AE /* DashboardViewModel.swift */,
+				355FBAFE24F7B1B6006749AE /* DashboardView.swift */,
 				355FBAFC24F7B0FD006749AE /* PostView.swift */,
 			);
 			path = Dashboard;
