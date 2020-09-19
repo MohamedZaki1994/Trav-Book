@@ -50,7 +50,7 @@ struct BaseTabView: View {
             Button(action: {
                 self.isRefresh = false
             }) {
-                Image(systemName:"arrow.counterclockwise.circle.fill")
+                Image(systemName:"arrow.counterclockwise.circle.fill").padding()
             }
             .buttonStyle(DefaultButtonStyle()))
         .navigationBarBackButtonHidden(true)
