@@ -37,16 +37,17 @@ class DashboardViewModel: ObservableObject {
     }
 
     func getData() {
+        var flag = true
         // dummy data from firebase
-
        ref.observe(DataEventType.value, with: { [weak self] (snapshot) in
 
         guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 
         do {
             self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
-            if self?.postsModel == nil {
+            if flag {
                 self?.refresh()
+                flag = false
             }
             print("Done")
         }

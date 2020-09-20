@@ -55,6 +55,8 @@ struct ProfileView: View {
             }
             Spacer()
         }
+            .navigationBarHidden(true).navigationBarTitle("").navigationBarBackButtonHidden(true)
+
         .onAppear() {
             self.profileViewModel.fillProfile()
             self.instanceProfile.profileModel.name = self.profileViewModel.profileModel.name

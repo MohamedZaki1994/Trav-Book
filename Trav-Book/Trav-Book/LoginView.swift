@@ -24,7 +24,6 @@ struct LoginView: View {
                     .textStyle()
 
                 Text("Pasword")
-//                    .padding(.)
                     .textStyle()
                     .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
                         return d[VerticalAlignment.center]

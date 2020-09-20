@@ -11,11 +11,11 @@ import SwiftUI
 struct BaseTabView: View {
     @Binding var isNavigation: Bool
     @State var isRefresh = true
+    @State var refreshing = false
     var body: some View {
         TabView {
-
-            if isRefresh {
-                DashboardView()
+//            if isRefresh {
+                DashboardView(refreshing: $refreshing)
                     .tabItem {
                         VStack {
                             Image(systemName: "house")
@@ -23,38 +23,32 @@ struct BaseTabView: View {
 
                         }
                 }
-            }
-            else {
-                Text("refreshing").onAppear() {
-                    self.isRefresh = true
-                }
-            }
+//            }
+//            else {
+//                Text("refreshing").onAppear() {
+//                    self.isRefresh = true
+//                }
+//            }
 
 
-            VStack {
-                Button(action: {
-                    self.isNavigation = false
-                } ){
-                    Text("Logout")
-                }
-                Text("Profile")
-            }.tabItem {
+            ProfileView(isNavigation: $isNavigation).tabItem {
                 VStack {
                     Image(systemName: "person")
                     Text("Profile")
                 }
             }
 
-        }
+
+            }
         .navigationBarItems(trailing:
             Button(action: {
                 self.isRefresh = false
+                self.refreshing = true
             }) {
                 Image(systemName:"arrow.counterclockwise.circle.fill").padding()
             }
-            .buttonStyle(DefaultButtonStyle()))
+        .buttonStyle(DefaultButtonStyle()))
         .navigationBarBackButtonHidden(true)
-
 
     }
 

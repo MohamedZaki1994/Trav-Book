@@ -17,11 +17,13 @@ struct ContentView: View {
                 LoginView()
                     .padding(.leading,10)
                     .padding(.top,10)
-                NavigationLink(destination: BaseTabView(isNavigation: $isNavigate),isActive: $isNavigate) {
+            NavigationLink(destination: BaseTabView(isNavigation: $isNavigate) ,isActive: $isNavigate) {
                     Text("Log in")
                 }
-            }.navigationBarTitle("Log in",displayMode: .inline)
+            }
+//            .navigationBarHidden(true).navigationBarTitle("").navigationBarBackButtonHidden(true)
 
+        .navigationBarTitle("Log in",displayMode: .inline)
         }
     }
 }

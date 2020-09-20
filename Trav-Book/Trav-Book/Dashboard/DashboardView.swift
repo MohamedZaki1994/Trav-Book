@@ -14,6 +14,7 @@ struct DashboardView: View {
     @ObservedObject var viewModel: DashboardViewModel = DashboardViewModel()
     @State private var isAlert = false
     @State var indexSet: IndexSet?
+    @Binding var refreshing: Bool
     //    private var switchSubscriber = Set<AnyCancellable>()
 
     //        var postview = PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0).environmentObject(post)
@@ -25,13 +26,22 @@ struct DashboardView: View {
         return
             List {
 
-                if self.viewModel.isLoading {
+                if self.viewModel.isLoading || self.refreshing{
                     Text("loading")
+                        .onAppear() {
+                            self.viewModel.getData()
+                            self.refreshing = false
+                    }
+                    .navigationBarHidden(false)
+
+
                 } else {
                     ForEach(viewModel.posts) { post in
                         Section {
-                            //                                self.dummyView(post: post)
                             PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post).environmentObject(self.viewModel)
+                            .navigationBarHidden(false)
+
+
                         }
                     }
                     .onDelete { (index) in
@@ -53,20 +63,20 @@ struct DashboardView: View {
                     self.viewModel.refresh()
                 } else {
                     self.viewModel.isLoading = true
-                    self.viewModel.getData()
                 }
-                var key = self.viewModel.$posts.sink { (pos) in
-                    print(self.viewModel.switchSubscriber)
-                    print("")
-                }.store(in: &self.viewModel.switchSubscriber)
+//                var key = self.viewModel.$posts.sink { (pos) in
+//                    print(self.viewModel.switchSubscriber)
+//                    print("")
+//                }.store(in: &self.viewModel.switchSubscriber)
         }
+    .navigationBarHidden(false)
 
     }
 }
 
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardView(viewModel: DashboardViewModel())
-        //        DashboardView(isRefresh: Binding.constant(false))
-    }
-}
+//struct DashboardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DashboardView(viewModel: DashboardViewModel())
+//        //        DashboardView(isRefresh: Binding.constant(false))
+//    }
+//}
