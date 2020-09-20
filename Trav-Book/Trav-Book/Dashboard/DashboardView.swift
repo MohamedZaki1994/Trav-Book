@@ -17,11 +17,6 @@ struct DashboardView: View {
     @Binding var refreshing: Bool
     //    private var switchSubscriber = Set<AnyCancellable>()
 
-    //        var postview = PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0).environmentObject(post)
-    ////        postview.post = post
-    //        return postview
-    //    }
-
     var body: some View {
         return
             List {
@@ -29,7 +24,11 @@ struct DashboardView: View {
                 if self.viewModel.isLoading || self.refreshing{
                     Text("loading")
                         .onAppear() {
+                            if !self.viewModel.posts.isEmpty {
+                                self.viewModel.refresh()
+                            } else {
                             self.viewModel.getData()
+                            }
                             self.refreshing = false
                     }
                     .navigationBarHidden(false)
@@ -56,7 +55,7 @@ struct DashboardView: View {
                     }
                 }
                 Spacer()
-            }
+                }
             .environment(\.defaultMinListRowHeight, 100)
             .onAppear() {
                 if !self.viewModel.posts.isEmpty {
