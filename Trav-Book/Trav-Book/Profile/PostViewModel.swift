@@ -12,6 +12,6 @@ class ProfileViewModel: ObservableObject {
     @Published var profileModel: ProfileModel = ProfileModel()
 
     func fillProfile() {
-         profileModel = ProfileModel(name: "Zaki", birthday: "12-9-1994", region: "Egypt")
+         profileModel = ProfileModel(name: "Zaki", birthday: "12-9-1994", region: "Egypt",gender: "male")
      }
 }

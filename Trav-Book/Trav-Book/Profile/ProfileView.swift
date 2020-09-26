@@ -55,8 +55,10 @@ struct ProfileView: View {
             }
             Spacer()
         }
-            .navigationBarHidden(true).navigationBarTitle("").navigationBarBackButtonHidden(true)
 
+//        .navigationBarHidden(true)
+//        .navigationBarTitle("")
+//        .navigationBarBackButtonHidden(true)
         .onAppear() {
             self.profileViewModel.fillProfile()
             self.instanceProfile.profileModel.name = self.profileViewModel.profileModel.name
@@ -72,20 +74,3 @@ struct ProfileView: View {
 //        ProfileView(isNavigation: Binding.constant(true))
 //    }
 //}
-
-
-class ProfileModel: Codable {
-    var name: String
-    var birthday: String
-    var region: String
-    init() {
-        name = ""
-        birthday = ""
-        region = ""
-    }
-    init(name: String, birthday: String, region: String) {
-        self.name = name
-        self.birthday = birthday
-        self.region = region
-    }
-}
