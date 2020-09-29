@@ -10,8 +10,12 @@ import SwiftUI
 
 struct SignupView: View {
     @Binding var isSignup: Bool
+    @State var username = ""
+    @State var password = ""
     var body: some View {
         VStack {
+            Text("Enter your username")
+            TextField("username", text: $username)
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             Button("Done") {
                 self.isSignup = false

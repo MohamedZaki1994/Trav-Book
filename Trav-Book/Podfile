@@ -9,6 +9,7 @@ target 'Trav-Book' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
   pod 'Cuckoo'
   target 'Trav-BookTests' do
     inherit! :search_paths

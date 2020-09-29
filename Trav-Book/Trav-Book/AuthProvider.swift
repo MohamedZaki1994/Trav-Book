@@ -18,6 +18,6 @@ class AuthProvider {
     private init () {}
 
     func checkAuth() {
-        
+        ref.child("Users")
     }
 }
