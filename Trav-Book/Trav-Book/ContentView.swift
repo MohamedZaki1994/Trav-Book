@@ -10,20 +10,48 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isNavigate = false
+    @State var isAlert = false
+    @State var username = ""
+    @State var password = ""
+    @State var isSignup = false
     
     var body: some View {
         NavigationView {
-        VStack {
-                LoginView()
+            VStack {
+                LoginView(username: $username, password: $password)
                     .padding(.leading,10)
-                    .padding(.top,10)
-            NavigationLink(destination: BaseTabView(isNavigation: $isNavigate) ,isActive: $isNavigate) {
-                    Text("Log in")
+                    .padding(.top,50)
+                    .frame(height: 150)
+                NavigationLink(destination: BaseTabView(isNavigation: $isNavigate) ,isActive: $isNavigate) {
+                    //                    Text("Log in")
+                    Text("")
                 }
-            }
-//            .navigationBarHidden(true).navigationBarTitle("").navigationBarBackButtonHidden(true)
 
-        .navigationBarTitle("Log in",displayMode: .inline)
+                HStack(spacing: 50) {
+                    Button("Login") {
+                        if !self.username.isEmpty, !self.password.isEmpty {
+                            self.isNavigate = true
+                        } else {
+                            self.isAlert = true
+                        }
+                    }
+                    Button("sign up") {
+                        self.isSignup = true
+                    }
+                }
+                Spacer()
+            }
+            .sheet(isPresented: $isSignup) {
+                SignupView(isSignup: self.$isSignup)
+                }
+
+            .alert(isPresented: $isAlert) {
+                    Alert(title: Text("Wrong username or password"), message: Text("Please enter a valid username and password"), dismissButton: .default(Text("cancel"), action: {
+                        self.isAlert = false
+                    }))
+                }
+
+                .navigationBarTitle("Log in",displayMode: .inline)
         }
     }
 }

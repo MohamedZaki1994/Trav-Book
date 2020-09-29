@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var username = ""
-    @State private var password = ""
+    @Binding var username: String
+    @Binding var password: String
     @State private var isAlert = false
     @State private var height: CGFloat = 0
     
@@ -31,7 +31,7 @@ struct LoginView: View {
 
                 Spacer()
             }
-            .animation(.default)
+//            .animation(.default)
 
             //
             VStack(spacing: 20.0){
@@ -60,12 +60,12 @@ struct LoginView: View {
 
     }
     
-    struct LoginView_Previews: PreviewProvider {
-        static var previews: some View {
-            LoginView()
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 6s"))
-        }
-    }
+//    struct LoginView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            LoginView()
+////                .previewDevice(PreviewDevice(rawValue: "iPhone 6s"))
+//        }
+//    }
 }
 
 extension HorizontalAlignment {
