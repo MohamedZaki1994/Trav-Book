@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3510488F24FE510600499DBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3510488E24FE510600499DBE /* GoogleService-Info.plist */; };
 		3531267025221F9E00015E82 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531266F25221F9E00015E82 /* AuthProvider.swift */; };
+		35391A852527711000892681 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35391A842527711000892681 /* UserModel.swift */; };
 		353A6803252366FB0097B72F /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353A6802252366FB0097B72F /* SignupView.swift */; };
 		353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4B2515F2220069F5D2 /* ProfileView.swift */; };
 		353AFB4E25174C9B0069F5D2 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4D25174C9B0069F5D2 /* PostViewModel.swift */; };
@@ -45,6 +46,7 @@
 		10477BDB0DCCAA6D2767A128 /* Pods-Trav-Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.debug.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.debug.xcconfig"; sourceTree = "<group>"; };
 		3510488E24FE510600499DBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3531266F25221F9E00015E82 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		35391A842527711000892681 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		353A6802252366FB0097B72F /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		353AFB4B2515F2220069F5D2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		353AFB4D25174C9B0069F5D2 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				354022D324EFDD7600F69187 /* Info.plist */,
 				354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */,
 				354022CD24EFDD7600F69187 /* Preview Content */,
+				35391A842527711000892681 /* UserModel.swift */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				353AFB4E25174C9B0069F5D2 /* PostViewModel.swift in Sources */,
 				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
 				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,
+				35391A852527711000892681 /* UserModel.swift in Sources */,
 				354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

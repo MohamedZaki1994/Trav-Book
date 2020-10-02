@@ -121,13 +121,3 @@ struct Welcome: Codable {
     let string: String
 }
 
-struct PostsModel: Codable {
-    let posts: [Post]
-}
-
-// MARK: - Post
-struct Post: Codable{
-    let name, post: String
-    let numberOfLike: Int
-}
-

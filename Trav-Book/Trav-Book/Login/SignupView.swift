@@ -12,13 +12,36 @@ struct SignupView: View {
     @Binding var isSignup: Bool
     @State var username = ""
     @State var password = ""
+    @State var confirmPassword = ""
+    @State private var birthDate = Date()
+    var isMatched: Bool {
+        return password == confirmPassword
+    }
     var body: some View {
-        VStack {
-            Text("Enter your username")
-            TextField("username", text: $username)
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        Form {
+            VStack {
+                Text("Enter your username")
+                TextField("username", text: $username)
+            }
+            VStack {
+                Text("Enter your password")
+                TextField("password", text: $password)
+            }
+            VStack {
+                Text("Confirm your username")
+                TextField("password", text: $confirmPassword).foregroundColor(isMatched ? Color.black : Color.red )
+            }
+            DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
+                           Text("Select your birthdate")
+                       }
             Button("Done") {
-                self.isSignup = false
+                AuthProvider.shared.createAccount(email: self.username, password: self.password,birthDate: "", image: "") { (error) in
+                    if error == nil {
+                        self.isSignup = false
+                    }
+                }
+
             }
         }
     }

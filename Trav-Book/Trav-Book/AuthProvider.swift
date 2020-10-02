@@ -20,4 +20,17 @@ class AuthProvider {
     func checkAuth() {
         ref.child("Users")
     }
+
+    func createAccount(email: String, password: String, birthDate: String, image: String, completion: ((Error?) -> Void)?) {
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if error == nil {
+                result?.user.uid
+                print("Account created Successfully")
+                completion?(nil)
+            } else {
+                print(error)
+                completion?(error)
+            }
+        }
+    }
 }
