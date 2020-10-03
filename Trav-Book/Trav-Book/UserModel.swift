@@ -9,12 +9,12 @@
 import Foundation
 
 struct User: Codable {
-    let id: UUID
-    let name: String
-    let password: String
-    let image:String
-    let posts: PostsModel
-    let favorite: PostsModel
+    let id: String?
+    let name: String?
+    let password: String?
+    let image:String?
+    let posts: PostsModel?
+    let favorite: PostsModel?
 }
 
 struct PostsModel: Codable {

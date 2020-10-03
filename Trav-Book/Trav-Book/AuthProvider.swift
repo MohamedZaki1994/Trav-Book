@@ -15,6 +15,7 @@ class AuthProvider {
     static var shared: AuthProvider {
         return _shared
     }
+//    var currentUserUid: String?
     private init () {}
 
     func checkAuth() {
@@ -24,7 +25,19 @@ class AuthProvider {
     func createAccount(email: String, password: String, birthDate: String, image: String, completion: ((Error?) -> Void)?) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error == nil {
-                result?.user.uid
+                guard let uid = result?.user.uid else {
+                    completion?(errorType.invalidUid)
+                    return
+                }
+                let jsonEncoder = JSONEncoder()
+                let user = User(id: uid, name: "Zaki", password: "", image: "", posts: nil, favorite: nil)
+                let jsonData = try? jsonEncoder.encode(user)
+                let json = try? JSONSerialization.jsonObject(with: jsonData!, options: [])
+                guard let userDictionary = json as? [String : Any] else {
+                    return
+                }
+                self.ref.child("Users").child(uid).setValue(userDictionary)
+//                self.currentUserUid = uid
                 print("Account created Successfully")
                 completion?(nil)
             } else {
@@ -33,4 +46,8 @@ class AuthProvider {
             }
         }
     }
+}
+
+enum errorType: Error {
+    case invalidUid
 }
