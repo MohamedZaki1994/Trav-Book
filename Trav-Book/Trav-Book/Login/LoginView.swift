@@ -16,7 +16,6 @@ struct LoginView: View {
     
     var body: some View {
         HStack(alignment:.midAccountAndName){
-            //
             Spacer()
             VStack(alignment: .leading,spacing: 22){
                 Text("Username")
@@ -31,11 +30,8 @@ struct LoginView: View {
 
                 Spacer()
             }
-//            .animation(.default)
 
-            //
             VStack(spacing: 20.0){
-
 
                 TextField("Enter your Username", text: self.$username)
                 TextField("Enter your Password", text: self.$password)
@@ -51,7 +47,6 @@ struct LoginView: View {
             }
 
         }.navigationBarTitle("Login",displayMode: .inline)
-
             .alert(isPresented: $isAlert, content: {
                 Alert(title: Text("Title"), message: Text("mesg"), primaryButton: .default(Text("Sure?"), action: {
                     print("said sure")

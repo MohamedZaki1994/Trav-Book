@@ -24,11 +24,7 @@ struct DashboardView: View {
                 if self.viewModel.isLoading || self.refreshing{
                     Text("loading")
                         .onAppear() {
-                            if !self.viewModel.posts.isEmpty {
-                                self.viewModel.refresh()
-                            } else {
                             self.viewModel.getData()
-                            }
                             self.refreshing = false
                     }
                     .navigationBarHidden(false)

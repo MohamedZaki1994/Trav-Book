@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
     @State private var isNavigate = false
@@ -23,14 +24,19 @@ struct ContentView: View {
                     .padding(.top,50)
                     .frame(height: 150)
                 NavigationLink(destination: BaseTabView(isNavigation: $isNavigate) ,isActive: $isNavigate) {
-                    //                    Text("Log in")
                     Text("")
                 }
 
                 HStack(spacing: 50) {
                     Button("Login") {
                         if !self.username.isEmpty, !self.password.isEmpty {
-                            self.isNavigate = true
+                            Auth.auth().signIn(withEmail: self.username, password: self.password, completion: { (result, error) in
+                                guard let result = result else {return}
+                                result.user.email
+                                if error == nil {
+                                    self.isNavigate = true
+                                }
+                            })
                         } else {
                             self.isAlert = true
                         }

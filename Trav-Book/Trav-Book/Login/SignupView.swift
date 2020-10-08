@@ -18,7 +18,6 @@ struct SignupView: View {
         return password == confirmPassword
     }
     var body: some View {
-
         Form {
             VStack {
                 Text("Enter your username")

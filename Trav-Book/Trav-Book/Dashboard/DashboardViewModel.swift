@@ -39,7 +39,7 @@ class DashboardViewModel: ObservableObject {
     func getData() {
         var flag = true
         // dummy data from firebase
-        ref.child("Ref").observe(DataEventType.value, with: { [weak self] (snapshot) in
+        ref.child("Ref").observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
 
         guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 
