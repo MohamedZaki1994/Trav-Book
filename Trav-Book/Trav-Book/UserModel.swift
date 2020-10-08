@@ -18,11 +18,12 @@ struct User: Codable {
 }
 
 struct PostsModel: Codable {
-    let posts: [Post]
+    var posts: [Post]
 }
 
 // MARK: - Post
 struct Post: Codable{
     let name, post: String
+    let id: String
     let numberOfLike: Int
 }

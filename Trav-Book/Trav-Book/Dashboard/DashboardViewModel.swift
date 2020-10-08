@@ -37,27 +37,25 @@ class DashboardViewModel: ObservableObject {
     }
 
     func getData() {
-        var flag = true
-        // dummy data from firebase
         ref.child("Ref").observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
-
         guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 
-        do {
-            self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
-            if flag {
+            do {
+                self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
                 self?.refresh()
-                flag = false
+                print("Done")
             }
-            print("Done")
+            catch {
+                print(error)
         }
-            
-        catch {
-            print(error)
-        }
-
 
         })
+    }
+
+    func postDummy(name: String, text: String) {
+        let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
+        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "", "name" : name, "numberOfLike": 0,"post": text])
+        getData()
     }
 
     func update(numberOfLikes: PostModel) {

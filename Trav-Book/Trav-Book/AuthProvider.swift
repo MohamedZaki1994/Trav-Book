@@ -37,7 +37,6 @@ class AuthProvider {
                     return
                 }
                 self.ref.child("Users").child(uid).setValue(userDictionary)
-//                self.currentUserUid = uid
                 print("Account created Successfully")
                 completion?(nil)
             } else {
@@ -45,6 +44,32 @@ class AuthProvider {
                 completion?(error)
             }
         }
+    }
+
+    func signIn(username: String, password: String, completion: ((Bool) -> Void)?) {
+        Auth.auth().signIn(withEmail: username, password: password, completion: { (result, error) in
+            guard let result = result else {
+                completion?(false)
+                return
+            }
+            let userUid = result.user.uid
+            self.ref.child("Users").child(userUid).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+
+                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
+
+                      do {
+                          let currentUser = try JSONDecoder().decode(User.self, from: data)
+                        CurrentUser.shared.fillUserInfo(name: currentUser.name ?? "", birthDate: "", email: "", image: "", posts: nil, favorite: nil)
+                          print("Done")
+                      }
+                      catch {
+                          print(error)
+                  }
+            }
+            if error == nil {
+                completion?(true)
+            }
+        })
     }
 }
 

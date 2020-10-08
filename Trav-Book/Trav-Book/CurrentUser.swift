@@ -26,7 +26,7 @@ class CurrentUser: ObservableObject {
 //        self.favorite = favorite
 //    }
 
-    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel, favorite: PostsModel) {
+    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel?, favorite: PostsModel?) {
         self.name = name
         self.birthDate = birthDate
         self.email = email

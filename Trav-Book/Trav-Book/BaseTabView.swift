@@ -14,7 +14,6 @@ struct BaseTabView: View {
     @State var refreshing = false
     var body: some View {
         TabView {
-//            if isRefresh {
                 DashboardView(refreshing: $refreshing)
                     .tabItem {
                         VStack {
@@ -23,12 +22,6 @@ struct BaseTabView: View {
 
                         }
                 }
-//            }
-//            else {
-//                Text("refreshing").onAppear() {
-//                    self.isRefresh = true
-//                }
-//            }
 
 
             ProfileView(isNavigation: $isNavigation).tabItem {

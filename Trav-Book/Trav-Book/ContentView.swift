@@ -30,13 +30,12 @@ struct ContentView: View {
                 HStack(spacing: 50) {
                     Button("Login") {
                         if !self.username.isEmpty, !self.password.isEmpty {
-                            Auth.auth().signIn(withEmail: self.username, password: self.password, completion: { (result, error) in
-                                guard let result = result else {return}
-                                result.user.email
-                                if error == nil {
+                            AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
+                                if success {
                                     self.isNavigate = true
                                 }
-                            })
+                            }
+
                         } else {
                             self.isAlert = true
                         }
@@ -49,15 +48,15 @@ struct ContentView: View {
             }
             .sheet(isPresented: $isSignup) {
                 SignupView(isSignup: self.$isSignup)
-                }
+            }
 
             .alert(isPresented: $isAlert) {
-                    Alert(title: Text("Wrong username or password"), message: Text("Please enter a valid username and password"), dismissButton: .default(Text("cancel"), action: {
-                        self.isAlert = false
-                    }))
-                }
+                Alert(title: Text("Wrong username or password"), message: Text("Please enter a valid username and password"), dismissButton: .default(Text("cancel"), action: {
+                    self.isAlert = false
+                }))
+            }
 
-                .navigationBarTitle("Log in",displayMode: .inline)
+            .navigationBarTitle("Log in",displayMode: .inline)
         }
     }
 }

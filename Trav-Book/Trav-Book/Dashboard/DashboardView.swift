@@ -15,7 +15,6 @@ struct DashboardView: View {
     @State private var isAlert = false
     @State var indexSet: IndexSet?
     @Binding var refreshing: Bool
-    //    private var switchSubscriber = Set<AnyCancellable>()
 
     var body: some View {
         return
@@ -31,7 +30,8 @@ struct DashboardView: View {
 
 
                 } else {
-                    ForEach(viewModel.posts) { post in
+                    UploadPost().environmentObject(self.viewModel)
+                    ForEach(viewModel.posts.reversed()) { post in
                         Section {
                             PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post).environmentObject(self.viewModel)
                             .navigationBarHidden(false)

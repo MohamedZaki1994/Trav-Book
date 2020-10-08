@@ -32,15 +32,16 @@ struct SignupView: View {
                 TextField("password", text: $confirmPassword).foregroundColor(isMatched ? Color.black : Color.red )
             }
             DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
-                           Text("Select your birthdate")
-                       }
+                Text("Select your birthdate")
+            }
             Button("Done") {
-                AuthProvider.shared.createAccount(email: self.username, password: self.password,birthDate: "", image: "") { (error) in
-                    if error == nil {
-                        self.isSignup = false
+                if self.isMatched {
+                    AuthProvider.shared.createAccount(email: self.username, password: self.password,birthDate: "", image: "") { (error) in
+                        if error == nil {
+                            self.isSignup = false
+                        }
                     }
                 }
-
             }
         }
     }
