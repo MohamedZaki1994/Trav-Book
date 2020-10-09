@@ -31,6 +31,7 @@ struct DashboardView: View {
 
                 } else {
                     UploadPost().environmentObject(self.viewModel)
+                    if !viewModel.posts.isEmpty {
                     ForEach(viewModel.posts.reversed()) { post in
                         Section {
                             PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", numberOfLike: post.numberOfLike ?? 0,post: post).environmentObject(self.viewModel)
@@ -50,6 +51,7 @@ struct DashboardView: View {
                         }), secondaryButton: .cancel())
                     }
                 }
+                }
                 Spacer()
                 }
             .environment(\.defaultMinListRowHeight, 100)
@@ -59,10 +61,6 @@ struct DashboardView: View {
                 } else {
                     self.viewModel.isLoading = true
                 }
-//                var key = self.viewModel.$posts.sink { (pos) in
-//                    print(self.viewModel.switchSubscriber)
-//                    print("")
-//                }.store(in: &self.viewModel.switchSubscriber)
         }
     .navigationBarHidden(false)
 

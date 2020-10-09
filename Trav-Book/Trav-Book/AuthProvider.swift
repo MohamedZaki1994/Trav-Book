@@ -15,14 +15,13 @@ class AuthProvider {
     static var shared: AuthProvider {
         return _shared
     }
-//    var currentUserUid: String?
     private init () {}
 
     func checkAuth() {
         ref.child("Users")
     }
 
-    func createAccount(email: String, password: String, birthDate: String, image: String, completion: ((Error?) -> Void)?) {
+    func createAccount(name:String, email: String, password: String, birthDate: String, image: String, completion: ((Error?) -> Void)?) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error == nil {
                 guard let uid = result?.user.uid else {
@@ -30,7 +29,7 @@ class AuthProvider {
                     return
                 }
                 let jsonEncoder = JSONEncoder()
-                let user = User(id: uid, name: "Zaki", password: "", image: "", posts: nil, favorite: nil)
+                let user = User(id: uid, name: name, username: email, image: "", posts: nil, favorite: nil,birthdate: birthDate)
                 let jsonData = try? jsonEncoder.encode(user)
                 let json = try? JSONSerialization.jsonObject(with: jsonData!, options: [])
                 guard let userDictionary = json as? [String : Any] else {
@@ -53,21 +52,18 @@ class AuthProvider {
                 return
             }
             let userUid = result.user.uid
-            self.ref.child("Users").child(userUid).observeSingleEvent(of: DataEventType.value) { (snapshot) in
-
-                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
-
-                      do {
-                          let currentUser = try JSONDecoder().decode(User.self, from: data)
-                        CurrentUser.shared.fillUserInfo(name: currentUser.name ?? "", birthDate: "", email: "", image: "", posts: nil, favorite: nil)
-                          print("Done")
-                      }
-                      catch {
-                          print(error)
-                  }
-            }
             if error == nil {
-                completion?(true)
+                self.ref.child("Users").child(userUid).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+                    guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
+                    do {
+                        let currentUser = try JSONDecoder().decode(User.self, from: data)
+                        CurrentUser.shared.fillUserInfo(name: currentUser.name ?? "", birthDate: currentUser.birthdate ?? "", email: currentUser.username ?? "", image: "", posts: nil, favorite: nil, id: result.user.uid)
+                        completion?(true)
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
             }
         })
     }

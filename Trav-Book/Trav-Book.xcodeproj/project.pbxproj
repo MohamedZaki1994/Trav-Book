@@ -26,6 +26,8 @@
 		354022D224EFDD7600F69187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354022D024EFDD7600F69187 /* LaunchScreen.storyboard */; };
 		354022DD24EFDD7600F69187 /* Trav_BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022DC24EFDD7600F69187 /* Trav_BookTests.swift */; };
 		35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419D4824EFDDBE00A1A5F8 /* LoginView.swift */; };
+		3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541D7DC25308C2100FAFC4A /* SignupViewmodel.swift */; };
+		3541D7E225308FAE00FAFC4A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541D7E125308FAE00FAFC4A /* DateFormatter.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
@@ -69,6 +71,8 @@
 		354022DC24EFDD7600F69187 /* Trav_BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trav_BookTests.swift; sourceTree = "<group>"; };
 		354022DE24EFDD7600F69187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35419D4824EFDDBE00A1A5F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3541D7DC25308C2100FAFC4A /* SignupViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewmodel.swift; sourceTree = "<group>"; };
+		3541D7E125308FAE00FAFC4A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			children = (
 				35419D4824EFDDBE00A1A5F8 /* LoginView.swift */,
 				353A6802252366FB0097B72F /* SignupView.swift */,
+				3541D7DC25308C2100FAFC4A /* SignupViewmodel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */,
 				35391A842527711000892681 /* UserModel.swift */,
 				354022CD24EFDD7600F69187 /* Preview Content */,
+				3541D7E025308F9500FAFC4A /* Extensions */,
 			);
 			path = "Trav-Book";
 			sourceTree = "<group>";
@@ -178,6 +184,14 @@
 				354022DE24EFDD7600F69187 /* Info.plist */,
 			);
 			path = "Trav-BookTests";
+			sourceTree = "<group>";
+		};
+		3541D7E025308F9500FAFC4A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3541D7E125308FAE00FAFC4A /* DateFormatter.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		355FBAFB24F7B0D6006749AE /* Dashboard */ = {
@@ -422,8 +436,10 @@
 			files = (
 				353A6803252366FB0097B72F /* SignupView.swift in Sources */,
 				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
+				3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */,
 				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
 				353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */,
+				3541D7E225308FAE00FAFC4A /* DateFormatter.swift in Sources */,
 				35A4C5B22517A35F0053D8D7 /* ProfileModel.swift in Sources */,
 				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
 				3531267025221F9E00015E82 /* AuthProvider.swift in Sources */,

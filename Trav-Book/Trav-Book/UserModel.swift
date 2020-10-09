@@ -11,10 +11,11 @@ import Foundation
 struct User: Codable {
     let id: String?
     let name: String?
-    let password: String?
+    let username: String?
     let image:String?
     let posts: PostsModel?
     let favorite: PostsModel?
+    let birthdate: String?
 }
 
 struct PostsModel: Codable {

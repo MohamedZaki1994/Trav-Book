@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class CurrentUser: ObservableObject {
     @Published var name: String?
@@ -14,8 +15,9 @@ class CurrentUser: ObservableObject {
     @Published var email: String?
     @Published var image: String?
     @Published var posts: PostsModel?
-    @Published  var favorite: PostsModel?
-
+    @Published var favorite: PostsModel?
+    @Published var id: String?
+    var ref: DatabaseReference = Database.database().reference()
     static var shared = CurrentUser()
 //   private init(name: String, birthDate: String, email: String, image: String, posts: PostsModel, favorite: PostsModel) {
 //        self.name = name
@@ -26,13 +28,18 @@ class CurrentUser: ObservableObject {
 //        self.favorite = favorite
 //    }
 
-    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel?, favorite: PostsModel?) {
+    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel?, favorite: PostsModel?, id: String) {
         self.name = name
         self.birthDate = birthDate
         self.email = email
         self.image = image
         self.posts = posts
         self.favorite = favorite
+        self.id = id
+    }
+
+    func updateUserInfo() {
+        self.ref.child("Users").child(id ?? "").child("name").setValue(name)
     }
     private init() {}
 }

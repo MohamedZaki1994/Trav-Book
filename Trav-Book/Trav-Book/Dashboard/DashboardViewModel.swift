@@ -34,22 +34,28 @@ class DashboardViewModel: ObservableObject {
 
     func refresh() {
         postsModel = postsModelUpdatedRealTime
+        if postsModel?.posts.isEmpty ?? true{
+            let post = Post(name: "", post: "", id: "", numberOfLike: 9)
+            postsModel = PostsModel(posts: [post])
+        }
     }
 
     func getData() {
         ref.child("Ref").observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
-        guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
+            if snapshot.exists() {
+                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 
-            do {
-                self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
+                do {
+                    self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
+                    self?.refresh()
+                }
+                catch {
+                    print(error)
+                }
+
+            } else {
                 self?.refresh()
-                print("Done")
-            }
-            catch {
-                print(error)
-        }
-
-        })
+            }})
     }
 
     func postDummy(name: String, text: String) {
@@ -61,8 +67,7 @@ class DashboardViewModel: ObservableObject {
     func update(numberOfLikes: PostModel) {
         for post in posts.enumerated() {
             if post.element.id == numberOfLikes.id {
-
-                ref.child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
+                ref.child("Ref").child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
             }
         }
     }
@@ -91,22 +96,22 @@ class DashboardViewModel: ObservableObject {
 }
 
 
-    class PostModel: Identifiable, ObservableObject {
+class PostModel: Identifiable, ObservableObject {
 
-        var id = UUID()
-        var name: String?
-        var imageName: String?
-        var postText: String?
-        var numberOfLike: Int?
-        init() {
-            
-        }
-        init (name: String, imageName: String?,postText:String,numberOfLike: Int) {
-            self.name = name
-            self.imageName = imageName
-            self.postText = postText
-            self.numberOfLike = numberOfLike
-        }
+    var id = UUID()
+    var name: String?
+    var imageName: String?
+    var postText: String?
+    var numberOfLike: Int?
+    init() {
+
+    }
+    init (name: String, imageName: String?,postText:String,numberOfLike: Int) {
+        self.name = name
+        self.imageName = imageName
+        self.postText = postText
+        self.numberOfLike = numberOfLike
+    }
 }
 
 

@@ -13,12 +13,18 @@ struct SignupView: View {
     @State var username = ""
     @State var password = ""
     @State var confirmPassword = ""
+    @State var name = ""
     @State private var birthDate = Date()
+    var viewmodel = SignupViewmodel()
     var isMatched: Bool {
         return password == confirmPassword
     }
     var body: some View {
         Form {
+            VStack {
+                Text("Enter your name")
+                TextField("name", text: $name)
+            }
             VStack {
                 Text("Enter your username")
                 TextField("username", text: $username)
@@ -36,8 +42,8 @@ struct SignupView: View {
             }
             Button("Done") {
                 if self.isMatched {
-                    AuthProvider.shared.createAccount(email: self.username, password: self.password,birthDate: "", image: "") { (error) in
-                        if error == nil {
+                    self.viewmodel.signup(name: self.name, email: self.username, password: self.password, birthdate: self.birthDate) { (success) in
+                        if success {
                             self.isSignup = false
                         }
                     }

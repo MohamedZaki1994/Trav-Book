@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileView: View {
     @Binding var isNavigation: Bool
-    @ObservedObject var profileViewModel = ProfileViewModel()
+//    @ObservedObject var profileViewModel = ProfileViewModel()
     @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
     var body: some View {
@@ -19,15 +20,18 @@ struct ProfileView: View {
                 if isEditting {
                     Button("cancel") {
                         self.isEditting = false
-                        self.instanceProfile.profileModel.name = self.profileViewModel.profileModel.name
-                        self.instanceProfile.profileModel.birthday = self.profileViewModel.profileModel.birthday
-                        self.instanceProfile.profileModel.region = self.profileViewModel.profileModel.region
+                        self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
+                        self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
+                        self.instanceProfile.profileModel.region = "Egypt"//self.profileViewModel.profileModel.region
                     }}
                 Button(isEditting ? "Save" : "Edit") {
                     self.isEditting.toggle()
-                    self.profileViewModel.profileModel.name = self.instanceProfile.profileModel.name
-                    self.profileViewModel.profileModel.birthday = self.instanceProfile.profileModel.birthday
-                    self.profileViewModel.profileModel.region = self.instanceProfile.profileModel.region
+                    CurrentUser.shared.name = self.instanceProfile.profileModel.name
+                    CurrentUser.shared.birthDate = self.instanceProfile.profileModel.birthday
+                    CurrentUser.shared.updateUserInfo()
+//                    self.profileViewModel.profileModel.name = self.instanceProfile.profileModel.name
+//                    self.profileViewModel.profileModel.birthday = self.instanceProfile.profileModel.birthday
+//                    self.profileViewModel.profileModel.region = self.instanceProfile.profileModel.region
 
                 }
             }
@@ -49,6 +53,7 @@ struct ProfileView: View {
                 TextField("Egypt", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
             }
             Button(action: {
+                try? Auth.auth().signOut()
                 self.isNavigation = false
             } ){
                 Text("Logout")
@@ -60,10 +65,11 @@ struct ProfileView: View {
 //        .navigationBarTitle("")
 //        .navigationBarBackButtonHidden(true)
         .onAppear() {
-            self.profileViewModel.fillProfile()
-            self.instanceProfile.profileModel.name = self.profileViewModel.profileModel.name
-            self.instanceProfile.profileModel.birthday = self.profileViewModel.profileModel.birthday
-            self.instanceProfile.profileModel.region = self.profileViewModel.profileModel.region
+
+//            self.profileViewModel.fillProfile()
+            self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
+            self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
+            self.instanceProfile.profileModel.region = "Egypt"//self.profileViewModel.profileModel.region
 
         }
     }
