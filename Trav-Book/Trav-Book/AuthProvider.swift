@@ -21,7 +21,7 @@ class AuthProvider {
         ref.child("Users")
     }
 
-    func createAccount(name:String, email: String, password: String, birthDate: String, image: String, completion: ((Error?) -> Void)?) {
+    func createAccount(name:String, email: String, password: String, birthDate: String, image: String, country: String, completion: ((Error?) -> Void)?) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error == nil {
                 guard let uid = result?.user.uid else {
@@ -29,7 +29,7 @@ class AuthProvider {
                     return
                 }
                 let jsonEncoder = JSONEncoder()
-                let user = User(id: uid, name: name, username: email, image: "", posts: nil, favorite: nil,birthdate: birthDate)
+                let user = User(id: uid, name: name, username: email, image: "", posts: nil, favorite: nil,birthdate: birthDate, region: country)
                 let jsonData = try? jsonEncoder.encode(user)
                 let json = try? JSONSerialization.jsonObject(with: jsonData!, options: [])
                 guard let userDictionary = json as? [String : Any] else {
@@ -57,7 +57,7 @@ class AuthProvider {
                     guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
                     do {
                         let currentUser = try JSONDecoder().decode(User.self, from: data)
-                        CurrentUser.shared.fillUserInfo(name: currentUser.name ?? "", birthDate: currentUser.birthdate ?? "", email: currentUser.username ?? "", image: "", posts: nil, favorite: nil, id: result.user.uid)
+                        CurrentUser.shared.fillUserInfo(name: currentUser.name ?? "", birthDate: currentUser.birthdate ?? "", email: currentUser.username ?? "", image: "", posts: nil, favorite: nil, id: result.user.uid, region: currentUser.region ?? "")
                         completion?(true)
                     }
                     catch {

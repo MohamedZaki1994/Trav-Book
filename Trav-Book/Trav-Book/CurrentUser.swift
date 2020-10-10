@@ -17,6 +17,7 @@ class CurrentUser: ObservableObject {
     @Published var posts: PostsModel?
     @Published var favorite: PostsModel?
     @Published var id: String?
+    @Published var region: String?
     var ref: DatabaseReference = Database.database().reference()
     static var shared = CurrentUser()
 //   private init(name: String, birthDate: String, email: String, image: String, posts: PostsModel, favorite: PostsModel) {
@@ -28,7 +29,7 @@ class CurrentUser: ObservableObject {
 //        self.favorite = favorite
 //    }
 
-    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel?, favorite: PostsModel?, id: String) {
+    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel?, favorite: PostsModel?, id: String, region:String) {
         self.name = name
         self.birthDate = birthDate
         self.email = email
@@ -36,10 +37,13 @@ class CurrentUser: ObservableObject {
         self.posts = posts
         self.favorite = favorite
         self.id = id
+        self.region = region
     }
 
     func updateUserInfo() {
         self.ref.child("Users").child(id ?? "").child("name").setValue(name)
+        self.ref.child("Users").child(id ?? "").child("region").setValue(region)
+        self.ref.child("Users").child(id ?? "").child("birthdate").setValue(birthDate)
     }
     private init() {}
 }

@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct PostView: View {
-   var postText: String// = "text"
-    var profileImageString: String// = ""
-     var profileName: String //= "Zaki"
-    @State var numberOfLike: Int //= 0
-    @State var post: PostModel// = PostModel()
+   var postText: String
+    var profileImageString: String
+     var profileName: String
+    @State var numberOfLike: Int
+    @State var numberOfDislike: Int
+    @State var post: PostModel
     var action: ((PostModel) -> Void)?
      @EnvironmentObject var model: DashboardViewModel
     var body: some View {
@@ -29,7 +30,7 @@ struct PostView: View {
                 Button(action: {
                     self.post.numberOfLike! += 1
                     self.numberOfLike += 1
-                    self.model.update(numberOfLikes: self.post)
+                    self.model.update(numberOfLikes: self.post, like: true)
 
                     self.action?(self.post)
                     print("like")
@@ -40,8 +41,11 @@ struct PostView: View {
                 Spacer()
                 Button(action: {
                                    print("dislike")
+                    self.post.numberOfDislike! += 1
+                    self.numberOfDislike += 1
+                    self.model.update(numberOfLikes: self.post, like: false)
                                }) {
-                                   Text("dislike")}
+                                   Text("\(self.numberOfDislike) like")}
                                        .buttonStyle(PrimaryButtonStyle())
                 Spacer()
                 Button(action: {
@@ -54,6 +58,7 @@ struct PostView: View {
             }.padding()
         }.onAppear() {
             self.numberOfLike = self.post.numberOfLike ?? 0
+            self.numberOfDislike = self.post.numberOfDislike ?? 0
         }
     }
 }

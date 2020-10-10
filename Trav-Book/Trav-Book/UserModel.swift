@@ -16,6 +16,7 @@ struct User: Codable {
     let posts: PostsModel?
     let favorite: PostsModel?
     let birthdate: String?
+    let region: String?
 }
 
 struct PostsModel: Codable {
@@ -27,4 +28,5 @@ struct Post: Codable{
     let name, post: String
     let id: String
     let numberOfLike: Int
+    let numberOfDislike: Int
 }

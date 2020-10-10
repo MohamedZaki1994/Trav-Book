@@ -14,6 +14,7 @@ struct SignupView: View {
     @State var password = ""
     @State var confirmPassword = ""
     @State var name = ""
+    @State var country = ""
     @State private var birthDate = Date()
     var viewmodel = SignupViewmodel()
     var isMatched: Bool {
@@ -37,12 +38,16 @@ struct SignupView: View {
                 Text("Confirm your username")
                 TextField("password", text: $confirmPassword).foregroundColor(isMatched ? Color.black : Color.red )
             }
+            VStack {
+                Text("Enter your country")
+                TextField("country", text: $country)
+            }
             DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
                 Text("Select your birthdate")
             }
             Button("Done") {
                 if self.isMatched {
-                    self.viewmodel.signup(name: self.name, email: self.username, password: self.password, birthdate: self.birthDate) { (success) in
+                    self.viewmodel.signup(name: self.name, email: self.username, password: self.password, birthdate: self.birthDate, country: self.country) { (success) in
                         if success {
                             self.isSignup = false
                         }

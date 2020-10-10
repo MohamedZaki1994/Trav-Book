@@ -22,35 +22,31 @@ struct ProfileView: View {
                         self.isEditting = false
                         self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
                         self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
-                        self.instanceProfile.profileModel.region = "Egypt"//self.profileViewModel.profileModel.region
+                        self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
                     }}
                 Button(isEditting ? "Save" : "Edit") {
                     self.isEditting.toggle()
                     CurrentUser.shared.name = self.instanceProfile.profileModel.name
                     CurrentUser.shared.birthDate = self.instanceProfile.profileModel.birthday
+                    CurrentUser.shared.region = self.instanceProfile.profileModel.region
                     CurrentUser.shared.updateUserInfo()
-//                    self.profileViewModel.profileModel.name = self.instanceProfile.profileModel.name
-//                    self.profileViewModel.profileModel.birthday = self.instanceProfile.profileModel.birthday
-//                    self.profileViewModel.profileModel.region = self.instanceProfile.profileModel.region
-
                 }
             }
             Image(systemName: "person")
             HStack{
                 Text("Name:").bold()
-                TextField("Zaki", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
-
+                TextField(CurrentUser.shared.name ?? "" + ":", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
             }
             Divider()
             HStack{
                 Text("Birthday:").bold()
-                TextField("12-9-1994", text: self.$instanceProfile.profileModel.birthday).disabled(!self.isEditting)
+                TextField(CurrentUser.shared.birthDate ?? "" + ":", text: self.$instanceProfile.profileModel.birthday).disabled(!self.isEditting)
 
             }
             Divider()
             HStack{
                 Text("Region:").bold()
-                TextField("Egypt", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
+                TextField(CurrentUser.shared.region ?? "" + ":", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
             }
             Button(action: {
                 try? Auth.auth().signOut()
@@ -61,15 +57,11 @@ struct ProfileView: View {
             Spacer()
         }
 
-//        .navigationBarHidden(true)
-//        .navigationBarTitle("")
-//        .navigationBarBackButtonHidden(true)
         .onAppear() {
-
 //            self.profileViewModel.fillProfile()
             self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
             self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
-            self.instanceProfile.profileModel.region = "Egypt"//self.profileViewModel.profileModel.region
+            self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
 
         }
     }

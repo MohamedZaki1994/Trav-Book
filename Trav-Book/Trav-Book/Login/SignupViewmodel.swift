@@ -10,8 +10,8 @@ import Foundation
 
 class SignupViewmodel {
 
-    func signup(name: String,email: String, password: String, birthdate: Date, completion: ((Bool) -> Void)?) {
-        AuthProvider.shared.createAccount(name: name, email: email, password: password,birthDate: birthdate.toString(), image: "") { (error) in
+    func signup(name: String,email: String, password: String, birthdate: Date, country: String, completion: ((Bool) -> Void)?) {
+        AuthProvider.shared.createAccount(name: name, email: email, password: password,birthDate: birthdate.toString(), image: "", country: country) { (error) in
             if error == nil {
                 completion?(true)
             }
