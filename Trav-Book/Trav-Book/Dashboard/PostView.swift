@@ -60,7 +60,11 @@ struct PostView: View {
             }.padding()
 
             ForEach(0 ..< comments.count, id: \.self) { _ in
-                CommentView(comments: self.$comments)
+//                CommentView(comments: self.$comments)
+                CommentView(comments: self.$comments) { (text) in
+                    self.post.comments?.append(text)
+                    self.model.update(numberOfLikes: self.post, like: nil)
+                }
 //                Text("")
             }
 

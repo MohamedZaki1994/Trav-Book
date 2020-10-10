@@ -19,7 +19,7 @@ class DashboardViewModel: ObservableObject {
             if let postArray = postsModel?.posts {
                 posts = [PostModel]()
                 for post in postArray {
-                    self.posts.append(PostModel(name: post.name, imageName: nil, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike))
+                    self.posts.append(PostModel(name: post.name, imageName: nil, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments))
                 }
 
             }
@@ -35,7 +35,7 @@ class DashboardViewModel: ObservableObject {
     func refresh() {
         postsModel = postsModelUpdatedRealTime
         if postsModel?.posts.isEmpty ?? true{
-            let post = Post(name: "", post: "", id: "", numberOfLike: 0,numberOfDislike: 0)
+            let post = Post(name: "", post: "", id: "", numberOfLike: 0,numberOfDislike: 0,comments: [""])
             postsModel = PostsModel(posts: [post])
         }
     }
@@ -60,11 +60,20 @@ class DashboardViewModel: ObservableObject {
 
     func postDummy(name: String, text: String) {
         let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
-        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "", "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0])
+        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "", "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
         getData()
     }
 
-    func update(numberOfLikes: PostModel, like: Bool) {
+    func update(numberOfLikes: PostModel, like: Bool?) {
+        guard let like = like else {
+            let postIndex = (numberOfLikes.comments?.count ?? 0)-2
+            for post in posts.enumerated() {
+                if post.element.id == numberOfLikes.id {
+                    ref.child("Ref").child("posts/\(post.offset)/comments").child("\(postIndex)").setValue(numberOfLikes.comments?.last ?? "")
+                }
+            }
+            return
+        }
         if like {
         for post in posts.enumerated() {
             if post.element.id == numberOfLikes.id {
@@ -112,15 +121,17 @@ class PostModel: Identifiable, ObservableObject {
     var postText: String?
     var numberOfLike: Int?
     var numberOfDislike: Int?
+    var comments: [String?]?
     init() {
 
     }
-    init (name: String, imageName: String?,postText:String,numberOfLike: Int, numberOfDislike: Int) {
+    init (name: String, imageName: String?,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String]) {
         self.name = name
         self.imageName = imageName
         self.postText = postText
         self.numberOfLike = numberOfLike
         self.numberOfDislike = numberOfDislike
+        self.comments = comments
     }
 }
 

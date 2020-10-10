@@ -29,4 +29,5 @@ struct Post: Codable{
     let id: String
     let numberOfLike: Int
     let numberOfDislike: Int
+    let comments: [String]
 }

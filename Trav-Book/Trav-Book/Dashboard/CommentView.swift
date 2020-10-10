@@ -12,6 +12,7 @@ struct CommentView: View {
     @State var comment = ""
     @Binding var comments: [String]
     @State var isCommented = false
+    var commentAction: ((String) -> Void)?
     var body: some View {
         VStack {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
@@ -20,6 +21,7 @@ struct CommentView: View {
                 if !isCommented {
                     Button("Done") {
                         self.isCommented = true
+                        self.commentAction?(self.comment)
                     }.buttonStyle(PrimaryButtonStyle())
                     Button("Cancel") {
                         self.comment = ""
