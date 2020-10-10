@@ -11,7 +11,8 @@ import SwiftUI
 struct PostView: View {
    var postText: String
     var profileImageString: String
-     var profileName: String
+    var profileName: String
+    @State var comments = [String]()
     @State var numberOfLike: Int
     @State var numberOfDislike: Int
     @State var post: PostModel
@@ -49,13 +50,20 @@ struct PostView: View {
                                        .buttonStyle(PrimaryButtonStyle())
                 Spacer()
                 Button(action: {
-                    print("fsdf")
+                    self.comments.append("")
+                    print("comment")
                 }) {
                     Text("comment")
 
                 }.buttonStyle(PrimaryButtonStyle())
 
             }.padding()
+
+            ForEach(0 ..< comments.count, id: \.self) { _ in
+                CommentView(comments: self.$comments)
+//                Text("")
+            }
+
         }.onAppear() {
             self.numberOfLike = self.post.numberOfLike ?? 0
             self.numberOfDislike = self.post.numberOfDislike ?? 0
