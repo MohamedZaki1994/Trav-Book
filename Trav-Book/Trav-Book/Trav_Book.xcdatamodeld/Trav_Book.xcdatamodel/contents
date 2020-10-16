@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Favorite" representedClassName="Favorite" syncable="YES">
+        <attribute name="numberOfDislike" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfLike" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LoggedUser" inverseName="favorite" inverseEntity="LoggedUser"/>
+    </entity>
+    <entity name="LoggedUser" representedClassName="LoggedUser" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="postss" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
+        <relationship name="favorite" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Favorite" inverseName="user" inverseEntity="Favorite"/>
+    </entity>
+    <elements>
+        <element name="LoggedUser" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Favorite" positionX="-63" positionY="9" width="128" height="88"/>
+    </elements>
 </model>

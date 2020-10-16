@@ -121,7 +121,7 @@ class PostModel: Identifiable, ObservableObject {
     var postText: String?
     var numberOfLike: Int?
     var numberOfDislike: Int?
-    var comments: [String?]?
+    var comments: [String]?
     init() {
 
     }

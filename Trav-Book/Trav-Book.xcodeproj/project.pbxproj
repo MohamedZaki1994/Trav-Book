@@ -29,6 +29,10 @@
 		35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419D4824EFDDBE00A1A5F8 /* LoginView.swift */; };
 		3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541D7DC25308C2100FAFC4A /* SignupViewmodel.swift */; };
 		3541D7E225308FAE00FAFC4A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541D7E125308FAE00FAFC4A /* DateFormatter.swift */; };
+		3544CE752539BE890070D7BE /* LoggedUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE712539BE880070D7BE /* LoggedUser+CoreDataProperties.swift */; };
+		3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */; };
+		3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */; };
+		3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
@@ -75,6 +79,10 @@
 		35419D4824EFDDBE00A1A5F8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3541D7DC25308C2100FAFC4A /* SignupViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewmodel.swift; sourceTree = "<group>"; };
 		3541D7E125308FAE00FAFC4A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		3544CE712539BE880070D7BE /* LoggedUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoggedUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoggedUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -149,6 +157,7 @@
 		354022C124EFDD7300F69187 /* Trav-Book */ = {
 			isa = PBXGroup;
 			children = (
+				35E2EFAC2538765200E9CD00 /* model */,
 				3531266F25221F9E00015E82 /* AuthProvider.swift */,
 				353042E725288E34001999E2 /* CurrentUser.swift */,
 				354022C224EFDD7300F69187 /* AppDelegate.swift */,
@@ -206,6 +215,17 @@
 				3538C59B2531C8ED009B928B /* CommentView.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		35E2EFAC2538765200E9CD00 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */,
+				3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */,
+				3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */,
+				3544CE712539BE880070D7BE /* LoggedUser+CoreDataProperties.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		3F021C293E87A4DB5359243B /* Pods */ = {
@@ -439,6 +459,7 @@
 			files = (
 				353A6803252366FB0097B72F /* SignupView.swift in Sources */,
 				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
+				3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */,
 				3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */,
 				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
 				353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */,
@@ -446,13 +467,16 @@
 				35A4C5B22517A35F0053D8D7 /* ProfileModel.swift in Sources */,
 				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
 				3531267025221F9E00015E82 /* AuthProvider.swift in Sources */,
+				3544CE752539BE890070D7BE /* LoggedUser+CoreDataProperties.swift in Sources */,
 				355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */,
 				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
+				3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */,
 				353AFB4E25174C9B0069F5D2 /* PostViewModel.swift in Sources */,
 				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
 				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,
 				35391A852527711000892681 /* UserModel.swift in Sources */,
+				3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */,
 				3531C09A252F1DF70074E657 /* UploadPost.swift in Sources */,
 				353042E825288E34001999E2 /* CurrentUser.swift in Sources */,
 				3538C59C2531C8ED009B928B /* CommentView.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import CoreData
 
 struct ContentView: View {
     @State private var isNavigate = false
@@ -15,6 +16,7 @@ struct ContentView: View {
     @State var username = ""
     @State var password = ""
     @State var isSignup = false
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var body: some View {
         NavigationView {
@@ -39,9 +41,26 @@ struct ContentView: View {
                         } else {
                             self.isAlert = true
                         }
+//                        let fetch = LoggedUser.fetchRequest() as NSFetchRequest<LoggedUser>
+//                        let predicate = NSPredicate(format: "name = %@", "zaki")
+////                        fetch.predicate = predicate
+//                        let sorter = NSSortDescriptor(key: "age", ascending: true)
+//                        let sorter1 = NSSortDescriptor(key: "name", ascending: false)
+//                        fetch.sortDescriptors = [sorter, sorter1]
+//                   let user = try! self.context.fetch(fetch) as? [LoggedUser]
+//                        print("")
                     }
                     Button("sign up") {
                         self.isSignup = true
+//                        let user = LoggedUser(context: self.context)
+//                        user.name = "Ali"
+//                        user.age = 33
+//                        user.postss = ["1","2","3"]
+//                        let favorite = Favorite(context: self.context)
+//                        favorite.numberOfLike = 5
+//                        favorite.numberOfDislike = 2
+//                        user.addToFavorite(favorite)
+//                        try! self.context.save()
                     }
                 }
                 Spacer()
