@@ -12,7 +12,7 @@ struct PostView: View {
    var postText: String
     var profileImageString: String
     var profileName: String
-    @State var comments = [String]()
+    @State var comments: [String]// = [String]()
     @State var numberOfLike: Int
     @State var numberOfDislike: Int
     @State var post: PostModel
@@ -59,13 +59,11 @@ struct PostView: View {
 
             }.padding()
 
-            ForEach(0 ..< comments.count, id: \.self) { _ in
-//                CommentView(comments: self.$comments)
-                CommentView(comments: self.$comments) { (text) in
+            ForEach(0 ..< comments.count, id: \.self) { index in
+                CommentView(comments: self.$comments, index: index) { (text) in
                     self.post.comments?.append(text)
                     self.model.update(numberOfLikes: self.post, like: nil)
                 }
-//                Text("")
             }
 
         }.onAppear() {

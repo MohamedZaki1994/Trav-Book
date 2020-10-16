@@ -12,22 +12,29 @@ struct CommentView: View {
     @State var comment = ""
     @Binding var comments: [String]
     @State var isCommented = false
+    @State var index: Int?
     var commentAction: ((String) -> Void)?
     var body: some View {
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            TextField("your comment...", text: $comment).lineLimit(0)
-            HStack {
-                if !isCommented {
-                    Button("Done") {
-                        self.isCommented = true
-                        self.commentAction?(self.comment)
-                    }.buttonStyle(PrimaryButtonStyle())
-                    Button("Cancel") {
-                        self.comment = ""
-                        self.comments.removeLast()
-                    }.buttonStyle(PrimaryButtonStyle())
+            if (index != comments.count && !comments[index ?? 0].isEmpty) {
+                Text(comments[index ?? 0])
+            } else if (comments.count > 1){
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                TextField("your comment...", text: $comment).lineLimit(0)
+                HStack {
+                    if !isCommented {
+                        Button("Done") {
+                            self.isCommented = true
+                            self.commentAction?(self.comment)
+                        }.buttonStyle(PrimaryButtonStyle())
+                        Button("Cancel") {
+                            self.comment = ""
+                            self.comments.removeLast()
+                        }.buttonStyle(PrimaryButtonStyle())
+                    }
                 }
+            } else {
+                Text("")
             }
         }
     }
