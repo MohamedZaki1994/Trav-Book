@@ -50,7 +50,7 @@ struct PostView: View {
                                        .buttonStyle(PrimaryButtonStyle())
                 Spacer()
                 Button(action: {
-                    self.comments.append("")
+                    self.comments.append("1")
                     print("comment")
                 }) {
                     Text("comment")
@@ -62,6 +62,11 @@ struct PostView: View {
             ForEach(0 ..< comments.count, id: \.self) { index in
                 CommentView(comments: self.$comments, index: index) { (text) in
                     self.post.comments?.append(text)
+                    print(self.comments)
+//                    self.comments.removeLast()
+                    print(self.comments)
+                    self.comments.append(text)
+                    print(self.comments)
                     self.model.update(numberOfLikes: self.post, like: nil)
                 }
             }

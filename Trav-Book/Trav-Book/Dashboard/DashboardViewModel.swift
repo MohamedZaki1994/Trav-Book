@@ -66,7 +66,7 @@ class DashboardViewModel: ObservableObject {
 
     func update(numberOfLikes: PostModel, like: Bool?) {
         guard let like = like else {
-            let postIndex = (numberOfLikes.comments?.count ?? 0)-2
+            let postIndex = (numberOfLikes.comments?.count ?? 0)-1
             for post in posts.enumerated() {
                 if post.element.id == numberOfLikes.id {
                     ref.child("Ref").child("posts/\(post.offset)/comments").child("\(postIndex)").setValue(numberOfLikes.comments?.last ?? "")

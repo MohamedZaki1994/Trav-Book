@@ -16,15 +16,16 @@ struct CommentView: View {
     var commentAction: ((String) -> Void)?
     var body: some View {
         VStack {
-            if (index != comments.count && !comments[index ?? 0].isEmpty) {
+            if (index != comments.count && !comments[index ?? 0].isEmpty && comments[index ?? 0] != "1") {
                 Text(comments[index ?? 0])
-            } else if (comments.count > 1){
+            } else if (comments.count > 1 && !comments[index ?? 0].isEmpty){
                 Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                 TextField("your comment...", text: $comment).lineLimit(0)
                 HStack {
                     if !isCommented {
                         Button("Done") {
                             self.isCommented = true
+                            self.comments.removeLast()
                             self.commentAction?(self.comment)
                         }.buttonStyle(PrimaryButtonStyle())
                         Button("Cancel") {
