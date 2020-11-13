@@ -11,31 +11,36 @@ import SwiftUI
 struct CommentView: View {
     @State var comment = ""
     @Binding var comments: [String]
-    @State var isCommented = false
+    @Binding var isCommenting: Bool
     @State var index: Int?
     var commentAction: ((String) -> Void)?
     var body: some View {
         VStack {
-            if (index != comments.count && !comments[index ?? 0].isEmpty && comments[index ?? 0] != "1") {
-                Text(comments[index ?? 0])
-            } else if (comments.count > 1 && !comments[index ?? 0].isEmpty){
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            if (index == 0) {
+                Text("")
+            } else if (isCommenting && index == comments.count - 1){
+
+//            if (index != comments.count && !comments[index ?? 0].isEmpty && comments[index ?? 0] != "1") {
+//                Text(comments[index ?? 0])
+//            } else if (comments.count > 1 && !comments[index ?? 0].isEmpty){
+//                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                 TextField("your comment...", text: $comment).lineLimit(0)
                 HStack {
-                    if !isCommented {
                         Button("Done") {
-                            self.isCommented = true
                             self.comments.removeLast()
                             self.commentAction?(self.comment)
                         }.buttonStyle(PrimaryButtonStyle())
                         Button("Cancel") {
                             self.comment = ""
                             self.comments.removeLast()
+                            isCommenting = false
                         }.buttonStyle(PrimaryButtonStyle())
                     }
-                }
-            } else {
-                Text("")
+//            } else {
+//                Text("")
+            }
+            else if (index != comments.count){
+                Text(comments[index ?? 0])
             }
         }
     }

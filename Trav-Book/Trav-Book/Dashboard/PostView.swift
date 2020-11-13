@@ -9,12 +9,13 @@
 import SwiftUI
 
 struct PostView: View {
-   var postText: String
-    var profileImageString: String
-    var profileName: String
-    @State var comments: [String]// = [String]()
-    @State var numberOfLike: Int
-    @State var numberOfDislike: Int
+   var postText: String = ""
+    var profileImageString: String = ""
+    var profileName: String = ""
+    @State var comments: [String] = [String]()
+    @State var isCommenting = false
+    @State var numberOfLike: Int = 0
+    @State var numberOfDislike: Int = 0
     @State var post: PostModel
     var action: ((PostModel) -> Void)?
      @EnvironmentObject var model: DashboardViewModel
@@ -22,9 +23,9 @@ struct PostView: View {
         VStack(alignment: .leading) {
             HStack {
                 Image(systemName: "person")
-                Text(profileName)
+                Text(self.post.name ?? "")
             }
-            Text(postText)
+            Text(post.postText ?? "")
                 .background(Color.gray)
             Divider()
             HStack {
@@ -46,11 +47,13 @@ struct PostView: View {
                     self.numberOfDislike += 1
                     self.model.update(numberOfLikes: self.post, like: false)
                                }) {
-                                   Text("\(self.numberOfDislike) like")}
+                                Text("\(self.numberOfDislike) dislike")}
                                        .buttonStyle(PrimaryButtonStyle())
                 Spacer()
                 Button(action: {
                     self.comments.append("1")
+                    self.isCommenting = true
+
                     print("comment")
                 }) {
                     Text("comment")
@@ -60,14 +63,18 @@ struct PostView: View {
             }.padding()
 
             ForEach(0 ..< comments.count, id: \.self) { index in
-                CommentView(comments: self.$comments, index: index) { (text) in
-                    self.post.comments?.append(text)
-                    print(self.comments)
-//                    self.comments.removeLast()
-                    print(self.comments)
-                    self.comments.append(text)
-                    print(self.comments)
-                    self.model.update(numberOfLikes: self.post, like: nil)
+                //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
+                CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
+                { (text) in
+                    if text == "" {
+                        self.comments.removeLast()
+                    } else {
+                        self.post.comments?.append(text)
+                        self.comments.removeLast()
+                        self.comments.append(text)
+                        self.model.update(numberOfLikes: self.post, like: nil)
+                    }
+                    self.isCommenting = false
                 }
             }
 
