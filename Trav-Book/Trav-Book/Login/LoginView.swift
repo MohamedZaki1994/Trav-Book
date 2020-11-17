@@ -13,6 +13,7 @@ struct LoginView: View {
     @Binding var password: String
     @State private var isAlert = false
     @State private var height: CGFloat = 0
+    @State var isSecure = true
     
     var body: some View {
         HStack(alignment:.midAccountAndName){
@@ -26,7 +27,7 @@ struct LoginView: View {
                     .textStyle()
                     .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
                         return d[VerticalAlignment.center]
-                }
+                    }
 
                 Spacer()
             }
@@ -34,33 +35,51 @@ struct LoginView: View {
             VStack(spacing: 20.0){
 
                 TextField("Enter your Username", text: self.$username)
-                TextField("Enter your Password", text: self.$password)
-                    .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
-                        DispatchQueue.main.async {
-                            self.height = d.height
-                        }
-                        return d[VerticalAlignment.center]
+                HStack {
+                    if isSecure {
+
+                        SecureField("Enter your Password", text: self.$password)
+                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
+                                DispatchQueue.main.async {
+                                    self.height = d.height
+                                }
+                                return d[VerticalAlignment.center]
+                            }
+
+                    } else {
+                        TextField("Enter your Password", text: self.$password)
+                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
+                                DispatchQueue.main.async {
+                                    self.height = d.height
+                                }
+                                return d[VerticalAlignment.center]
+                            }
+
+                    }
+                    Button {
+                        isSecure.toggle()
+                    } label: {
+                        Image(systemName: "eye")
+                    }
                 }
-
-
                 Spacer()
             }
 
         }.navigationBarTitle("Login",displayMode: .inline)
-            .alert(isPresented: $isAlert, content: {
-                Alert(title: Text("Title"), message: Text("mesg"), primaryButton: .default(Text("Sure?"), action: {
-                    print("said sure")
-                }), secondaryButton: .cancel())
-            })
+        .alert(isPresented: $isAlert, content: {
+            Alert(title: Text("Title"), message: Text("mesg"), primaryButton: .default(Text("Sure?"), action: {
+                print("said sure")
+            }), secondaryButton: .cancel())
+        })
 
     }
     
-//    struct LoginView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            LoginView()
-////                .previewDevice(PreviewDevice(rawValue: "iPhone 6s"))
-//        }
-//    }
+    //    struct LoginView_Previews: PreviewProvider {
+    //        static var previews: some View {
+    //            LoginView()
+    ////                .previewDevice(PreviewDevice(rawValue: "iPhone 6s"))
+    //        }
+    //    }
 }
 
 extension HorizontalAlignment {
