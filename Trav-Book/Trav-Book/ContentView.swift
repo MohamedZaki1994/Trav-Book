@@ -76,7 +76,13 @@ struct ContentView: View {
             }
 
             .navigationBarTitle("Log in",displayMode: .inline)
+            .onAppear(){
+                print("Done")
+            }
         }
+    }
+    func fetchData() -> Result<String,myError> {
+        return .failure(myError.badURL)
     }
 }
 
@@ -89,4 +95,8 @@ struct ContentView_Previews: PreviewProvider {
 protocol TestView {
     associatedtype T = View
     var myView: T { get set }
+}
+
+enum myError: Error {
+    case badURL, requestFailed
 }

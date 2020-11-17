@@ -12,6 +12,7 @@ struct PostView: View {
    var postText: String = ""
     var profileImageString: String = ""
     var profileName: String = ""
+    var user = CurrentUser.shared
     @State var comments: [String] = [String]()
     @State var isCommenting = false
     @State var numberOfLike: Int = 0
@@ -24,9 +25,9 @@ struct PostView: View {
             HStack {
                 Image(systemName: "person")
                 Text(self.post.name ?? "")
-            }
+            } .padding(10)
             Text(post.postText ?? "")
-                .background(Color.gray)
+                .padding()
             Divider()
             HStack {
                 Button(action: {
@@ -38,17 +39,23 @@ struct PostView: View {
                     print("like")
                 }) {
                     Text("\(self.numberOfLike) like")}
-                        .buttonStyle(PrimaryButtonStyle())
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(20)
+                .buttonStyle(PrimaryButtonStyle())
 
                 Spacer()
                 Button(action: {
-                                   print("dislike")
+                    print("dislike")
                     self.post.numberOfDislike! += 1
                     self.numberOfDislike += 1
                     self.model.update(numberOfLikes: self.post, like: false)
                                }) {
                                 Text("\(self.numberOfDislike) dislike")}
-                                       .buttonStyle(PrimaryButtonStyle())
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(20)
+                .buttonStyle(PrimaryButtonStyle())
                 Spacer()
                 Button(action: {
                     self.comments.append("1")
@@ -59,7 +66,9 @@ struct PostView: View {
                     Text("comment")
 
                 }.buttonStyle(PrimaryButtonStyle())
-
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(20)
             }.padding()
 
             ForEach(0 ..< comments.count, id: \.self) { index in
@@ -67,18 +76,19 @@ struct PostView: View {
                 CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
                 { (text) in
                     if text == "" {
-                        self.comments.removeLast()
                     } else {
-                        self.post.comments?.append(text)
-                        self.comments.removeLast()
-                        self.comments.append(text)
+                       let wholeText = "\(user.name ?? ""): \(text)"
+                        self.post.comments?.append(wholeText)
+                        self.comments.append(wholeText)
                         self.model.update(numberOfLikes: self.post, like: nil)
                     }
                     self.isCommenting = false
                 }
             }
 
-        }.onAppear() {
+        }.background(Color.gray)
+        .cornerRadius(10)
+        .onAppear() {
             self.numberOfLike = self.post.numberOfLike ?? 0
             self.numberOfDislike = self.post.numberOfDislike ?? 0
         }
