@@ -31,7 +31,7 @@ class DashboardViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var isRefresh = false
     @Published var posts = [PostModel]()
-
+    var request = RequestHandler()
     func refresh() {
         postsModel = postsModelUpdatedRealTime
         if postsModel?.posts.isEmpty ?? true{
@@ -41,21 +41,30 @@ class DashboardViewModel: ObservableObject {
     }
 
     func getData() {
-        ref.child("Ref").observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
-            if snapshot.exists() {
-                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
-
-                do {
-                    self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
-                    self?.refresh()
-                }
-                catch {
-                    print(error)
-                }
-
-            } else {
-                self?.refresh()
-            }})
+//        ref.child("Ref").observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
+//            if snapshot.exists() {
+//                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
+//
+//                do {
+//                    self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
+//                    self?.refresh()
+//                }
+//                catch {
+//                    print(error)
+//                }
+//
+//            } else {
+//                self?.refresh()
+//            }})
+        //
+        request.getData(path: "Ref", modelType: PostsModel.self) { [weak self] (data, error) in
+            self?.postsModelUpdatedRealTime = data
+            self?.refresh()
+        }
+        //
+//        request(x: Welcome.self) { (data, error) in
+//            print("Data")
+//        }
     }
 
     func postDummy(name: String, text: String) {
@@ -89,7 +98,7 @@ class DashboardViewModel: ObservableObject {
         }
     }
 
-    func request(completion:((Welcome?, Error?) -> Void)?) {
+    func request<T: Codable>(x: T.Type,completion:((T?, Error?) -> Void)?) {
         let urlComponent = URLComponents(string: "http://MohamedZaki1994.github.io/CMS/Test.json")
         guard let url = urlComponent?.url else {return}
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -97,11 +106,10 @@ class DashboardViewModel: ObservableObject {
                 completion?(nil, error)
                 return
             }
-            var user: Welcome?
             if let data = data {
                 do {
-                    user = try JSONDecoder().decode(Welcome.self, from: data)
-                    completion?(user,nil)
+                    let user = try JSONDecoder().decode(T.self, from: data)
+                    completion?(user ,nil)
                 }
                 catch {
                     print("error")
@@ -144,4 +152,3 @@ struct Welcome: Codable {
     let number: Int
     let string: String
 }
-

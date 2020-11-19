@@ -11,6 +11,7 @@ import Firebase
 
 class AuthProvider {
     var ref: DatabaseReference = Database.database().reference()
+    var request = RequestHandler()
     static private var _shared = AuthProvider()
     static var shared: AuthProvider {
         return _shared
@@ -46,23 +47,17 @@ class AuthProvider {
     }
 
     func signIn(username: String, password: String, completion: ((Bool) -> Void)?) {
-        Auth.auth().signIn(withEmail: username, password: password, completion: { (result, error) in
+        Auth.auth().signIn(withEmail: username, password: password, completion: { [weak self](result, error) in
             guard let result = result else {
                 completion?(false)
                 return
             }
             let userUid = result.user.uid
             if error == nil {
-                self.ref.child("Users").child(userUid).observeSingleEvent(of: DataEventType.value) { (snapshot) in
-                    guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
-                    do {
-                        let currentUser = try JSONDecoder().decode(User.self, from: data)
-                        CurrentUser.shared.fillUserInfo(name: currentUser.name ?? "", birthDate: currentUser.birthdate ?? "", email: currentUser.username ?? "", image: "", posts: nil, favorite: nil, id: result.user.uid, region: currentUser.region ?? "")
-                        completion?(true)
-                    }
-                    catch {
-                        print(error)
-                    }
+                self?.request.getData(path: "Users/\(userUid)", modelType: User.self) { (data, error) in
+                    let currentUser = data
+                    CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: result.user.uid, region: currentUser?.region ?? "")
+                    completion?(true)
                 }
             }
         })
