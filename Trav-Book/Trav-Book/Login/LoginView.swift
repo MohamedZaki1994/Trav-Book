@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Binding var username: String
-    @Binding var password: String
+    @State var username: String = ""
+    @State var password: String = ""
     @State private var isAlert = false
     @State private var height: CGFloat = 0
     @State var isSecure = true
-    
+    @State var isSignup = false
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
+        VStack {
         HStack(alignment:.midAccountAndName){
             Spacer()
             VStack(alignment: .leading,spacing: 22){
@@ -71,7 +73,43 @@ struct LoginView: View {
                 print("said sure")
             }), secondaryButton: .cancel())
         })
+            HStack(spacing: 50) {
+                Button("Login") {
+                    if !self.username.isEmpty, !self.password.isEmpty {
+                        AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
+                            if success {
+//                                self.isNavigate = true
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
 
+                    } else {
+                        self.isAlert = true
+                    }
+//                        let fetch = LoggedUser.fetchRequest() as NSFetchRequest<LoggedUser>
+//                        let predicate = NSPredicate(format: "name = %@", "zaki")
+////                        fetch.predicate = predicate
+//                        let sorter = NSSortDescriptor(key: "age", ascending: true)
+//                        let sorter1 = NSSortDescriptor(key: "name", ascending: false)
+//                        fetch.sortDescriptors = [sorter, sorter1]
+//                   let user = try! self.context.fetch(fetch) as? [LoggedUser]
+//                        print("")
+                }
+                Button("sign up") {
+                    self.isSignup = true
+//                        let user = LoggedUser(context: self.context)
+//                        user.name = "Ali"
+//                        user.age = 33
+//                        user.postss = ["1","2","3"]
+//                        let favorite = Favorite(context: self.context)
+//                        favorite.numberOfLike = 5
+//                        favorite.numberOfDislike = 2
+//                        user.addToFavorite(favorite)
+//                        try! self.context.save()
+                }
+            }
+
+        }
     }
     
     //    struct LoginView_Previews: PreviewProvider {

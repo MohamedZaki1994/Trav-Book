@@ -11,6 +11,7 @@ import Firebase
 
 struct ProfileView: View {
     @Binding var isNavigation: Bool
+    @Binding var isLoggedIn: Bool
 //    @ObservedObject var profileViewModel = ProfileViewModel()
     @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
@@ -50,6 +51,7 @@ struct ProfileView: View {
             }
             Button(action: {
                 try? Auth.auth().signOut()
+                self.isLoggedIn = true
                 self.isNavigation = false
             } ){
                 Text("Logout")
@@ -58,7 +60,6 @@ struct ProfileView: View {
         }
 
         .onAppear() {
-//            self.profileViewModel.fillProfile()
             self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
             self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
             self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
