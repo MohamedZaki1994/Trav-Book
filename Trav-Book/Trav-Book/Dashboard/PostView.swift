@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseStorage
 
 struct PostView: View {
    var postText: String = ""
     var profileImageString: String = ""
     var profileName: String = ""
     var user = CurrentUser.shared
+    let storage = Storage.storage()
+
     @State var comments: [String] = [String]()
     @State var isCommenting = false
     @State var numberOfLike: Int = 0
@@ -94,6 +98,17 @@ struct PostView: View {
         .onAppear() {
             self.numberOfLike = self.post.numberOfLike ?? 0
             self.numberOfDislike = self.post.numberOfDislike ?? 0
+            let image = UIImage(named: "im")
+            let data = image!.pngData()
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+
+            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
+                guard let meta = meta else {
+                    return
+                }
+                print("Done")
+            }
         }
     }
 }
