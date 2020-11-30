@@ -28,6 +28,9 @@ struct PostView: View {
             } .padding(10)
             Text(post.postText ?? "")
                 .padding()
+            Image("im")
+                .resizable()
+                .padding()
             Divider()
             HStack {
                 Button(action: {

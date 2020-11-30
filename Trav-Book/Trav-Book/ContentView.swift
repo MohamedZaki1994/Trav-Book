@@ -16,26 +16,15 @@ struct ContentView: View {
     @State var username = ""
     @State var password = ""
     @State var isSignup = false
-    @State var isNotLoggedIn = true
-    @State var isRefresh = true
+    @State var showLogin = true
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var body: some View {
         if #available(iOS 14.0, *) {
-            if isRefresh {
-            BaseTabView(isNavigation: $isNavigate, isLogedIn: $isNotLoggedIn)
-                .fullScreenCover(isPresented: $isNotLoggedIn,onDismiss: {
+            BaseTabView(isNavigation: $isNavigate, showLogin: $showLogin)
+                .fullScreenCover(isPresented: $showLogin,onDismiss: {
                     self.isNavigate = true
-//                    self.isRefresh.toggle()
                 }, content: LoginView.init)
-                .onAppear(){
-
-                }
-            } else {
-                Text("").onAppear(){
-                    self.isRefresh.toggle()
-                }
-            }
         } else {
             // Fallback on earlier versions
         }

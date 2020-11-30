@@ -10,7 +10,7 @@ import SwiftUI
 
 struct BaseTabView: View {
     @Binding var isNavigation: Bool
-    @Binding var isLogedIn: Bool
+    @Binding var showLogin: Bool
     @State var isRefresh = true
     @State var refreshing = false
     var body: some View {
@@ -28,7 +28,7 @@ struct BaseTabView: View {
                 }
 
 
-            ProfileView(isNavigation: $isNavigation, isLoggedIn: $isLogedIn).tabItem {
+            ProfileView(isNavigation: $isNavigation, showLogin: $showLogin).tabItem {
                 VStack {
                     Image(systemName: "person")
                     Text("Profile")

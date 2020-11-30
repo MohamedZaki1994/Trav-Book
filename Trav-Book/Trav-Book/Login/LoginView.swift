@@ -18,45 +18,25 @@ struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack {
-        HStack(alignment:.midAccountAndName){
-            Spacer()
-            VStack(alignment: .leading,spacing: 22){
-                Text("Username")
-                    .padding(.bottom,1)
-                    .textStyle()
-
-                Text("Pasword")
-                    .textStyle()
-                    .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
-                        return d[VerticalAlignment.center]
-                    }
-
-                Spacer()
-            }
-
-            VStack(spacing: 20.0){
-
+            GeometryReader { geo in
+            VStack(spacing: 10.0){
                 TextField("Enter your Username", text: self.$username)
+                    .padding()
+                    .background(Color(red: 211/255, green: 211/255, blue: 211/255))
+                    .cornerRadius(10)
+                    .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                    .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 HStack {
                     if isSecure {
-
                         SecureField("Enter your Password", text: self.$password)
-                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
-                                DispatchQueue.main.async {
-                                    self.height = d.height
-                                }
-                                return d[VerticalAlignment.center]
-                            }
-
+//                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
+//                                DispatchQueue.main.async {
+//                                    self.height = d.height
+//                                }
+//                                return d[VerticalAlignment.center]
+//                            }
                     } else {
                         TextField("Enter your Password", text: self.$password)
-                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
-                                DispatchQueue.main.async {
-                                    self.height = d.height
-                                }
-                                return d[VerticalAlignment.center]
-                            }
-
                     }
                     Button {
                         isSecure.toggle()
@@ -64,10 +44,15 @@ struct LoginView: View {
                         Image(systemName: "eye")
                     }
                 }
+                .padding()
+                .background(Color(red: 211/255, green: 211/255, blue: 211/255))
+                .cornerRadius(10)
+                .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 Spacer()
+            }.padding(.top, (geo.size.height / 5))
             }
-
-        }.navigationBarTitle("Login",displayMode: .inline)
+        .navigationBarTitle("Login",displayMode: .inline)
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("Title"), message: Text("mesg"), primaryButton: .default(Text("Sure?"), action: {
                 print("said sure")
@@ -78,8 +63,9 @@ struct LoginView: View {
                     if !self.username.isEmpty, !self.password.isEmpty {
                         AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
                             if success {
-//                                self.isNavigate = true
                                 presentationMode.wrappedValue.dismiss()
+                            } else {
+                                self.isAlert = true
                             }
                         }
 
@@ -109,6 +95,9 @@ struct LoginView: View {
                 }
             }
 
+        }
+        .sheet(isPresented: $isSignup) {
+            SignupView(isSignup: self.$isSignup)
         }
     }
     

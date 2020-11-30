@@ -39,7 +39,8 @@ struct CommentView: View {
             }
             else if (index != comments.count){
                 Text((comments[index ?? 0]))
-                    .background(Color.init(red: 211, green: 211, blue: 211))
+                    .padding(5)
+                    .background(Color(red: 211/255, green: 211/255, blue: 211/255))
                     .cornerRadius(5)
                     .padding(5)
             }

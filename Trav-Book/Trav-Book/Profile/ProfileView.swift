@@ -11,7 +11,7 @@ import Firebase
 
 struct ProfileView: View {
     @Binding var isNavigation: Bool
-    @Binding var isLoggedIn: Bool
+    @Binding var showLogin: Bool
 //    @ObservedObject var profileViewModel = ProfileViewModel()
     @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
@@ -51,7 +51,7 @@ struct ProfileView: View {
             }
             Button(action: {
                 try? Auth.auth().signOut()
-                self.isLoggedIn = true
+                self.showLogin = true
                 self.isNavigation = false
             } ){
                 Text("Logout")
