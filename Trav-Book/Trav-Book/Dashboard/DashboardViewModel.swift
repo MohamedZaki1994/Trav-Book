@@ -36,7 +36,7 @@ class DashboardViewModel: ObservableObject {
     func refresh() {
         postsModel = postsModelUpdatedRealTime
         if postsModel?.posts.isEmpty ?? true{
-            let post = Post(name: "", post: "", id: "", hasImage: false, numberOfLike: 0,numberOfDislike: 0,comments: [""])
+            let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""])
             postsModel = PostsModel(posts: [post])
         }
     }
@@ -64,9 +64,9 @@ class DashboardViewModel: ObservableObject {
         }
     }
 
-    func postDummy(name: String, text: String, hasImage: Bool) {
+    func postDummy(name: String, text: String, numberOfImages: Int) {
         let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
-        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "","hasImage": hasImage, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
+        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "","imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
         getData()
     }
 

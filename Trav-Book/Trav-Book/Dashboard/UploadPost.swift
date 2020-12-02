@@ -14,6 +14,7 @@ struct UploadPost: View {
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @State private var image: Image?
+    @State private var numberOfImages = 0
     @EnvironmentObject var model: DashboardViewModel
 
     var body: some View {
@@ -26,7 +27,7 @@ struct UploadPost: View {
                 HStack(spacing: 20) {
                 Button("Post") {
                     let name = CurrentUser.shared.name
-                    self.model.postDummy(name: name ?? "", text: self.postText, hasImage: ((image != nil) ? true : false))
+                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages)
                     self.isPresented = false
                     self.postText = ""
                 }
@@ -50,8 +51,10 @@ struct UploadPost: View {
             })
         }
     }
+    
     func loadImage() {
         guard let inputImage = inputImage else { return }
+        numberOfImages += 1
         image = Image(uiImage: inputImage)
     }
 }
