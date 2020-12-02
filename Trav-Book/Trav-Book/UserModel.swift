@@ -27,6 +27,7 @@ struct PostsModel: Codable {
 struct Post: Codable{
     let name, post: String
     let id: String
+    let image: [String]?
     let numberOfLike: Int
     let numberOfDislike: Int
     let comments: [String]

@@ -19,12 +19,27 @@ struct UploadPost: View {
                 self.isPresented = true
             }.sheet(isPresented: $isPresented, onDismiss: nil, content: {
                 TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
+                Image("im")
+                HStack(spacing: 20) {
                 Button("Post") {
                     let name = CurrentUser.shared.name
-                    self.model.postDummy(name: name ?? "", text: self.postText)
+                    self.model.postDummy(name: name ?? "", text: self.postText, image: ["fady"])
                     self.isPresented = false
                     self.postText = ""
                 }
+                    Button {
+                        print("uploading")
+                    } label: {
+                        Text("upload a photo")
+                    }
+
+                    Button {
+                        print("take")
+                    } label: {
+                        Text("take a photo")
+                    }
+
+            }
                 Spacer()
             })
         }
