@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import Firebase
 import Combine
 class DashboardViewModel: ObservableObject {
@@ -35,7 +36,7 @@ class DashboardViewModel: ObservableObject {
     func refresh() {
         postsModel = postsModelUpdatedRealTime
         if postsModel?.posts.isEmpty ?? true{
-            let post = Post(name: "", post: "", id: "", image: nil, numberOfLike: 0,numberOfDislike: 0,comments: [""])
+            let post = Post(name: "", post: "", id: "", hasImage: false, numberOfLike: 0,numberOfDislike: 0,comments: [""])
             postsModel = PostsModel(posts: [post])
         }
     }
@@ -63,9 +64,9 @@ class DashboardViewModel: ObservableObject {
         }
     }
 
-    func postDummy(name: String, text: String, image: [String]?) {
+    func postDummy(name: String, text: String, hasImage: Bool) {
         let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
-        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "","image": image as Any, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
+        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "","hasImage": hasImage, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
         getData()
     }
 
