@@ -63,7 +63,7 @@ class DashboardViewModel: ObservableObject {
         }
     }
     let storage = Storage.storage()
-    func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?) {
+    func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, completion: (() -> Void)? ) {
         let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
         let id = UUID().uuidString
         if images?.count ?? 0 > 0 {
@@ -79,6 +79,7 @@ class DashboardViewModel: ObservableObject {
                     guard meta != nil else {
                         return
                     }
+                    completion?()
                     print("Done")
                 }
             }

@@ -11,7 +11,7 @@ import Firebase
 import FirebaseStorage
 
 struct PostView: View {
-   var postText: String = ""
+    var postText: String = ""
     var profileImageString: String = ""
     var profileName: String = ""
     var user = CurrentUser.shared
@@ -24,95 +24,90 @@ struct PostView: View {
     @State var post: PostModel
     @State var image: Image?
     var action: ((PostModel) -> Void)?
-     @EnvironmentObject var model: DashboardViewModel
+    @EnvironmentObject var model: DashboardViewModel
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "person")
-                Text(self.post.name ?? "")
-            } .padding(10)
-            Text(post.postText ?? "")
-                .padding()
-            image?
-                .resizable().frame(width: 300, height: 200) .padding()
-            Divider()
-            HStack {
-                Button(action: {
-                    self.post.numberOfLike! += 1
-                    self.numberOfLike += 1
-                    self.model.update(numberOfLikes: self.post, like: true)
-
-                    self.action?(self.post)
-                    print("like")
-                }) {
-                    Text("\(self.numberOfLike) like")}
-                .padding(10)
-                .background(Color.blue)
-                .cornerRadius(20)
-                .buttonStyle(PrimaryButtonStyle())
-
-                Spacer()
-                Button(action: {
-                    print("dislike")
-                    self.post.numberOfDislike! += 1
-                    self.numberOfDislike += 1
-                    self.model.update(numberOfLikes: self.post, like: false)
-                               }) {
-                                Text("\(self.numberOfDislike) dislike")}
-                .padding(10)
-                .background(Color.blue)
-                .cornerRadius(20)
-                .buttonStyle(PrimaryButtonStyle())
-                Spacer()
-                Button(action: {
-                    self.comments.append("1")
-                    self.isCommenting = true
-
-                    print("comment")
-                }) {
-                    Text("comment")
-
-                }.buttonStyle(PrimaryButtonStyle())
-                .padding(10)
-                .background(Color.blue)
-                .cornerRadius(20)
-            }.padding()
-
-            ForEach(0 ..< comments.count, id: \.self) { index in
-                //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
-                CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
-                { (text) in
-                    if text == "" {
-                    } else {
-                       let wholeText = "\(user.name ?? ""): \(text)"
-                        self.post.comments?.append(wholeText)
-                        self.comments.append(wholeText)
-                        self.model.update(numberOfLikes: self.post, like: nil)
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "person")
+                    Text(self.post.name ?? "")
+                } .padding(10)
+                Text(post.postText ?? "")
+                    .padding()
+                image?
+                    .resizable().frame(height: 200)
+                Divider()
+                HStack {
+                    Button(action: {
+                        self.post.numberOfLike! += 1
+                        self.numberOfLike += 1
+                        self.model.update(numberOfLikes: self.post, like: true)
+                        self.action?(self.post)
+                        print("like")
+                    }) {
+                        Text("\(self.numberOfLike) like")}
+                    .padding(10)
+                    .background(Color.blue)
+                    .cornerRadius(20)
+                    .buttonStyle(PrimaryButtonStyle())
+                    Spacer()
+                    Button(action: {
+                        print("dislike")
+                        self.post.numberOfDislike! += 1
+                        self.numberOfDislike += 1
+                        self.model.update(numberOfLikes: self.post, like: false)
+                    }) {
+                        Text("\(self.numberOfDislike) dislike")}
+                    .padding(10)
+                    .background(Color.blue)
+                    .cornerRadius(20)
+                    .buttonStyle(PrimaryButtonStyle())
+                    Spacer()
+                    Button(action: {
+                        self.comments.append("1")
+                        self.isCommenting = true
+                        print("comment")
+                    }) {
+                        Text("comment")
+                    }.buttonStyle(PrimaryButtonStyle())
+                    .padding(10)
+                    .background(Color.blue)
+                    .cornerRadius(20)
+                }.padding()
+                ForEach(0 ..< comments.count, id: \.self) { index in
+                    //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
+                    CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
+                    { (text) in
+                        if text == "" {
+                        } else {
+                            let wholeText = "\(user.name ?? ""): \(text)"
+                            self.post.comments?.append(wholeText)
+                            self.comments.append(wholeText)
+                            self.model.update(numberOfLikes: self.post, like: nil)
+                        }
+                        self.isCommenting = false
                     }
-                    self.isCommenting = false
                 }
-            }
 
-        }.background(Color.gray)
-        .cornerRadius(10)
-        .onAppear() {
-            self.numberOfLike = self.post.numberOfLike ?? 0
-            self.numberOfDislike = self.post.numberOfDislike ?? 0
-            model.getImage(post: post) { (data) in
-                let uiImage = UIImage(data: data!)
-                image = Image(uiImage: uiImage!)
-            }
-//            let image = UIImage(named: "im")
-//            let data = image!.pngData()
-//            let metadata = StorageMetadata()
-//            metadata.contentType = "image/jpeg"
-//
-//            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
-//                guard let meta = meta else {
-//                    return
-//                }
-//                print("Done")
-//            }
+            }.background(Color.gray)
+            .cornerRadius(10)
+            .onAppear() {
+                self.numberOfLike = self.post.numberOfLike ?? 0
+                self.numberOfDislike = self.post.numberOfDislike ?? 0
+                model.getImage(post: post) { (data) in
+                    let uiImage = UIImage(data: data!)
+                    image = Image(uiImage: uiImage!)
+                }
+                //            let image = UIImage(named: "im")
+                //            let data = image!.pngData()
+                //            let metadata = StorageMetadata()
+                //            metadata.contentType = "image/jpeg"
+                //
+                //            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
+                //                guard let meta = meta else {
+                //                    return
+                //                }
+                //                print("Done")
+                //            }
         }
     }
 }

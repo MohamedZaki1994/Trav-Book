@@ -46,6 +46,15 @@ class AuthProvider {
         }
     }
 
+    func getUserData(_ userUid: String,completion: ((Bool) -> Void)?) {
+        //
+        self.request.getData(path: "Users/\(userUid)", modelType: User.self) { (data, error) in
+            let currentUser = data
+            CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: userUid, region: currentUser?.region ?? "")
+            completion?(true)
+        }
+    }
+
     func signIn(username: String, password: String, completion: ((Bool) -> Void)?) {
         Auth.auth().signIn(withEmail: username, password: password, completion: { [weak self](result, error) in
             guard let result = result else {
@@ -54,11 +63,11 @@ class AuthProvider {
             }
             let userUid = result.user.uid
             if error == nil {
-                self?.request.getData(path: "Users/\(userUid)", modelType: User.self) { (data, error) in
-                    let currentUser = data
-                    CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: result.user.uid, region: currentUser?.region ?? "")
-                    completion?(true)
+//                getUserData(userUid, result
+                self?.getUserData(userUid) { (flag) in
+                    completion?(flag)
                 }
+                //
             }
         })
     }

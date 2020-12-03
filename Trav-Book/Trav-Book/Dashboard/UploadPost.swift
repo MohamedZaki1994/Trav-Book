@@ -29,9 +29,12 @@ struct UploadPost: View {
                 Button("Post") {
                     let name = CurrentUser.shared.name
                     print(numberOfImages)
-                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: [inputImage])
-                    self.isPresented = false
+                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: [inputImage]) {
+                        self.isPresented = false
+                    }
+                    image = nil
                     self.postText = ""
+                    numberOfImages = 0
                 }
                     Button {
                         print("uploading")
