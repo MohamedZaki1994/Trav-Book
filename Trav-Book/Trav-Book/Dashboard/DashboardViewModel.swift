@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseStorage
 import Combine
 class DashboardViewModel: ObservableObject {
 
@@ -20,7 +21,7 @@ class DashboardViewModel: ObservableObject {
             if let postArray = postsModel?.posts {
                 posts = [PostModel]()
                 for post in postArray {
-                    self.posts.append(PostModel(name: post.name, imageName: nil, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments))
+                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments))
                 }
 
             }
@@ -42,31 +43,48 @@ class DashboardViewModel: ObservableObject {
     }
 
     func getData() {
-//        ref.child("Ref").observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
-//            if snapshot.exists() {
-//                guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
-//
-//                do {
-//                    self?.postsModelUpdatedRealTime = try JSONDecoder().decode(PostsModel.self, from: data)
-//                    self?.refresh()
-//                }
-//                catch {
-//                    print(error)
-//                }
-//
-//            } else {
-//                self?.refresh()
-//            }})
-        //
         request.getData(path: "Ref", modelType: PostsModel.self) { [weak self] (data, error) in
             self?.postsModelUpdatedRealTime = data
             self?.refresh()
         }
     }
 
-    func postDummy(name: String, text: String, numberOfImages: Int) {
+    func getImage(post: PostModel, completion: ((Data?) -> Void)?){
+        let counter = post.imagesNumber!
+        if counter > 0 {
+            for x in 0 ... counter-1 {
+                let storage = Storage.storage()
+                storage.reference().child(post.id!).child(String(x)).getData(maxSize: 1*2048*2048) { (data, error) in
+                    if data != nil {
+                    completion?(data)
+                    }
+                }
+            }
+        }
+    }
+    let storage = Storage.storage()
+    func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?) {
         let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
-        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": "","imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
+        let id = UUID().uuidString
+        if images?.count ?? 0 > 0 {
+
+            storage.reference().child(id)
+//
+            for image in images! {
+//                let data = image!.pngData()
+                let data = image!.jpegData(compressionQuality: 0.2)
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                storage.reference().child(id).child("0").putData(data!, metadata: metadata) { (meta, error) in
+                    guard meta != nil else {
+                        return
+                    }
+                    print("Done")
+                }
+            }
+//
+        }
+        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
         getData()
     }
 
@@ -81,11 +99,11 @@ class DashboardViewModel: ObservableObject {
             return
         }
         if like {
-        for post in posts.enumerated() {
-            if post.element.id == numberOfLikes.id {
-                ref.child("Ref").child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
+            for post in posts.enumerated() {
+                if post.element.id == numberOfLikes.id {
+                    ref.child("Ref").child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
+                }
             }
-        }
         } else {
             for post in posts.enumerated() {
                 if post.element.id == numberOfLikes.id {
@@ -120,9 +138,9 @@ class DashboardViewModel: ObservableObject {
 
 class PostModel: Identifiable, ObservableObject {
 
-    var id = UUID()
+    var id: String?
     var name: String?
-    var imageName: String?
+    var imagesNumber: Int?
     var postText: String?
     var numberOfLike: Int?
     var numberOfDislike: Int?
@@ -130,9 +148,10 @@ class PostModel: Identifiable, ObservableObject {
     init() {
 
     }
-    init (name: String, imageName: String?,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String]) {
+    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String]) {
+        self.id = id
         self.name = name
-        self.imageName = imageName
+        self.imagesNumber = imagesNumber
         self.postText = postText
         self.numberOfLike = numberOfLike
         self.numberOfDislike = numberOfDislike

@@ -33,10 +33,10 @@ struct DashboardView: View {
                     UploadPost().environmentObject(self.viewModel)
                     if !viewModel.posts.isEmpty {
                     ForEach(viewModel.posts.reversed()) { post in
+
                         Section {
 //                            PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", comments: post.comments ?? [""], numberOfLike: post.numberOfLike ?? 0, numberOfDislike: post.numberOfDislike ?? 0 ,post: post).environmentObject(self.viewModel)
                             PostView(comments: post.comments ?? [""], post: post).environmentObject(self.viewModel)
-
                             .navigationBarHidden(false)
 
 

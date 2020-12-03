@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 struct UploadPost: View {
     @State var postText: String = ""
@@ -27,7 +28,8 @@ struct UploadPost: View {
                 HStack(spacing: 20) {
                 Button("Post") {
                     let name = CurrentUser.shared.name
-                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages)
+                    print(numberOfImages)
+                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: [inputImage])
                     self.isPresented = false
                     self.postText = ""
                 }

@@ -22,6 +22,7 @@ struct PostView: View {
     @State var numberOfLike: Int = 0
     @State var numberOfDislike: Int = 0
     @State var post: PostModel
+    @State var image: Image?
     var action: ((PostModel) -> Void)?
      @EnvironmentObject var model: DashboardViewModel
     var body: some View {
@@ -32,9 +33,8 @@ struct PostView: View {
             } .padding(10)
             Text(post.postText ?? "")
                 .padding()
-            Image("im")
-                .resizable()
-                .padding()
+            image?
+                .resizable().frame(width: 300, height: 200) .padding()
             Divider()
             HStack {
                 Button(action: {
@@ -98,17 +98,21 @@ struct PostView: View {
         .onAppear() {
             self.numberOfLike = self.post.numberOfLike ?? 0
             self.numberOfDislike = self.post.numberOfDislike ?? 0
-            let image = UIImage(named: "im")
-            let data = image!.pngData()
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/jpeg"
-
-            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
-                guard let meta = meta else {
-                    return
-                }
-                print("Done")
+            model.getImage(post: post) { (data) in
+                let uiImage = UIImage(data: data!)
+                image = Image(uiImage: uiImage!)
             }
+//            let image = UIImage(named: "im")
+//            let data = image!.pngData()
+//            let metadata = StorageMetadata()
+//            metadata.contentType = "image/jpeg"
+//
+//            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
+//                guard let meta = meta else {
+//                    return
+//                }
+//                print("Done")
+//            }
         }
     }
 }
