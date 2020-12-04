@@ -38,13 +38,7 @@ struct DashboardView: View {
 //                            PostView(postText: post.postText ?? "", profileImageString: post.name ?? "", profileName: post.name ?? "", comments: post.comments ?? [""], numberOfLike: post.numberOfLike ?? 0, numberOfDislike: post.numberOfDislike ?? 0 ,post: post).environmentObject(self.viewModel)
                             PostView(comments: post.comments ?? [""], post: post).environmentObject(self.viewModel)
                             .navigationBarHidden(false)
-
-
                         }
-                    }
-                    .onDelete { (index) in
-                        self.isAlert = true
-                        self.indexSet = index
                     }
                     .alert(isPresented: self.$isAlert) { () -> Alert in
                         Alert(title: Text("Warning"), message: Text("Are you sure"), primaryButton: .default(Text("Sure"), action: {

@@ -17,88 +17,88 @@ struct LoginView: View {
     @State var isSignup = false
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        VStack {
-            GeometryReader { geo in
-            VStack(spacing: 10.0){
-                TextField("Enter your Username", text: self.$username)
+        GeometryReader { geo in
+            VStack {
+                VStack(spacing: 10.0){
+                    TextField("Enter your Username", text: self.$username)
+                        .padding()
+                        .background(Color(red: 211/255, green: 211/255, blue: 211/255))
+                        .cornerRadius(10)
+                        .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                        .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                    HStack {
+                        if isSecure {
+                            SecureField("Enter your Password", text: self.$password)
+                            //                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
+                            //                                DispatchQueue.main.async {
+                            //                                    self.height = d.height
+                            //                                }
+                            //                                return d[VerticalAlignment.center]
+                            //                            }
+                        } else {
+                            TextField("Enter your Password", text: self.$password)
+                        }
+                        Button {
+                            isSecure.toggle()
+                        } label: {
+                            Image(systemName: "eye")
+                        }
+                    }
                     .padding()
                     .background(Color(red: 211/255, green: 211/255, blue: 211/255))
                     .cornerRadius(10)
                     .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                     .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                HStack {
-                    if isSecure {
-                        SecureField("Enter your Password", text: self.$password)
-//                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
-//                                DispatchQueue.main.async {
-//                                    self.height = d.height
-//                                }
-//                                return d[VerticalAlignment.center]
-//                            }
-                    } else {
-                        TextField("Enter your Password", text: self.$password)
+                }.padding(.top, (geo.size.height / 5))
+                //            }
+                HStack(spacing: 50) {
+                    Button("Login") {
+                        if !self.username.isEmpty, !self.password.isEmpty {
+                            AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
+                                if success {
+                                    presentationMode.wrappedValue.dismiss()
+                                } else {
+                                    self.isAlert = true
+                                }
+                            }
+
+                        } else {
+                            self.isAlert = true
+                        }
+                        //                        let fetch = LoggedUser.fetchRequest() as NSFetchRequest<LoggedUser>
+                        //                        let predicate = NSPredicate(format: "name = %@", "zaki")
+                        ////                        fetch.predicate = predicate
+                        //                        let sorter = NSSortDescriptor(key: "age", ascending: true)
+                        //                        let sorter1 = NSSortDescriptor(key: "name", ascending: false)
+                        //                        fetch.sortDescriptors = [sorter, sorter1]
+                        //                   let user = try! self.context.fetch(fetch) as? [LoggedUser]
+                        //                        print("")
                     }
-                    Button {
-                        isSecure.toggle()
-                    } label: {
-                        Image(systemName: "eye")
+                    Button("sign up") {
+                        self.isSignup = true
+                        //                        let user = LoggedUser(context: self.context)
+                        //                        user.name = "Ali"
+                        //                        user.age = 33
+                        //                        user.postss = ["1","2","3"]
+                        //                        let favorite = Favorite(context: self.context)
+                        //                        favorite.numberOfLike = 5
+                        //                        favorite.numberOfDislike = 2
+                        //                        user.addToFavorite(favorite)
+                        //                        try! self.context.save()
                     }
                 }
-                .padding()
-                .background(Color(red: 211/255, green: 211/255, blue: 211/255))
-                .cornerRadius(10)
-                .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                Spacer()
-            }.padding(.top, (geo.size.height / 5))
+
             }
-        .navigationBarTitle("Login",displayMode: .inline)
+        }
+        .sheet(isPresented: $isSignup) {
+            SignupView(isSignup: self.$isSignup)
+        }
+
         .alert(isPresented: $isAlert, content: {
             Alert(title: Text("Title"), message: Text("mesg"), primaryButton: .default(Text("Sure?"), action: {
                 print("said sure")
             }), secondaryButton: .cancel())
         })
-            HStack(spacing: 50) {
-                Button("Login") {
-                    if !self.username.isEmpty, !self.password.isEmpty {
-                        AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
-                            if success {
-                                presentationMode.wrappedValue.dismiss()
-                            } else {
-                                self.isAlert = true
-                            }
-                        }
-
-                    } else {
-                        self.isAlert = true
-                    }
-//                        let fetch = LoggedUser.fetchRequest() as NSFetchRequest<LoggedUser>
-//                        let predicate = NSPredicate(format: "name = %@", "zaki")
-////                        fetch.predicate = predicate
-//                        let sorter = NSSortDescriptor(key: "age", ascending: true)
-//                        let sorter1 = NSSortDescriptor(key: "name", ascending: false)
-//                        fetch.sortDescriptors = [sorter, sorter1]
-//                   let user = try! self.context.fetch(fetch) as? [LoggedUser]
-//                        print("")
-                }
-                Button("sign up") {
-                    self.isSignup = true
-//                        let user = LoggedUser(context: self.context)
-//                        user.name = "Ali"
-//                        user.age = 33
-//                        user.postss = ["1","2","3"]
-//                        let favorite = Favorite(context: self.context)
-//                        favorite.numberOfLike = 5
-//                        favorite.numberOfDislike = 2
-//                        user.addToFavorite(favorite)
-//                        try! self.context.save()
-                }
-            }
-
-        }
-        .sheet(isPresented: $isSignup) {
-            SignupView(isSignup: self.$isSignup)
-        }
     }
     
     //    struct LoginView_Previews: PreviewProvider {

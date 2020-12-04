@@ -33,8 +33,15 @@ struct PostView: View {
                 } .padding(10)
                 Text(post.postText ?? "")
                     .padding()
-                image?
-                    .resizable().frame(height: 200)
+//                image?
+//                    .resizable().frame(height: 200)
+                if #available(iOS 14.0, *) {
+                    LazyHStack {
+                        PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
                 Divider()
                 HStack {
                     Button(action: {
@@ -72,7 +79,7 @@ struct PostView: View {
                     .padding(10)
                     .background(Color.blue)
                     .cornerRadius(20)
-                }.padding()
+                }.padding(20)
                 ForEach(0 ..< comments.count, id: \.self) { index in
                     //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
                     CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
@@ -87,7 +94,7 @@ struct PostView: View {
                         self.isCommenting = false
                     }
                 }
-
+//            }
             }.background(Color.gray)
             .cornerRadius(10)
             .onAppear() {
@@ -126,5 +133,25 @@ struct PrimaryButtonStyle: ButtonStyle {
             .foregroundColor(configuration.isPressed ? Color.red : Color.yellow)
             .background(configuration.isPressed ? Color.black : Color.blue)
             .cornerRadius(.infinity)
+    }
+}
+
+struct PageView: View {
+    @Binding var image: Image?
+    var body: some View {
+        if #available(iOS 14.0, *) {
+            TabView {
+                ForEach(0..<5) { i in
+                    ZStack {
+                        Color.black
+                        image?
+                            .resizable().frame(height: 200)
+                    }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                }
+            }
+            .tabViewStyle(PageTabViewStyle())
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
