@@ -14,7 +14,8 @@ struct UploadPost: View {
     @State var isPresented = false
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-    @State private var image: Image?
+    @State private var wholeImages: [UIImage?] = []
+    @State private var image: [Image] = []
     @State private var numberOfImages = 0
     @EnvironmentObject var model: DashboardViewModel
 
@@ -24,17 +25,20 @@ struct UploadPost: View {
                 self.isPresented = true
             }.sheet(isPresented: $isPresented, onDismiss: nil, content: {
                 TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
-                image?.resizable().frame(width: 300, height: 200)
+                ForEach(0 ..< (image.count ?? 0), id: \.self) { im in
+                    image[im].resizable().frame(width: 300, height: 200)
+                }
                 HStack(spacing: 20) {
                 Button("Post") {
                     let name = CurrentUser.shared.name
                     print(numberOfImages)
-                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: [inputImage]) {
+                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: wholeImages) {
                         self.isPresented = false
                     }
-                    image = nil
+                    image = []
                     self.postText = ""
                     numberOfImages = 0
+                    wholeImages = []
                 }
                     Button {
                         print("uploading")
@@ -49,9 +53,18 @@ struct UploadPost: View {
                         Text("take a photo")
                     }
 
-            }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+            }
+                .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                 ImagePicker(image: self.$inputImage)
             }
+                if (!image.isEmpty) {
+                Button("cancel") {
+                    image = []
+                    wholeImages = []
+                    numberOfImages = 0
+                }
+            }
+
                 Spacer()
             })
         }
@@ -60,7 +73,8 @@ struct UploadPost: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         numberOfImages += 1
-        image = Image(uiImage: inputImage)
+        wholeImages.append(inputImage)
+        image.append(Image(uiImage: inputImage))
     }
 }
 

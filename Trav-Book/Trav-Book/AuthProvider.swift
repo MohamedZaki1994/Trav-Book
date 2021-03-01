@@ -8,8 +8,17 @@
 
 import Foundation
 import Firebase
+import Combine
+import SwiftUI
 
-class AuthProvider {
+class AuthProvider: ObservableObject {
+
+    var didChange = PassthroughSubject<AuthProvider, Never>()
+    @Published var user: CurrentUser? {
+        didSet {
+            self.didChange.send(self)
+        }
+    }
     var ref: DatabaseReference = Database.database().reference()
     var request = RequestHandler()
     static private var _shared = AuthProvider()
@@ -51,6 +60,8 @@ class AuthProvider {
         self.request.getData(path: "Users/\(userUid)", modelType: User.self) { (data, error) in
             let currentUser = data
             CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: userUid, region: currentUser?.region ?? "")
+//            self.session.user = CurrentUser.shared
+            self.user = CurrentUser.shared
             completion?(true)
         }
     }
@@ -70,6 +81,10 @@ class AuthProvider {
                 //
             }
         })
+    }
+    func signOut() {
+        try? Auth.auth().signOut()
+//        self.session.user = nil
     }
 }
 

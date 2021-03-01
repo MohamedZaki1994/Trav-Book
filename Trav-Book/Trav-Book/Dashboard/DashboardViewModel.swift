@@ -49,14 +49,18 @@ class DashboardViewModel: ObservableObject {
         }
     }
 
-    func getImage(post: PostModel, completion: ((Data?) -> Void)?){
+    func getImage(post: PostModel, completion: (([Data?]?) -> Void)?){
         let counter = post.imagesNumber!
+        var datas = [Data]()
         if counter > 0 {
             for x in 0 ... counter-1 {
                 let storage = Storage.storage()
                 storage.reference().child(post.id!).child(String(x)).getData(maxSize: 1*2048*2048) { (data, error) in
                     if data != nil {
-                    completion?(data)
+                        datas.append(data!)
+                        if x == counter - 1 {
+                            completion?(datas)
+                        }
                     }
                 }
             }
@@ -70,12 +74,12 @@ class DashboardViewModel: ObservableObject {
 
             storage.reference().child(id)
 //
-            for image in images! {
+            for (index,image) in images!.enumerated() {
 //                let data = image!.pngData()
                 let data = image!.jpegData(compressionQuality: 0.2)
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
-                storage.reference().child(id).child("0").putData(data!, metadata: metadata) { (meta, error) in
+                storage.reference().child(id).child("\(index)").putData(data!, metadata: metadata) { (meta, error) in
                     guard meta != nil else {
                         return
                     }

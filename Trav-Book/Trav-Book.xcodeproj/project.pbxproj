@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B8A1BD746CFC4336F8CC37D /* Pods_Trav_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D710B9A10EDC91A7F57357F /* Pods_Trav_Book.framework */; };
 		3510488F24FE510600499DBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3510488E24FE510600499DBE /* GoogleService-Info.plist */; };
 		353042E825288E34001999E2 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353042E725288E34001999E2 /* CurrentUser.swift */; };
 		3531267025221F9E00015E82 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3531266F25221F9E00015E82 /* AuthProvider.swift */; };
@@ -33,13 +34,13 @@
 		3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */; };
 		3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */; };
 		3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */; };
+		35499A2925ECEB4500DBDBAA /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35499A2825ECEB4500DBDBAA /* UserSession.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
 		35A4C5B22517A35F0053D8D7 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */; };
 		35F5298125669C2E0067CCCB /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5298025669C2E0067CCCB /* RequestHandler.swift */; };
-		BAF47E2E8708CCA67D4404FB /* Pods_Trav_Book.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0A0E58564B8A21E0855D5A /* Pods_Trav_Book.framework */; };
-		E9CF9547B646EFC286010751 /* Pods_Trav_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAD25AA72E32CD7441E9D213 /* Pods_Trav_BookTests.framework */; };
+		F45A6E738EE7CF6F03DEB208 /* Pods_Trav_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0976A70A05E5AF25CF391F2F /* Pods_Trav_BookTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10477BDB0DCCAA6D2767A128 /* Pods-Trav-Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.debug.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.debug.xcconfig"; sourceTree = "<group>"; };
+		0976A70A05E5AF25CF391F2F /* Pods_Trav_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trav_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3510488E24FE510600499DBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		353042E725288E34001999E2 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		3531266F25221F9E00015E82 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
@@ -84,16 +85,17 @@
 		3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoggedUser+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
+		35499A2825ECEB4500DBDBAA /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		35F5298025669C2E0067CCCB /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
-		724AA7E618DA54CB795E83B7 /* Pods-Trav-BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-BookTests.release.xcconfig"; path = "Target Support Files/Pods-Trav-BookTests/Pods-Trav-BookTests.release.xcconfig"; sourceTree = "<group>"; };
-		7957817972FBE93F5E8E24A7 /* Pods-Trav-BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-BookTests.debug.xcconfig"; path = "Target Support Files/Pods-Trav-BookTests/Pods-Trav-BookTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AB0A0E58564B8A21E0855D5A /* Pods_Trav_Book.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trav_Book.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C927A443C23997B2445BAF37 /* Pods-Trav-Book.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.release.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.release.xcconfig"; sourceTree = "<group>"; };
-		EAD25AA72E32CD7441E9D213 /* Pods_Trav_BookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trav_BookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		663545E86AA482D3B02DF5F7 /* Pods-Trav-BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-BookTests.release.xcconfig"; path = "Target Support Files/Pods-Trav-BookTests/Pods-Trav-BookTests.release.xcconfig"; sourceTree = "<group>"; };
+		7984C999C4F9AB67108AB1D2 /* Pods-Trav-Book.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.release.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.release.xcconfig"; sourceTree = "<group>"; };
+		7D710B9A10EDC91A7F57357F /* Pods_Trav_Book.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trav_Book.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80E45269624B73DFB346369D /* Pods-Trav-Book.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.debug.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.debug.xcconfig"; sourceTree = "<group>"; };
+		E0D74BAFD3734F55BEE1C5FE /* Pods-Trav-BookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-BookTests.debug.xcconfig"; path = "Target Support Files/Pods-Trav-BookTests/Pods-Trav-BookTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAF47E2E8708CCA67D4404FB /* Pods_Trav_Book.framework in Frameworks */,
+				0B8A1BD746CFC4336F8CC37D /* Pods_Trav_Book.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CF9547B646EFC286010751 /* Pods_Trav_BookTests.framework in Frameworks */,
+				F45A6E738EE7CF6F03DEB208 /* Pods_Trav_BookTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +145,7 @@
 				354022DB24EFDD7600F69187 /* Trav-BookTests */,
 				354022C024EFDD7300F69187 /* Products */,
 				3F021C293E87A4DB5359243B /* Pods */,
-				AB06E51143115F1287DB7935 /* Frameworks */,
+				4F5520E55FE4585B5425B771 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,12 +161,13 @@
 		354022C124EFDD7300F69187 /* Trav-Book */ = {
 			isa = PBXGroup;
 			children = (
+				35499A2825ECEB4500DBDBAA /* UserSession.swift */,
+				354022C924EFDD7300F69187 /* ContentView.swift */,
 				35E2EFAC2538765200E9CD00 /* model */,
 				3531266F25221F9E00015E82 /* AuthProvider.swift */,
 				353042E725288E34001999E2 /* CurrentUser.swift */,
 				354022C224EFDD7300F69187 /* AppDelegate.swift */,
 				354022C424EFDD7300F69187 /* SceneDelegate.swift */,
-				354022C924EFDD7300F69187 /* ContentView.swift */,
 				353B89AA24F136C20069F664 /* BaseTabView.swift */,
 				353A6801252366E40097B72F /* Login */,
 				355FBAFB24F7B0D6006749AE /* Dashboard */,
@@ -234,19 +237,19 @@
 		3F021C293E87A4DB5359243B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				10477BDB0DCCAA6D2767A128 /* Pods-Trav-Book.debug.xcconfig */,
-				C927A443C23997B2445BAF37 /* Pods-Trav-Book.release.xcconfig */,
-				7957817972FBE93F5E8E24A7 /* Pods-Trav-BookTests.debug.xcconfig */,
-				724AA7E618DA54CB795E83B7 /* Pods-Trav-BookTests.release.xcconfig */,
+				80E45269624B73DFB346369D /* Pods-Trav-Book.debug.xcconfig */,
+				7984C999C4F9AB67108AB1D2 /* Pods-Trav-Book.release.xcconfig */,
+				E0D74BAFD3734F55BEE1C5FE /* Pods-Trav-BookTests.debug.xcconfig */,
+				663545E86AA482D3B02DF5F7 /* Pods-Trav-BookTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		AB06E51143115F1287DB7935 /* Frameworks */ = {
+		4F5520E55FE4585B5425B771 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB0A0E58564B8A21E0855D5A /* Pods_Trav_Book.framework */,
-				EAD25AA72E32CD7441E9D213 /* Pods_Trav_BookTests.framework */,
+				7D710B9A10EDC91A7F57357F /* Pods_Trav_Book.framework */,
+				0976A70A05E5AF25CF391F2F /* Pods_Trav_BookTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -258,12 +261,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 354022E124EFDD7600F69187 /* Build configuration list for PBXNativeTarget "Trav-Book" */;
 			buildPhases = (
-				9379BF3C6C34EAAD0C31964D /* [CP] Check Pods Manifest.lock */,
+				152A51AE4DF0D31A0986E36F /* [CP] Check Pods Manifest.lock */,
 				354022BB24EFDD7300F69187 /* Sources */,
 				354022BC24EFDD7300F69187 /* Frameworks */,
 				354022BD24EFDD7300F69187 /* Resources */,
-				EEF5EB43E0CC1AD272FF51B5 /* [CP] Embed Pods Frameworks */,
 				352517E924FE5CE700501709 /* ShellScript */,
+				1F04DD226AE6AC8F8BC1DD59 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,7 +281,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 354022E424EFDD7600F69187 /* Build configuration list for PBXNativeTarget "Trav-BookTests" */;
 			buildPhases = (
-				003323B98FB2D2A4A7EAC4DB /* [CP] Check Pods Manifest.lock */,
+				49F4E134196F7EA6B536FEF4 /* [CP] Check Pods Manifest.lock */,
 				353E5227251CB406008FD4ED /* ShellScript */,
 				354022D424EFDD7600F69187 /* Sources */,
 				354022D524EFDD7600F69187 /* Frameworks */,
@@ -354,7 +357,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		003323B98FB2D2A4A7EAC4DB /* [CP] Check Pods Manifest.lock */ = {
+		152A51AE4DF0D31A0986E36F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -369,11 +372,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Trav-BookTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Trav-Book-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F04DD226AE6AC8F8BC1DD59 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		352517E924FE5CE700501709 /* ShellScript */ = {
@@ -414,7 +434,7 @@
 			shellPath = /bin/sh;
 			shellScript = "#OUTPUT_FILE=\"/Users/zaki/Desktop/My Apps/Trav-Book/Trav-Book/Trav-BookTests/GeneratedMocks.swift\"\n#echo \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\n#INPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\n#echo \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" \\\n--output \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 		};
-		9379BF3C6C34EAAD0C31964D /* [CP] Check Pods Manifest.lock */ = {
+		49F4E134196F7EA6B536FEF4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -429,28 +449,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Trav-Book-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Trav-BookTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EEF5EB43E0CC1AD272FF51B5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trav-Book/Pods-Trav-Book-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -471,6 +474,7 @@
 				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
 				3531267025221F9E00015E82 /* AuthProvider.swift in Sources */,
 				3544CE752539BE890070D7BE /* LoggedUser+CoreDataProperties.swift in Sources */,
+				35499A2925ECEB4500DBDBAA /* UserSession.swift in Sources */,
 				355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */,
 				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
@@ -635,7 +639,7 @@
 		};
 		354022E224EFDD7600F69187 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10477BDB0DCCAA6D2767A128 /* Pods-Trav-Book.debug.xcconfig */;
+			baseConfigurationReference = 80E45269624B73DFB346369D /* Pods-Trav-Book.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -657,7 +661,7 @@
 		};
 		354022E324EFDD7600F69187 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C927A443C23997B2445BAF37 /* Pods-Trav-Book.release.xcconfig */;
+			baseConfigurationReference = 7984C999C4F9AB67108AB1D2 /* Pods-Trav-Book.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -678,7 +682,7 @@
 		};
 		354022E524EFDD7600F69187 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7957817972FBE93F5E8E24A7 /* Pods-Trav-BookTests.debug.xcconfig */;
+			baseConfigurationReference = E0D74BAFD3734F55BEE1C5FE /* Pods-Trav-BookTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -701,7 +705,7 @@
 		};
 		354022E624EFDD7600F69187 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 724AA7E618DA54CB795E83B7 /* Pods-Trav-BookTests.release.xcconfig */;
+			baseConfigurationReference = 663545E86AA482D3B02DF5F7 /* Pods-Trav-BookTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

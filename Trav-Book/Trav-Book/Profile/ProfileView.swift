@@ -50,7 +50,7 @@ struct ProfileView: View {
                 TextField(CurrentUser.shared.region ?? "" + ":", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
             }
             Button(action: {
-                try? Auth.auth().signOut()
+                AuthProvider.shared.signOut()
                 self.showLogin = true
                 self.isNavigation = false
             } ){

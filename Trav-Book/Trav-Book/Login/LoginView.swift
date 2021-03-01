@@ -16,6 +16,8 @@ struct LoginView: View {
     @State var isSecure = true
     @State var isSignup = false
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var session: AuthProvider
+
     var body: some View {
         GeometryReader { geo in
             VStack {
@@ -57,6 +59,8 @@ struct LoginView: View {
                             AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
                                 if success {
                                     presentationMode.wrappedValue.dismiss()
+                                    self.session.user = CurrentUser.shared
+
                                 } else {
                                     self.isAlert = true
                                 }

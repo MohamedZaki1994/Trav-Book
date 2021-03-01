@@ -17,29 +17,45 @@ struct ContentView: View {
     @State var password = ""
     @State var isSignup = false
     @State var showLogin = false
+    @EnvironmentObject var session: AuthProvider
+
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var body: some View {
-        if #available(iOS 14.0, *) {
-            BaseTabView(isNavigation: $isNavigate, showLogin: $showLogin)
-                .fullScreenCover(isPresented: $showLogin,onDismiss: {
+        Group {
+            if session.user == nil {
+                LoginView()
+            } else {
+                Text("logged in")
+            }
+        } .onAppear() {
+            if let id = Auth.auth().currentUser?.uid {
+                AuthProvider.shared.getUserData(id) { (flag) in
+                    print(flag)
                     self.isNavigate = true
-                }, content: LoginView.init) .onAppear() {
-                    if Auth.auth().currentUser != nil {
-                        if let id = Auth.auth().currentUser?.uid {
-                            AuthProvider.shared.getUserData(id) { (flag) in
-                                print(flag)
-                                self.isNavigate = true
-                            }
-                        }
-                    } else {
-                        self.showLogin = true
-
-                    }
                 }
-        } else {
-            // Fallback on earlier versions
+            }
         }
+//        if #available(iOS 14.0, *) {
+//            BaseTabView(isNavigation: $isNavigate, showLogin: $showLogin)
+//                .fullScreenCover(isPresented: $showLogin,onDismiss: {
+//                    self.isNavigate = true
+//                }, content: LoginView.init) .onAppear() {
+//                    if Auth.auth().currentUser != nil {
+//                        if let id = Auth.auth().currentUser?.uid {
+//                            AuthProvider.shared.getUserData(id) { (flag) in
+//                                print(flag)
+//                                self.isNavigate = true
+//                            }
+//                        }
+//                    } else {
+//                        self.showLogin = true
+//
+//                    }
+//                }
+//        } else {
+//            // Fallback on earlier versions
+//        }
         //        NavigationView {
         //            VStack {
         //                LoginView(username: $username, password: $password)
@@ -101,6 +117,7 @@ struct ContentView: View {
         //                print("Done")
         //            }
         //        }
+
     }
     func fetchData() -> Result<String,myError> {
         return .failure(myError.badURL)

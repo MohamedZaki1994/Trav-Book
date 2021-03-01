@@ -22,7 +22,7 @@ struct PostView: View {
     @State var numberOfLike: Int = 0
     @State var numberOfDislike: Int = 0
     @State var post: PostModel
-    @State var image: Image?
+    @State var image = [Image?]()
     var action: ((PostModel) -> Void)?
     @EnvironmentObject var model: DashboardViewModel
     var body: some View {
@@ -100,10 +100,16 @@ struct PostView: View {
             .onAppear() {
                 self.numberOfLike = self.post.numberOfLike ?? 0
                 self.numberOfDislike = self.post.numberOfDislike ?? 0
-                model.getImage(post: post) { (data) in
-                    let uiImage = UIImage(data: data!)
-                    image = Image(uiImage: uiImage!)
+                if image.isEmpty {
+                model.getImage(post: post) { (datas) in
+                    if let datas = datas {
+                        for data in datas {
+                            let uiImage = UIImage(data: data!)
+                            image.append(Image(uiImage: uiImage!))
+                        }
+                    }
                 }
+            }
                 //            let image = UIImage(named: "im")
                 //            let data = image!.pngData()
                 //            let metadata = StorageMetadata()
@@ -137,15 +143,17 @@ struct PrimaryButtonStyle: ButtonStyle {
 }
 
 struct PageView: View {
-    @Binding var image: Image?
+    @Binding var image: [Image?]
     var body: some View {
         if #available(iOS 14.0, *) {
             TabView {
-                ForEach(0..<5) { i in
+                ForEach(0 ..< image.count) { im in
                     ZStack {
                         Color.black
-                        image?
+                        if image.count > 0 {
+                        image[im]?
                             .resizable().frame(height: 200)
+                        }
                     }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
                 }
             }
