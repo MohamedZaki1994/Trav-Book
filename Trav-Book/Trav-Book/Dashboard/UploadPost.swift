@@ -18,12 +18,13 @@ struct UploadPost: View {
     @State private var image: [Image] = []
     @State private var numberOfImages = 0
     @EnvironmentObject var model: DashboardViewModel
+    var onDismiss: (() -> Void)?
 
     var body: some View {
         VStack {
             Text("write a text").foregroundColor(Color.gray).onTapGesture {
                 self.isPresented = true
-            }.sheet(isPresented: $isPresented, onDismiss: nil, content: {
+            }.sheet(isPresented: $isPresented, onDismiss: { onDismiss?()}, content: {
                 TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
                 ForEach(0 ..< (image.count ?? 0), id: \.self) { im in
                     image[im].resizable().frame(width: 300, height: 200)

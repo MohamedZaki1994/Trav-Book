@@ -84,7 +84,7 @@ class AuthProvider: ObservableObject {
     }
     func signOut() {
         try? Auth.auth().signOut()
-//        self.session.user = nil
+        user = nil
     }
 }
 

@@ -23,9 +23,13 @@ struct PostView: View {
     @State var numberOfDislike: Int = 0
     @State var post: PostModel
     @State var image = [Image?]()
+    @Binding var refreshPost: Bool
     var action: ((PostModel) -> Void)?
     @EnvironmentObject var model: DashboardViewModel
     var body: some View {
+        if refreshPost {
+            Text("").onAppear(){ refreshPost = false}
+        } else {
             VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "person")
@@ -37,7 +41,12 @@ struct PostView: View {
 //                    .resizable().frame(height: 200)
                 if #available(iOS 14.0, *) {
                     LazyHStack {
-                        PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
+                        if !image.isEmpty {
+                            image.first??.resizable().frame(width: UIScreen.main.bounds.width - 40, height: 200)
+//                            PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
+                        } else {
+                            Text("loading")
+                        }
                     }
                 } else {
                     // Fallback on earlier versions
@@ -80,22 +89,23 @@ struct PostView: View {
                     .background(Color.blue)
                     .cornerRadius(20)
                 }.padding(20)
-                ForEach(0 ..< comments.count, id: \.self) { index in
-                    //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
-                    CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
-                    { (text) in
-                        if text == "" {
-                        } else {
-                            let wholeText = "\(user.name ?? ""): \(text)"
-                            self.post.comments?.append(wholeText)
-                            self.comments.append(wholeText)
-                            self.model.update(numberOfLikes: self.post, like: nil)
-                        }
-                        self.isCommenting = false
-                    }
-                }
+//                ForEach(0 ..< comments.count, id: \.self) { index in
+//                    //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
+//                    CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
+//                    { (text) in
+//                        if text == "" {
+//                        } else {
+//                            let wholeText = "\(user.name ?? ""): \(text)"
+//                            self.post.comments?.append(wholeText)
+//                            self.comments.append(wholeText)
+//                            self.model.update(numberOfLikes: self.post, like: nil)
+//                        }
+//                        self.isCommenting = false
+//                    }
+//                }
 //            }
-            }.background(Color.gray)
+            }
+            .background(Color.gray)
             .cornerRadius(10)
             .onAppear() {
                 self.numberOfLike = self.post.numberOfLike ?? 0
@@ -123,6 +133,7 @@ struct PostView: View {
                 //            }
         }
     }
+    }
 }
 
 //struct PostView_Previews: PreviewProvider {
@@ -147,15 +158,16 @@ struct PageView: View {
     var body: some View {
         if #available(iOS 14.0, *) {
             TabView {
-                ForEach(0 ..< image.count) { im in
-                    ZStack {
-                        Color.black
-                        if image.count > 0 {
-                        image[im]?
-                            .resizable().frame(height: 200)
-                        }
-                    }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                }
+                Text("S")
+//                ForEach(0 ..< image.count) { im in
+//                    ZStack {
+//                        Color.black
+//                        if image.count > 0 {
+//                        image[im]?
+//                            .resizable().frame(height: 200)
+//                        }
+//                    }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+//                }
             }
             .tabViewStyle(PageTabViewStyle())
         } else {

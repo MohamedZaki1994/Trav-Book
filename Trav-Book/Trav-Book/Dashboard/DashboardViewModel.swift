@@ -49,21 +49,38 @@ class DashboardViewModel: ObservableObject {
         }
     }
 
+//    func getImage(post: PostModel, completion: (([Data?]?) -> Void)?){
+//        let counter = post.imagesNumber!
+//        var datas = [Data]()
+//        if counter > 0 {
+//            for x in 0 ... counter-1 {
+//                let storage = Storage.storage()
+//                storage.reference().child(post.id!).child(String(x)).getData(maxSize: 1*2048*2048) { (data, error) in
+//                    if data != nil {
+//                        datas.append(data!)
+//                        if x == counter - 1 {
+//                            completion?(datas)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     func getImage(post: PostModel, completion: (([Data?]?) -> Void)?){
         let counter = post.imagesNumber!
         var datas = [Data]()
         if counter > 0 {
-            for x in 0 ... counter-1 {
+//            for x in 0 ... counter-1 {
                 let storage = Storage.storage()
-                storage.reference().child(post.id!).child(String(x)).getData(maxSize: 1*2048*2048) { (data, error) in
+                storage.reference().child(post.id!).child(String(0)).getData(maxSize: 1*2048*2048) { (data, error) in
                     if data != nil {
                         datas.append(data!)
-                        if x == counter - 1 {
+//                        if x == counter - 1 {
                             completion?(datas)
-                        }
+//                        }
                     }
                 }
-            }
+//            }
         }
     }
     let storage = Storage.storage()

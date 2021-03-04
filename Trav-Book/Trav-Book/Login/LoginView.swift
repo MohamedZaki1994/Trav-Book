@@ -58,7 +58,6 @@ struct LoginView: View {
                         if !self.username.isEmpty, !self.password.isEmpty {
                             AuthProvider.shared.signIn(username: self.username, password: self.password) { (success) in
                                 if success {
-                                    presentationMode.wrappedValue.dismiss()
                                     self.session.user = CurrentUser.shared
 
                                 } else {

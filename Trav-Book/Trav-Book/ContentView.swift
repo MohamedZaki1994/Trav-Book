@@ -26,13 +26,12 @@ struct ContentView: View {
             if session.user == nil {
                 LoginView()
             } else {
-                Text("logged in")
+                BaseTabView()
             }
         } .onAppear() {
             if let id = Auth.auth().currentUser?.uid {
                 AuthProvider.shared.getUserData(id) { (flag) in
                     print(flag)
-                    self.isNavigate = true
                 }
             }
         }

@@ -10,8 +10,8 @@ import SwiftUI
 import Firebase
 
 struct ProfileView: View {
-    @Binding var isNavigation: Bool
-    @Binding var showLogin: Bool
+//    @Binding var isNavigation: Bool
+//    @Binding var showLogin: Bool
 //    @ObservedObject var profileViewModel = ProfileViewModel()
     @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
@@ -51,8 +51,8 @@ struct ProfileView: View {
             }
             Button(action: {
                 AuthProvider.shared.signOut()
-                self.showLogin = true
-                self.isNavigation = false
+//                self.showLogin = true
+//                self.isNavigation = false
             } ){
                 Text("Logout")
             }

@@ -9,16 +9,14 @@
 import SwiftUI
 
 struct BaseTabView: View {
-    @Binding var isNavigation: Bool
-    @Binding var showLogin: Bool
+//    @Binding var isNavigation: Bool
+//    @Binding var showLogin: Bool
     @State var isRefresh = true
     @State var refreshing = false
     var body: some View {
-        if !isNavigation {
-            Text("")
-        } else {
+
         TabView() {
-                DashboardView(refreshing: $refreshing)
+            DashboardView(viewModel: DashboardViewModel(), refreshing: $refreshing)
                     .tabItem {
                         VStack {
                             Image(systemName: "house")
@@ -27,15 +25,12 @@ struct BaseTabView: View {
                         }
                 }
 
-
-            ProfileView(isNavigation: $isNavigation, showLogin: $showLogin).tabItem {
+            ProfileView().tabItem {
                 VStack {
                     Image(systemName: "person")
                     Text("Profile")
                 }
             }
-
-
         }
         .navigationBarItems(trailing:
             Button(action: {
@@ -49,7 +44,6 @@ struct BaseTabView: View {
         .onAppear(){
             print("Appear")
         }
-    }
 
     }
 
