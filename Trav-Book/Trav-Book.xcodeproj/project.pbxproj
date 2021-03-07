@@ -34,7 +34,6 @@
 		3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */; };
 		3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */; };
 		3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */; };
-		35499A2925ECEB4500DBDBAA /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35499A2825ECEB4500DBDBAA /* UserSession.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
@@ -85,7 +84,6 @@
 		3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoggedUser+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
-		35499A2825ECEB4500DBDBAA /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		354022C124EFDD7300F69187 /* Trav-Book */ = {
 			isa = PBXGroup;
 			children = (
-				35499A2825ECEB4500DBDBAA /* UserSession.swift */,
 				354022C924EFDD7300F69187 /* ContentView.swift */,
 				35E2EFAC2538765200E9CD00 /* model */,
 				3531266F25221F9E00015E82 /* AuthProvider.swift */,
@@ -177,7 +174,6 @@
 				3510488E24FE510600499DBE /* GoogleService-Info.plist */,
 				354022D324EFDD7600F69187 /* Info.plist */,
 				354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */,
-				35391A842527711000892681 /* UserModel.swift */,
 				354022CD24EFDD7600F69187 /* Preview Content */,
 				3541D7E025308F9500FAFC4A /* Extensions */,
 				35F5298025669C2E0067CCCB /* RequestHandler.swift */,
@@ -226,6 +222,7 @@
 		35E2EFAC2538765200E9CD00 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				35391A842527711000892681 /* UserModel.swift */,
 				3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */,
 				3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */,
 				3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */,
@@ -474,7 +471,6 @@
 				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
 				3531267025221F9E00015E82 /* AuthProvider.swift in Sources */,
 				3544CE752539BE890070D7BE /* LoggedUser+CoreDataProperties.swift in Sources */,
-				35499A2925ECEB4500DBDBAA /* UserSession.swift in Sources */,
 				355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */,
 				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,

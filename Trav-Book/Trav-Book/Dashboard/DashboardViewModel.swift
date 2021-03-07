@@ -21,7 +21,7 @@ class DashboardViewModel: ObservableObject {
             if let postArray = postsModel?.posts {
                 posts = [PostModel]()
                 for post in postArray {
-                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments))
+                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date))
                 }
 
             }
@@ -37,7 +37,7 @@ class DashboardViewModel: ObservableObject {
     func refresh() {
         postsModel = postsModelUpdatedRealTime
         if postsModel?.posts.isEmpty ?? true{
-            let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""])
+            let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0)
             postsModel = PostsModel(posts: [post])
         }
     }
@@ -92,7 +92,6 @@ class DashboardViewModel: ObservableObject {
             storage.reference().child(id)
 //
             for (index,image) in images!.enumerated() {
-//                let data = image!.pngData()
                 let data = image!.jpegData(compressionQuality: 0.2)
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
@@ -106,7 +105,7 @@ class DashboardViewModel: ObservableObject {
             }
 //
         }
-        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""]])
+        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
         getData()
     }
 
@@ -167,10 +166,11 @@ class PostModel: Identifiable, ObservableObject {
     var numberOfLike: Int?
     var numberOfDislike: Int?
     var comments: [String]?
+    var date: Double?
     init() {
 
     }
-    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String]) {
+    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double) {
         self.id = id
         self.name = name
         self.imagesNumber = imagesNumber
@@ -178,6 +178,7 @@ class PostModel: Identifiable, ObservableObject {
         self.numberOfLike = numberOfLike
         self.numberOfDislike = numberOfDislike
         self.comments = comments
+        self.date = date
     }
 }
 

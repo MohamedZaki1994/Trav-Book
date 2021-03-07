@@ -34,6 +34,7 @@ struct PostView: View {
                 HStack {
                     Image(systemName: "person")
                     Text(self.post.name ?? "")
+                    Text(self.post.date?.timeAgo() ?? "0.0")
                 } .padding(10)
                 Text(post.postText ?? "")
                     .padding()

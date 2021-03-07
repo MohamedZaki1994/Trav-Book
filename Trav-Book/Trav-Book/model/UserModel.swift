@@ -31,4 +31,5 @@ struct Post: Codable{
     let numberOfLike: Int
     let numberOfDislike: Int
     let comments: [String]
+    let date: Double
 }

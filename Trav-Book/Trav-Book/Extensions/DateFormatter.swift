@@ -15,3 +15,15 @@ extension Date {
         return formatter.string(from: self)
     }
 }
+
+extension Double {
+    func timeAgo() -> String {
+        let date = Date(timeIntervalSince1970: self)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.year, .month, .day, .hour , .minute, .second]
+        formatter.zeroFormattingBehavior = .dropAll
+        formatter.maximumUnitCount = 1
+        return String(format: formatter.string(from: date, to: Date()) ?? "", locale: .current)
+    }
+}
