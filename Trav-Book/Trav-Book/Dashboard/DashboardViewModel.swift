@@ -109,27 +109,41 @@ class DashboardViewModel: ObservableObject {
         getData()
     }
 
-    func update(numberOfLikes: PostModel, like: Bool?) {
+    func update(currentPost: PostModel, like: Bool?) {
         guard let like = like else {
-            let postIndex = (numberOfLikes.comments?.count ?? 0)-1
+            let postIndex = (currentPost.comments?.count ?? 0)-1
             for post in posts.enumerated() {
-                if post.element.id == numberOfLikes.id {
-                    ref.child("Ref").child("posts/\(post.offset)/comments").child("\(postIndex)").setValue(numberOfLikes.comments?.last ?? "")
+                if post.element.id == currentPost.id {
+                    ref.child("Ref").child("posts/\(post.offset)/comments").child("\(postIndex)").setValue(currentPost.comments?.last ?? "")
                 }
             }
             return
         }
         if like {
             for post in posts.enumerated() {
-                if post.element.id == numberOfLikes.id {
-                    ref.child("Ref").child("posts/\(post.offset)/numberOfLike").setValue(numberOfLikes.numberOfLike)
+                if post.element.id == currentPost.id {
+                    ref.child("Ref").child("posts/\(post.offset)/numberOfLike").setValue(currentPost.numberOfLike)
                 }
             }
         } else {
             for post in posts.enumerated() {
-                if post.element.id == numberOfLikes.id {
-                    ref.child("Ref").child("posts/\(post.offset)/numberOfDislike").setValue(numberOfLikes.numberOfDislike)
+                if post.element.id == currentPost.id {
+                    ref.child("Ref").child("posts/\(post.offset)/numberOfDislike").setValue(currentPost.numberOfDislike)
                 }
+            }
+        }
+    }
+
+    func comment(currentPost: PostModel, comment: String) {
+        for post in posts.enumerated() {
+            if post.element.id == currentPost.id {
+                let comment = "\(CurrentUser.shared.name!): \(comment)"
+                post.element.comments?.append(comment)
+                var nsArray = [String]()
+                nsArray.append(contentsOf: post.element.comments!)
+                post.element.comments = nsArray
+                currentPost.comments = nsArray
+                ref.child("Ref").child("posts/\(post.offset)/comments").setValue(nsArray)
             }
         }
     }

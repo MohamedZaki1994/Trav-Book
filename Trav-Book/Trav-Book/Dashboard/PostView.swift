@@ -57,7 +57,7 @@ struct PostView: View {
                     Button(action: {
                         self.post.numberOfLike! += 1
                         self.numberOfLike += 1
-                        self.model.update(numberOfLikes: self.post, like: true)
+                        self.model.update(currentPost: self.post, like: true)
                         self.action?(self.post)
                         print("like")
                     }) {
@@ -71,7 +71,7 @@ struct PostView: View {
                         print("dislike")
                         self.post.numberOfDislike! += 1
                         self.numberOfDislike += 1
-                        self.model.update(numberOfLikes: self.post, like: false)
+                        self.model.update(currentPost: self.post, like: false)
                     }) {
                         Text("\(self.numberOfDislike) dislike")}
                     .padding(10)
@@ -79,13 +79,24 @@ struct PostView: View {
                     .cornerRadius(20)
                     .buttonStyle(PrimaryButtonStyle())
                     Spacer()
+                    if #available(iOS 14.0, *) {
+                        NavigationLink(destination: CommentView(post: post).environmentObject(self.model), isActive: self.$isCommenting) {
+                            EmptyView()
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .frame(width: 0, height: 0)
+                        .hidden()
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     Button(action: {
-                        self.comments.append("1")
                         self.isCommenting = true
                         print("comment")
+
                     }) {
-                        Text("comment")
-                    }.buttonStyle(PrimaryButtonStyle())
+                        Text("\((post.comments?.count ?? 0) - 1) comment")
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
                     .padding(10)
                     .background(Color.blue)
                     .cornerRadius(20)

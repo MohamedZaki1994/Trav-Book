@@ -19,6 +19,7 @@ struct DashboardView: View {
 
     var body: some View {
         return
+            NavigationView {
             List {
 //
 //                if self.viewModel.isLoading || self.refreshing{
@@ -31,8 +32,11 @@ struct DashboardView: View {
                     })
                         .environmentObject(self.viewModel)
                     ForEach(viewModel.posts.reversed()) { post in
-//                        Text("\(viewModel.posts.count)")
-                        PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh).environmentObject(self.viewModel)
+                        if #available(iOS 14.0, *) {
+                            PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh).environmentObject(self.viewModel)
+                        } else {
+                            // Fallback on earlier versions
+                        }
 
                     }
                     .onAppear(){
@@ -47,7 +51,6 @@ struct DashboardView: View {
 //
 //
 //                } else {
-//                    UploadPost().environmentObject(self.viewModel)
 //                    if !viewModel.posts.isEmpty {
 //                        ForEach(viewModel.posts.reversed()) { post in
 //
@@ -77,8 +80,9 @@ struct DashboardView: View {
                 viewModel.getData()
                 viewModel.isLoading = true
         }
+            .navigationBarHidden(true)
 //    .navigationBarHidden(false)
-
+            }
     }
 }
 
