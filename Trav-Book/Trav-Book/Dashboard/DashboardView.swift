@@ -34,6 +34,7 @@ struct DashboardView: View {
                     ForEach(viewModel.posts.reversed()) { post in
                         if #available(iOS 14.0, *) {
                             PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh).environmentObject(self.viewModel)
+                                .onTapGesture {}
                         } else {
                             // Fallback on earlier versions
                         }
