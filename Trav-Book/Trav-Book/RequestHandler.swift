@@ -31,4 +31,19 @@ class RequestHandler {
                 completion?(nil,nil)
             }})
     }
+
+    func loadPosts(completion:((PostsModel?, Error?) -> Void)?) {
+        ref.child("Ref").child("posts").observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            if snapshot.exists() {
+                var posts = [Post]()
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                for (key,value) in dictionary {
+                    guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
+                    guard let postModel = try? JSONDecoder().decode(Post.self, from: data) else {return}
+                    posts.append(postModel)
+                }
+                completion?(PostsModel(posts: posts),nil)
+            }
+        }
+    }
 }

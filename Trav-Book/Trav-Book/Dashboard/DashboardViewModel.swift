@@ -14,8 +14,8 @@ import Combine
 class DashboardViewModel: ObservableObject {
 
     var ref: DatabaseReference = Database.database().reference()
-    var postsModelUpdatedRealTime : PostsModel?
     var switchSubscriber = Set<AnyCancellable>()
+    var request = RequestHandler()
     var postsModel: PostsModel? {
         didSet {
             if let postArray = postsModel?.posts {
@@ -25,7 +25,6 @@ class DashboardViewModel: ObservableObject {
                 }
 
             }
-            print("Fired")
             isLoading = false
         }
     }
@@ -33,19 +32,21 @@ class DashboardViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var isRefresh = false
     @Published var posts = [PostModel]()
-    var request = RequestHandler()
-    func refresh() {
-        postsModel = postsModelUpdatedRealTime
-        if postsModel?.posts.isEmpty ?? true{
-            let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0)
-            postsModel = PostsModel(posts: [post])
-        }
-    }
 
     func getData() {
-        request.getData(path: "Ref", modelType: PostsModel.self) { [weak self] (data, error) in
-            self?.postsModelUpdatedRealTime = data
-            self?.refresh()
+//        request.getData(path: "Ref", modelType: PostsModel.self) { [weak self] (data, error) in
+//            self?.postsModel = data
+//            if self?.postsModel?.posts.isEmpty ?? true {
+//                let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0)
+//                self?.postsModel = PostsModel(posts: [post])
+//            }
+//        }
+        request.loadPosts { [weak self] (data, error) in
+            self?.postsModel = data
+            if self?.postsModel?.posts.isEmpty ?? true {
+                let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0)
+                self?.postsModel = PostsModel(posts: [post])
+            }
         }
     }
 
@@ -85,7 +86,7 @@ class DashboardViewModel: ObservableObject {
     }
     let storage = Storage.storage()
     func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, completion: (() -> Void)? ) {
-        let numberOfPosts = postsModelUpdatedRealTime?.posts.count ?? 0
+        let numberOfPosts = postsModel?.posts.count ?? 0
         let id = UUID().uuidString
         if images?.count ?? 0 > 0 {
 
@@ -105,7 +106,8 @@ class DashboardViewModel: ObservableObject {
             }
 //
         }
-        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
+//        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
+        ref.child("Ref").child("posts").child(id).setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
         getData()
     }
 

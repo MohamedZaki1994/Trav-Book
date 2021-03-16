@@ -17,14 +17,22 @@ struct UploadPost: View {
     @State private var wholeImages: [UIImage?] = []
     @State private var image: [Image] = []
     @State private var numberOfImages = 0
+    @State private var refresh = false
     @EnvironmentObject var model: DashboardViewModel
     var onDismiss: (() -> Void)?
 
     var body: some View {
         VStack {
+
             Text("write a text").foregroundColor(Color.gray).onTapGesture {
                 self.isPresented = true
             }.sheet(isPresented: $isPresented, onDismiss: { onDismiss?()}, content: {
+                if refresh {
+                    Text("refreshing").onAppear(){
+                        refresh = false
+                    }
+                }
+                else {
                 TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
                 ForEach(0 ..< (image.count ?? 0), id: \.self) { im in
                     image[im].resizable().frame(width: 300, height: 200)
@@ -56,7 +64,7 @@ struct UploadPost: View {
 
             }
                 .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
+                    ImagePicker(image: self.$inputImage)
             }
                 if (!image.isEmpty) {
                 Button("cancel") {
@@ -67,6 +75,7 @@ struct UploadPost: View {
             }
 
                 Spacer()
+            }
             })
         }
     }
@@ -76,6 +85,7 @@ struct UploadPost: View {
         numberOfImages += 1
         wholeImages.append(inputImage)
         image.append(Image(uiImage: inputImage))
+        refresh = true
     }
 }
 
