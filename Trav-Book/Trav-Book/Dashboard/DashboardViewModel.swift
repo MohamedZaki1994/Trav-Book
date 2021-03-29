@@ -34,13 +34,6 @@ class DashboardViewModel: ObservableObject {
     @Published var posts = [PostModel]()
 
     func getData() {
-//        request.getData(path: "Ref", modelType: PostsModel.self) { [weak self] (data, error) in
-//            self?.postsModel = data
-//            if self?.postsModel?.posts.isEmpty ?? true {
-//                let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0)
-//                self?.postsModel = PostsModel(posts: [post])
-//            }
-//        }
         request.loadPosts { [weak self] (data, error) in
             self?.postsModel = data
             if self?.postsModel?.posts.isEmpty ?? true {
@@ -145,7 +138,8 @@ class DashboardViewModel: ObservableObject {
                 nsArray.append(contentsOf: post.element.comments!)
                 post.element.comments = nsArray
                 currentPost.comments = nsArray
-                ref.child("Ref").child("posts/\(post.offset)/comments").setValue(nsArray)
+                guard let id = post.element.id else {return}
+                ref.child("Ref").child("posts/\(id)/comments").setValue(nsArray)
             }
         }
     }
