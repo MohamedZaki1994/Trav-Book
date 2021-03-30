@@ -43,6 +43,8 @@ class RequestHandler {
                     posts.append(postModel)
                 }
                 completion?(PostsModel(posts: posts),nil)
+            } else {
+                completion?(nil,nil)
             }
         }
     }

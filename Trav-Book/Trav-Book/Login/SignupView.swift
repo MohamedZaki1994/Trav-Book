@@ -16,10 +16,16 @@ struct SignupView: View {
     @State var name = ""
     @State var country = ""
     @State private var birthDate = Date()
+    @State private var isPresented = false
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    @State private var image: Image?
+
     var viewmodel = SignupViewmodel()
     var isMatched: Bool {
         return password == confirmPassword
     }
+
     var body: some View {
         Form {
             VStack {
@@ -45,9 +51,62 @@ struct SignupView: View {
             DatePicker(selection: $birthDate, in: ...Date(), displayedComponents: .date) {
                 Text("Select your birthdate")
             }
+            HStack {
+                Spacer()
+                if image == nil {
+                    Image(systemName: "person")
+                } else {
+                    image?.resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(width: 150, height: 150)
+                        .padding()
+
+                }
+                Spacer()
+            }.onTapGesture {
+                isPresented = true
+            }
+            .sheet(isPresented: $isPresented, onDismiss: { }, content: {
+//                if refresh {
+//                    Text("refreshing").onAppear(){
+//                        refresh = false
+//                    }
+//                }
+//                else {
+
+            HStack(spacing: 20) {
+                Button {
+                    print("uploading")
+                    self.showingImagePicker = true
+                } label: {
+                    Text("upload a photo")
+                }
+                Button {
+                    print("take")
+                } label: {
+                    Text("take a photo")
+                }
+                Button {
+                    isPresented = false
+                } label: {
+                    Text("Done")
+                }
+
+        }
+            .sheet(isPresented: $showingImagePicker, onDismiss: {
+                guard let inputImage = inputImage else { return }
+                image = Image(uiImage: inputImage)
+            }) {
+                ImagePicker(image: self.$inputImage)
+        }
+            Spacer()
+//            }
+        })
+
             Button("Done") {
                 if self.isMatched {
-                    self.viewmodel.signup(name: self.name, email: self.username, password: self.password, birthdate: self.birthDate, country: self.country) { (success) in
+                    self.viewmodel.signup(name: self.name, email: self.username, password: self.password, birthdate: self.birthDate, country: self.country, image: inputImage) { (success) in
                         if success {
                             self.isSignup = false
                         }

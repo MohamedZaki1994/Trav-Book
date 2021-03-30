@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import Combine
 import SwiftUI
+import UIKit
 
 class AuthProvider: ObservableObject {
 
@@ -31,12 +32,20 @@ class AuthProvider: ObservableObject {
         ref.child("Users")
     }
 
-    func createAccount(name:String, email: String, password: String, birthDate: String, image: String, country: String, completion: ((Error?) -> Void)?) {
+    func createAccount(name:String, email: String, password: String, birthDate: String, country: String, image: UIImage?, completion: ((Error?) -> Void)?) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error == nil {
                 guard let uid = result?.user.uid else {
                     completion?(errorType.invalidUid)
                     return
+                }
+                let data = image!.jpegData(compressionQuality: 0.2)
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                Storage.storage().reference().child("Users").child(uid).putData(data!, metadata: metadata) { (metaData, error) in
+                    if error != nil {
+                        return
+                    }
                 }
                 let jsonEncoder = JSONEncoder()
                 let user = User(id: uid, name: name, username: email, image: "", posts: nil, favorite: nil,birthdate: birthDate, region: country)

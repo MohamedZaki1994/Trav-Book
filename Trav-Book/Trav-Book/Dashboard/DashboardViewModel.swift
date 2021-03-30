@@ -66,7 +66,7 @@ class DashboardViewModel: ObservableObject {
         if counter > 0 {
 //            for x in 0 ... counter-1 {
                 let storage = Storage.storage()
-                storage.reference().child(post.id!).child(String(0)).getData(maxSize: 1*2048*2048) { (data, error) in
+            storage.reference().child("posts").child(post.id!).child(String(0)).getData(maxSize: 1*2048*2048) { (data, error) in
                     if data != nil {
                         datas.append(data!)
 //                        if x == counter - 1 {
@@ -80,16 +80,14 @@ class DashboardViewModel: ObservableObject {
     let storage = Storage.storage()
     func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, completion: (() -> Void)? ) {
         let numberOfPosts = postsModel?.posts.count ?? 0
-        let id = UUID().uuidString
+        let postId = UUID().uuidString
         if images?.count ?? 0 > 0 {
 
-            storage.reference().child(id)
-//
             for (index,image) in images!.enumerated() {
                 let data = image!.jpegData(compressionQuality: 0.2)
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
-                storage.reference().child(id).child("\(index)").putData(data!, metadata: metadata) { (meta, error) in
+                storage.reference().child("posts").child(postId).child("\(index)").putData(data!, metadata: metadata) { (meta, error) in
                     guard meta != nil else {
                         return
                     }
@@ -97,10 +95,8 @@ class DashboardViewModel: ObservableObject {
                     print("Done")
                 }
             }
-//
         }
-//        ref.child("Ref").child("posts").child("\(String(describing: numberOfPosts))").setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
-        ref.child("Ref").child("posts").child(id).setValue(["id": id,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
         getData()
     }
 
