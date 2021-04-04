@@ -69,9 +69,25 @@ class AuthProvider: ObservableObject {
         self.request.getData(path: "Users/\(userUid)", modelType: User.self) { (data, error) in
             let currentUser = data
             CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: userUid, region: currentUser?.region ?? "")
-//            self.session.user = CurrentUser.shared
             self.user = CurrentUser.shared
             completion?(true)
+        }
+    }
+
+    func getProfileImage(completion: ((Bool) -> Void)?) {
+        Storage.storage().reference().child("Users").child(CurrentUser.shared.id ?? "").getData(maxSize: 1*2048*2048) { (metaData, error) in
+            if error == nil {
+                CurrentUser.shared.profileImage = Image(uiImage: UIImage(data: metaData!)!)
+                completion?(true)
+            }
+        }
+    }
+
+    func getProfileImage(for id: String, completion: ((Data) -> Void)?) {
+        Storage.storage().reference().child("Users").child(id).getData(maxSize: 1*2048*2048) { (metaData, error) in
+            if error == nil {
+                completion?(metaData!)
+            }
         }
     }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import SwiftUI
 
 class CurrentUser: ObservableObject {
     @Published var name: String?
@@ -18,6 +19,7 @@ class CurrentUser: ObservableObject {
     @Published var favorite: PostsModel?
     @Published var id: String?
     @Published var region: String?
+    @Published var profileImage: Image?
     var ref: DatabaseReference = Database.database().reference()
     static var shared = CurrentUser()
 

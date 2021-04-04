@@ -26,10 +26,12 @@ struct PostsModel: Codable {
 // MARK: - Post
 struct Post: Codable{
     let name, post: String
+    let userId: String
     let id: String
     let imagesNumber: Int
     let numberOfLike: Int
     let numberOfDislike: Int
     let comments: [String]
     let date: Double
+    let profileImage: String
 }

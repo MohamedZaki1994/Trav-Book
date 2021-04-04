@@ -23,6 +23,7 @@ struct PostView: View {
     @State var numberOfDislike: Int = 0
     @State var post: PostModel
     @State var image = [Image?]()
+    @State var profileImage: Image?
     @Binding var refreshPost: Bool
     var action: ((PostModel) -> Void)?
     @EnvironmentObject var model: DashboardViewModel
@@ -32,14 +33,21 @@ struct PostView: View {
         } else {
             VStack(alignment: .leading) {
                 HStack {
-                    Image(systemName: "person")
+                    if profileImage != nil {
+                        profileImage?.resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 60, height: 60)
+
+                    } else {
+                        Image(systemName: "person")
+                    }
                     Text(self.post.name ?? "")
+                    Spacer()
                     Text(self.post.date?.timeAgo() ?? "0.0")
-                } .padding(10)
+                } .padding(8)
                 Text(post.postText ?? "")
                     .padding()
-//                image?
-//                    .resizable().frame(height: 200)
                 if #available(iOS 14.0, *) {
                     LazyHStack {
                         if !image.isEmpty {
@@ -123,13 +131,14 @@ struct PostView: View {
                 self.numberOfLike = self.post.numberOfLike ?? 0
                 self.numberOfDislike = self.post.numberOfDislike ?? 0
                 if image.isEmpty {
-                model.getImage(post: post) { (datas) in
+                model.getImage(post: post) { (datas, profileData) in
                     if let datas = datas {
                         for data in datas {
                             let uiImage = UIImage(data: data!)
                             image.append(Image(uiImage: uiImage!))
                         }
                     }
+                    profileImage = Image(uiImage: UIImage(data: profileData)!)
                 }
             }
                 //            let image = UIImage(named: "im")

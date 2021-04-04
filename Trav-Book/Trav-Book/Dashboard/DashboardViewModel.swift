@@ -21,7 +21,7 @@ class DashboardViewModel: ObservableObject {
             if let postArray = postsModel?.posts {
                 posts = [PostModel]()
                 for post in postArray {
-                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date))
+                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date, profileImage: post.profileImage, userId: post.userId))
                 }
 
             }
@@ -37,7 +37,7 @@ class DashboardViewModel: ObservableObject {
         request.loadPosts { [weak self] (data, error) in
             self?.postsModel = data
             if self?.postsModel?.posts.isEmpty ?? true {
-                let post = Post(name: "", post: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0)
+                let post = Post(name: "", post: "", userId: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0, profileImage: "")
                 self?.postsModel = PostsModel(posts: [post])
             }
         }
@@ -60,20 +60,32 @@ class DashboardViewModel: ObservableObject {
 //            }
 //        }
 //    }
-    func getImage(post: PostModel, completion: (([Data?]?) -> Void)?){
+    func getImage(post: PostModel, completion: (([Data?]?, Data) -> Void)?){
         let counter = post.imagesNumber!
         var datas = [Data]()
+        var profileData: Data?
         if counter > 0 {
 //            for x in 0 ... counter-1 {
                 let storage = Storage.storage()
+            let dis = DispatchGroup()
+            dis.enter()
             storage.reference().child("posts").child(post.id!).child(String(0)).getData(maxSize: 1*2048*2048) { (data, error) in
                     if data != nil {
                         datas.append(data!)
 //                        if x == counter - 1 {
-                            completion?(datas)
+                        dis.leave()
 //                        }
                     }
                 }
+            dis.enter()
+            AuthProvider.shared.getProfileImage(for: post.userId!) { (data) in
+                profileData = data
+                dis.leave()
+            }
+
+            dis.notify(queue: DispatchQueue.global()) {
+                completion?(datas, profileData!)
+            }
 //            }
         }
     }
@@ -96,7 +108,8 @@ class DashboardViewModel: ObservableObject {
                 }
             }
         }
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name, "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970])
+        let path = storage.reference().child("posts").child(postId).child("0").fullPath
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path])
         getData()
     }
 
@@ -168,16 +181,18 @@ class PostModel: Identifiable, ObservableObject {
 
     var id: String?
     var name: String?
+    var profileImage: String?
     var imagesNumber: Int?
     var postText: String?
     var numberOfLike: Int?
     var numberOfDislike: Int?
     var comments: [String]?
     var date: Double?
+    var userId: String?
     init() {
 
     }
-    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double) {
+    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double,profileImage: String, userId: String) {
         self.id = id
         self.name = name
         self.imagesNumber = imagesNumber
@@ -186,6 +201,8 @@ class PostModel: Identifiable, ObservableObject {
         self.numberOfDislike = numberOfDislike
         self.comments = comments
         self.date = date
+        self.profileImage = profileImage
+        self.userId = userId
     }
 }
 
