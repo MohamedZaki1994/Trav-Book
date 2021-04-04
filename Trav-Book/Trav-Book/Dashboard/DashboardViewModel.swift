@@ -101,25 +101,26 @@ class DashboardViewModel: ObservableObject {
     }
 
     func update(currentPost: PostModel, like: Bool?) {
+        guard let id = currentPost.id else {return}
         guard let like = like else {
             let postIndex = (currentPost.comments?.count ?? 0)-1
-            for post in posts.enumerated() {
-                if post.element.id == currentPost.id {
-                    ref.child("Ref").child("posts/\(post.offset)/comments").child("\(postIndex)").setValue(currentPost.comments?.last ?? "")
+            for post in posts {
+                if post.id == currentPost.id {
+                    ref.child("Ref").child("posts/\(id)/comments").child("\(postIndex)").setValue(currentPost.comments?.last ?? "")
                 }
             }
             return
         }
         if like {
-            for post in posts.enumerated() {
-                if post.element.id == currentPost.id {
-                    ref.child("Ref").child("posts/\(post.offset)/numberOfLike").setValue(currentPost.numberOfLike)
+            for post in posts {
+                if post.id == currentPost.id {
+                    ref.child("Ref").child("posts/\(id)/numberOfLike").setValue(currentPost.numberOfLike)
                 }
             }
         } else {
-            for post in posts.enumerated() {
-                if post.element.id == currentPost.id {
-                    ref.child("Ref").child("posts/\(post.offset)/numberOfDislike").setValue(currentPost.numberOfDislike)
+            for post in posts {
+                if post.id == currentPost.id {
+                    ref.child("Ref").child("posts/\(id)/numberOfDislike").setValue(currentPost.numberOfDislike)
                 }
             }
         }
