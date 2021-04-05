@@ -22,6 +22,7 @@ class AuthProvider: ObservableObject {
     }
     var ref: DatabaseReference = Database.database().reference()
     var request = RequestHandler()
+    var storage = Storage.storage().reference()
     static private var _shared = AuthProvider()
     static var shared: AuthProvider {
         return _shared
@@ -33,7 +34,7 @@ class AuthProvider: ObservableObject {
     }
 
     func createAccount(name:String, email: String, password: String, birthDate: String, country: String, image: UIImage?, completion: ((Error?) -> Void)?) {
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self](result, error) in
             if error == nil {
                 guard let uid = result?.user.uid else {
                     completion?(errorType.invalidUid)
@@ -42,7 +43,7 @@ class AuthProvider: ObservableObject {
                 let data = image!.jpegData(compressionQuality: 0.2)
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
-                Storage.storage().reference().child("Users").child(uid).putData(data!, metadata: metadata) { (metaData, error) in
+                self?.storage.child("Users").child(uid).putData(data!, metadata: metadata) { (metaData, error) in
                     if error != nil {
                         return
                     }
@@ -54,7 +55,7 @@ class AuthProvider: ObservableObject {
                 guard let userDictionary = json as? [String : Any] else {
                     return
                 }
-                self.ref.child("Users").child(uid).setValue(userDictionary)
+                self?.ref.child("Users").child(uid).setValue(userDictionary)
                 print("Account created Successfully")
                 completion?(nil)
             } else {
@@ -65,17 +66,18 @@ class AuthProvider: ObservableObject {
     }
 
     func getUserData(_ userUid: String,completion: ((Bool) -> Void)?) {
-        //
-        self.request.getData(path: "Users/\(userUid)", modelType: User.self) { (data, error) in
+        self.request.getData(path: "Users/\(userUid)", modelType: User.self) {[weak self] (data, error) in
             let currentUser = data
             CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: userUid, region: currentUser?.region ?? "")
-            self.user = CurrentUser.shared
+            self?.user = CurrentUser.shared
+            self?.getProfileImage { (_) in
+            }
             completion?(true)
         }
     }
 
     func getProfileImage(completion: ((Bool) -> Void)?) {
-        Storage.storage().reference().child("Users").child(CurrentUser.shared.id ?? "").getData(maxSize: 1*2048*2048) { (metaData, error) in
+        storage.child("Users").child(CurrentUser.shared.id ?? "").getData(maxSize: 1*2048*2048) { (metaData, error) in
             if error == nil {
                 CurrentUser.shared.profileImage = Image(uiImage: UIImage(data: metaData!)!)
                 completion?(true)
@@ -84,7 +86,7 @@ class AuthProvider: ObservableObject {
     }
 
     func getProfileImage(for id: String, completion: ((Data) -> Void)?) {
-        Storage.storage().reference().child("Users").child(id).getData(maxSize: 1*2048*2048) { (metaData, error) in
+        storage.child("Users").child(id).getData(maxSize: 1*2048*2048) { (metaData, error) in
             if error == nil {
                 completion?(metaData!)
             }
@@ -99,11 +101,9 @@ class AuthProvider: ObservableObject {
             }
             let userUid = result.user.uid
             if error == nil {
-//                getUserData(userUid, result
                 self?.getUserData(userUid) { (flag) in
                     completion?(flag)
                 }
-                //
             }
         })
     }

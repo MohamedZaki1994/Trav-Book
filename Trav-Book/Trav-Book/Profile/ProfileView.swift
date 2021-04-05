@@ -13,6 +13,7 @@ struct ProfileView: View {
 //    @ObservedObject var profileViewModel = ProfileViewModel()
     @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
+    @State var image: Image?
     var body: some View {
         VStack {
             HStack {
@@ -31,7 +32,14 @@ struct ProfileView: View {
                     CurrentUser.shared.updateUserInfo()
                 }
             }
-            Image(systemName: "person")
+            if image != nil {
+                image?.resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 100, height: 100)
+            } else {
+                Image(systemName: "person")
+            }
             HStack{
                 Text("Name:").bold()
                 TextField(CurrentUser.shared.name ?? "" + ":", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
@@ -59,7 +67,7 @@ struct ProfileView: View {
             self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
             self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
             self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
-
+            image = CurrentUser.shared.profileImage
         }
     }
 }
