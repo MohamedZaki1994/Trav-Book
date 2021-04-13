@@ -115,15 +115,7 @@ class DashboardViewModel: ObservableObject {
 
     func update(currentPost: PostModel, like: Bool?) {
         guard let id = currentPost.id else {return}
-        guard let like = like else {
-            let postIndex = (currentPost.comments?.count ?? 0)-1
-            for post in posts {
-                if post.id == currentPost.id {
-                    ref.child("Ref").child("posts/\(id)/comments").child("\(postIndex)").setValue(currentPost.comments?.last ?? "")
-                }
-            }
-            return
-        }
+        guard let like = like else { return }
         if like {
             for post in posts {
                 if post.id == currentPost.id {

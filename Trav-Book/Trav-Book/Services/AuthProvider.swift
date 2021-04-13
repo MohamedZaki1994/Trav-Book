@@ -93,6 +93,17 @@ class AuthProvider: ObservableObject {
         }
     }
 
+    func updateProfileImage(image: UIImage, completion: ((Data) -> Void)?) {
+        let data = image.jpegData(compressionQuality: 0.2)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        Storage.storage().reference().child("Users").child(CurrentUser.shared.id!).putData(data!, metadata: metadata) { (metaData, error) in
+            if error != nil {
+                return
+            }
+        }
+    }
+
     func signIn(username: String, password: String, completion: ((Bool) -> Void)?) {
         Auth.auth().signIn(withEmail: username, password: password, completion: { [weak self](result, error) in
             guard let result = result else {

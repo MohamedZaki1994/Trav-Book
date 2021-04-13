@@ -47,11 +47,11 @@ struct PostView: View {
                     Text(self.post.date?.timeAgo() ?? "0.0")
                 } .padding(8)
                 Text(post.postText ?? "")
-                    .padding()
+                    .padding(10)
                 if #available(iOS 14.0, *) {
                     LazyHStack {
                         if !image.isEmpty {
-                            image.first??.resizable().frame(width: UIScreen.main.bounds.width - 40, height: 200)
+                            image.first??.resizable().frame(width: UIScreen.main.bounds.width - 10, height: 250)
 //                            PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
                         } else {
                             Text("loading")
@@ -67,21 +67,19 @@ struct PostView: View {
                         self.numberOfLike += 1
                         self.model.update(currentPost: self.post, like: true)
                         self.action?(self.post)
-                        print("like")
                     }) {
-                        Text("\(self.numberOfLike) like")}
+                        Text("\(self.numberOfLike) like").font(.system(size: 14))}
                     .padding(10)
                     .background(Color.blue)
                     .cornerRadius(20)
                     .buttonStyle(PrimaryButtonStyle())
                     Spacer()
                     Button(action: {
-                        print("dislike")
                         self.post.numberOfDislike! += 1
                         self.numberOfDislike += 1
                         self.model.update(currentPost: self.post, like: false)
                     }) {
-                        Text("\(self.numberOfDislike) dislike")}
+                        Text("\(self.numberOfDislike) dislike").font(.system(size: 14))}
                     .padding(10)
                     .background(Color.blue)
                     .cornerRadius(20)
@@ -99,33 +97,17 @@ struct PostView: View {
                     }
                     Button(action: {
                         self.isCommenting = true
-                        print("comment")
 
                     }) {
-                        Text("\((post.comments?.count ?? 0) - 1) comment")
+                        Text("\((post.comments?.count ?? 0) - 1) comment").font(.system(size: 14))
                     }
                     .buttonStyle(PrimaryButtonStyle())
                     .padding(10)
                     .background(Color.blue)
                     .cornerRadius(20)
-                }.padding(20)
-//                ForEach(0 ..< comments.count, id: \.self) { index in
-//                    //                CommentView(comment: "", comments: self.$comments, flag: self.$isCommenting, isCommented: true, index: index)
-//                    CommentView(comment: "", comments: self.$comments, isCommenting: self.$isCommenting, index: index)
-//                    { (text) in
-//                        if text == "" {
-//                        } else {
-//                            let wholeText = "\(user.name ?? ""): \(text)"
-//                            self.post.comments?.append(wholeText)
-//                            self.comments.append(wholeText)
-//                            self.model.update(numberOfLikes: self.post, like: nil)
-//                        }
-//                        self.isCommenting = false
-//                    }
-//                }
-//            }
+                }.padding(10)
             }
-            .background(Color.gray)
+            .background(Color(red: 211/255, green: 211/255, blue: 211/255))
             .cornerRadius(10)
             .onAppear() {
                 self.numberOfLike = self.post.numberOfLike ?? 0

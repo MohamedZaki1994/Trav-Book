@@ -10,6 +10,7 @@ import SwiftUI
 import Firebase
 import CoreData
 
+@available(iOS 14.0, *)
 struct ContentView: View {
     @State private var isNavigate = false
     @State var isAlert = false
@@ -17,6 +18,7 @@ struct ContentView: View {
     @State var password = ""
     @State var isSignup = false
     @State var showLogin = false
+    @State var isLoading = false
     @EnvironmentObject var session: AuthProvider
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -24,37 +26,45 @@ struct ContentView: View {
     var body: some View {
         Group {
             if session.user == nil {
-                LoginView()
+                if self.isLoading {
+                    LoginView().overlay(ProgressView().progressViewStyle(GaugeProgressStyle())
+                                            .frame(width: 100, height: 100)
+                    )
+                } else {
+                    LoginView()
+                }
             } else {
                 BaseTabView()
             }
         } .onAppear() {
             if let id = Auth.auth().currentUser?.uid {
+                isLoading = true
                 AuthProvider.shared.getUserData(id) { (flag) in
                     print(flag)
+                    self.isLoading = false
                 }
             }
         }
-//        if #available(iOS 14.0, *) {
-//            BaseTabView(isNavigation: $isNavigate, showLogin: $showLogin)
-//                .fullScreenCover(isPresented: $showLogin,onDismiss: {
-//                    self.isNavigate = true
-//                }, content: LoginView.init) .onAppear() {
-//                    if Auth.auth().currentUser != nil {
-//                        if let id = Auth.auth().currentUser?.uid {
-//                            AuthProvider.shared.getUserData(id) { (flag) in
-//                                print(flag)
-//                                self.isNavigate = true
-//                            }
-//                        }
-//                    } else {
-//                        self.showLogin = true
-//
-//                    }
-//                }
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        //        if #available(iOS 14.0, *) {
+        //            BaseTabView(isNavigation: $isNavigate, showLogin: $showLogin)
+        //                .fullScreenCover(isPresented: $showLogin,onDismiss: {
+        //                    self.isNavigate = true
+        //                }, content: LoginView.init) .onAppear() {
+        //                    if Auth.auth().currentUser != nil {
+        //                        if let id = Auth.auth().currentUser?.uid {
+        //                            AuthProvider.shared.getUserData(id) { (flag) in
+        //                                print(flag)
+        //                                self.isNavigate = true
+        //                            }
+        //                        }
+        //                    } else {
+        //                        self.showLogin = true
+        //
+        //                    }
+        //                }
+        //        } else {
+        //            // Fallback on earlier versions
+        //        }
         //        NavigationView {
         //            VStack {
         //                LoginView(username: $username, password: $password)
@@ -123,11 +133,11 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
 
 protocol TestView {
     associatedtype T = View
@@ -136,4 +146,22 @@ protocol TestView {
 
 enum myError: Error {
     case badURL, requestFailed
+}
+
+struct GaugeProgressStyle: ProgressViewStyle {
+    var strokeColor = Color.blue
+    var strokeWidth = 10.0
+    @State var shouldAnimate = false
+
+    func makeBody(configuration: Configuration) -> some View {
+        return ZStack {
+            Circle()
+                .trim(from: 0, to: 0.8)
+                .stroke(strokeColor, style: StrokeStyle(lineWidth: CGFloat(strokeWidth), lineCap: .round))
+                .rotationEffect(.init(degrees: self.shouldAnimate ? 360 : 0))
+                .animation(Animation.linear(duration: 0.7).repeatForever(autoreverses: false))
+        }.onAppear() {
+            shouldAnimate = true
+        }
+    }
 }

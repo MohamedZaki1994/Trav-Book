@@ -25,11 +25,15 @@ struct BaseTabView: View {
                         }
                 }
 
-            ProfileView().tabItem {
-                VStack {
-                    Image(systemName: "person")
-                    Text("Profile")
+            if #available(iOS 14.0, *) {
+                ProfileView().tabItem {
+                    VStack {
+                        Image(systemName: "person")
+                        Text("Profile")
+                    }
                 }
+            } else {
+                // Fallback on earlier versions
             }
         }
         .navigationBarItems(trailing:
