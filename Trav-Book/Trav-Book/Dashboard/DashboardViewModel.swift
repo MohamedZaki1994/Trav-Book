@@ -34,7 +34,7 @@ class DashboardViewModel: ObservableObject {
     @Published var posts = [PostModel]()
 
     func getData() {
-        request.loadPosts { [weak self] (data, error) in
+        request.loadPosts(path: "Ref/posts") { [weak self] (data, error) in
             self?.postsModel = data
             if self?.postsModel?.posts.isEmpty ?? true {
                 let post = Post(name: "", post: "", userId: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0, profileImage: "")
@@ -110,6 +110,7 @@ class DashboardViewModel: ObservableObject {
         }
         let path = storage.reference().child("posts").child(postId).child("0").fullPath
         ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path])
+        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path])
         getData()
     }
 
@@ -120,12 +121,14 @@ class DashboardViewModel: ObservableObject {
             for post in posts {
                 if post.id == currentPost.id {
                     ref.child("Ref").child("posts/\(id)/numberOfLike").setValue(currentPost.numberOfLike)
+                    ref.child("UserPosts").child(CurrentUser.shared.id!).child(id).child("numberOfLike").setValue(currentPost.numberOfLike)
                 }
             }
         } else {
             for post in posts {
                 if post.id == currentPost.id {
                     ref.child("Ref").child("posts/\(id)/numberOfDislike").setValue(currentPost.numberOfDislike)
+                    ref.child("UserPosts").child(CurrentUser.shared.id!).child(id).child("numberOfDislike").setValue(currentPost.numberOfDislike)
                 }
             }
         }

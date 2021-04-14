@@ -32,8 +32,8 @@ class RequestHandler {
             }})
     }
 
-    func loadPosts(completion:((PostsModel?, Error?) -> Void)?) {
-        ref.child("Ref").child("posts").observeSingleEvent(of: DataEventType.value) { (snapshot) in
+    func loadPosts(path: String,completion:((PostsModel?, Error?) -> Void)?) {
+        ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
             if snapshot.exists() {
                 var posts = [Post]()
                 guard let dictionary = snapshot.value as? [String: Any] else {return}

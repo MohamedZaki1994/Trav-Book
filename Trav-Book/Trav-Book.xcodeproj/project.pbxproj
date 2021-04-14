@@ -16,7 +16,7 @@
 		35391A852527711000892681 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35391A842527711000892681 /* UserModel.swift */; };
 		353A6803252366FB0097B72F /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353A6802252366FB0097B72F /* SignupView.swift */; };
 		353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4B2515F2220069F5D2 /* ProfileView.swift */; };
-		353AFB4E25174C9B0069F5D2 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4D25174C9B0069F5D2 /* PostViewModel.swift */; };
+		353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */; };
 		353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B89AA24F136C20069F664 /* BaseTabView.swift */; };
 		353E5229251CCF4B008FD4ED /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353E5228251CCF4B008FD4ED /* GeneratedMocks.swift */; };
 		354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C224EFDD7300F69187 /* AppDelegate.swift */; };
@@ -63,7 +63,7 @@
 		35391A842527711000892681 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		353A6802252366FB0097B72F /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		353AFB4B2515F2220069F5D2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		353AFB4D25174C9B0069F5D2 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		353B89AA24F136C20069F664 /* BaseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabView.swift; sourceTree = "<group>"; };
 		353E5228251CCF4B008FD4ED /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		354022BF24EFDD7300F69187 /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				353AFB4B2515F2220069F5D2 /* ProfileView.swift */,
-				353AFB4D25174C9B0069F5D2 /* PostViewModel.swift */,
+				353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */,
 				35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */,
 			);
 			path = Profile;
@@ -487,7 +487,7 @@
 				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
 				3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */,
-				353AFB4E25174C9B0069F5D2 /* PostViewModel.swift in Sources */,
+				353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */,
 				35F5298125669C2E0067CCCB /* RequestHandler.swift in Sources */,
 				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
 				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,

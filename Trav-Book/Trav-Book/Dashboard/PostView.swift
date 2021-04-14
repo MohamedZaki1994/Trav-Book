@@ -18,9 +18,9 @@ struct PostView: View {
     let storage = Storage.storage()
 
     @State var comments: [String] = [String]()
-    @State var isCommenting = false
-    @State var numberOfLike: Int = 0
-    @State var numberOfDislike: Int = 0
+    @State private var isCommenting = false
+    @State private var numberOfLike: Int = 0
+    @State private var numberOfDislike: Int = 0
     @State var post: PostModel
     @State var image = [Image?]()
     @State var profileImage: Image?
@@ -47,7 +47,8 @@ struct PostView: View {
                     Text(self.post.date?.timeAgo() ?? "0.0")
                 } .padding(8)
                 Text(post.postText ?? "")
-                    .padding(10)
+                    .padding(.bottom, 10)
+                    .padding(.leading, 10)
                 if #available(iOS 14.0, *) {
                     LazyHStack {
                         if !image.isEmpty {

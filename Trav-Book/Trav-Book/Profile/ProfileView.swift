@@ -11,12 +11,17 @@ import Firebase
 
 @available(iOS 14.0, *)
 struct ProfileView: View {
-//    @ObservedObject var profileViewModel = ProfileViewModel()
+    @ObservedObject var profileViewModel = ProfileViewModel()
+    
     @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
     @State private var inputImage: UIImage?
     @State var showingImagePicker = false
     @StateObject var object = CurrentUser.shared
+    @State var refresh = false
+    @ObservedObject var viewModel: DashboardViewModel
+
+
     var body: some View {
         VStack {
             Group {
@@ -33,7 +38,7 @@ struct ProfileView: View {
             }
             .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                 ImagePicker(image: self.$inputImage)
-        }
+            }
             HStack{
                 Text("Name:").bold()
                 TextField(CurrentUser.shared.name ?? "" + ":", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
@@ -70,13 +75,32 @@ struct ProfileView: View {
             } ){
                 Text("Logout")
             }
-            Spacer()
+            List {
+                if profileViewModel.postsModel == nil {
+                    Text("Loading...")
+                } else {
+
+                    ForEach(profileViewModel.posts.reversed()) { post in
+                        if #available(iOS 14.0, *) {
+                            PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh).environmentObject(self.viewModel)
+                                .onTapGesture {}
+                                .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                        } else {
+                            // Fallback on earlier versions
+                        }
+
+                    } .onAppear(){
+//                        profileViewModel.isLoading = false
+                    }
+                }
+            }
         }
 
         .onAppear() {
             self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
             self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
             self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
+            profileViewModel.loadUserPosts()
         }
     }
 

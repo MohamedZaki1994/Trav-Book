@@ -13,10 +13,11 @@ struct BaseTabView: View {
 //    @Binding var showLogin: Bool
     @State var isRefresh = true
     @State var refreshing = false
+    let dashboardViewModel = DashboardViewModel()
     var body: some View {
 
         TabView() {
-            DashboardView(viewModel: DashboardViewModel(), refreshing: $refreshing)
+            DashboardView(viewModel: dashboardViewModel, refreshing: $refreshing)
                     .tabItem {
                         VStack {
                             Image(systemName: "house")
@@ -26,7 +27,7 @@ struct BaseTabView: View {
                 }
 
             if #available(iOS 14.0, *) {
-                ProfileView().tabItem {
+                ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel).tabItem {
                     VStack {
                         Image(systemName: "person")
                         Text("Profile")
