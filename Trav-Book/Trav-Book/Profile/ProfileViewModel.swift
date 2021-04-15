@@ -26,7 +26,8 @@ class ProfileViewModel: ObservableObject {
         request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id!)") { [weak self] (data, error) in
             self?.postsModel = data
             self?.posts = [PostModel]()
-            for post in data!.posts {
+            guard let data = data else {return}
+            for post in data.posts {
                 self?.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date, profileImage: post.profileImage, userId: post.userId))
             }
 

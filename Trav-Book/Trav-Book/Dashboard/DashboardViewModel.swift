@@ -118,35 +118,23 @@ class DashboardViewModel: ObservableObject {
         guard let id = currentPost.id else {return}
         guard let like = like else { return }
         if like {
-            for post in posts {
-                if post.id == currentPost.id {
-                    ref.child("Ref").child("posts/\(id)/numberOfLike").setValue(currentPost.numberOfLike)
-                    ref.child("UserPosts").child(CurrentUser.shared.id!).child(id).child("numberOfLike").setValue(currentPost.numberOfLike)
-                }
-            }
+            ref.child("Ref").child("posts/\(id)/numberOfLike").setValue(currentPost.numberOfLike)
+            ref.child("UserPosts").child(currentPost.userId!).child(id).child("numberOfLike").setValue(currentPost.numberOfLike)
         } else {
-            for post in posts {
-                if post.id == currentPost.id {
-                    ref.child("Ref").child("posts/\(id)/numberOfDislike").setValue(currentPost.numberOfDislike)
-                    ref.child("UserPosts").child(CurrentUser.shared.id!).child(id).child("numberOfDislike").setValue(currentPost.numberOfDislike)
-                }
-            }
+            ref.child("Ref").child("posts/\(id)/numberOfDislike").setValue(currentPost.numberOfDislike)
+            ref.child("UserPosts").child(currentPost.userId!).child(id).child("numberOfDislike").setValue(currentPost.numberOfDislike)
         }
     }
 
     func comment(currentPost: PostModel, comment: String) {
-        for post in posts.enumerated() {
-            if post.element.id == currentPost.id {
-                let comment = "\(CurrentUser.shared.name!): \(comment)"
-                post.element.comments?.append(comment)
-                var nsArray = [String]()
-                nsArray.append(contentsOf: post.element.comments!)
-                post.element.comments = nsArray
-                currentPost.comments = nsArray
-                guard let id = post.element.id else {return}
-                ref.child("Ref").child("posts/\(id)/comments").setValue(nsArray)
-            }
-        }
+        let comment = "\(CurrentUser.shared.name!): \(comment)"
+        currentPost.comments?.append(comment)
+        var nsArray = [String]()
+        nsArray.append(contentsOf: currentPost.comments!)
+        currentPost.comments = nsArray
+        guard let id = currentPost.id else {return}
+        ref.child("Ref").child("posts/\(id)/comments").setValue(nsArray)
+        ref.child("UserPosts").child("\(currentPost.userId!)/\(id)/comments").setValue(nsArray)
     }
 
     func request<T: Codable>(x: T.Type,completion:((T?, Error?) -> Void)?) {
