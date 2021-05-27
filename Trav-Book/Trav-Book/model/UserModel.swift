@@ -13,25 +13,6 @@ struct User: Codable {
     let name: String?
     let username: String?
     let image:String?
-    let posts: PostsModel?
-    let favorite: PostsModel?
     let birthdate: String?
     let region: String?
-}
-
-struct PostsModel: Codable {
-    var posts: [Post]
-}
-
-// MARK: - Post
-struct Post: Codable{
-    let name, post: String
-    let userId: String
-    let id: String
-    let imagesNumber: Int
-    let numberOfLike: Int
-    let numberOfDislike: Int
-    let comments: [String]
-    let date: Double
-    let profileImage: String
 }

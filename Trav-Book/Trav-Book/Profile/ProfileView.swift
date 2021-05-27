@@ -23,85 +23,88 @@ struct ProfileView: View {
 
 
     var body: some View {
-        VStack {
-            Group {
-                if object.profileImage != nil {
-                    object.profileImage?.resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(width: 100, height: 100)
-                } else {
-                    Image(systemName: "person")
+        NavigationView {
+            VStack {
+                Group {
+                    if object.profileImage != nil {
+                        object.profileImage?.resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 100, height: 100)
+                    } else {
+                        Image(systemName: "person")
+                    }
+                }.onTapGesture {
+                    showingImagePicker = true
                 }
-            }.onTapGesture {
-                showingImagePicker = true
-            }
-            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
-            }
-            HStack{
-                Text("Name:").bold()
-                TextField(CurrentUser.shared.name ?? "" + ":", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
-            }
-            Divider()
-            HStack{
-                Text("Birthday:").bold()
-                TextField(CurrentUser.shared.birthDate ?? "" + ":", text: self.$instanceProfile.profileModel.birthday).disabled(!self.isEditting)
-
-            }
-            Divider()
-            HStack{
-                Text("Region:").bold()
-                TextField(CurrentUser.shared.region ?? "" + ":", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
-            }
-            HStack {
-                if isEditting {
-                    Button("cancel") {
-                        self.isEditting = false
-                        self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
-                        self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
-                        self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
-                    }}
-                Button(isEditting ? "Save" : "Edit") {
-                    self.isEditting.toggle()
-                    CurrentUser.shared.name = self.instanceProfile.profileModel.name
-                    CurrentUser.shared.birthDate = self.instanceProfile.profileModel.birthday
-                    CurrentUser.shared.region = self.instanceProfile.profileModel.region
-                    CurrentUser.shared.updateUserInfo()
+                .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                    ImagePicker(image: self.$inputImage)
                 }
-            }
-            Button(action: {
-                AuthProvider.shared.signOut()
-            } ){
-                Text("Logout")
-            }
-            List {
-                if profileViewModel.postsModel == nil {
-                    Text("Loading...")
-                } else {
-
-                    ForEach(profileViewModel.posts.reversed()) { post in
-                        if #available(iOS 14.0, *) {
-                            PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh).environmentObject(self.viewModel)
-                                .onTapGesture {}
-                                .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
-                        } else {
-                            // Fallback on earlier versions
-                        }
-
-                    } .onAppear(){
-//                        profileViewModel.isLoading = false
+                HStack{
+                    Text("Name:").bold()
+                    TextField(CurrentUser.shared.name ?? "" + ":", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
+                }
+                Divider()
+                HStack{
+                    Text("Birthday:").bold()
+                    TextField(CurrentUser.shared.birthDate ?? "" + ":", text: self.$instanceProfile.profileModel.birthday).disabled(!self.isEditting)
+                    
+                }
+                Divider()
+                HStack{
+                    Text("Region:").bold()
+                    TextField(CurrentUser.shared.region ?? "" + ":", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
+                }
+                HStack {
+                    if isEditting {
+                        Button("cancel") {
+                            self.isEditting = false
+                            self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
+                            self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
+                            self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
+                        }}
+                    Button(isEditting ? "Save" : "Edit") {
+                        self.isEditting.toggle()
+                        CurrentUser.shared.name = self.instanceProfile.profileModel.name
+                        CurrentUser.shared.birthDate = self.instanceProfile.profileModel.birthday
+                        CurrentUser.shared.region = self.instanceProfile.profileModel.region
+                        CurrentUser.shared.updateUserInfo()
                     }
                 }
+                Button(action: {
+                    AuthProvider.shared.signOut()
+                } ){
+                    Text("Logout")
+                }
+                List {
+                    if profileViewModel.posts.isEmpty {
+                        Text("Loading...")
+                    } else {
+                        
+                        ForEach(profileViewModel.posts.reversed()) { post in
+                            if #available(iOS 14.0, *) {
+                                PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
+                                    .onTapGesture {}
+                                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                            } else {
+                                // Fallback on earlier versions
+                            }
+                            
+                        }
+                    }
+                }
+                .onAppear() {
+                    self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
+                    self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
+                    self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
+                    profileViewModel.loadUserPosts()
+                }
+                .onDisappear() {
+                    print("finished")
+                }
             }
         }
 
-        .onAppear() {
-            self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
-            self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
-            self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
-            profileViewModel.loadUserPosts()
-        }
     }
 
     func loadImage() {

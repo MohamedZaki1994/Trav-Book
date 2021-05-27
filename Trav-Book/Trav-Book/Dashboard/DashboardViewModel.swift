@@ -16,15 +16,18 @@ class DashboardViewModel: ObservableObject {
     var ref: DatabaseReference = Database.database().reference()
     var switchSubscriber = Set<AnyCancellable>()
     var request = RequestHandler()
-    var postsModel: PostsModel? {
-        didSet {
-            if let postArray = postsModel?.posts {
-                posts = [PostModel]()
-                for post in postArray {
-                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date, profileImage: post.profileImage, userId: post.userId))
-                }
+    let storage = Storage.storage()
 
-            }
+    var postsModel: PostModel? {
+        didSet {
+//            if let postArray = postsModel?.posts {
+//                posts = [PostModel]()
+//                for post in postArray {
+//                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date, profileImage: post.profileImage, userId: post.userId))
+//                }
+//
+//            }
+            posts.append(postsModel!)
             isLoading = false
         }
     }
@@ -35,11 +38,11 @@ class DashboardViewModel: ObservableObject {
 
     func getData() {
         request.loadPosts(path: "Ref/posts") { [weak self] (data, error) in
-            self?.postsModel = data
-            if self?.postsModel?.posts.isEmpty ?? true {
-                let post = Post(name: "", post: "", userId: "", id: "", imagesNumber: 0, numberOfLike: 0,numberOfDislike: 0,comments: [""], date: 0, profileImage: "")
-                self?.postsModel = PostsModel(posts: [post])
+            self?.posts = data!
+            if self?.posts.isEmpty ?? true {
+                self?.posts.append(PostModel(id: "", name: "", imagesNumber: 0, postText: "", numberOfLike: 0, numberOfDislike: 0, comments: [""], date: 0, profileImage: "", userId: ""))
             }
+            self?.isLoading = false
         }
     }
 
@@ -60,38 +63,17 @@ class DashboardViewModel: ObservableObject {
 //            }
 //        }
 //    }
-    func getImage(post: PostModel, completion: (([Data?]?, Data) -> Void)?){
-        let counter = post.imagesNumber!
-        var datas = [Data]()
-        var profileData: Data?
-        if counter > 0 {
-//            for x in 0 ... counter-1 {
-                let storage = Storage.storage()
-            let dis = DispatchGroup()
-            dis.enter()
-            storage.reference().child("posts").child(post.id!).child(String(0)).getData(maxSize: 1*2048*2048) { (data, error) in
-                    if data != nil {
-                        datas.append(data!)
-//                        if x == counter - 1 {
-                        dis.leave()
-//                        }
-                    }
-                }
-            dis.enter()
-            AuthProvider.shared.getProfileImage(for: post.userId!) { (data) in
-                profileData = data
-                dis.leave()
-            }
 
-            dis.notify(queue: DispatchQueue.global()) {
-                completion?(datas, profileData!)
-            }
-//            }
-        }
-    }
-    let storage = Storage.storage()
+    /**
+     upload a text
+
+     - Parameters:
+         - name: user name.
+         - text: uploaded text
+
+     */
     func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, completion: (() -> Void)? ) {
-        let numberOfPosts = postsModel?.posts.count ?? 0
+        let numberOfPosts = posts.count
         let postId = UUID().uuidString
         if images?.count ?? 0 > 0 {
 
@@ -114,53 +96,30 @@ class DashboardViewModel: ObservableObject {
         getData()
     }
 
-    func update(currentPost: PostModel, like: Bool?) {
-        guard let id = currentPost.id else {return}
-        guard let like = like else { return }
-        if like {
-            ref.child("Ref").child("posts/\(id)/numberOfLike").setValue(currentPost.numberOfLike)
-            ref.child("UserPosts").child(currentPost.userId!).child(id).child("numberOfLike").setValue(currentPost.numberOfLike)
-        } else {
-            ref.child("Ref").child("posts/\(id)/numberOfDislike").setValue(currentPost.numberOfDislike)
-            ref.child("UserPosts").child(currentPost.userId!).child(id).child("numberOfDislike").setValue(currentPost.numberOfDislike)
-        }
-    }
-
-    func comment(currentPost: PostModel, comment: String) {
-        let comment = "\(CurrentUser.shared.name!): \(comment)"
-        currentPost.comments?.append(comment)
-        var nsArray = [String]()
-        nsArray.append(contentsOf: currentPost.comments!)
-        currentPost.comments = nsArray
-        guard let id = currentPost.id else {return}
-        ref.child("Ref").child("posts/\(id)/comments").setValue(nsArray)
-        ref.child("UserPosts").child("\(currentPost.userId!)/\(id)/comments").setValue(nsArray)
-    }
-
-    func request<T: Codable>(x: T.Type,completion:((T?, Error?) -> Void)?) {
-        let urlComponent = URLComponents(string: "http://MohamedZaki1994.github.io/CMS/Test.json")
-        guard let url = urlComponent?.url else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if error != nil {
-                completion?(nil, error)
-                return
-            }
-            if let data = data {
-                do {
-                    let user = try JSONDecoder().decode(T.self, from: data)
-                    completion?(user ,nil)
-                }
-                catch {
-                    print("error")
-                }
-            }
-        }.resume()
-
-    }
+//    func request<T: Codable>(x: T.Type,completion:((T?, Error?) -> Void)?) {
+//        let urlComponent = URLComponents(string: "http://MohamedZaki1994.github.io/CMS/Test.json")
+//        guard let url = urlComponent?.url else {return}
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            if error != nil {
+//                completion?(nil, error)
+//                return
+//            }
+//            if let data = data {
+//                do {
+//                    let user = try JSONDecoder().decode(T.self, from: data)
+//                    completion?(user ,nil)
+//                }
+//                catch {
+//                    print("error")
+//                }
+//            }
+//        }.resume()
+//
+//    }
 }
 
 
-class PostModel: Identifiable, ObservableObject {
+class PostModel: Identifiable, ObservableObject, Codable {
 
     var id: String?
     var name: String?
@@ -172,9 +131,12 @@ class PostModel: Identifiable, ObservableObject {
     var comments: [String]?
     var date: Double?
     var userId: String?
-    init() {
+    var post: String?
+//    var posts: [Post]?
 
-    }
+//    init(posts: [Post]) {
+//        self.posts = posts
+//    }
     init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double,profileImage: String, userId: String) {
         self.id = id
         self.name = name
@@ -187,14 +149,4 @@ class PostModel: Identifiable, ObservableObject {
         self.profileImage = profileImage
         self.userId = userId
     }
-}
-
-
-// MARK: - Welcome
-struct Welcome: Codable {
-    let array: [Int]
-    let boolean: Bool
-    let color: String
-    let number: Int
-    let string: String
 }

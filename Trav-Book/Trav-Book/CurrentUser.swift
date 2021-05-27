@@ -15,21 +15,17 @@ class CurrentUser: ObservableObject {
     @Published var birthDate: String?
     @Published var email: String?
     @Published var image: String?
-    @Published var posts: PostsModel?
-    @Published var favorite: PostsModel?
     @Published var id: String?
     @Published var region: String?
     @Published var profileImage: Image?
     var ref: DatabaseReference = Database.database().reference()
     static var shared = CurrentUser()
 
-    func fillUserInfo(name: String, birthDate: String, email: String, image: String, posts: PostsModel?, favorite: PostsModel?, id: String, region:String) {
+    func fillUserInfo(name: String, birthDate: String, email: String, image: String, id: String, region:String) {
         self.name = name
         self.birthDate = birthDate
         self.email = email
         self.image = image
-        self.posts = posts
-        self.favorite = favorite
         self.id = id
         self.region = region
     }

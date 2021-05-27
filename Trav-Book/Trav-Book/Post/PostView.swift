@@ -26,7 +26,7 @@ struct PostView: View {
     @State var profileImage: Image?
     @Binding var refreshPost: Bool
     var action: ((PostModel) -> Void)?
-    @EnvironmentObject var model: DashboardViewModel
+    var postViewModel = PostViewModel()
     var body: some View {
         if refreshPost {
             Text("").onAppear(){ refreshPost = false}
@@ -66,7 +66,7 @@ struct PostView: View {
                     Button(action: {
                         self.post.numberOfLike! += 1
                         self.numberOfLike += 1
-                        self.model.update(currentPost: self.post, like: true)
+                        postViewModel.update(currentPost: self.post, like: true)
                         self.action?(self.post)
                     }) {
                         Text("\(self.numberOfLike) like").font(.system(size: 14))}
@@ -78,7 +78,7 @@ struct PostView: View {
                     Button(action: {
                         self.post.numberOfDislike! += 1
                         self.numberOfDislike += 1
-                        self.model.update(currentPost: self.post, like: false)
+                        postViewModel.update(currentPost: self.post, like: false)
                     }) {
                         Text("\(self.numberOfDislike) dislike").font(.system(size: 14))}
                     .padding(10)
@@ -87,7 +87,7 @@ struct PostView: View {
                     .buttonStyle(PrimaryButtonStyle())
                     Spacer()
                     if #available(iOS 14.0, *) {
-                        NavigationLink(destination: CommentView(post: post).environmentObject(self.model), isActive: self.$isCommenting) {
+                        NavigationLink(destination: CommentView(post: post), isActive: self.$isCommenting) {
                             EmptyView()
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -114,7 +114,7 @@ struct PostView: View {
                 self.numberOfLike = self.post.numberOfLike ?? 0
                 self.numberOfDislike = self.post.numberOfDislike ?? 0
                 if image.isEmpty {
-                model.getImage(post: post) { (datas, profileData) in
+                postViewModel.getImage(post: post) { (datas, profileData) in
                     if let datas = datas {
                         for data in datas {
                             let uiImage = UIImage(data: data!)

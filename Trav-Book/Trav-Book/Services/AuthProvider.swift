@@ -49,7 +49,7 @@ class AuthProvider: ObservableObject {
                     }
                 }
                 let jsonEncoder = JSONEncoder()
-                let user = User(id: uid, name: name, username: email, image: "", posts: nil, favorite: nil,birthdate: birthDate, region: country)
+                let user = User(id: uid, name: name, username: email, image: "",birthdate: birthDate, region: country)
                 let jsonData = try? jsonEncoder.encode(user)
                 let json = try? JSONSerialization.jsonObject(with: jsonData!, options: [])
                 guard let userDictionary = json as? [String : Any] else {
@@ -68,7 +68,7 @@ class AuthProvider: ObservableObject {
     func getUserData(_ userUid: String,completion: ((Bool) -> Void)?) {
         self.request.getData(path: "Users/\(userUid)", modelType: User.self) {[weak self] (data, error) in
             let currentUser = data
-            CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", posts: nil, favorite: nil, id: userUid, region: currentUser?.region ?? "")
+            CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", id: userUid, region: currentUser?.region ?? "")
             self?.user = CurrentUser.shared
             self?.getProfileImage { (_) in
             }
