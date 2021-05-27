@@ -9,7 +9,7 @@
 import Foundation
 
 
-class TopPlacesModel: Codable, ObservableObject, Identifiable {
+class TopPlacesModel: Codable, Identifiable {
     var id: String?
     let name, region: String?
     let rating: Double?
