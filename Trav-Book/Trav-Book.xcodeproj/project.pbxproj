@@ -38,6 +38,9 @@
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
 		35A4C5B22517A35F0053D8D7 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */; };
+		35B2FCF5265FC2EA00D8CD1E /* TopPlacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2FCF4265FC2EA00D8CD1E /* TopPlacesView.swift */; };
+		35B2FCFD265FC74A00D8CD1E /* TopPlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2FCFC265FC74A00D8CD1E /* TopPlacesViewModel.swift */; };
+		35B2FD03265FC79B00D8CD1E /* TopPlacesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2FD02265FC79B00D8CD1E /* TopPlacesModel.swift */; };
 		35F5298125669C2E0067CCCB /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5298025669C2E0067CCCB /* RequestHandler.swift */; };
 		F45A6E738EE7CF6F03DEB208 /* Pods_Trav_BookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0976A70A05E5AF25CF391F2F /* Pods_Trav_BookTests.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +91,9 @@
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		35B2FCF4265FC2EA00D8CD1E /* TopPlacesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlacesView.swift; sourceTree = "<group>"; };
+		35B2FCFC265FC74A00D8CD1E /* TopPlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlacesViewModel.swift; sourceTree = "<group>"; };
+		35B2FD02265FC79B00D8CD1E /* TopPlacesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlacesModel.swift; sourceTree = "<group>"; };
 		35F5298025669C2E0067CCCB /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		663545E86AA482D3B02DF5F7 /* Pods-Trav-BookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-BookTests.release.xcconfig"; path = "Target Support Files/Pods-Trav-BookTests/Pods-Trav-BookTests.release.xcconfig"; sourceTree = "<group>"; };
 		7984C999C4F9AB67108AB1D2 /* Pods-Trav-Book.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trav-Book.release.xcconfig"; path = "Target Support Files/Pods-Trav-Book/Pods-Trav-Book.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 				355FBAFB24F7B0D6006749AE /* Dashboard */,
 				354BC5D8265527BC008DCA12 /* Post */,
 				353AFB4A2515F2110069F5D2 /* Profile */,
+				35B2FCF3265FC2D300D8CD1E /* Top places */,
 				354022CB24EFDD7600F69187 /* Assets.xcassets */,
 				354022D024EFDD7600F69187 /* LaunchScreen.storyboard */,
 				3510488E24FE510600499DBE /* GoogleService-Info.plist */,
@@ -235,6 +242,15 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		35B2FCF3265FC2D300D8CD1E /* Top places */ = {
+			isa = PBXGroup;
+			children = (
+				35B2FCF4265FC2EA00D8CD1E /* TopPlacesView.swift */,
+				35B2FCFC265FC74A00D8CD1E /* TopPlacesViewModel.swift */,
+			);
+			path = "Top places";
+			sourceTree = "<group>";
+		};
 		35E2EFAC2538765200E9CD00 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +259,7 @@
 				3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */,
 				3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */,
 				3544CE712539BE880070D7BE /* LoggedUser+CoreDataProperties.swift */,
+				35B2FD02265FC79B00D8CD1E /* TopPlacesModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -479,6 +496,7 @@
 				353A6803252366FB0097B72F /* SignupView.swift in Sources */,
 				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
 				3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */,
+				35B2FCF5265FC2EA00D8CD1E /* TopPlacesView.swift in Sources */,
 				3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */,
 				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
 				353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */,
@@ -495,7 +513,9 @@
 				353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */,
 				35F5298125669C2E0067CCCB /* RequestHandler.swift in Sources */,
 				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
+				35B2FCFD265FC74A00D8CD1E /* TopPlacesViewModel.swift in Sources */,
 				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,
+				35B2FD03265FC79B00D8CD1E /* TopPlacesModel.swift in Sources */,
 				35391A852527711000892681 /* UserModel.swift in Sources */,
 				3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */,
 				3531C09A252F1DF70074E657 /* UploadPost.swift in Sources */,

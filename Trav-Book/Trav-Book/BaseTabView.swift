@@ -26,6 +26,11 @@ struct BaseTabView: View {
                         }
                 }
 
+            TopPlacesView()
+                .tabItem {
+                    Image(systemName: "heart.circle.fill")
+                    Text("Top places")
+                }
             if #available(iOS 14.0, *) {
                 ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel).tabItem {
                     VStack {

@@ -87,49 +87,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C3F7BC4-06DA-4D09-946A-7EA19FE1936B"
+            uuid = "2B083235-5A71-4EF4-956A-906064167A47"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Trav-Book/Post/PostView.swift"
+            filePath = "Trav-Book/Top places/TopPlacesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "7C3F7BC4-06DA-4D09-946A-7EA19FE1936B - 122e4efe2ad041f2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.buttonStyle&lt;A where A1: SwiftUI.ButtonStyle&gt;(A1) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.buttonStyle&lt;A where A1: SwiftUI.ButtonStyle&gt;(A1) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI._ConditionalContent&lt;SwiftUI.AnyView, SwiftUI.EmptyView&gt;, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0)&gt; in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;SwiftUI.AnyView, SwiftUI.EmptyView&gt;, SwiftUI.Divider, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0)&gt; in Trav_Book.PostView.body.getter : some"
-                  moduleName = "Trav-Book"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Post/PostView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "3492">
-               </Location>
-               <Location
-                  uuid = "7C3F7BC4-06DA-4D09-946A-7EA19FE1936B - b3438e926d12f398"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #5 () -&gt; SwiftUI.EmptyView in closure #3 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.buttonStyle&lt;A where A1: SwiftUI.ButtonStyle&gt;(A1) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.buttonStyle&lt;A where A1: SwiftUI.ButtonStyle&gt;(A1) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI._ConditionalContent&lt;SwiftUI.AnyView, SwiftUI.EmptyView&gt;, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0)&gt; in closure #2 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;SwiftUI.AnyView, SwiftUI.EmptyView&gt;, SwiftUI.Divider, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.padding(CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0)&gt; in Trav_Book.PostView.body.getter : some"
-                  moduleName = "Trav-Book"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Post/PostView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
