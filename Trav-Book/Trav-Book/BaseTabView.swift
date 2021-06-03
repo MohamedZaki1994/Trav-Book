@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct BaseTabView: View {
-//    @Binding var isNavigation: Bool
-//    @Binding var showLogin: Bool
     @State var isRefresh = true
     @State var refreshing = false
     let dashboardViewModel = DashboardViewModel()
@@ -26,7 +24,7 @@ struct BaseTabView: View {
                         }
                 }
 
-            TopPlacesView()
+            TopPlacesView(viewModel: TopPlacesViewModel())
                 .tabItem {
                     Image(systemName: "heart.circle.fill")
                     Text("Top places")

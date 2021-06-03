@@ -34,6 +34,8 @@
 		3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */; };
 		3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */; };
 		3547E6D025F637BF00CE805B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547E6CF25F637BF00CE805B /* PostViewModel.swift */; };
+		3548B3A726691BEF00502B57 /* PlaceCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */; };
+		354DE47926638A750053B318 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354DE47826638A750053B318 /* PlaceCardView.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
@@ -87,6 +89,8 @@
 		3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3547E6CF25F637BF00CE805B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardViewModel.swift; sourceTree = "<group>"; };
+		354DE47826638A750053B318 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -165,8 +169,8 @@
 		354022C124EFDD7300F69187 /* Trav-Book */ = {
 			isa = PBXGroup;
 			children = (
-				3547E6CC25F634E600CE805B /* Services */,
 				354022C924EFDD7300F69187 /* ContentView.swift */,
+				3547E6CC25F634E600CE805B /* Services */,
 				35E2EFAC2538765200E9CD00 /* model */,
 				353042E725288E34001999E2 /* CurrentUser.swift */,
 				354022C224EFDD7300F69187 /* AppDelegate.swift */,
@@ -245,8 +249,10 @@
 		35B2FCF3265FC2D300D8CD1E /* Top places */ = {
 			isa = PBXGroup;
 			children = (
-				35B2FCF4265FC2EA00D8CD1E /* TopPlacesView.swift */,
 				35B2FCFC265FC74A00D8CD1E /* TopPlacesViewModel.swift */,
+				35B2FCF4265FC2EA00D8CD1E /* TopPlacesView.swift */,
+				354DE47826638A750053B318 /* PlaceCardView.swift */,
+				3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */,
 			);
 			path = "Top places";
 			sourceTree = "<group>";
@@ -519,8 +525,10 @@
 				35391A852527711000892681 /* UserModel.swift in Sources */,
 				3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */,
 				3531C09A252F1DF70074E657 /* UploadPost.swift in Sources */,
+				354DE47926638A750053B318 /* PlaceCardView.swift in Sources */,
 				353042E825288E34001999E2 /* CurrentUser.swift in Sources */,
 				3538C59C2531C8ED009B928B /* CommentView.swift in Sources */,
+				3548B3A726691BEF00502B57 /* PlaceCardViewModel.swift in Sources */,
 				354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

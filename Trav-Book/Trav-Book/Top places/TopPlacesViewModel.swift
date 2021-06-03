@@ -11,11 +11,17 @@ import Foundation
 class TopPlacesViewModel: ObservableObject {
 
     @Published var dataModel: [TopPlacesModel]?
+
     let request = RequestHandler()
     func getData() {
         request.getData(path: "topPlaces", modelType: [TopPlacesModel].self) { (model, error) in
-            print(model)
             self.dataModel = model
         }
     }
+}
+
+enum Rating {
+    case excellent
+    case good
+    case bad
 }
