@@ -18,6 +18,7 @@
 		353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4B2515F2220069F5D2 /* ProfileView.swift */; };
 		353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */; };
 		353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B89AA24F136C20069F664 /* BaseTabView.swift */; };
+		353BEA62266D1A4700DE269A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353BEA61266D1A4700DE269A /* InfoView.swift */; };
 		354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C224EFDD7300F69187 /* AppDelegate.swift */; };
 		354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C424EFDD7300F69187 /* SceneDelegate.swift */; };
 		354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */; };
@@ -69,6 +70,7 @@
 		353AFB4B2515F2220069F5D2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		353B89AA24F136C20069F664 /* BaseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabView.swift; sourceTree = "<group>"; };
+		353BEA61266D1A4700DE269A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		354022BF24EFDD7300F69187 /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		354022C224EFDD7300F69187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		354022C424EFDD7300F69187 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */,
 				353AFB4B2515F2220069F5D2 /* ProfileView.swift */,
+				353BEA61266D1A4700DE269A /* InfoView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */,
 				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
+				353BEA62266D1A4700DE269A /* InfoView.swift in Sources */,
 				3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */,
 				353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */,
 				35F5298125669C2E0067CCCB /* RequestHandler.swift in Sources */,

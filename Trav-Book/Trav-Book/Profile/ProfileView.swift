@@ -41,21 +41,7 @@ struct ProfileView: View {
                 .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     ImagePicker(image: self.$inputImage)
                 }
-                HStack{
-                    Text("Name:").bold()
-                    TextField(CurrentUser.shared.name ?? "" + ":", text: $name).disabled(!self.isEditting)
-                }
-                Divider()
-                HStack{
-                    Text("Birthday:").bold()
-                    TextField(CurrentUser.shared.birthDate ?? "" + ":", text: $birthday).disabled(!self.isEditting)
-                    
-                }
-                Divider()
-                HStack{
-                    Text("Region:").bold()
-                    TextField(CurrentUser.shared.region ?? "" + ":", text: $region).disabled(!self.isEditting)
-                }
+                InfoView(name: $name, birthday: $birthday, region: $region, isEditting: $isEditting)
                 HStack {
                     if isEditting {
                         Button("cancel") {
