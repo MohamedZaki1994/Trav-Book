@@ -9,21 +9,27 @@
 import SwiftUI
 
 struct PlaceCardView: View {
-    @ObservedObject var viewModel: TopPlacesModel
     @State var rating: Rating?
-    var placeViewModel = PlaceCardViewModel()
+    @ObservedObject var viewModel: PlaceCardViewModel
+    @State var image: Image?
+    @State var uiImage: UIImage?
     var body: some View {
         VStack(alignment: .center) {
-            Image(systemName: "house.fill")
-            Text(viewModel.name ?? "").font(.system(size: 20, weight: .bold))
+            if image != nil {
+                image?.resizable().frame(height: 200)
+                    .cornerRadius(5)
+            } else {
+                Image(systemName: "house.fill")
+            }
+            Text(viewModel.dataModel?.name ?? "").font(.system(size: 20, weight: .bold))
                 .foregroundColor(Color.blue)
 
             VStack(alignment: .leading) {
                 HStack {
-                    Text("place: \(viewModel.region ?? "")").font(.system(size: 15))
+                    Text("place: \(viewModel.dataModel?.region ?? "")").font(.system(size: 15))
                     Spacer()
                     VStack(alignment: .trailing) {
-                        Text("\(String(format: "%.1f", viewModel.rating ?? 0)) / 10")
+                        Text("\(String(format: "%.1f", viewModel.dataModel?.rating ?? 0)) / 10")
                         switch rating {
                         case .none, .bad:
                             Image(systemName: "star")
@@ -37,13 +43,18 @@ struct PlaceCardView: View {
                         }
                     }
                 }
-                Text("email: \(viewModel.email ?? "")")
-                Text("costs: \(viewModel.price ?? 0)$")
-                Text("reviews \(viewModel.reviews ?? 0)")
+                Text("email: \(viewModel.dataModel?.email ?? "")")
+                Text("costs: \(viewModel.dataModel?.price ?? 0)$")
+                    .font(.system(size: 16, weight: .bold, design: .default))
+                    .foregroundColor(.green)
+                Text("reviews \(viewModel.dataModel?.reviews ?? 0)")
             }
-        } .padding()
+        }
         .onAppear() {
-           rating = placeViewModel.getRating(ratingNumber: viewModel.rating ?? 0)
+            rating = viewModel.getRating(ratingNumber: viewModel.dataModel?.rating ?? 0)
+            viewModel.getImage(id: (viewModel.dataModel?.name)!) { (uiimage) in
+                self.image = Image(uiImage: uiimage)
+            }
         }
     }
 }

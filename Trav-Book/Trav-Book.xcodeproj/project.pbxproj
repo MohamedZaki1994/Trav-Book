@@ -139,9 +139,8 @@
 		353AFB4A2515F2110069F5D2 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				353AFB4B2515F2220069F5D2 /* ProfileView.swift */,
 				353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */,
-				35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */,
+				353AFB4B2515F2220069F5D2 /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -266,6 +265,7 @@
 				3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */,
 				3544CE712539BE880070D7BE /* LoggedUser+CoreDataProperties.swift */,
 				35B2FD02265FC79B00D8CD1E /* TopPlacesModel.swift */,
+				35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";

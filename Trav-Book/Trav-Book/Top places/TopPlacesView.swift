@@ -12,19 +12,24 @@ struct TopPlacesView: View {
     @ObservedObject var viewModel: TopPlacesViewModel
 
     var body: some View {
-        VStack(spacing: 30) {
+        List {
             if !(viewModel.dataModel?.isEmpty ?? true) {
                 ForEach(viewModel.dataModel!, id: \.self.id) { place in
                     HStack {
-                        PlaceCardView(viewModel: place )
-                    }
+                        makePlaceCardView(model: place)
+                    }.listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
                 }
             }
-            Spacer()
         }
-            .onAppear(){
-                viewModel.getData()
-            }
+        .onAppear(){
+            viewModel.getData()
+        }
+    }
+
+    func makePlaceCardView(model: TopPlacesModel) -> some View {
+        let viewModel = PlaceCardViewModel()
+        viewModel.dataModel = model
+        return PlaceCardView(viewModel: viewModel)
     }
 }
 

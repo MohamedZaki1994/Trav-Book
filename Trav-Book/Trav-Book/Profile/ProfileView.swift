@@ -13,14 +13,15 @@ import Firebase
 struct ProfileView: View {
     @ObservedObject var profileViewModel = ProfileViewModel()
     
-    @State var instanceProfile = ProfileViewModel()
     @State private var isEditting = false
     @State private var inputImage: UIImage?
     @State var showingImagePicker = false
     @StateObject var object = CurrentUser.shared
     @State var refresh = false
     @ObservedObject var viewModel: DashboardViewModel
-
+    @State var name: String = ""
+    @State var birthday: String = ""
+    @State var region: String = ""
 
     var body: some View {
         NavigationView {
@@ -42,32 +43,32 @@ struct ProfileView: View {
                 }
                 HStack{
                     Text("Name:").bold()
-                    TextField(CurrentUser.shared.name ?? "" + ":", text: self.$instanceProfile.profileModel.name).disabled(!self.isEditting)
+                    TextField(CurrentUser.shared.name ?? "" + ":", text: $name).disabled(!self.isEditting)
                 }
                 Divider()
                 HStack{
                     Text("Birthday:").bold()
-                    TextField(CurrentUser.shared.birthDate ?? "" + ":", text: self.$instanceProfile.profileModel.birthday).disabled(!self.isEditting)
+                    TextField(CurrentUser.shared.birthDate ?? "" + ":", text: $birthday).disabled(!self.isEditting)
                     
                 }
                 Divider()
                 HStack{
                     Text("Region:").bold()
-                    TextField(CurrentUser.shared.region ?? "" + ":", text: self.$instanceProfile.profileModel.region).disabled(!self.isEditting)
+                    TextField(CurrentUser.shared.region ?? "" + ":", text: $region).disabled(!self.isEditting)
                 }
                 HStack {
                     if isEditting {
                         Button("cancel") {
                             self.isEditting = false
-                            self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
-                            self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
-                            self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
+                            name = CurrentUser.shared.name ?? ""
+                            birthday = CurrentUser.shared.birthDate ?? ""
+                            region = CurrentUser.shared.region ?? ""
                         }}
                     Button(isEditting ? "Save" : "Edit") {
                         self.isEditting.toggle()
-                        CurrentUser.shared.name = self.instanceProfile.profileModel.name
-                        CurrentUser.shared.birthDate = self.instanceProfile.profileModel.birthday
-                        CurrentUser.shared.region = self.instanceProfile.profileModel.region
+                        CurrentUser.shared.name = name
+                        CurrentUser.shared.birthDate = birthday
+                        CurrentUser.shared.region = region
                         CurrentUser.shared.updateUserInfo()
                     }
                 }
@@ -94,9 +95,9 @@ struct ProfileView: View {
                     }
                 }
                 .onAppear() {
-                    self.instanceProfile.profileModel.name = CurrentUser.shared.name ?? ""
-                    self.instanceProfile.profileModel.birthday = CurrentUser.shared.birthDate ?? ""
-                    self.instanceProfile.profileModel.region = CurrentUser.shared.region ?? ""
+                    name = CurrentUser.shared.name ?? ""
+                    birthday = CurrentUser.shared.birthDate ?? ""
+                    region = CurrentUser.shared.region ?? ""
                     profileViewModel.loadUserPosts()
                 }
                 .onDisappear() {

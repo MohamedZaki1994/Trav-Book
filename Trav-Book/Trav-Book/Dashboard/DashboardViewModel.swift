@@ -14,7 +14,6 @@ import Combine
 class DashboardViewModel: ObservableObject {
 
     var ref: DatabaseReference = Database.database().reference()
-    var switchSubscriber = Set<AnyCancellable>()
     var request = RequestHandler()
     let storage = Storage.storage()
 

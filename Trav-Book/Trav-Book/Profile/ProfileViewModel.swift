@@ -17,10 +17,6 @@ class ProfileViewModel: ObservableObject {
 
     init() {}
 
-    func fillProfile() {
-         profileModel = ProfileModel(name: "Zaki", birthday: "12-9-1994", region: "Egypt",gender: "male")
-     }
-
     func loadUserPosts() {
         request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id!)") { [weak self] (data, error) in
             self?.posts = data!

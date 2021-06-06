@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import UIKit
 import SwiftUI
-struct PlaceCardViewModel {
+import Firebase
+class PlaceCardViewModel: ObservableObject {
+
+    @Published var dataModel: TopPlacesModel?
+    let storage = Storage.storage()
     func getRating(ratingNumber: Double) -> Rating {
         switch ratingNumber {
         case 0..<5:
@@ -20,7 +25,11 @@ struct PlaceCardViewModel {
         }
     }
 
-    func getImage() {
-
+    func getImage(id: String, completion: ((UIImage) -> Void)?) {
+        storage.reference().child("hotels").child(id).child(String(0)+".jpg").getData(maxSize: 1*2048*2048) { (data, error) in
+                if let data = data, let image =  UIImage(data: data){
+                    completion?(image)
+                }
+            }
     }
 }
