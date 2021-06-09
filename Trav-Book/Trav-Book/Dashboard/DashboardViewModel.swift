@@ -130,7 +130,6 @@ class PostModel: Identifiable, ObservableObject, Codable {
     var comments: [String]?
     var date: Double?
     var userId: String?
-    var post: String?
 
     init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double,profileImage: String, userId: String) {
         self.id = id

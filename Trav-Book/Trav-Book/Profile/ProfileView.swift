@@ -41,22 +41,9 @@ struct ProfileView: View {
                 .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     ImagePicker(image: self.$inputImage)
                 }
-                InfoView(name: $name, birthday: $birthday, region: $region, isEditting: $isEditting)
-                HStack {
-                    if isEditting {
-                        Button("cancel") {
-                            self.isEditting = false
-                            name = CurrentUser.shared.name ?? ""
-                            birthday = CurrentUser.shared.birthDate ?? ""
-                            region = CurrentUser.shared.region ?? ""
-                        }}
-                    Button(isEditting ? "Save" : "Edit") {
-                        self.isEditting.toggle()
-                        CurrentUser.shared.name = name
-                        CurrentUser.shared.birthDate = birthday
-                        CurrentUser.shared.region = region
-                        CurrentUser.shared.updateUserInfo()
-                    }
+                Text(CurrentUser.shared.name ?? "").padding(.top, -20)
+                NavigationLink(destination: InfoView(name: $name, birthday: $birthday, region: $region, isEditting: $isEditting)) {
+                    Text("Edit profile")
                 }
                 Button(action: {
                     AuthProvider.shared.signOut()
@@ -89,9 +76,8 @@ struct ProfileView: View {
                 .onDisappear() {
                     print("finished")
                 }
-            }
+            }.navigationBarHidden(true)
         }
-
     }
 
     func loadImage() {

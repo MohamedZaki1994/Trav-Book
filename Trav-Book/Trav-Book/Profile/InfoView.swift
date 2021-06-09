@@ -29,6 +29,22 @@ struct InfoView: View {
             Text("Region:").bold()
             TextField(CurrentUser.shared.region ?? "" + ":", text: $region).disabled(!self.isEditting)
         }
+        HStack {
+            if isEditting {
+                Button("cancel") {
+                    self.isEditting = false
+                    name = CurrentUser.shared.name ?? ""
+                    birthday = CurrentUser.shared.birthDate ?? ""
+                    region = CurrentUser.shared.region ?? ""
+                }}
+            Button(isEditting ? "Save" : "Edit") {
+                self.isEditting.toggle()
+                CurrentUser.shared.name = name
+                CurrentUser.shared.birthDate = birthday
+                CurrentUser.shared.region = region
+                CurrentUser.shared.updateUserInfo()
+            }
+        }
     }
 }
 
