@@ -41,7 +41,9 @@ struct ProfileView: View {
                 .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     ImagePicker(image: self.$inputImage)
                 }
-                Text(CurrentUser.shared.name ?? "").padding(.top, -20)
+                Text(CurrentUser.shared.name ?? "")
+                    .padding(.top, -10)
+                    .padding(.bottom, 10)
                 NavigationLink(destination: InfoView(name: $name, birthday: $birthday, region: $region, isEditting: $isEditting)) {
                     Text("Edit profile")
                         .frame(width: UIScreen.main.bounds.width - 20, height: 40)
