@@ -44,12 +44,22 @@ struct ProfileView: View {
                 Text(CurrentUser.shared.name ?? "").padding(.top, -20)
                 NavigationLink(destination: InfoView(name: $name, birthday: $birthday, region: $region, isEditting: $isEditting)) {
                     Text("Edit profile")
+                        .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+                        .background(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
                 }
                 Button(action: {
                     AuthProvider.shared.signOut()
                 } ){
                     Text("Logout")
                 }
+                .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+                .background(Color.black)
+                .foregroundColor(.red)
+                .cornerRadius(5)
+                .padding(.top, 10)
+
                 List {
                     if profileViewModel.posts.isEmpty {
                         Text("Loading...")

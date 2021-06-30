@@ -19,6 +19,7 @@ struct UploadPost: View {
     @State private var numberOfImages = 0
     @State private var refresh = false
     @EnvironmentObject var model: DashboardViewModel
+    @State var place = ""
     var onDismiss: (() -> Void)?
 
     var body: some View {
@@ -34,20 +35,21 @@ struct UploadPost: View {
                 }
                 else {
                 TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
-                ForEach(0 ..< (image.count ?? 0), id: \.self) { im in
+                    ForEach(0 ..< (image.count ), id: \.self) { im in
                     image[im].resizable().frame(width: 300, height: 200)
                 }
                 HStack(spacing: 20) {
                 Button("Post") {
                     let name = CurrentUser.shared.name
                     print(numberOfImages)
-                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: wholeImages) {
+                    self.model.postDummy(name: name ?? "", text: self.postText, numberOfImages: numberOfImages,images: wholeImages, place: place) {
                         self.isPresented = false
                     }
                     image = []
                     self.postText = ""
                     numberOfImages = 0
                     wholeImages = []
+                    place = ""
                 }
                     Button {
                         print("uploading")
@@ -66,17 +68,21 @@ struct UploadPost: View {
                 .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
                     ImagePicker(image: self.$inputImage)
             }
-                if (!image.isEmpty) {
-                Button("cancel") {
-                    image = []
-                    wholeImages = []
-                    numberOfImages = 0
-                }
-            }
+                    if (!image.isEmpty) {
+                        Button("cancel") {
+                            image = []
+                            wholeImages = []
+                            numberOfImages = 0
+                        }
+                    }
+                    TextField("which place you are in", text: $place)
+                        .padding(.leading, 15)
 
-                Spacer()
+                    Spacer()
             }
             })
+        } .onDisappear() {
+            place = ""
         }
     }
     

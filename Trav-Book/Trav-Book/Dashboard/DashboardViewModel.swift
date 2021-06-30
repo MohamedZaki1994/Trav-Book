@@ -37,9 +37,11 @@ class DashboardViewModel: ObservableObject {
 
     func getData() {
         request.loadPosts(path: "Ref/posts") { [weak self] (data, error) in
-            self?.posts = data!
+            if let data = data {
+                self?.posts = data
+            }
             if self?.posts.isEmpty ?? true {
-                self?.posts.append(PostModel(id: "", name: "", imagesNumber: 0, postText: "", numberOfLike: 0, numberOfDislike: 0, comments: [""], date: 0, profileImage: "", userId: ""))
+                self?.posts.append(PostModel(id: "", name: "", imagesNumber: 0, postText: "", numberOfLike: 0, numberOfDislike: 0, comments: [""], date: 0, profileImage: "", userId: "", place: ""))
             }
             self?.isLoading = false
         }
@@ -71,7 +73,7 @@ class DashboardViewModel: ObservableObject {
          - text: uploaded text
 
      */
-    func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, completion: (() -> Void)? ) {
+    func postDummy(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, place: String, completion: (() -> Void)? ) {
         let numberOfPosts = posts.count
         let postId = UUID().uuidString
         if images?.count ?? 0 > 0 {
@@ -90,8 +92,8 @@ class DashboardViewModel: ObservableObject {
             }
         }
         let path = storage.reference().child("posts").child(postId).child("0").fullPath
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path])
-        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path])
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
         getData()
     }
 
@@ -130,8 +132,9 @@ class PostModel: Identifiable, ObservableObject, Codable {
     var comments: [String]?
     var date: Double?
     var userId: String?
+    var place: String
 
-    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double,profileImage: String, userId: String) {
+    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double,profileImage: String, userId: String, place: String) {
         self.id = id
         self.name = name
         self.imagesNumber = imagesNumber
@@ -142,5 +145,6 @@ class PostModel: Identifiable, ObservableObject, Codable {
         self.date = date
         self.profileImage = profileImage
         self.userId = userId
+        self.place = place
     }
 }
