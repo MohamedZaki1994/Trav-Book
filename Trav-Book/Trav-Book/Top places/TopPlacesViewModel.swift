@@ -16,8 +16,8 @@ class TopPlacesViewModel: ObservableObject {
     func getData() {
         status = .loading
         request.getData(path: "topPlaces", modelType: [TopPlacesModel].self) {[weak self] (model, error) in
-            self?.status = .finished
             self?.dataModel = model
+            self?.status = .finished
         }
     }
 }

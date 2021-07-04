@@ -11,7 +11,7 @@ import Firebase
 
 @available(iOS 14.0, *)
 struct ProfileView: View {
-    @ObservedObject var profileViewModel = ProfileViewModel()
+    @ObservedObject var profileViewModel: ProfileViewModel
     
     @State private var isEditting = false
     @State private var inputImage: UIImage?
@@ -63,10 +63,10 @@ struct ProfileView: View {
                 .padding(.top, 10)
 
                 List {
-                    if profileViewModel.posts.isEmpty {
+                    switch profileViewModel.status {
+                    case .loading:
                         Text("Loading...")
-                    } else {
-                        
+                    case .finished:
                         ForEach(profileViewModel.posts.reversed()) { post in
                             if #available(iOS 14.0, *) {
                                 PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
@@ -75,9 +75,16 @@ struct ProfileView: View {
                             } else {
                                 // Fallback on earlier versions
                             }
-                            
+
                         }
+                    case .initial:
+                        Text("").onAppear() {
+                            profileViewModel.loadUserPosts()
+                        }
+                    case .failure(error: let error):
+                        Text(error.debugDescription)
                     }
+
                 }
                 .onAppear() {
                     name = CurrentUser.shared.name ?? ""

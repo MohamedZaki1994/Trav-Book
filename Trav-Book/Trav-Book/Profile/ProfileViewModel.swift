@@ -13,13 +13,13 @@ class ProfileViewModel: ObservableObject {
     var request = RequestHandler()
     @Published var profileModel: ProfileModel = ProfileModel()
     @Published var posts = [PostModel]()
-    @Published var isLoading = false
-
-    init() {}
+    @Published var status: Status = .initial
 
     func loadUserPosts() {
+        status = .loading
         request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id!)") { [weak self] (data, error) in
             self?.posts = data!
+            self?.status = .finished
         }
     }
 
