@@ -11,11 +11,13 @@ import Foundation
 class TopPlacesViewModel: ObservableObject {
 
     @Published var dataModel: [TopPlacesModel]?
-
+    @Published var status: Status = .initial
     let request = RequestHandler()
     func getData() {
-        request.getData(path: "topPlaces", modelType: [TopPlacesModel].self) { (model, error) in
-            self.dataModel = model
+        status = .loading
+        request.getData(path: "topPlaces", modelType: [TopPlacesModel].self) {[weak self] (model, error) in
+            self?.status = .finished
+            self?.dataModel = model
         }
     }
 }

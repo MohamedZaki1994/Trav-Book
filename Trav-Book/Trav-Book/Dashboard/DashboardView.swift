@@ -24,13 +24,16 @@ struct DashboardView: View {
 //
 //                if self.viewModel.isLoading || self.refreshing{
 //                    Text("loading")
-                if self.viewModel.isLoading {
-                    Text("loading")
-                } else {
+                switch viewModel.status {
+                case .initial:
+                    Text("")
+                case .loading:
+                    Text("")
+                case .finished:
                     UploadPost(onDismiss: {
                         refresh = true
                     })
-                        .environmentObject(self.viewModel)
+                    .environmentObject(self.viewModel)
                     ForEach(viewModel.posts.reversed()) { post in
                         if #available(iOS 14.0, *) {
                             PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
@@ -39,12 +42,31 @@ struct DashboardView: View {
                         } else {
                             // Fallback on earlier versions
                         }
-
                     }
-                    .onAppear(){
-                        viewModel.isLoading = false
-                    }
+                case .failure(error: let error):
+                    Text(error.debugDescription)
                 }
+//                if self.viewModel.isLoading {
+//                    Text("loading")
+//                } else {
+//                    UploadPost(onDismiss: {
+//                        refresh = true
+//                    })
+//                        .environmentObject(self.viewModel)
+//                    ForEach(viewModel.posts.reversed()) { post in
+//                        if #available(iOS 14.0, *) {
+//                            PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
+//                                .onTapGesture {}
+//                                .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+//                        } else {
+//                            // Fallback on earlier versions
+//                        }
+//
+//                    }
+//                    .onAppear(){
+//                        viewModel.isLoading = false
+//                    }
+//                }
 //                        .onAppear() {
 //                            self.viewModel.getData()
 //                            self.refreshing = false
@@ -72,25 +94,10 @@ struct DashboardView: View {
 //                }
 //                Spacer()
             }
-//            .environment(\.defaultMinListRowHeight, 100)
             .onAppear() {
-//                if !self.viewModel.posts.isEmpty {
-//                    self.viewModel.refresh()
-//                } else {
-//                    self.viewModel.isLoading = true
-//                }
                 viewModel.getData()
-                viewModel.isLoading = true
         }
             .navigationBarHidden(true)
-//    .navigationBarHidden(false)
             }
     }
 }
-
-//struct DashboardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DashboardView(viewModel: DashboardViewModel())
-//        //        DashboardView(isRefresh: Binding.constant(false))
-//    }
-//}

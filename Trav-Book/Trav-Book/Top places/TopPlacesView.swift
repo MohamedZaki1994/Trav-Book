@@ -13,12 +13,19 @@ struct TopPlacesView: View {
 
     var body: some View {
         List {
-            if !(viewModel.dataModel?.isEmpty ?? true) {
+            switch viewModel.status {
+            case .initial:
+                Text("")
+            case .loading:
+                Text("loading")
+            case .finished:
                 ForEach(viewModel.dataModel!, id: \.self.id) { place in
                     HStack {
                         makePlaceCardView(model: place)
                     }.listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
                 }
+            case .failure(error: let error):
+                Text(error.debugDescription)
             }
         }
         .onAppear(){

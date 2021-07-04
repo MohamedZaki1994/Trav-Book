@@ -13,6 +13,8 @@ import FirebaseStorage
 import Combine
 class DashboardViewModel: ObservableObject {
 
+    @Published var status: Status = .initial
+
     var ref: DatabaseReference = Database.database().reference()
     var request = RequestHandler()
     let storage = Storage.storage()
@@ -27,23 +29,25 @@ class DashboardViewModel: ObservableObject {
 //
 //            }
             posts.append(postsModel!)
-            isLoading = false
         }
     }
-
-    @Published var isLoading = false
     @Published var isRefresh = false
     @Published var posts = [PostModel]()
 
     func getData() {
+        status = .loading
         request.loadPosts(path: "Ref/posts") { [weak self] (data, error) in
+            if error != nil {
+                self?.status = .failure(error: error)
+            }
             if let data = data {
                 self?.posts = data
+                self?.status = .finished
             }
             if self?.posts.isEmpty ?? true {
                 self?.posts.append(PostModel(id: "", name: "", imagesNumber: 0, postText: "", numberOfLike: 0, numberOfDislike: 0, comments: [""], date: 0, profileImage: "", userId: "", place: ""))
+                self?.status = .finished
             }
-            self?.isLoading = false
         }
     }
 
