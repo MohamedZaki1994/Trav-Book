@@ -13,6 +13,7 @@ struct PlaceCardView: View {
     @ObservedObject var viewModel: PlaceCardViewModel
     @State var image: Image?
     @State var uiImage: UIImage?
+    @State private var shouldGoToDetailsView = false
     var body: some View {
         VStack(alignment: .center) {
             if image != nil {
@@ -48,14 +49,25 @@ struct PlaceCardView: View {
                     .font(.system(size: 16, weight: .bold, design: .default))
                     .foregroundColor(.green)
                 Text("reviews \(viewModel.dataModel?.reviews ?? 0)")
+                NavigationLink("", destination: makeTopPlaceDetailsView(), isActive: $shouldGoToDetailsView)
             }
         }
         .onAppear() {
             rating = viewModel.getRating(ratingNumber: viewModel.dataModel?.rating ?? 0)
-            viewModel.getImage(id: (viewModel.dataModel?.name)!) { (uiimage) in
-                self.image = Image(uiImage: uiimage)
+            if image == nil {
+                viewModel.getImage(id: (viewModel.dataModel?.name)!) { (uiimage) in
+                    self.image = Image(uiImage: uiimage)
+                }
             }
         }
+        .onTapGesture {
+            shouldGoToDetailsView = true
+        }
+    }
+
+    func makeTopPlaceDetailsView() -> some View {
+        let topPlaceDetailsViewModel = TopPlaceDetailsViewModel()
+        return TopPlaceDetailsView(viewModel: topPlaceDetailsViewModel)
     }
 }
 

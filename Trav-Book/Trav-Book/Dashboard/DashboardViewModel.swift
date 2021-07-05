@@ -96,8 +96,8 @@ class DashboardViewModel: ObservableObject {
             }
         }
         let path = storage.reference().child("posts").child(postId).child("0").fullPath
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
-        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"post": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
         getData()
     }
 

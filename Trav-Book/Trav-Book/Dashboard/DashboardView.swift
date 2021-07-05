@@ -21,9 +21,6 @@ struct DashboardView: View {
         return
             NavigationView {
             List {
-//
-//                if self.viewModel.isLoading || self.refreshing{
-//                    Text("loading")
                 switch viewModel.status {
                 case .initial:
                     Text("")

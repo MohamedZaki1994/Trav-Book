@@ -68,14 +68,10 @@ struct ProfileView: View {
                         Text("Loading...")
                     case .finished:
                         ForEach(profileViewModel.posts.reversed()) { post in
-                            if #available(iOS 14.0, *) {
-                                PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
-                                    .onTapGesture {}
-                                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
-                            } else {
-                                // Fallback on earlier versions
-                            }
-
+                            PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
+                                .onTapGesture {}
+                                .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                            
                         }
                     case .initial:
                         Text("").onAppear() {

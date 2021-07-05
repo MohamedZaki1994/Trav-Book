@@ -43,9 +43,11 @@ struct PostView: View {
                         Image(systemName: "person")
                     }
                     Text(self.post.name ?? "")
-                    Text("in").padding(.leading, 10)
-                    Text(post.place)
-                        .foregroundColor(.green)
+                    if !post.place.isEmpty {
+                        Text("in").padding(.leading, 10)
+                        Text(post.place)
+                            .foregroundColor(.green)
+                    }
                     Spacer()
                     Text(self.post.date?.timeAgo() ?? "0.0")
                 } .padding(8)

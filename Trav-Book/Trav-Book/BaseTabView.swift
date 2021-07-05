@@ -12,6 +12,7 @@ struct BaseTabView: View {
     @State var isRefresh = true
     @State var refreshing = false
     let dashboardViewModel = DashboardViewModel()
+    let topPlaceViewModel = TopPlacesViewModel()
     var body: some View {
 
         TabView() {
@@ -24,10 +25,15 @@ struct BaseTabView: View {
                         }
                 }
 
-            TopPlacesView(viewModel: TopPlacesViewModel())
+            TopPlacesView(viewModel: topPlaceViewModel)
                 .tabItem {
                     Image(systemName: "heart.circle.fill")
                     Text("Top places")
+                }
+            NotificationsContainerView()
+                .tabItem {
+                    Image(systemName: "bell")
+                    Text("Notifications")
                 }
             if #available(iOS 14.0, *) {
                 ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel).tabItem {

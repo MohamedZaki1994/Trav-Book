@@ -12,24 +12,26 @@ struct TopPlacesView: View {
     @ObservedObject var viewModel: TopPlacesViewModel
 
     var body: some View {
-        List {
-            switch viewModel.status {
-            case .initial:
-                Text("")
-            case .loading:
-                Text("loading")
-            case .finished:
-                ForEach(viewModel.dataModel!, id: \.self.id) { place in
-                    HStack {
-                        makePlaceCardView(model: place)
-                    }.listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+        NavigationView {
+            List {
+                switch viewModel.status {
+                case .initial:
+                    Text("").onAppear() {
+                        viewModel.getData()
+                    }
+                case .loading:
+                    Text("loading")
+                case .finished:
+                    ForEach(viewModel.dataModel!, id: \.self.id) { place in
+                        HStack {
+                            makePlaceCardView(model: place)
+                        }.listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+                    }
+                case .failure(error: let error):
+                    Text(error.debugDescription)
                 }
-            case .failure(error: let error):
-                Text(error.debugDescription)
             }
-        }
-        .onAppear(){
-            viewModel.getData()
+            .navigationBarHidden(true)
         }
     }
 
