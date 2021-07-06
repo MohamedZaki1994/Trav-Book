@@ -42,6 +42,7 @@
 		354CEB9F2693322F0083BDEF /* TopPlaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */; };
 		354CEBA32693347F0083BDEF /* TopPlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */; };
 		354DE47926638A750053B318 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354DE47826638A750053B318 /* PlaceCardView.swift */; };
+		3557317E2694A9340025E621 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557317D2694A9340025E621 /* HotelModel.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
@@ -103,6 +104,7 @@
 		354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsView.swift; sourceTree = "<group>"; };
 		354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		354DE47826638A750053B318 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
+		3557317D2694A9340025E621 /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -284,8 +286,8 @@
 				35B2FCF4265FC2EA00D8CD1E /* TopPlacesView.swift */,
 				354DE47826638A750053B318 /* PlaceCardView.swift */,
 				3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */,
-				354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */,
 				354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */,
+				354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */,
 			);
 			path = "Top places";
 			sourceTree = "<group>";
@@ -300,6 +302,7 @@
 				3544CE712539BE880070D7BE /* LoggedUser+CoreDataProperties.swift */,
 				35B2FD02265FC79B00D8CD1E /* TopPlacesModel.swift */,
 				35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */,
+				3557317D2694A9340025E621 /* HotelModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				354CEB9F2693322F0083BDEF /* TopPlaceDetailsView.swift in Sources */,
 				354CEBA32693347F0083BDEF /* TopPlaceDetailsViewModel.swift in Sources */,
 				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
+				3557317E2694A9340025E621 /* HotelModel.swift in Sources */,
 				353AFB4C2515F2220069F5D2 /* ProfileView.swift in Sources */,
 				3541D7E225308FAE00FAFC4A /* DateFormatter.swift in Sources */,
 				3547E6D025F637BF00CE805B /* PostViewModel.swift in Sources */,

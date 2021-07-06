@@ -57,6 +57,7 @@ struct PlaceCardView: View {
             if image == nil {
                 viewModel.getImage(id: (viewModel.dataModel?.name)!) { (uiimage) in
                     self.image = Image(uiImage: uiimage)
+                    self.uiImage = uiimage
                 }
             }
         }
@@ -67,6 +68,8 @@ struct PlaceCardView: View {
 
     func makeTopPlaceDetailsView() -> some View {
         let topPlaceDetailsViewModel = TopPlaceDetailsViewModel()
+        topPlaceDetailsViewModel.image = uiImage
+        topPlaceDetailsViewModel.name = viewModel.dataModel?.name
         return TopPlaceDetailsView(viewModel: topPlaceDetailsViewModel)
     }
 }

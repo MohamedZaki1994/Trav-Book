@@ -7,7 +7,21 @@
 //
 
 import Foundation
+import UIKit
 
 class TopPlaceDetailsViewModel: ObservableObject {
-    
+    var image: UIImage?
+    var name: String?
+    @Published var model: HotelModel?
+    let request = RequestHandler()
+    var status: Status = .initial
+
+
+    func getData() {
+        status = .loading
+        request.getData(path: "Hotels/\(name!)", modelType: HotelModel.self) {[weak self] (model, error) in
+            self?.model = model
+            self?.status = .finished
+        }
+    }
 }
