@@ -68,7 +68,7 @@ struct ProfileView: View {
                         Text("Loading...")
                     case .finished:
                         ForEach(profileViewModel.posts.reversed()) { post in
-                            PostView(comments: post.comments ?? [""], post: post, refreshPost: $refresh)
+                            PostView(comments: post.comments ?? [Comment(name: "", id: "", text: "")], post: post, refreshPost: $refresh)
                                 .onTapGesture {}
                                 .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                             

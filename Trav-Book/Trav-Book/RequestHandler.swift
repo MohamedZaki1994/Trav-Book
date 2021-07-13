@@ -39,8 +39,14 @@ class RequestHandler {
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
                 for (_,value) in dictionary {
                     guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
-                    guard let postModel = try? JSONDecoder().decode(PostModel.self, from: data) else {return}
-                    posts.append(postModel)
+                    do {
+                    let postModel = try JSONDecoder().decode(PostModel.self, from: data)
+                        posts.append(postModel)
+                    }
+                    catch {
+                        print(error)
+                    }
+
                 }
                 completion?(posts,nil)
             } else {

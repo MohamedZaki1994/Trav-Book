@@ -13,43 +13,53 @@ struct CommentView: View {
     @State var comment = ""
     @State var shouldRefresh: Bool = false
     @Environment(\.presentationMode) var presentationMode
-    var postviewmodel = PostViewModel()
-    @StateObject var post: PostModel
+    @ObservedObject var viewModel = CommentViewModel()
+    var postId: String
     var commentAction: ((String) -> Void)?
     var body: some View {
         VStack {
-            if !shouldRefresh {
-                if (post.comments?.count == 1) {
-
+            switch viewModel.status {
+            case .initial:
+                Text("").onAppear() {
+                    viewModel.status = .finished
+                }
+            case .loading:
+                Text("").onAppear() {
+                    viewModel.loadComments(userId: postId)
+                }
+            case .finished:
+                if (viewModel.commentModel?.isEmpty ?? true) {
+                    Text("No comments yet")
                 } else {
-                    ForEach(post.comments!, id: \.self) { comment in
+                    ForEach(viewModel.commentModel!, id: \.uuid) { comment in
                         HStack {
-                            Text(comment)
+                            Image(systemName: "person.fill")
+                            Text("\(comment.name): \(comment.text)")
                             Spacer()
                         }
                     }
                     Spacer()
                 }
+                Spacer()
+                HStack {
                 TextField("your comment...", text: $comment).lineLimit(0)
 
                 HStack {
                     Button("Done") {
-                        postviewmodel.comment(currentPost: post, comment: comment)
-                        shouldRefresh.toggle()
-                        shouldRefresh.toggle()
+                        viewModel.comment(postId: postId, comment: Comment(name: CurrentUser.shared.name!, id: CurrentUser.shared.id!, text: comment))
                         comment = ""
                     }
                     Button("Close") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                }.padding()
                 }
+            case .failure(error: let error):
+                Text(error.debugDescription)
             }
+        }.navigationBarTitleDisplayMode(.inline)
+        .onAppear() {
+            viewModel.loadComments(userId: postId)
         }
     }
 }
-
-//struct CommentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CommentView()
-//    }
-//}

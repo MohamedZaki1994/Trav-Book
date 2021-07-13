@@ -45,7 +45,8 @@ class DashboardViewModel: ObservableObject {
                 self?.status = .finished
             }
             if self?.posts.isEmpty ?? true {
-                self?.posts.append(PostModel(id: "", name: "", imagesNumber: 0, postText: "", numberOfLike: 0, numberOfDislike: 0, comments: [""], date: 0, profileImage: "", userId: "", place: ""))
+                let comment = Comment(name: "", id: "", text: "")
+                self?.posts.append(PostModel(id: "", name: "", imagesNumber: 0, postText: "", numberOfLike: 0, numberOfDislike: 0, comments: [comment], date: 0, profileImage: "", userId: "", place: ""))
                 self?.status = .finished
             }
         }
@@ -96,8 +97,11 @@ class DashboardViewModel: ObservableObject {
             }
         }
         let path = storage.reference().child("posts").child(postId).child("0").fullPath
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
-        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "comments": [""], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        let comment = Comment(name: "", id: "", text: "")
+//        guard let data = try? JSONEncoder().encode(comment) else { return }
+//        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return }
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "comments": [comment.dict], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "comments": [comment.dict], "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
         getData()
     }
 
@@ -133,12 +137,12 @@ class PostModel: Identifiable, ObservableObject, Codable {
     var postText: String?
     var numberOfLike: Int?
     var numberOfDislike: Int?
-    var comments: [String]?
+    var comments: [Comment]?
     var date: Double?
     var userId: String?
     var place: String
 
-    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [String], date: Double,profileImage: String, userId: String, place: String) {
+    init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, comments: [Comment], date: Double,profileImage: String, userId: String, place: String) {
         self.id = id
         self.name = name
         self.imagesNumber = imagesNumber
@@ -150,5 +154,22 @@ class PostModel: Identifiable, ObservableObject, Codable {
         self.profileImage = profileImage
         self.userId = userId
         self.place = place
+    }
+}
+
+struct Comment: Codable, Identifiable {
+    let uuid = UUID()
+    let name: String
+    let id: String
+    let text: String
+}
+
+
+extension Encodable {
+
+    var dict : [String: Any]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+        return json as? [String : Any]
     }
 }

@@ -11,8 +11,8 @@ import Firebase
 
 class PostViewModel: ObservableObject {
 
-//    @Published var posts = [PostModel]()
     var ref: DatabaseReference = Database.database().reference()
+    @Published var status: Status = .initial
 
     func update(currentPost: PostModel, like: Bool?) {
         guard let id = currentPost.id else {return}
@@ -26,15 +26,16 @@ class PostViewModel: ObservableObject {
         }
     }
 
-    func comment(currentPost: PostModel, comment: String) {
-        let comment = "\(CurrentUser.shared.name!): \(comment)"
-        currentPost.comments?.append(comment)
-        var nsArray = [String]()
-        nsArray.append(contentsOf: currentPost.comments!)
-        currentPost.comments = nsArray
+    func comment(currentPost: PostModel, comment: Comment) {
+        var comments = currentPost.comments
+        comments?.append(comment)
+        var commentsInDic = [[String : Any]?]()
+        comments?.forEach({ (comment) in
+            commentsInDic.append(comment.dict)
+        })
         guard let id = currentPost.id else {return}
-        ref.child("Ref").child("posts/\(id)/comments").setValue(nsArray)
-        ref.child("UserPosts").child("\(currentPost.userId!)/\(id)/comments").setValue(nsArray)
+        ref.child("Ref").child("Comments/\(id)").setValue(commentsInDic)
+        status = .loading
     }
 
     func getImage(post: PostModel, completion: (([Data?]?, Data) -> Void)?){

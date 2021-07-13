@@ -17,7 +17,7 @@ struct PostView: View {
     var user = CurrentUser.shared
     let storage = Storage.storage()
 
-    @State var comments: [String] = [String]()
+    @State var comments: [Comment] = [Comment]()
     @State private var isCommenting = false
     @State private var numberOfLike: Int = 0
     @State private var numberOfDislike: Int = 0
@@ -92,7 +92,7 @@ struct PostView: View {
                     .buttonStyle(PrimaryButtonStyle())
                     Spacer()
                     if #available(iOS 14.0, *) {
-                        NavigationLink(destination: CommentView(post: post), isActive: self.$isCommenting) {
+                        NavigationLink(destination: CommentView(postId: post.id ?? ""), isActive: self.$isCommenting) {
                             EmptyView()
                         }
                         .buttonStyle(PlainButtonStyle())

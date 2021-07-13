@@ -18,8 +18,10 @@ class ProfileViewModel: ObservableObject {
     func loadUserPosts() {
         status = .loading
         request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id!)") { [weak self] (data, error) in
-            self?.posts = data!
-            self?.status = .finished
+            if let data = data {
+                self?.posts = data
+                self?.status = .finished
+            }
         }
     }
 
