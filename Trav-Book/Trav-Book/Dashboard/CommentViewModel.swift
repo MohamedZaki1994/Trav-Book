@@ -31,6 +31,7 @@ class CommentViewModel: ObservableObject {
             commentsInDic.append(comment.dict)
         })
         ref.child("Ref").child("Comments/\(postId)").setValue(commentsInDic)
+        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentModel?.count ?? 0])
         status = .loading
     }
 }

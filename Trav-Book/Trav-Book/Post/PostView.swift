@@ -21,7 +21,7 @@ struct PostView: View {
     @State private var isCommenting = false
     @State private var numberOfLike: Int = 0
     @State private var numberOfDislike: Int = 0
-    @State var post: PostModel
+    @ObservedObject var post: PostModel
     @State var image = [Image?]()
     @State var profileImage: Image?
     @Binding var refreshPost: Bool
@@ -105,7 +105,7 @@ struct PostView: View {
                         self.isCommenting = true
 
                     }) {
-                        Text("\((post.comments?.count ?? 0) - 1) comment").font(.system(size: 14))
+                        Text("\((post.numberOfComments ?? 0)) comment").font(.system(size: 14))
                     }
                     .buttonStyle(PrimaryButtonStyle())
                     .padding(10)

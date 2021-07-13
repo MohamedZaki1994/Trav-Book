@@ -26,18 +26,6 @@ class PostViewModel: ObservableObject {
         }
     }
 
-    func comment(currentPost: PostModel, comment: Comment) {
-        var comments = currentPost.comments
-        comments?.append(comment)
-        var commentsInDic = [[String : Any]?]()
-        comments?.forEach({ (comment) in
-            commentsInDic.append(comment.dict)
-        })
-        guard let id = currentPost.id else {return}
-        ref.child("Ref").child("Comments/\(id)").setValue(commentsInDic)
-        status = .loading
-    }
-
     func getImage(post: PostModel, completion: (([Data?]?, Data) -> Void)?){
         let counter = post.imagesNumber!
         var datas = [Data]()
