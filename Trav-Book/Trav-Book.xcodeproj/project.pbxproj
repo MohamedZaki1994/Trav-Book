@@ -37,6 +37,9 @@
 		3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */; };
 		3547E6D025F637BF00CE805B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547E6CF25F637BF00CE805B /* PostViewModel.swift */; };
 		35481D34269D8C6500D7581E /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35481D33269D8C6500D7581E /* CommentViewModel.swift */; };
+		35481D38269DC45500D7581E /* SingleCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35481D37269DC45500D7581E /* SingleCommentView.swift */; };
+		35481D3C269DC5A500D7581E /* SingleCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35481D3B269DC5A500D7581E /* SingleCommentViewModel.swift */; };
+		35481D41269DC8A300D7581E /* Image+Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35481D40269DC8A300D7581E /* Image+Modifier.swift */; };
 		3548B3A726691BEF00502B57 /* PlaceCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */; };
 		354CEB2C26930CFD0083BDEF /* NotificationsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEB2B26930CFD0083BDEF /* NotificationsContainerView.swift */; };
 		354CEB9B269323E40083BDEF /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEB9A269323E40083BDEF /* NotificationView.swift */; };
@@ -100,6 +103,9 @@
 		3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3547E6CF25F637BF00CE805B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		35481D33269D8C6500D7581E /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		35481D37269DC45500D7581E /* SingleCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommentView.swift; sourceTree = "<group>"; };
+		35481D3B269DC5A500D7581E /* SingleCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommentViewModel.swift; sourceTree = "<group>"; };
+		35481D40269DC8A300D7581E /* Image+Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Modifier.swift"; sourceTree = "<group>"; };
 		3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardViewModel.swift; sourceTree = "<group>"; };
 		354CEB2B26930CFD0083BDEF /* NotificationsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsContainerView.swift; sourceTree = "<group>"; };
 		354CEB9A269323E40083BDEF /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 		3541D7E025308F9500FAFC4A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				35481D40269DC8A300D7581E /* Image+Modifier.swift */,
 				3541D7E125308FAE00FAFC4A /* DateFormatter.swift */,
 			);
 			path = Extensions;
@@ -278,6 +285,8 @@
 				3531C099252F1DF70074E657 /* UploadPost.swift */,
 				3538C59B2531C8ED009B928B /* CommentView.swift */,
 				35481D33269D8C6500D7581E /* CommentViewModel.swift */,
+				35481D37269DC45500D7581E /* SingleCommentView.swift */,
+				35481D3B269DC5A500D7581E /* SingleCommentViewModel.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -539,8 +548,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35481D3C269DC5A500D7581E /* SingleCommentViewModel.swift in Sources */,
 				353A6803252366FB0097B72F /* SignupView.swift in Sources */,
 				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
+				35481D38269DC45500D7581E /* SingleCommentView.swift in Sources */,
 				3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */,
 				35481D34269D8C6500D7581E /* CommentViewModel.swift in Sources */,
 				35B2FCF5265FC2EA00D8CD1E /* TopPlacesView.swift in Sources */,
@@ -571,6 +582,7 @@
 				354CEB2C26930CFD0083BDEF /* NotificationsContainerView.swift in Sources */,
 				35391A852527711000892681 /* UserModel.swift in Sources */,
 				3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */,
+				35481D41269DC8A300D7581E /* Image+Modifier.swift in Sources */,
 				3543FBA62691B402006E3D52 /* Status.swift in Sources */,
 				3531C09A252F1DF70074E657 /* UploadPost.swift in Sources */,
 				354DE47926638A750053B318 /* PlaceCardView.swift in Sources */,

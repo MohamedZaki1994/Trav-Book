@@ -34,10 +34,7 @@ struct PostView: View {
             VStack(alignment: .leading) {
                 HStack {
                     if profileImage != nil {
-                        profileImage?.resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 60, height: 60)
+                        profileImage?.imageIconModifier(width: 60, height: 60)
 
                     } else {
                         Image(systemName: "person")

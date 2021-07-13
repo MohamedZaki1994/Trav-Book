@@ -56,11 +56,7 @@ struct SignupView: View {
                 if image == nil {
                     Image(systemName: "person")
                 } else {
-                    image?.resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(width: 150, height: 150)
-                        .padding()
+                    image?.imageIconModifier(width: 150, height: 150)
 
                 }
                 Spacer()

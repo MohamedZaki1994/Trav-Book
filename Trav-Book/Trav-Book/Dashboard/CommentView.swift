@@ -11,11 +11,10 @@ import SwiftUI
 @available(iOS 14.0, *)
 struct CommentView: View {
     @State var comment = ""
-    @State var shouldRefresh: Bool = false
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel = CommentViewModel()
+    @State var image: Image?
     var postId: String
-    var commentAction: ((String) -> Void)?
     var body: some View {
         VStack {
             switch viewModel.status {
@@ -32,11 +31,7 @@ struct CommentView: View {
                     Text("No comments yet")
                 } else {
                     ForEach(viewModel.commentModel!, id: \.uuid) { comment in
-                        HStack {
-                            Image(systemName: "person.fill")
-                            Text("\(comment.name): \(comment.text)")
-                            Spacer()
-                        }
+                        SingleCommentView(comment: comment)
                     }
                     Spacer()
                 }

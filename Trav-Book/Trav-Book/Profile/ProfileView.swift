@@ -28,10 +28,7 @@ struct ProfileView: View {
             VStack {
                 Group {
                     if object.profileImage != nil {
-                        object.profileImage?.resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 100, height: 100)
+                        object.profileImage?.imageIconModifier(width: 100, height: 100)
                     } else {
                         Image(systemName: "person")
                     }
