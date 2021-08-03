@@ -9,13 +9,14 @@
 import SwiftUI
 import Combine
 
+@available(iOS 14.0, *)
 struct DashboardView: View {
 
     @ObservedObject var viewModel: DashboardViewModel
     @State private var isAlert = false
     @State var indexSet: IndexSet?
     @State var refresh = false
-    @Binding var refreshing: Bool
+    var factory: FactoryManager?
 
     var body: some View {
         return
@@ -33,7 +34,7 @@ struct DashboardView: View {
                     .environmentObject(self.viewModel)
                     ForEach(viewModel.posts.reversed()) { post in
                         if #available(iOS 14.0, *) {
-                            PostView(post: post, refreshPost: $refresh)
+                            PostView(factory: factory, post: post, refreshPost: $refresh)
                                 .onTapGesture {}
                                 .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                         } else {

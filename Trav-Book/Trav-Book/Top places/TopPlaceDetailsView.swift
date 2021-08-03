@@ -15,12 +15,9 @@ struct TopPlaceDetailsView: View {
             VStack {
                 switch viewModel.status {
                 case .finished:
-                    Image(uiImage: viewModel.image ?? UIImage())
-                        .resizable()
-                        .frame(width: UIScreen.main.bounds.width, height: 400)
-                    Text(viewModel.model?.hotelDescription ?? "")
-                    Text(viewModel.model?.address ?? "")
-                    Spacer()
+                    ScrollView {
+                        TopPlaceDetailsInfoView(viewModel: viewModel)
+                    }
                 case .loading:
                     Text("loading")
                 case .initial:

@@ -8,12 +8,14 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct PlaceCardView: View {
     @State var rating: Rating?
     @ObservedObject var viewModel: PlaceCardViewModel
     @State var image: Image?
     @State var uiImage: UIImage?
     @State private var shouldGoToDetailsView = false
+    var factory: FactoryManager?
     var body: some View {
         VStack(alignment: .center) {
             if image != nil {
@@ -49,7 +51,7 @@ struct PlaceCardView: View {
                     .font(.system(size: 16, weight: .bold, design: .default))
                     .foregroundColor(.green)
                 Text("reviews \(viewModel.dataModel?.reviews ?? 0)")
-                NavigationLink("", destination: makeTopPlaceDetailsView(), isActive: $shouldGoToDetailsView)
+                NavigationLink("", destination: factory?.makeTopPlaceDetailsView(name: viewModel.dataModel?.name ?? "", image: uiImage), isActive: $shouldGoToDetailsView)
             }
         }
         .onAppear() {
@@ -64,13 +66,6 @@ struct PlaceCardView: View {
         .onTapGesture {
             shouldGoToDetailsView = true
         }
-    }
-
-    func makeTopPlaceDetailsView() -> some View {
-        let topPlaceDetailsViewModel = TopPlaceDetailsViewModel()
-        topPlaceDetailsViewModel.image = uiImage
-        topPlaceDetailsViewModel.name = viewModel.dataModel?.name
-        return TopPlaceDetailsView(viewModel: topPlaceDetailsViewModel)
     }
 }
 

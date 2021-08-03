@@ -8,24 +8,25 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct BaseTabView: View {
     @State var isRefresh = true
     @State var refreshing = false
     let dashboardViewModel = DashboardViewModel()
     let topPlaceViewModel = TopPlacesViewModel()
+    var factory: FactoryManager?
     var body: some View {
-
         TabView() {
-            DashboardView(viewModel: dashboardViewModel, refreshing: $refreshing)
-                    .tabItem {
-                        VStack {
-                            Image(systemName: "house")
-                            Text("Dashboard")
+            DashboardView(viewModel: dashboardViewModel, factory: factory)
+                .tabItem {
+                    VStack {
+                        Image(systemName: "house")
+                        Text("Dashboard")
 
-                        }
+                    }
                 }
 
-            TopPlacesView(viewModel: topPlaceViewModel)
+            TopPlacesView(viewModel: topPlaceViewModel, factory: factory!)
                 .tabItem {
                     Image(systemName: "heart.circle.fill")
                     Text("Top places")
@@ -35,15 +36,12 @@ struct BaseTabView: View {
                     Image(systemName: "bell")
                     Text("Notifications")
                 }
-            if #available(iOS 14.0, *) {
-                ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel).tabItem {
-                    VStack {
-                        Image(systemName: "person")
-                        Text("Profile")
-                    }
+            ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel).tabItem {
+                VStack {
+                    Image(systemName: "house")
+                    Text("Dashboard")
+                    
                 }
-            } else {
-                // Fallback on earlier versions
             }
         }
         .navigationBarItems(trailing:

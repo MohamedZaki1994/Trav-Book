@@ -10,13 +10,15 @@ import SwiftUI
 
 struct NotificationsContainerView: View {
     var body: some View {
-        List {
-            VStack {
-                ForEach(1...10, id: \.self) {
-                    Text("\($0).")
-                    NotificationView()
+        NavigationView {
+            List {
+                VStack {
+                    ForEach(1...10, id: \.self) {
+                        Text("\($0).")
+                        NotificationView()
+                    }
                 }
-            }
+            }.navigationBarTitle("Notifications")
         }
     }
 }

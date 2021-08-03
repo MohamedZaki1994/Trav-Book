@@ -77,7 +77,7 @@ class AuthProvider: ObservableObject {
     }
 
     func getProfileImage(completion: ((Bool) -> Void)?) {
-        storage.child("Users").child(CurrentUser.shared.id ?? "").getData(maxSize: 1*2048*2048) { (metaData, error) in
+        storage.child("Users").child(CurrentUser.shared.id).getData(maxSize: 1*2048*2048) { (metaData, error) in
             if error == nil {
                 CurrentUser.shared.profileImage = Image(uiImage: UIImage(data: metaData!)!)
                 completion?(true)
@@ -97,7 +97,7 @@ class AuthProvider: ObservableObject {
         let data = image.jpegData(compressionQuality: 0.2)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        Storage.storage().reference().child("Users").child(CurrentUser.shared.id!).putData(data!, metadata: metadata) { (metaData, error) in
+        Storage.storage().reference().child("Users").child(CurrentUser.shared.id).putData(data!, metadata: metadata) { (metaData, error) in
             if error != nil {
                 return
             }

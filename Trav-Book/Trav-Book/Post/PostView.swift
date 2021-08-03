@@ -10,12 +10,14 @@ import SwiftUI
 import Firebase
 import FirebaseStorage
 
+@available(iOS 14.0, *)
 struct PostView: View {
     var postText: String = ""
     var profileImageString: String = ""
     var profileName: String = ""
     var user = CurrentUser.shared
     let storage = Storage.storage()
+    var factory: FactoryManager?
 
     @State var comments: [Comment] = [Comment]()
     @State private var isCommenting = false
@@ -88,16 +90,13 @@ struct PostView: View {
                     .cornerRadius(20)
                     .buttonStyle(PrimaryButtonStyle())
                     Spacer()
-                    if #available(iOS 14.0, *) {
-                        NavigationLink(destination: CommentView(postId: post.id ?? ""), isActive: self.$isCommenting) {
-                            EmptyView()
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .frame(width: 0, height: 0)
-                        .hidden()
-                    } else {
-                        // Fallback on earlier versions
+                    NavigationLink(destination: factory?.makeCommentView(postId: post.id ?? ""), isActive: self.$isCommenting) {
+                        EmptyView()
                     }
+                    .buttonStyle(PlainButtonStyle())
+                    .frame(width: 0, height: 0)
+                    .hidden()
+
                     Button(action: {
                         self.isCommenting = true
 

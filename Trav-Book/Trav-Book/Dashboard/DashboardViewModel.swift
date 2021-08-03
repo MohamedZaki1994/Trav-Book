@@ -97,33 +97,10 @@ class DashboardViewModel: ObservableObject {
         }
         let path = storage.reference().child("posts").child(postId).child("0").fullPath
         let comment = Comment(name: "", id: "", text: "")
-//        guard let data = try? JSONEncoder().encode(comment) else { return }
-//        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else { return }
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
-        ref.child("UserPosts").child(CurrentUser.shared.id!).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id! , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
         getData()
     }
-
-//    func request<T: Codable>(x: T.Type,completion:((T?, Error?) -> Void)?) {
-//        let urlComponent = URLComponents(string: "http://MohamedZaki1994.github.io/CMS/Test.json")
-//        guard let url = urlComponent?.url else {return}
-//        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            if error != nil {
-//                completion?(nil, error)
-//                return
-//            }
-//            if let data = data {
-//                do {
-//                    let user = try JSONDecoder().decode(T.self, from: data)
-//                    completion?(user ,nil)
-//                }
-//                catch {
-//                    print("error")
-//                }
-//            }
-//        }.resume()
-//
-//    }
 }
 
 

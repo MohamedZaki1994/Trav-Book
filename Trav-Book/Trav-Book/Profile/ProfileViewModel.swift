@@ -17,7 +17,7 @@ class ProfileViewModel: ObservableObject {
 
     func loadUserPosts() {
         status = .loading
-        request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id!)") { [weak self] (data, error) in
+        request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id)") { [weak self] (data, error) in
             if let data = data {
                 self?.posts = data
                 self?.status = .finished

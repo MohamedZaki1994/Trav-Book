@@ -11,12 +11,12 @@ import Firebase
 import SwiftUI
 
 class CurrentUser: ObservableObject {
-    @Published var name: String?
-    @Published var birthDate: String?
-    @Published var email: String?
-    @Published var image: String?
-    @Published var id: String?
-    @Published var region: String?
+    @Published var name: String
+    @Published var birthDate: String
+    @Published var email: String
+    @Published var image: String
+    @Published var id: String
+    @Published var region: String
     @Published var profileImage: Image?
     var ref: DatabaseReference = Database.database().reference()
     static var shared = CurrentUser()
@@ -31,9 +31,16 @@ class CurrentUser: ObservableObject {
     }
 
     func updateUserInfo() {
-        self.ref.child("Users").child(id ?? "").child("name").setValue(name)
-        self.ref.child("Users").child(id ?? "").child("region").setValue(region)
-        self.ref.child("Users").child(id ?? "").child("birthdate").setValue(birthDate)
+        self.ref.child("Users").child(id).child("name").setValue(name)
+        self.ref.child("Users").child(id).child("region").setValue(region)
+        self.ref.child("Users").child(id).child("birthdate").setValue(birthDate)
     }
-    private init() {}
+    private init() {
+        self.name = ""
+        self.birthDate = ""
+        self.email = ""
+        self.image = ""
+        self.id = ""
+        self.region = ""
+    }
 }

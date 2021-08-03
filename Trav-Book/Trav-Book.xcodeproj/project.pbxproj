@@ -46,7 +46,10 @@
 		354CEB9F2693322F0083BDEF /* TopPlaceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */; };
 		354CEBA32693347F0083BDEF /* TopPlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */; };
 		354DE47926638A750053B318 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354DE47826638A750053B318 /* PlaceCardView.swift */; };
+		3550BC0326B6F29400F870E5 /* FactoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550BC0226B6F29400F870E5 /* FactoryManager.swift */; };
+		3553D75B269EF842003BDE8B /* TopPlaceDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */; };
 		3557317E2694A9340025E621 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557317D2694A9340025E621 /* HotelModel.swift */; };
+		3559527026B97346001EAA13 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559526F26B97346001EAA13 /* SearchView.swift */; };
 		355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFC24F7B0FD006749AE /* PostView.swift */; };
 		355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBAFE24F7B1B6006749AE /* DashboardView.swift */; };
 		355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FBB0024F7C59F006749AE /* DashboardViewModel.swift */; };
@@ -112,7 +115,10 @@
 		354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsView.swift; sourceTree = "<group>"; };
 		354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		354DE47826638A750053B318 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
+		3550BC0226B6F29400F870E5 /* FactoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryManager.swift; sourceTree = "<group>"; };
+		3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsInfoView.swift; sourceTree = "<group>"; };
 		3557317D2694A9340025E621 /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
+		3559526F26B97346001EAA13 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		355FBAFC24F7B0FD006749AE /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		355FBAFE24F7B1B6006749AE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		355FBB0024F7C59F006749AE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 			children = (
 				3543FBA42691B3F0006E3D52 /* Utilities */,
 				354022C924EFDD7300F69187 /* ContentView.swift */,
+				3550BC0226B6F29400F870E5 /* FactoryManager.swift */,
 				3547E6CC25F634E600CE805B /* Services */,
 				35E2EFAC2538765200E9CD00 /* model */,
 				353042E725288E34001999E2 /* CurrentUser.swift */,
@@ -204,6 +211,7 @@
 				354BC5D8265527BC008DCA12 /* Post */,
 				353AFB4A2515F2110069F5D2 /* Profile */,
 				35B2FCF3265FC2D300D8CD1E /* Top places */,
+				3559526E26B97328001EAA13 /* Search */,
 				354CEB2A26930CCE0083BDEF /* Notifications */,
 				354022CB24EFDD7600F69187 /* Assets.xcassets */,
 				354022D024EFDD7600F69187 /* LaunchScreen.storyboard */,
@@ -277,6 +285,14 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		3559526E26B97328001EAA13 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				3559526F26B97346001EAA13 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		355FBAFB24F7B0D6006749AE /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +316,7 @@
 				3548B3A626691BEF00502B57 /* PlaceCardViewModel.swift */,
 				354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */,
 				354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */,
+				3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */,
 			);
 			path = "Top places";
 			sourceTree = "<group>";
@@ -551,12 +568,14 @@
 				35481D3C269DC5A500D7581E /* SingleCommentViewModel.swift in Sources */,
 				353A6803252366FB0097B72F /* SignupView.swift in Sources */,
 				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
+				3553D75B269EF842003BDE8B /* TopPlaceDetailsInfoView.swift in Sources */,
 				35481D38269DC45500D7581E /* SingleCommentView.swift in Sources */,
 				3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */,
 				35481D34269D8C6500D7581E /* CommentViewModel.swift in Sources */,
 				35B2FCF5265FC2EA00D8CD1E /* TopPlacesView.swift in Sources */,
 				3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */,
 				354CEB9F2693322F0083BDEF /* TopPlaceDetailsView.swift in Sources */,
+				3559527026B97346001EAA13 /* SearchView.swift in Sources */,
 				354CEBA32693347F0083BDEF /* TopPlaceDetailsViewModel.swift in Sources */,
 				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
 				3557317E2694A9340025E621 /* HotelModel.swift in Sources */,
@@ -565,6 +584,7 @@
 				3547E6D025F637BF00CE805B /* PostViewModel.swift in Sources */,
 				354CEB9B269323E40083BDEF /* NotificationView.swift in Sources */,
 				35A4C5B22517A35F0053D8D7 /* ProfileModel.swift in Sources */,
+				3550BC0326B6F29400F870E5 /* FactoryManager.swift in Sources */,
 				354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */,
 				3531267025221F9E00015E82 /* AuthProvider.swift in Sources */,
 				3544CE752539BE890070D7BE /* LoggedUser+CoreDataProperties.swift in Sources */,
