@@ -33,13 +33,10 @@ struct DashboardView: View {
                     })
                     .environmentObject(self.viewModel)
                     ForEach(viewModel.posts.reversed()) { post in
-                        if #available(iOS 14.0, *) {
-                            PostView(factory: factory, post: post, refreshPost: $refresh)
-                                .onTapGesture {}
-                                .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
-                        } else {
-                            // Fallback on earlier versions
-                        }
+                        PostView(factory: factory, post: post, refreshPost: $refresh)
+                            .onTapGesture {}
+                            .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                        
                     }
                 case .failure(error: let error):
                     Text(error.debugDescription)

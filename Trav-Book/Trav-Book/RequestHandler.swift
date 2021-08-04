@@ -14,7 +14,7 @@ class RequestHandler {
     var ref: DatabaseReference = Database.database().reference()
 
     func getData<T: Codable>(path: String, modelType: T.Type, completion:((T?, Error?) -> Void)?) {
-        ref.child(path).observeSingleEvent(of: DataEventType.value, with: { [weak self] (snapshot) in
+        ref.child(path).observeSingleEvent(of: DataEventType.value, with: { snapshot in
             if snapshot.exists() {
                 guard let data = try? JSONSerialization.data(withJSONObject: snapshot.value as Any, options: []) else { return }
 

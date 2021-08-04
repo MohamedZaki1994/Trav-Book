@@ -47,6 +47,10 @@
 		354CEBA32693347F0083BDEF /* TopPlaceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */; };
 		354DE47926638A750053B318 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354DE47826638A750053B318 /* PlaceCardView.swift */; };
 		3550BC0326B6F29400F870E5 /* FactoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550BC0226B6F29400F870E5 /* FactoryManager.swift */; };
+		3552F10726BAAFD800AA6C70 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10626BAAFD800AA6C70 /* ReviewView.swift */; };
+		3552F10B26BABC5200AA6C70 /* HotelReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */; };
+		3552F10F26BABF4B00AA6C70 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */; };
+		3552F11326BADE0800AA6C70 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F11226BADE0800AA6C70 /* StarsView.swift */; };
 		3553D75B269EF842003BDE8B /* TopPlaceDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */; };
 		3557317E2694A9340025E621 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557317D2694A9340025E621 /* HotelModel.swift */; };
 		3559527026B97346001EAA13 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559526F26B97346001EAA13 /* SearchView.swift */; };
@@ -116,6 +120,10 @@
 		354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsViewModel.swift; sourceTree = "<group>"; };
 		354DE47826638A750053B318 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
 		3550BC0226B6F29400F870E5 /* FactoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryManager.swift; sourceTree = "<group>"; };
+		3552F10626BAAFD800AA6C70 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelReviewModel.swift; sourceTree = "<group>"; };
+		3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		3552F11226BADE0800AA6C70 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsInfoView.swift; sourceTree = "<group>"; };
 		3557317D2694A9340025E621 /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
 		3559526F26B97346001EAA13 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -317,6 +325,9 @@
 				354CEBA22693347F0083BDEF /* TopPlaceDetailsViewModel.swift */,
 				354CEB9E2693322F0083BDEF /* TopPlaceDetailsView.swift */,
 				3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */,
+				3552F10626BAAFD800AA6C70 /* ReviewView.swift */,
+				3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */,
+				3552F11226BADE0800AA6C70 /* StarsView.swift */,
 			);
 			path = "Top places";
 			sourceTree = "<group>";
@@ -332,6 +343,7 @@
 				35B2FD02265FC79B00D8CD1E /* TopPlacesModel.swift */,
 				35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */,
 				3557317D2694A9340025E621 /* HotelModel.swift */,
+				3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -599,16 +611,20 @@
 				35B2FCFD265FC74A00D8CD1E /* TopPlacesViewModel.swift in Sources */,
 				35419D4924EFDDBE00A1A5F8 /* LoginView.swift in Sources */,
 				35B2FD03265FC79B00D8CD1E /* TopPlacesModel.swift in Sources */,
+				3552F10726BAAFD800AA6C70 /* ReviewView.swift in Sources */,
 				354CEB2C26930CFD0083BDEF /* NotificationsContainerView.swift in Sources */,
 				35391A852527711000892681 /* UserModel.swift in Sources */,
 				3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */,
 				35481D41269DC8A300D7581E /* Image+Modifier.swift in Sources */,
 				3543FBA62691B402006E3D52 /* Status.swift in Sources */,
 				3531C09A252F1DF70074E657 /* UploadPost.swift in Sources */,
+				3552F11326BADE0800AA6C70 /* StarsView.swift in Sources */,
 				354DE47926638A750053B318 /* PlaceCardView.swift in Sources */,
 				353042E825288E34001999E2 /* CurrentUser.swift in Sources */,
 				3538C59C2531C8ED009B928B /* CommentView.swift in Sources */,
+				3552F10B26BABC5200AA6C70 /* HotelReviewModel.swift in Sources */,
 				3548B3A726691BEF00502B57 /* PlaceCardViewModel.swift in Sources */,
+				3552F10F26BABF4B00AA6C70 /* ReviewViewModel.swift in Sources */,
 				354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
