@@ -10,7 +10,12 @@ import Foundation
 
 class TopPlacesViewModel: ObservableObject {
 
-    @Published var dataModel: [TopPlacesModel]?
+    @Published var dataModel: [TopPlacesModel]? {
+        didSet {
+            filteredDataModel = dataModel
+        }
+    }
+    @Published var filteredDataModel: [TopPlacesModel]?
     @Published var status: Status = .initial
     let request = RequestHandler()
     func getData() {
