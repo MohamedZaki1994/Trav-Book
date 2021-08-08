@@ -12,6 +12,7 @@ import SwiftUI
 import Firebase
 class PlaceCardViewModel: ObservableObject {
 
+    var cachingImage = NSCache<NSString, UIImage>()
     @Published var dataModel: TopPlacesModel?
     let storage = Storage.storage()
     func getRating(ratingNumber: Double) -> Rating {
@@ -26,10 +27,12 @@ class PlaceCardViewModel: ObservableObject {
     }
 
     func getImage(id: String, completion: ((UIImage) -> Void)?) {
-        storage.reference().child("hotels").child(id).child(String(0)+".jpg").getData(maxSize: 1*2048*2048) { (data, error) in
-                if let data = data, let image =  UIImage(data: data){
+        AuthProvider.shared.getHotelImage(for: id) { (data) in
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
                     completion?(image)
                 }
             }
+        }
     }
 }

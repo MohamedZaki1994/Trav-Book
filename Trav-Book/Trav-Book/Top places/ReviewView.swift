@@ -28,7 +28,7 @@ struct ReviewView: View {
             }
         }
         StarsView(isEditable: true, lastFullStar: 2)
-        TextField("write a review", text: $reviewText)
+        TextField("write a review", text: $reviewText).padding()
         .onAppear() {
             viewModel.fetchReviews(hotelName: hotelName)
         }

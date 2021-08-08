@@ -93,6 +93,22 @@ class AuthProvider: ObservableObject {
         }
     }
 
+    var cachingImage = NSCache<NSString, NSData>()
+
+    func getHotelImage(for id:String, completion: ((Data) -> Void)?) {
+        if let cachedNSDataImage = cachingImage.object(forKey: NSString(string: id)) {
+            let cachedDataImage = Data(referencing: cachedNSDataImage)
+            completion?(cachedDataImage)
+            return
+        }
+        storage.child("hotels").child(id).child(String(0)+".jpg").getData(maxSize: 1*2048*2048) {[weak self] (data, error) in
+            if let data = data {
+                self?.cachingImage.setObject(NSData(data: data), forKey: NSString(string: id))
+                completion?(data)
+            }
+        }
+    }
+
     func updateProfileImage(image: UIImage, completion: ((Data) -> Void)?) {
         let data = image.jpegData(compressionQuality: 0.2)
         let metadata = StorageMetadata()
