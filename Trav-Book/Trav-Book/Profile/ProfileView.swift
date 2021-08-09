@@ -65,7 +65,7 @@ struct ProfileView: View {
                         Text("Loading...")
                     case .finished:
                         ForEach(profileViewModel.posts.reversed()) { post in
-                            PostView(post: post, refreshPost: $refresh)
+                            PostView(post: post)
                                 .onTapGesture {}
                                 .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                             
@@ -80,9 +80,9 @@ struct ProfileView: View {
 
                 }
                 .onAppear() {
-                    name = CurrentUser.shared.name ?? ""
-                    birthday = CurrentUser.shared.birthDate ?? ""
-                    region = CurrentUser.shared.region ?? ""
+                    name = CurrentUser.shared.name
+                    birthday = CurrentUser.shared.birthDate
+                    region = CurrentUser.shared.region
                     profileViewModel.loadUserPosts()
                 }
                 .onDisappear() {
@@ -95,6 +95,6 @@ struct ProfileView: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         CurrentUser.shared.profileImage = Image(uiImage: inputImage)
-        AuthProvider.shared.updateProfileImage(image: inputImage, completion: nil)
+        FirebaseManager.shared.updateProfileImage(image: inputImage, completion: nil)
     }
 }

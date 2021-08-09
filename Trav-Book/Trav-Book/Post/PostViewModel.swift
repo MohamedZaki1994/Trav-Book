@@ -11,19 +11,10 @@ import Firebase
 
 class PostViewModel: ObservableObject {
 
-    var ref: DatabaseReference = Database.database().reference()
     @Published var status: Status = .initial
 
     func update(currentPost: PostModel, like: Bool?) {
-        guard let id = currentPost.id else {return}
-        guard let like = like else { return }
-        if like {
-            ref.child("Ref").child("posts/\(id)/numberOfLike").setValue(currentPost.numberOfLike)
-            ref.child("UserPosts").child(currentPost.userId!).child(id).child("numberOfLike").setValue(currentPost.numberOfLike)
-        } else {
-            ref.child("Ref").child("posts/\(id)/numberOfDislike").setValue(currentPost.numberOfDislike)
-            ref.child("UserPosts").child(currentPost.userId!).child(id).child("numberOfDislike").setValue(currentPost.numberOfDislike)
-        }
+        FirebaseManager.shared.updatePost(currentPost: currentPost, like: like)
     }
 
     func getImage(post: PostModel, completion: (([Data?]?, Data) -> Void)?){
@@ -44,7 +35,7 @@ class PostViewModel: ObservableObject {
                     }
                 }
             dis.enter()
-            AuthProvider.shared.getProfileImage(for: post.userId!) { (data) in
+            FirebaseManager.shared.getProfileImage(for: post.userId!) { (data) in
                 profileData = data
                 dis.leave()
             }

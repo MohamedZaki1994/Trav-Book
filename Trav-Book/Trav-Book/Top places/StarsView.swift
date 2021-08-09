@@ -13,9 +13,10 @@ struct StarsView: View {
     @State var isEditable = false
     var stars = ["star.fill"]
     @State var lastFullStar = 2
+    var action: ((Int) -> Void)?
     var body: some View {
         HStack {
-            ForEach (0 ..< 5) { tag in
+            ForEach (1 ... 5, id: \.self) { tag in
                 Group {
                     if tag <= lastFullStar {
                         Image(systemName: "star.fill")
@@ -25,12 +26,9 @@ struct StarsView: View {
                 }.onTapGesture {
                     if isEditable {
                         lastFullStar = tag
+                        action?(lastFullStar)
                     }
                 }
-//                Image(systemName: "star.fill")
-//                Image(systemName: "star.fill")
-//                Image(systemName: "star")
-//                Image(systemName: "star")
             }
         }
     }

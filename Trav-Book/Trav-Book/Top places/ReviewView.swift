@@ -12,25 +12,45 @@ struct ReviewView: View {
     @ObservedObject var viewModel: ReviewViewModel
     @State var hotelName: String
     @State var reviewText: String = ""
+    @State var lastFullStar = 2
     var body: some View {
-        List {
-            if let reviews = viewModel.hotelReviews {
-                ForEach(reviews, id: \.id) { review in
-                    VStack(alignment: .leading) {
-                        StarsView(isEditable: false, lastFullStar: review.rate)
-                        HStack {
-                            Image(systemName: "person")
-                            Text(review.name)
-                            Text(": \(review.review)")
+        switch viewModel.status {
+        case .initial:
+            Text("")
+                .onAppear() {
+                viewModel.fetchReviews(hotelName: hotelName)
+            }
+        case .loading:
+            Text("")
+        case .finished:
+            List {
+                if let reviews = viewModel.hotelReviews {
+                    ForEach(reviews.reversed(), id: \.id) { review in
+                        VStack(alignment: .leading) {
+                            StarsView(isEditable: false, lastFullStar: review.rate)
+                            HStack {
+                                Image(systemName: "person")
+                                Text(review.name)
+                                Text(": \(review.review)")
+                            }.padding()
                         }.padding()
-                    }.padding()
+                    }
                 }
             }
-        }
-        StarsView(isEditable: true, lastFullStar: 2)
-        TextField("write a review", text: $reviewText).padding()
-        .onAppear() {
-            viewModel.fetchReviews(hotelName: hotelName)
+            StarsView(isEditable: true, lastFullStar: lastFullStar) { (rate) in
+                lastFullStar = rate
+            }
+            HStack {
+                TextField("write a review", text: $reviewText).padding()
+                Button("done") {
+                    viewModel.uploadReview(reviewText: reviewText, rate: lastFullStar)
+                    reviewText = ""
+                    lastFullStar = 2
+                }
+                .padding()
+            }
+        case .failure(error: let error):
+            Text("")
         }
     }
 }

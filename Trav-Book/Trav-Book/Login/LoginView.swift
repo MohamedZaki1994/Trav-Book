@@ -31,12 +31,6 @@ struct LoginView: View {
                     HStack {
                         if isSecure {
                             SecureField("Enter your Password", text: self.$password)
-                            //                            .alignmentGuide(.midAccountAndName) { (d) -> CGFloat in
-                            //                                DispatchQueue.main.async {
-                            //                                    self.height = d.height
-                            //                                }
-                            //                                return d[VerticalAlignment.center]
-                            //                            }
                         } else {
                             TextField("Enter your Password", text: self.$password)
                         }

@@ -70,55 +70,12 @@ class AuthProvider: ObservableObject {
             let currentUser = data
             CurrentUser.shared.fillUserInfo(name: currentUser?.name ?? "", birthDate: currentUser?.birthdate ?? "", email: currentUser?.username ?? "", image: "", id: userUid, region: currentUser?.region ?? "")
             self?.user = CurrentUser.shared
-            self?.getProfileImage { (_) in
+            FirebaseManager.shared.getProfileImage { (_) in
             }
             completion?(true)
         }
     }
 
-    func getProfileImage(completion: ((Bool) -> Void)?) {
-        storage.child("Users").child(CurrentUser.shared.id).getData(maxSize: 1*2048*2048) { (metaData, error) in
-            if error == nil {
-                CurrentUser.shared.profileImage = Image(uiImage: UIImage(data: metaData!)!)
-                completion?(true)
-            }
-        }
-    }
-
-    func getProfileImage(for id: String, completion: ((Data) -> Void)?) {
-        storage.child("Users").child(id).getData(maxSize: 1*2048*2048) { (metaData, error) in
-            if error == nil {
-                completion?(metaData!)
-            }
-        }
-    }
-
-    var cachingImage = NSCache<NSString, NSData>()
-
-    func getHotelImage(for id:String, completion: ((Data) -> Void)?) {
-        if let cachedNSDataImage = cachingImage.object(forKey: NSString(string: id)) {
-            let cachedDataImage = Data(referencing: cachedNSDataImage)
-            completion?(cachedDataImage)
-            return
-        }
-        storage.child("hotels").child(id).child(String(0)+".jpg").getData(maxSize: 1*2048*2048) {[weak self] (data, error) in
-            if let data = data {
-                self?.cachingImage.setObject(NSData(data: data), forKey: NSString(string: id))
-                completion?(data)
-            }
-        }
-    }
-
-    func updateProfileImage(image: UIImage, completion: ((Data) -> Void)?) {
-        let data = image.jpegData(compressionQuality: 0.2)
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
-        Storage.storage().reference().child("Users").child(CurrentUser.shared.id).putData(data!, metadata: metadata) { (metaData, error) in
-            if error != nil {
-                return
-            }
-        }
-    }
 
     func signIn(username: String, password: String, completion: ((Bool) -> Void)?) {
         Auth.auth().signIn(withEmail: username, password: password, completion: { [weak self](result, error) in

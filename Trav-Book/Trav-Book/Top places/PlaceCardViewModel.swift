@@ -27,7 +27,7 @@ class PlaceCardViewModel: ObservableObject {
     }
 
     func getImage(id: String, completion: ((UIImage) -> Void)?) {
-        AuthProvider.shared.getHotelImage(for: id) { (data) in
+        FirebaseManager.shared.getHotelImage(for: id) { (data) in
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
                     completion?(image)

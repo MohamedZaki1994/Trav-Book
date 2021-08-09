@@ -26,118 +26,116 @@ struct PostView: View {
     @ObservedObject var post: PostModel
     @State var image = [Image?]()
     @State var profileImage: Image?
-    @Binding var refreshPost: Bool
     var action: ((PostModel) -> Void)?
     var postViewModel = PostViewModel()
     var body: some View {
-        if refreshPost {
-            Text("").onAppear(){ refreshPost = false}
-        } else {
-            VStack(alignment: .leading) {
-                HStack {
-                    if profileImage != nil {
-                        profileImage?.imageIconModifier(width: 60, height: 60)
+        VStack(alignment: .leading) {
+            HStack {
+                if profileImage != nil {
+                    profileImage?.imageIconModifier(width: 60, height: 60)
 
-                    } else {
-                        Image(systemName: "person")
-                    }
-                    Text(self.post.name ?? "")
-                    if !post.place.isEmpty {
-                        Text("in").padding(.leading, 10)
-                        Text(post.place)
-                            .foregroundColor(.green)
-                    }
-                    Spacer()
-                    Text(self.post.date?.timeAgo() ?? "0.0")
-                } .padding(8)
-                Text(post.postText ?? "")
-                    .padding(.bottom, 10)
-                    .padding(.leading, 10)
-                if #available(iOS 14.0, *) {
-                    LazyHStack {
-                        if !image.isEmpty {
-                            image.first??.resizable().frame(width: UIScreen.main.bounds.width - 10, height: 250)
-//                            PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
-                        } else {
-                            Text("loading")
-                        }
-                    }
                 } else {
-                    // Fallback on earlier versions
+                    Image(systemName: "person")
                 }
-                Divider()
-                HStack {
-                    Button(action: {
-                        self.post.numberOfLike! += 1
-                        self.numberOfLike += 1
-                        postViewModel.update(currentPost: self.post, like: true)
-                        self.action?(self.post)
-                    }) {
-                        Text("\(self.numberOfLike) like").font(.system(size: 14))}
-                    .padding(10)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-                    .buttonStyle(PrimaryButtonStyle())
-                    Spacer()
-                    Button(action: {
-                        self.post.numberOfDislike! += 1
-                        self.numberOfDislike += 1
-                        postViewModel.update(currentPost: self.post, like: false)
-                    }) {
-                        Text("\(self.numberOfDislike) dislike").font(.system(size: 14))}
-                    .padding(10)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-                    .buttonStyle(PrimaryButtonStyle())
-                    Spacer()
-                    NavigationLink(destination: factory?.makeCommentView(postId: post.id ?? ""), isActive: self.$isCommenting) {
-                        EmptyView()
+                Text(self.post.name ?? "")
+                if !post.place.isEmpty {
+                    Text("in").padding(.leading, 10)
+                    Text(post.place)
+                        .foregroundColor(.green)
+                }
+                Spacer()
+                Text(self.post.date?.timeAgo() ?? "0.0")
+            } .padding(8)
+            Text(post.postText ?? "")
+                .padding(.bottom, 10)
+                .padding(.leading, 10)
+            if #available(iOS 14.0, *) {
+                LazyHStack {
+                    if !image.isEmpty {
+                        image.first??.resizable().frame(width: UIScreen.main.bounds.width - 10, height: 250)
+                        //                            PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
+                    } else {
+                        Text("loading")
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .frame(width: 0, height: 0)
-                    .hidden()
-
-                    Button(action: {
-                        self.isCommenting = true
-
-                    }) {
-                        Text("\((post.numberOfComments ?? 0)) comment").font(.system(size: 14))
-                    }
-                    .buttonStyle(PrimaryButtonStyle())
-                    .padding(10)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-                }.padding(10)
+                }
+            } else {
+                // Fallback on earlier versions
             }
-            .background(Color(red: 211/255, green: 211/255, blue: 211/255))
-            .cornerRadius(10)
-            .onAppear() {
-                self.numberOfLike = self.post.numberOfLike ?? 0
-                self.numberOfDislike = self.post.numberOfDislike ?? 0
-                if image.isEmpty {
+            Divider()
+            HStack {
+                Button(action: {
+                    self.post.numberOfLike! += 1
+                    self.numberOfLike += 1
+                    postViewModel.update(currentPost: self.post, like: true)
+                    self.action?(self.post)
+                }) {
+                    Text("\(self.numberOfLike) like").font(.system(size: 14))}
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(20)
+                .buttonStyle(PrimaryButtonStyle())
+                Spacer()
+                Button(action: {
+                    self.post.numberOfDislike! += 1
+                    self.numberOfDislike += 1
+                    postViewModel.update(currentPost: self.post, like: false)
+                }) {
+                    Text("\(self.numberOfDislike) dislike").font(.system(size: 14))}
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(20)
+                .buttonStyle(PrimaryButtonStyle())
+                Spacer()
+                NavigationLink(destination: factory?.makeCommentView(postId: post.id ?? ""), isActive: self.$isCommenting) {
+                    EmptyView()
+                }
+                .buttonStyle(PlainButtonStyle())
+                .frame(width: 0, height: 0)
+                .hidden()
+
+                Button(action: {
+                    self.isCommenting = true
+
+                }) {
+                    Text("\((post.numberOfComments ?? 0)) comment").font(.system(size: 14))
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(20)
+            }.padding(10)
+        }
+        .background(Color(red: 211/255, green: 211/255, blue: 211/255))
+        .cornerRadius(10)
+        .onAppear() {
+            self.numberOfLike = self.post.numberOfLike ?? 0
+            self.numberOfDislike = self.post.numberOfDislike ?? 0
+            if image.isEmpty {
                 postViewModel.getImage(post: post) { (datas, profileData) in
                     if let datas = datas {
-                        for data in datas {
-                            let uiImage = UIImage(data: data!)
-                            image.append(Image(uiImage: uiImage!))
+                        DispatchQueue.main.async {
+
+                            for data in datas {
+                                let uiImage = UIImage(data: data!)
+                                image.append(Image(uiImage: uiImage!))
+                            }
                         }
+                        profileImage = Image(uiImage: UIImage(data: profileData)!)
                     }
-                    profileImage = Image(uiImage: UIImage(data: profileData)!)
                 }
             }
-                //            let image = UIImage(named: "im")
-                //            let data = image!.pngData()
-                //            let metadata = StorageMetadata()
-                //            metadata.contentType = "image/jpeg"
-                //
-                //            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
-                //                guard let meta = meta else {
-                //                    return
-                //                }
-                //                print("Done")
-                //            }
+            //            let image = UIImage(named: "im")
+            //            let data = image!.pngData()
+            //            let metadata = StorageMetadata()
+            //            metadata.contentType = "image/jpeg"
+            //
+            //            storage.reference().child("test").putData(data!, metadata: metadata) { (meta, error) in
+            //                guard let meta = meta else {
+            //                    return
+            //                }
+            //                print("Done")
+            //            }
         }
-    }
     }
 }
 
@@ -164,15 +162,15 @@ struct PageView: View {
         if #available(iOS 14.0, *) {
             TabView {
                 Text("S")
-//                ForEach(0 ..< image.count) { im in
-//                    ZStack {
-//                        Color.black
-//                        if image.count > 0 {
-//                        image[im]?
-//                            .resizable().frame(height: 200)
-//                        }
-//                    }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-//                }
+                //                ForEach(0 ..< image.count) { im in
+                //                    ZStack {
+                //                        Color.black
+                //                        if image.count > 0 {
+                //                        image[im]?
+                //                            .resizable().frame(height: 200)
+                //                        }
+                //                    }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                //                }
             }
             .tabViewStyle(PageTabViewStyle())
         } else {

@@ -21,17 +21,9 @@ class DashboardViewModel: ObservableObject {
 
     var postsModel: PostModel? {
         didSet {
-//            if let postArray = postsModel?.posts {
-//                posts = [PostModel]()
-//                for post in postArray {
-//                    self.posts.append(PostModel(id: post.id, name: post.name, imagesNumber: post.imagesNumber, postText: post.post, numberOfLike: post.numberOfLike,numberOfDislike: post.numberOfDislike,comments: post.comments, date: post.date, profileImage: post.profileImage, userId: post.userId))
-//                }
-//
-//            }
             posts.append(postsModel!)
         }
     }
-    @Published var isRefresh = false
     @Published var posts = [PostModel]()
 
     func getData() {

@@ -15,7 +15,6 @@ struct DashboardView: View {
     @ObservedObject var viewModel: DashboardViewModel
     @State private var isAlert = false
     @State var indexSet: IndexSet?
-    @State var refresh = false
     var factory: FactoryManager?
 
     var body: some View {
@@ -24,16 +23,20 @@ struct DashboardView: View {
             List {
                 switch viewModel.status {
                 case .initial:
-                    Text("")
+                    Text("").onAppear() {
+                        viewModel.getData()
+                    }
                 case .loading:
-                    Text("")
+                    Text("").onAppear() {
+                        viewModel.getData()
+                    }
                 case .finished:
                     UploadPost(onDismiss: {
-                        refresh = true
+                        viewModel.status = .loading
                     })
                     .environmentObject(self.viewModel)
                     ForEach(viewModel.posts.reversed()) { post in
-                        PostView(factory: factory, post: post, refreshPost: $refresh)
+                        PostView(factory: factory, post: post)
                             .onTapGesture {}
                             .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                         
@@ -89,9 +92,9 @@ struct DashboardView: View {
 //                }
 //                Spacer()
             }
-            .onAppear() {
-                viewModel.getData()
-        }
+//            .onAppear() {
+//                viewModel.getData()
+//        }
             .navigationBarHidden(true)
             }
     }
