@@ -34,7 +34,6 @@ class ReviewViewModel: ObservableObject {
         let numberOfReviews = hotelReviews?.count ?? 0
         let oldRate = wholeRating * Double(numberOfReviews) / Double((numberOfReviews + 1))
         let averageRate = NSNumber(value: oldRate + (Double(rate) / Double((numberOfReviews + 1))))
-//        let averageRate = NSNumber(value: (wholeRating + Double(rate)) / (Double(numberOfReviews +1 )))
         FirebaseManager.shared.uploadReview(reviewText: reviewText, rate: rate, hotelName: hotelName, numberOfReviews: hotelReviews?.count ?? 0, hotelIndex: hotelIndex, averageRate: averageRate) { [weak self](flag) in
             if flag {
                 self?.status = .finished

@@ -48,6 +48,7 @@
 		354DE47926638A750053B318 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354DE47826638A750053B318 /* PlaceCardView.swift */; };
 		354F496026C010EE006775D4 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F495F26C010EE006775D4 /* FirebaseManager.swift */; };
 		3550BC0326B6F29400F870E5 /* FactoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550BC0226B6F29400F870E5 /* FactoryManager.swift */; };
+		3552807226C3FB7F00DBC380 /* NotificationPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552807126C3FB7F00DBC380 /* NotificationPostView.swift */; };
 		3552F10726BAAFD800AA6C70 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10626BAAFD800AA6C70 /* ReviewView.swift */; };
 		3552F10B26BABC5200AA6C70 /* HotelReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */; };
 		3552F10F26BABF4B00AA6C70 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */; };
@@ -122,6 +123,7 @@
 		354DE47826638A750053B318 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
 		354F495F26C010EE006775D4 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3550BC0226B6F29400F870E5 /* FactoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryManager.swift; sourceTree = "<group>"; };
+		3552807126C3FB7F00DBC380 /* NotificationPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPostView.swift; sourceTree = "<group>"; };
 		3552F10626BAAFD800AA6C70 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelReviewModel.swift; sourceTree = "<group>"; };
 		3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				354CEB2B26930CFD0083BDEF /* NotificationsContainerView.swift */,
 				354CEB9A269323E40083BDEF /* NotificationView.swift */,
+				3552807126C3FB7F00DBC380 /* NotificationPostView.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				354DE47926638A750053B318 /* PlaceCardView.swift in Sources */,
 				353042E825288E34001999E2 /* CurrentUser.swift in Sources */,
 				3538C59C2531C8ED009B928B /* CommentView.swift in Sources */,
+				3552807226C3FB7F00DBC380 /* NotificationPostView.swift in Sources */,
 				3552F10B26BABC5200AA6C70 /* HotelReviewModel.swift in Sources */,
 				3548B3A726691BEF00502B57 /* PlaceCardViewModel.swift in Sources */,
 				3552F10F26BABF4B00AA6C70 /* ReviewViewModel.swift in Sources */,

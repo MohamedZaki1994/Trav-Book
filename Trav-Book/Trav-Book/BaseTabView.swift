@@ -12,37 +12,37 @@ import SwiftUI
 struct BaseTabView: View {
     @State var isRefresh = true
     @State var refreshing = false
+    @State var selectedTab = 2
     let dashboardViewModel = DashboardViewModel()
     let topPlaceViewModel = TopPlacesViewModel()
     var factory: FactoryManager?
     var body: some View {
-        TabView() {
+        TabView(selection: $selectedTab) {
             DashboardView(viewModel: dashboardViewModel, factory: factory)
                 .tabItem {
                     VStack {
                         Image(systemName: "house")
                         Text("Dashboard")
-
                     }
-                }
+                }.tag(0)
 
             TopPlacesView(viewModel: topPlaceViewModel, factory: factory!)
                 .tabItem {
                     Image(systemName: "heart.circle.fill")
                     Text("Top places")
-                }
+                }.tag(1)
             NotificationsContainerView()
                 .tabItem {
                     Image(systemName: "bell")
                     Text("Notifications")
-                }
-            ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel).tabItem {
+                }.tag(2)
+            ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel)
+                .tabItem {
                 VStack {
                     Image(systemName: "house")
                     Text("Dashboard")
-                    
                 }
-            }
+            }.tag(3)
         }
         .navigationBarItems(trailing:
             Button(action: {

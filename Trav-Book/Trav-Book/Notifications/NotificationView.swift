@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct NotificationView: View {
+    @State var shouldOpenNotification = false
+    @State var index: Int = 0
+    @State var isComingFromDeepLink = false
+    @State var deepLinkAtIndex = 0
     var body: some View {
         HStack {
             Image("im")
@@ -16,12 +20,17 @@ struct NotificationView: View {
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
             Text("Someone has posted a comment")
+            NavigationLink(destination: NotificationPostView(index: index), isActive: self.$shouldOpenNotification) {
+                EmptyView()
+            }
+        }.onTapGesture {
+            shouldOpenNotification = true
         }
-    }
-}
-
-struct NotificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationView()
+        .onAppear() {
+            if isComingFromDeepLink {
+                shouldOpenNotification = true
+                isComingFromDeepLink = false
+            }
+        }
     }
 }

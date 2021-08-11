@@ -9,22 +9,15 @@
 import SwiftUI
 
 struct NotificationsContainerView: View {
+    @State var isDeepLink = true
+    @State var deepLinkAtIndex = 6
     var body: some View {
         NavigationView {
             List {
-                VStack {
-                    ForEach(1...10, id: \.self) {
-                        Text("\($0).")
-                        NotificationView()
-                    }
+                ForEach(1...10, id: \.self) {
+                    NotificationView(index: $0,isComingFromDeepLink: deepLinkAtIndex == $0 ? isDeepLink : false, deepLinkAtIndex: deepLinkAtIndex)
                 }
             }.navigationBarTitle("Notifications")
         }
-    }
-}
-
-struct NotificationsContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationsContainerView()
     }
 }

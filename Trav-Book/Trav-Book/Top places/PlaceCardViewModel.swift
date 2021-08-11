@@ -17,9 +17,9 @@ class PlaceCardViewModel: ObservableObject {
     let storage = Storage.storage()
     func getRating(ratingNumber: Double) -> Rating {
         switch ratingNumber {
-        case 0..<5:
+        case 0..<2.5:
             return .bad
-        case 5..<7.5:
+        case 2.5..<3.5:
             return .good
         default:
             return .excellent
