@@ -75,8 +75,9 @@ class FirebaseManager {
         }
     }
 
-    func uploadReview(reviewText: String, rate: Int, hotelName: String, numberOfReviews: Int, completion: ((Bool) -> Void)?) {
+    func uploadReview(reviewText: String, rate: Int, hotelName: String, numberOfReviews: Int, hotelIndex: Int, averageRate: NSNumber, completion: ((Bool) -> Void)?) {
         let dictionary = ["name": CurrentUser.shared.name, "image": "", "review": reviewText, "rate": rate] as [String : Any]
+        ref.child("topPlaces").child(String(hotelIndex)).child("rating").setValue(averageRate)
         ref.child("HotelsReviews").child(hotelName).child(String(numberOfReviews)).updateChildValues(dictionary, withCompletionBlock: { (error, dataRef) in
             if error == nil {
                 completion?(true)
@@ -84,4 +85,30 @@ class FirebaseManager {
         })
     }
 
+    func uploadPost(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, place: String, completion: (() -> Void)? ) {
+        let postId = UUID().uuidString
+        if images?.count ?? 0 > 0 {
+
+            for (index,image) in images!.enumerated() {
+                let data = image!.jpegData(compressionQuality: 0.2)
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                storage.child("posts").child(postId).child("\(index)").putData(data!, metadata: metadata) { (meta, error) in
+                    guard meta != nil else {
+                        return
+                    }
+                    completion?()
+                    print("Done")
+                }
+            }
+        }
+        let path = storage.child("posts").child(postId).child("0").fullPath
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+    }
+
+    func uploadComment(postId: String, commentsInDic: [[String : Any]?]) {
+        ref.child("Ref").child("Comments/\(postId)").setValue(commentsInDic)
+        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentsInDic.count ])
+    }
 }

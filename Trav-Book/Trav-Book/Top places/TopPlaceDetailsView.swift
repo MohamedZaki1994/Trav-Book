@@ -10,13 +10,14 @@ import SwiftUI
 
 struct TopPlaceDetailsView: View {
     @ObservedObject var viewModel: TopPlaceDetailsViewModel
+    @State var rate: Double?
     var body: some View {
         if #available(iOS 14.0, *) {
             VStack {
                 switch viewModel.status {
                 case .finished:
                     ScrollView {
-                        TopPlaceDetailsInfoView(viewModel: viewModel)
+                        TopPlaceDetailsInfoView(viewModel: viewModel, rate: rate)
                     }
                 case .loading:
                     Text("loading")

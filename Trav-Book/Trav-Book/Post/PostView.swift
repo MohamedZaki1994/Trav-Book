@@ -49,17 +49,13 @@ struct PostView: View {
             Text(post.postText ?? "")
                 .padding(.bottom, 10)
                 .padding(.leading, 10)
-            if #available(iOS 14.0, *) {
-                LazyHStack {
-                    if !image.isEmpty {
-                        image.first??.resizable().frame(width: UIScreen.main.bounds.width - 10, height: 250)
-                        //                            PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
-                    } else {
-                        Text("loading")
-                    }
+            LazyHStack {
+                if !image.isEmpty {
+                    image.first??.resizable().frame(width: UIScreen.main.bounds.width - 10, height: 250)
+                    //                            PageView(image: $image).frame(width: UIScreen.main.bounds.width - 40 ,height: 200)
+                } else {
+                    Text("loading")
                 }
-            } else {
-                // Fallback on earlier versions
             }
             Divider()
             HStack {

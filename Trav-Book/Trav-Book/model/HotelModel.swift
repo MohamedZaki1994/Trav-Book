@@ -12,14 +12,13 @@ struct HotelModel: Codable {
     let email, name: String
     let photos: [String]
     let price: Int
-    let rating: Double
     let region: String
     let reviews: [String]
     let hotelDescription, address: String
     let numberOfRooms: Int
 
     enum CodingKeys: String, CodingKey {
-        case email, name, photos, price, rating, region, reviews
+        case email, name, photos, price, region, reviews
         case hotelDescription = "description"
         case address, numberOfRooms
     }

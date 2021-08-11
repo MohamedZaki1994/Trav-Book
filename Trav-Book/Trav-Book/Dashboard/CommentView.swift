@@ -41,7 +41,7 @@ struct CommentView: View {
 
                 HStack {
                     Button("Done") {
-                        viewModel.comment(postId: postId, comment: Comment(name: CurrentUser.shared.name, id: CurrentUser.shared.id, text: comment))
+                        viewModel.uploadComment(postId: postId, comment: Comment(name: CurrentUser.shared.name, id: CurrentUser.shared.id, text: comment))
                         comment = ""
                     }
                     Button("Close") {

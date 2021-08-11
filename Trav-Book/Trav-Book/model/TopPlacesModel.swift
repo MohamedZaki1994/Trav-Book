@@ -17,7 +17,6 @@ class TopPlacesModel: Codable, Identifiable, ObservableObject {
     @Published var price: Int?
     @Published var photos: [String]?
     @Published var email: String?
-    @Published var reviews: Int?
     enum CodingKeys: CodingKey {
         case name
         case region
@@ -25,7 +24,6 @@ class TopPlacesModel: Codable, Identifiable, ObservableObject {
         case price
         case photos
         case email
-        case reviews
     }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -35,7 +33,6 @@ class TopPlacesModel: Codable, Identifiable, ObservableObject {
         price = try container.decode(Int.self, forKey: .price)
         photos = try container.decode([String].self, forKey: .photos)
         email = try container.decode(String.self, forKey: .email)
-        reviews = try container.decode(Int.self, forKey: .reviews)
     }
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -45,17 +42,23 @@ class TopPlacesModel: Codable, Identifiable, ObservableObject {
         try container.encode(price, forKey: .price)
         try container.encode(photos, forKey: .photos)
         try container.encode(email, forKey: .email)
-        try container.encode(reviews, forKey: .reviews)
     }
 
-    init(name: String, region: String, rating: Double, price: Int, photos: [String], email: String, reviews: Int) {
+    init(name: String, region: String, rating: Double, price: Int, photos: [String], email: String) {
         self.name = name
         self.region = region
         self.rating = rating
         self.price = price
         self.photos = photos
         self.email = email
-        self.reviews = reviews
     }
 }
 
+
+struct TopPlacesModel1: Codable {
+    let email, name: String
+    let photos: [String]
+    let price: Int
+    let rating: Double
+    let region: String
+}

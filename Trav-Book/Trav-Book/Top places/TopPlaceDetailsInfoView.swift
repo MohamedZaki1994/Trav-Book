@@ -11,6 +11,7 @@ import SwiftUI
 @available(iOS 14.0, *)
 struct TopPlaceDetailsInfoView: View {
     @ObservedObject var viewModel: TopPlaceDetailsViewModel
+    @State var rate: Double?
     var body: some View {
         LazyVStack(alignment: .leading) {
             Group {
@@ -45,7 +46,7 @@ struct TopPlaceDetailsInfoView: View {
                 Divider()
                 HStack {
                     Image(systemName: "star.fill")
-                    Text("Rating: \(String(format: "%.1f", viewModel.model?.rating ?? 0))").padding()
+                    Text("Rating: \(String(format: "%.1f", rate ?? 0))").padding()
                 }.padding()
                 Divider()
             }

@@ -24,14 +24,13 @@ class CommentViewModel: ObservableObject {
         }
     }
 
-    func comment(postId: String, comment: Comment) {
+    func uploadComment(postId: String, comment: Comment) {
         commentModel?.append(comment)
         var commentsInDic = [[String : Any]?]()
         commentModel?.forEach({ (comment) in
             commentsInDic.append(comment.dict)
         })
-        ref.child("Ref").child("Comments/\(postId)").setValue(commentsInDic)
-        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentModel?.count ?? 0])
+        FirebaseManager.shared.uploadComment(postId: postId, commentsInDic: commentsInDic)
         status = .loading
     }
 }

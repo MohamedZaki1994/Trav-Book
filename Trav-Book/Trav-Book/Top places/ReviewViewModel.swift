@@ -23,9 +23,19 @@ class ReviewViewModel: ObservableObject {
         }
     }
 
-    func uploadReview(reviewText: String, rate: Int) {
+    func uploadReview(reviewText: String, rate: Int, topPlaces: TopPlacesViewModel) {
         status = .loading
-        FirebaseManager.shared.uploadReview(reviewText: reviewText, rate: rate, hotelName: hotelName, numberOfReviews: hotelReviews?.count ?? 0) { [weak self](flag) in
+
+        guard let hotelIndex = topPlaces.dataModel?.firstIndex(where: { model in
+            model.name == hotelName
+        }) else { return }
+
+        let wholeRating = topPlaces.dataModel?[hotelIndex].rating ?? 0
+        let numberOfReviews = hotelReviews?.count ?? 0
+        let oldRate = wholeRating * Double(numberOfReviews) / Double((numberOfReviews + 1))
+        let averageRate = NSNumber(value: oldRate + (Double(rate) / Double((numberOfReviews + 1))))
+//        let averageRate = NSNumber(value: (wholeRating + Double(rate)) / (Double(numberOfReviews +1 )))
+        FirebaseManager.shared.uploadReview(reviewText: reviewText, rate: rate, hotelName: hotelName, numberOfReviews: hotelReviews?.count ?? 0, hotelIndex: hotelIndex, averageRate: averageRate) { [weak self](flag) in
             if flag {
                 self?.status = .finished
                 self?.fetchReviews(hotelName: self?.hotelName ?? "")

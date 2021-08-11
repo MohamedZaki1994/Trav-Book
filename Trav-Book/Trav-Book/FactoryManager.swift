@@ -26,11 +26,11 @@ class FactoryManager: FactoryManagerProtocol {
         return PlaceCardView(viewModel: viewModel, factory: self)
     }
 
-    func makeTopPlaceDetailsView(name: String, image: UIImage?) -> some View {
+    func makeTopPlaceDetailsView(name: String, image: UIImage?, rate: Double?) -> some View {
         let topPlaceDetailsViewModel = TopPlaceDetailsViewModel()
         topPlaceDetailsViewModel.image = image
         topPlaceDetailsViewModel.name = name
-        return TopPlaceDetailsView(viewModel: topPlaceDetailsViewModel)
+        return TopPlaceDetailsView(viewModel: topPlaceDetailsViewModel, rate: rate)
     }
     func makeCommentView(postId: String) -> some View {
         CommentView(postId: postId)

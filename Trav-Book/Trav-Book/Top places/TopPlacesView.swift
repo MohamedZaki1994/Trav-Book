@@ -56,6 +56,7 @@ struct TopPlacesView: View {
         }.padding(.top, 1)
         .background(Color.gray)
         }.background(Color.gray)
+        .environmentObject(viewModel)
     }
 
 //    func makePlaceCardView(model: TopPlacesModel) -> some View {

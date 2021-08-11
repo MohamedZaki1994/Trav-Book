@@ -13,6 +13,7 @@ struct ReviewView: View {
     @State var hotelName: String
     @State var reviewText: String = ""
     @State var lastFullStar = 2
+    @EnvironmentObject var topPlaces: TopPlacesViewModel
     var body: some View {
         switch viewModel.status {
         case .initial:
@@ -43,14 +44,14 @@ struct ReviewView: View {
             HStack {
                 TextField("write a review", text: $reviewText).padding()
                 Button("done") {
-                    viewModel.uploadReview(reviewText: reviewText, rate: lastFullStar)
+                    viewModel.uploadReview(reviewText: reviewText, rate: lastFullStar, topPlaces: topPlaces)
                     reviewText = ""
                     lastFullStar = 2
                 }
                 .padding()
             }
         case .failure(error: let error):
-            Text("")
+            Text(error.debugDescription)
         }
     }
 }

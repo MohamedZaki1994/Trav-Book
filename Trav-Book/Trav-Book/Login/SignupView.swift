@@ -64,12 +64,6 @@ struct SignupView: View {
                 isPresented = true
             }
             .sheet(isPresented: $isPresented, onDismiss: { }, content: {
-//                if refresh {
-//                    Text("refreshing").onAppear(){
-//                        refresh = false
-//                    }
-//                }
-//                else {
 
             HStack(spacing: 20) {
                 Button {

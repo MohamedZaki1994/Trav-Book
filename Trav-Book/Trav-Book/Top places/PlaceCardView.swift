@@ -50,8 +50,7 @@ struct PlaceCardView: View {
                 Text("costs: \(viewModel.dataModel?.price ?? 0)$")
                     .font(.system(size: 16, weight: .bold, design: .default))
                     .foregroundColor(.green)
-                Text("reviews \(viewModel.dataModel?.reviews ?? 0)")
-                NavigationLink("", destination: factory?.makeTopPlaceDetailsView(name: viewModel.dataModel?.name ?? "", image: uiImage), isActive: $shouldGoToDetailsView)
+                NavigationLink("", destination: factory?.makeTopPlaceDetailsView(name: viewModel.dataModel?.name ?? "", image: uiImage, rate: viewModel.dataModel?.rating), isActive: $shouldGoToDetailsView)
             }
         }
         .onAppear() {

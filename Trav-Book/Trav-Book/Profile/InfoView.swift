@@ -16,26 +16,26 @@ struct InfoView: View {
     var body: some View {
         HStack{
             Text("Name:").bold()
-            TextField(CurrentUser.shared.name ?? "" + ":", text: $name).disabled(!self.isEditting)
+            TextField(CurrentUser.shared.name + ":", text: $name).disabled(!self.isEditting)
         }
         Divider()
         HStack{
             Text("Birthday:").bold()
-            TextField(CurrentUser.shared.birthDate ?? "" + ":", text: $birthday).disabled(!self.isEditting)
+            TextField(CurrentUser.shared.birthDate + ":", text: $birthday).disabled(!self.isEditting)
 
         }
         Divider()
         HStack{
             Text("Region:").bold()
-            TextField(CurrentUser.shared.region ?? "" + ":", text: $region).disabled(!self.isEditting)
+            TextField(CurrentUser.shared.region + ":", text: $region).disabled(!self.isEditting)
         }
         HStack {
             if isEditting {
                 Button("cancel") {
                     self.isEditting = false
-                    name = CurrentUser.shared.name ?? ""
-                    birthday = CurrentUser.shared.birthDate ?? ""
-                    region = CurrentUser.shared.region ?? ""
+                    name = CurrentUser.shared.name
+                    birthday = CurrentUser.shared.birthDate
+                    region = CurrentUser.shared.region
                 }}
             Button(isEditting ? "Save" : "Edit") {
                 self.isEditting.toggle()
