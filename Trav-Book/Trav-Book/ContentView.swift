@@ -19,6 +19,9 @@ struct ContentView: View {
     @State var isSignup = false
     @State var showLogin = false
     @State var isLoading = false
+    @State var selectedTab = 0
+    @State var isDeepLink = false
+    @State var deepLinkAtIndex = 0
     @EnvironmentObject var session: AuthProvider
     var factory = FactoryManager()
 
@@ -35,7 +38,7 @@ struct ContentView: View {
                     LoginView()
                 }
             } else {
-                BaseTabView(factory: factory)
+                BaseTabView(selectedTab: selectedTab, isDeepLink: isDeepLink, deepLinkAtIndex: deepLinkAtIndex, factory: factory)
             }
         } .onAppear() {
             if let id = Auth.auth().currentUser?.uid {

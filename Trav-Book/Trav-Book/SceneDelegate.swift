@@ -25,6 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
+
         let contentView = ContentView().environment(\.managedObjectContext, context)
             .environmentObject(AuthProvider.shared)
 
@@ -35,6 +36,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+    }
+
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        print("1")
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+        // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
+        // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
+
+        let contentView = ContentView(selectedTab: 2, isDeepLink: true, deepLinkAtIndex: 6).environment(\.managedObjectContext, context)
+            .environmentObject(AuthProvider.shared)
+
+        // Use a UIHostingController as window root view controller.
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = UIHostingController(rootView: contentView)
+            self.window = window
+            window.makeKeyAndVisible()
+        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

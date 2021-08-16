@@ -12,7 +12,6 @@ struct NotificationView: View {
     @State var shouldOpenNotification = false
     @State var index: Int = 0
     @State var isComingFromDeepLink = false
-    @State var deepLinkAtIndex = 0
     var body: some View {
         HStack {
             Image("im")

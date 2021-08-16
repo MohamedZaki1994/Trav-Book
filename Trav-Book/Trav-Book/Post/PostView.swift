@@ -64,6 +64,10 @@ struct PostView: View {
                     self.numberOfLike += 1
                     postViewModel.update(currentPost: self.post, like: true)
                     self.action?(self.post)
+//                    if let url = URL(string:UIApplication.openSettingsURLString) {
+//                    let url = URL(string: "Trav-Book://zaki.com/")!
+//                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                    }
                 }) {
                     Text("\(self.numberOfLike) like").font(.system(size: 14))}
                 .padding(10)

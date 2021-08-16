@@ -13,6 +13,8 @@ struct BaseTabView: View {
     @State var isRefresh = true
     @State var refreshing = false
     @State var selectedTab = 2
+    @State var isDeepLink = false
+    @State var deepLinkAtIndex = 0
     let dashboardViewModel = DashboardViewModel()
     let topPlaceViewModel = TopPlacesViewModel()
     var factory: FactoryManager?
@@ -31,7 +33,7 @@ struct BaseTabView: View {
                     Image(systemName: "heart.circle.fill")
                     Text("Top places")
                 }.tag(1)
-            NotificationsContainerView()
+            NotificationsContainerView(isDeepLink: isDeepLink, deepLinkAtIndex: deepLinkAtIndex)
                 .tabItem {
                     Image(systemName: "bell")
                     Text("Notifications")

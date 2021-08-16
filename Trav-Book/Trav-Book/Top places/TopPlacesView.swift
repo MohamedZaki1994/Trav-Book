@@ -24,14 +24,6 @@ struct TopPlacesView: View {
             VStack {
                 SearchView(viewModel: viewModel)
             List {
-//                Section(header: SearchView(filteredData: viewModel)
-//                            .background(Color.gray)
-//                            .listRowInsets(EdgeInsets(
-//                                            top: 0,
-//                                            leading: 0,
-//                                            bottom: 0,
-//                                            trailing: 0))
-//                ) {
                 switch viewModel.status {
                 case .initial:
                     Text("").onAppear() {
@@ -48,7 +40,6 @@ struct TopPlacesView: View {
                 case .failure(error: let error):
                     Text(error.debugDescription)
                 }
-//                }.textCase(nil)
             }.listStyle(PlainListStyle())
             .navigationBarHidden(true)
             .background(Color.gray)
@@ -59,16 +50,4 @@ struct TopPlacesView: View {
         .environmentObject(viewModel)
     }
 
-//    func makePlaceCardView(model: TopPlacesModel) -> some View {
-//        let viewModel = PlaceCardViewModel()
-//        viewModel.dataModel = model
-//        return PlaceCardView(viewModel: viewModel)
-//    }
 }
-
-
-//struct TopPlacesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TopPlacesView()
-//    }
-//}

@@ -10,12 +10,12 @@ import SwiftUI
 
 struct NotificationsContainerView: View {
     @State var isDeepLink = true
-    @State var deepLinkAtIndex = 6
+    @State var deepLinkAtIndex = 0
     var body: some View {
         NavigationView {
             List {
                 ForEach(1...10, id: \.self) {
-                    NotificationView(index: $0,isComingFromDeepLink: deepLinkAtIndex == $0 ? isDeepLink : false, deepLinkAtIndex: deepLinkAtIndex)
+                    NotificationView(index: $0,isComingFromDeepLink: deepLinkAtIndex == $0 ? isDeepLink : false)
                 }
             }.navigationBarTitle("Notifications")
         }
