@@ -56,17 +56,17 @@ struct PostView: View {
                 } else {
                     Text("loading")
                 }
-            }
+            }.frame(width: UIScreen.main.bounds.width - 10, height: 250)
             Divider()
             HStack {
                 Button(action: {
-                    self.post.numberOfLike! += 1
-                    self.numberOfLike += 1
-                    postViewModel.update(currentPost: self.post, like: true)
-                    self.action?(self.post)
+//                    self.post.numberOfLike! += 1
+//                    self.numberOfLike += 1
+//                    postViewModel.update(currentPost: self.post, like: true)
+//                    self.action?(self.post)
 //                    if let url = URL(string:UIApplication.openSettingsURLString) {
-//                    let url = URL(string: "Trav-Book://zaki.com/")!
-//                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    let url = URL(string: "Trav-Book://zaki/")!
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
 //                    }
                 }) {
                     Text("\(self.numberOfLike) like").font(.system(size: 14))}
@@ -86,7 +86,7 @@ struct PostView: View {
                 .cornerRadius(20)
                 .buttonStyle(PrimaryButtonStyle())
                 Spacer()
-                NavigationLink(destination: factory?.makeCommentView(postId: post.id ?? ""), isActive: self.$isCommenting) {
+                NavigationLink(destination: CommentView(postId: post.id ?? "", userId: post.userId ?? ""), isActive: self.$isCommenting) {
                     EmptyView()
                 }
                 .buttonStyle(PlainButtonStyle())

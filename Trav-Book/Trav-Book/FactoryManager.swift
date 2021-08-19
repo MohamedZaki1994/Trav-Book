@@ -32,7 +32,8 @@ class FactoryManager: FactoryManagerProtocol {
         topPlaceDetailsViewModel.name = name
         return TopPlaceDetailsView(viewModel: topPlaceDetailsViewModel, rate: rate)
     }
-    func makeCommentView(postId: String) -> some View {
-        CommentView(postId: postId)
+
+    func makeCommentView(postId: String, userId: String) -> some View {
+        CommentView(postId: postId, userId: userId)
     }
 }

@@ -8,9 +8,19 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct NotificationPostView: View {
     @State var index: Int
+    @StateObject var viewModel = NotificationPostViewModel()
     var body: some View {
-        Text("Notification, World! \(index)")
+        VStack {
+            if let post = viewModel.post {
+                PostView(post: post)
+                    .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+            }
+            Text("Notification, World! \(index)")
+        }.onAppear() {
+            viewModel.loadUserPost()
+        }
     }
 }

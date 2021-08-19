@@ -37,7 +37,6 @@ struct DashboardView: View {
                     .environmentObject(self.viewModel)
                     ForEach(viewModel.posts.reversed()) { post in
                         PostView(factory: factory, post: post)
-                            .onTapGesture {}
                             .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                         
                     }

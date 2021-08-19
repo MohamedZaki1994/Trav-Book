@@ -15,6 +15,7 @@ struct CommentView: View {
     @ObservedObject var viewModel = CommentViewModel()
     @State var image: Image?
     var postId: String
+    var userId: String
     var body: some View {
         VStack {
             switch viewModel.status {
@@ -41,7 +42,7 @@ struct CommentView: View {
 
                 HStack {
                     Button("Done") {
-                        viewModel.uploadComment(postId: postId, comment: Comment(name: CurrentUser.shared.name, id: CurrentUser.shared.id, text: comment))
+                        viewModel.uploadComment(postId: postId, userId: userId, comment: Comment(name: CurrentUser.shared.name, id: CurrentUser.shared.id, text: comment))
                         comment = ""
                     }
                     Button("Close") {

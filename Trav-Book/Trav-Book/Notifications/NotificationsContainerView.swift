@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct NotificationsContainerView: View {
     @State var isDeepLink = true
     @State var deepLinkAtIndex = 0

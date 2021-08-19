@@ -107,8 +107,9 @@ class FirebaseManager {
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
     }
 
-    func uploadComment(postId: String, commentsInDic: [[String : Any]?]) {
+    func uploadComment(postId: String, userId: String, commentsInDic: [[String : Any]?]) {
         ref.child("Ref").child("Comments/\(postId)").setValue(commentsInDic)
-        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentsInDic.count ])
+        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentsInDic.count])
+        ref.child("UserPosts").child(userId).child(postId).updateChildValues(["numberOfComments": commentsInDic.count])
     }
 }

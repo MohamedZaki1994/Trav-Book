@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct NotificationView: View {
     @State var shouldOpenNotification = false
     @State var index: Int = 0

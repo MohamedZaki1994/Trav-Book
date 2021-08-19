@@ -55,4 +55,21 @@ class RequestHandler {
         }
     }
 
+    func loadPost(path: String ,completion:((PostModel?, Error?) -> Void)?) {
+        ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            if snapshot.exists() {
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: []) else { return }
+                do {
+                    let postModel = try JSONDecoder().decode(PostModel.self, from: data)
+                    completion?(postModel,nil)
+                }
+                catch {
+                    print(error)
+                }
+            } else {
+                completion?(nil,nil)
+            }
+        }
+    }
 }

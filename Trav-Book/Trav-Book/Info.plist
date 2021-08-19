@@ -22,7 +22,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.Zaki.Trav-Book</string>
+			<string>Zaki.Trav-Book</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>Trav-Book</string>
