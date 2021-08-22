@@ -63,6 +63,7 @@ class PostModel: Identifiable, ObservableObject, Codable {
     var date: Double?
     var userId: String?
     var place: String
+    var subscribers: [String]?
 
     init (id: String?, name: String, imagesNumber: Int,postText:String,numberOfLike: Int, numberOfDislike: Int, numberOfComments: Int, date: Double, profileImage: String, userId: String, place: String) {
         self.id = id
@@ -76,6 +77,7 @@ class PostModel: Identifiable, ObservableObject, Codable {
         self.profileImage = profileImage
         self.userId = userId
         self.place = place
+        subscribers = [userId]
     }
 }
 

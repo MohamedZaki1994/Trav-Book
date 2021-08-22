@@ -83,6 +83,7 @@ class FirebaseManager {
                 completion?(true)
             }
         })
+//        ref.child("Hotels/\(hotelName)/reviews")
     }
 
     func uploadPost(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, place: String, completion: (() -> Void)? ) {
@@ -103,7 +104,7 @@ class FirebaseManager {
             }
         }
         let path = storage.child("posts").child(postId).child("0").fullPath
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
+        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place, "subscribers": [CurrentUser.shared.id]])
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
     }
 
@@ -111,5 +112,13 @@ class FirebaseManager {
         ref.child("Ref").child("Comments/\(postId)").setValue(commentsInDic)
         ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentsInDic.count])
         ref.child("UserPosts").child(userId).child(postId).updateChildValues(["numberOfComments": commentsInDic.count])
+        ref.child("Ref/posts/\(postId)/subscribers").observeSingleEvent(of: .value) { [weak self] (snapshot) in
+            print(snapshot)
+            guard var subscribers = snapshot.value as? [String] else {return}
+            if !subscribers.contains(CurrentUser.shared.id) {
+                subscribers.append(CurrentUser.shared.id)
+                self?.ref.child("Ref/posts/\(postId)").updateChildValues(["subscribers": subscribers])
+            }
+        }
     }
 }
