@@ -11,21 +11,26 @@ import SwiftUI
 @available(iOS 14.0, *)
 struct NotificationView: View {
     @State var shouldOpenNotification = false
-    @State var index: Int = 0
     @State var isComingFromDeepLink = false
+    var notification: NotificationModel
     var body: some View {
         HStack {
             Image("im")
                 .scaledToFit()
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
-            Text("Someone has posted a comment")
-            NavigationLink(destination: NotificationPostView(index: index), isActive: self.$shouldOpenNotification) {
-                EmptyView()
-            }
-        }.onTapGesture {
-            shouldOpenNotification = true
+                .padding(.top)
+                .padding(.bottom)
+                .padding(.trailing)
+            Text("\(notification.notificationOwnerName) has commented on a post")
+
         }
+        .overlay(
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width + 80)
+                .background(Color.blue)
+                .opacity(notification.isRead ? 0 : 0.2)
+        )
         .onAppear() {
             if isComingFromDeepLink {
                 shouldOpenNotification = true

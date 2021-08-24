@@ -12,13 +12,13 @@ import Firebase
 class NotificationPostViewModel: ObservableObject {
     var ref: DatabaseReference = Database.database().reference()
     var request = RequestHandler()
-    var postID = "2FEEE9EE-C974-4667-84FF-D7AC446C8610"
+    var postID = ""
     @Published var post: PostModel?
     @Published var status: Status = .initial
 
     func loadUserPost() {
         status = .loading
-        request.loadPost(path: "UserPosts/\(CurrentUser.shared.id)/\(postID)") { [weak self] (data, error) in
+        request.loadPost(path: "Ref/posts/\(postID)") { [weak self] (data, error) in
             if let data = data {
                 self?.post = data
                 self?.status = .finished

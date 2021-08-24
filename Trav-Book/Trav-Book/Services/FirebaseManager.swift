@@ -17,6 +17,7 @@ class FirebaseManager {
     static var shared: FirebaseManager {
         return _shared
     }
+    let request = RequestHandler()
     var cachingImage = NSCache<NSString, NSData>()
 
     private init(){}
@@ -120,5 +121,22 @@ class FirebaseManager {
                 self?.ref.child("Ref/posts/\(postId)").updateChildValues(["subscribers": subscribers])
             }
         }
+        request.getData(path:("Ref/posts/\(postId)/subscribers"), modelType: [String].self) { [weak self] (model, error) in
+            // upload the notification
+            if let users = model {
+                for user in users {
+                    if user != CurrentUser.shared.id {
+                        self?.ref.child("Notifications/\(user)")
+                        self?.request.getData(path: "Notifications/\(user)", modelType: [NotificationModel].self) { (notifications, error) in
+                            self?.ref.child("Notifications/\(user)").child(String(notifications?.count ?? 0)).setValue(["notificationOwnerId": CurrentUser.shared.id, "notificationOwnerName": CurrentUser.shared.name, "notificationOwnerImageName": CurrentUser.shared.image, "postId": postId, "isRead": false])
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func readNotification(notificationIndex: Int) {
+        ref.child("Notifications/\(CurrentUser.shared.id)").child(String(notificationIndex)).updateChildValues(["isRead": true])
     }
 }

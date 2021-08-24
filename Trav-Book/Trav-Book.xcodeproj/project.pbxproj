@@ -35,6 +35,8 @@
 		3544CE762539BE890070D7BE /* LoggedUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */; };
 		3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */; };
 		3544CE782539BE890070D7BE /* Favorite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */; };
+		3545B16A26D3978900C5F9BC /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3545B16926D3978900C5F9BC /* NotificationModel.swift */; };
+		3545B16E26D39D7900C5F9BC /* NotificationsContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3545B16D26D39D7900C5F9BC /* NotificationsContainerViewModel.swift */; };
 		3547E6D025F637BF00CE805B /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3547E6CF25F637BF00CE805B /* PostViewModel.swift */; };
 		35481D34269D8C6500D7581E /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35481D33269D8C6500D7581E /* CommentViewModel.swift */; };
 		35481D38269DC45500D7581E /* SingleCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35481D37269DC45500D7581E /* SingleCommentView.swift */; };
@@ -111,6 +113,8 @@
 		3544CE722539BE880070D7BE /* LoggedUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoggedUser+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3544CE732539BE880070D7BE /* Favorite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3544CE742539BE890070D7BE /* Favorite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Favorite+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3545B16926D3978900C5F9BC /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		3545B16D26D39D7900C5F9BC /* NotificationsContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsContainerViewModel.swift; sourceTree = "<group>"; };
 		3547E6CF25F637BF00CE805B /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		35481D33269D8C6500D7581E /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
 		35481D37269DC45500D7581E /* SingleCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommentView.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				354CEB2B26930CFD0083BDEF /* NotificationsContainerView.swift */,
+				3545B16D26D39D7900C5F9BC /* NotificationsContainerViewModel.swift */,
 				354CEB9A269323E40083BDEF /* NotificationView.swift */,
 				3552807126C3FB7F00DBC380 /* NotificationPostView.swift */,
 				354C454826CAB61700D60329 /* NotificationPostViewModel.swift */,
@@ -353,6 +358,7 @@
 				35A4C5B12517A35F0053D8D7 /* ProfileModel.swift */,
 				3557317D2694A9340025E621 /* HotelModel.swift */,
 				3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */,
+				3545B16926D3978900C5F9BC /* NotificationModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -611,6 +617,8 @@
 				3544CE752539BE890070D7BE /* LoggedUser+CoreDataProperties.swift in Sources */,
 				355FBB0124F7C59F006749AE /* DashboardViewModel.swift in Sources */,
 				353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */,
+				3545B16E26D39D7900C5F9BC /* NotificationsContainerViewModel.swift in Sources */,
+				3545B16A26D3978900C5F9BC /* NotificationModel.swift in Sources */,
 				354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */,
 				353BEA62266D1A4700DE269A /* InfoView.swift in Sources */,
 				3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */,

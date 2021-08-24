@@ -15,10 +15,7 @@ protocol FactoryManagerProtocol {
 }
 
 @available(iOS 14.0, *)
-class FactoryManager: FactoryManagerProtocol {
-    func create(with name: String) -> some View {
-        NotificationView()
-    }
+class FactoryManager {
 
     func makePlaceCardView(model: TopPlacesModel) -> some View {
         let viewModel = PlaceCardViewModel()
