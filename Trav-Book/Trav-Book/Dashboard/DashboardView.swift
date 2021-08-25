@@ -44,6 +44,10 @@ struct DashboardView: View {
                     Text(error.debugDescription)
                 }
             }
+            // for ios 15
+//            .refreshable {
+//                viewModel.status = .initial
+//            }
             .navigationBarHidden(true)
             }
     }

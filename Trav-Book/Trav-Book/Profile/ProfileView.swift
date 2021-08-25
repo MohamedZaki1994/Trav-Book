@@ -65,7 +65,7 @@ struct ProfileView: View {
                         Text("Loading...")
                     case .finished:
                         ForEach(profileViewModel.posts.reversed()) { post in
-                            PostView(post: post)
+                            PostView(post: post, shouldShowDelete: true)
                                 .onTapGesture {}
                                 .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                             

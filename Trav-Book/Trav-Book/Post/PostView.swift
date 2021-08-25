@@ -26,6 +26,8 @@ struct PostView: View {
     @ObservedObject var post: PostModel
     @State var image = [Image?]()
     @State var profileImage: Image?
+    @State var showAlert = false
+    @State var shouldShowDelete = false
     var action: ((PostModel) -> Void)?
     var postViewModel = PostViewModel()
     var body: some View {
@@ -45,6 +47,20 @@ struct PostView: View {
                 }
                 Spacer()
                 Text(self.post.date?.timeAgo() ?? "0.0")
+                if shouldShowDelete {
+                    Button(action: {
+                        showAlert = true
+                    }, label: {
+                        Image(systemName: "xmark.circle.fill")
+                    }).buttonStyle(BorderlessButtonStyle())
+                    .alert(isPresented: $showAlert, content: {
+                        Alert(title: Text("Delete"), message: Text("Are you sure you want to delete this post"), primaryButton: .destructive(Text("Delete"), action: {
+                            postViewModel.deletePost(postId: post.id ?? "")
+                        }), secondaryButton: .cancel(Text("No"), action: {
+                            print("no")
+                        }))
+                    })
+                }
             } .padding(8)
             Text(post.postText ?? "")
                 .padding(.bottom, 10)
@@ -87,8 +103,8 @@ struct PostView: View {
                 .buttonStyle(PrimaryButtonStyle())
                 Spacer()
                 NavigationLink(destination: CommentView(postId: post.id ?? "", userId: post.userId ?? ""), isActive: self.$isCommenting) {
-                    EmptyView()
-                }
+                    EmptyView().disabled(true)
+                }.disabled(true)
                 .buttonStyle(PlainButtonStyle())
                 .frame(width: 0, height: 0)
                 .hidden()

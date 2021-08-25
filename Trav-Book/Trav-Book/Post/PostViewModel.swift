@@ -46,4 +46,8 @@ class PostViewModel: ObservableObject {
 //            }
         }
     }
+
+    func deletePost(postId: String) {
+        FirebaseManager.shared.deletePost(postId: postId)
+    }
 }

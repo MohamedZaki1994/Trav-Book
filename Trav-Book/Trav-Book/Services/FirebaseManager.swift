@@ -139,4 +139,10 @@ class FirebaseManager {
     func readNotification(notificationIndex: Int) {
         ref.child("Notifications/\(CurrentUser.shared.id)").child(String(notificationIndex)).updateChildValues(["isRead": true])
     }
+
+    func deletePost(postId: String) {
+        ref.child("Ref/posts/\(postId)").setValue(nil)
+        ref.child("Ref").child("Comments").child(postId).setValue(nil)
+        ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(nil)
+    }
 }
