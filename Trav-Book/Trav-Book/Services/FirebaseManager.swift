@@ -109,10 +109,10 @@ class FirebaseManager {
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
     }
 
-    func uploadComment(postId: String, userId: String, commentsInDic: [[String : Any]?]) {
-        ref.child("Ref").child("Comments/\(postId)").setValue(commentsInDic)
-        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": commentsInDic.count])
-        ref.child("UserPosts").child(userId).child(postId).updateChildValues(["numberOfComments": commentsInDic.count])
+    func uploadComment(postId: String, userId: String, comment: Comment, numberOfComments: Int) {
+        ref.child("Ref").child("Comments/\(postId)").child(comment.id).setValue(comment.dict)
+        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": numberOfComments + 1])
+        ref.child("UserPosts").child(userId).child(postId).updateChildValues(["numberOfComments": numberOfComments  + 1])
         ref.child("Ref/posts/\(postId)/subscribers").observeSingleEvent(of: .value) { [weak self] (snapshot) in
             print(snapshot)
             guard var subscribers = snapshot.value as? [String] else {return}

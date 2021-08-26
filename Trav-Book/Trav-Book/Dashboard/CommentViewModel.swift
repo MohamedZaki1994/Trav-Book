@@ -16,21 +16,16 @@ class CommentViewModel: ObservableObject {
     @Published var status: Status = .initial
 
     func loadComments(userId: String) {
-        handler.getData(path: "Ref/Comments/\(userId)", modelType: [Comment].self) { [weak self] (model, error) in
-            if error == nil, model != nil {
-                self?.commentModel = model
+        handler.loadComments(path: "Ref/Comments/\(userId)") { [weak self] (commentsDataModel, error) in
+            if error == nil, commentsDataModel != nil {
+                self?.commentModel = commentsDataModel
                 self?.status = .finished
             }
         }
     }
 
-    func uploadComment(postId: String, userId: String, comment: Comment) {
-        commentModel?.append(comment)
-        var commentsInDic = [[String : Any]?]()
-        commentModel?.forEach({ (comment) in
-            commentsInDic.append(comment.dict)
-        })
-        FirebaseManager.shared.uploadComment(postId: postId, userId: userId, commentsInDic: commentsInDic)
+    func uploadComment(postId: String, userId: String, comment: String) {
+        FirebaseManager.shared.uploadComment(postId: postId, userId: userId, comment: Comment(id: UUID().uuidString, name: CurrentUser.shared.name, ownerId: CurrentUser.shared.id, text: comment), numberOfComments: commentModel?.count ?? 0)
         status = .loading
     }
 }

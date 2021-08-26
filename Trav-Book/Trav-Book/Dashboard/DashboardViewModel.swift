@@ -85,9 +85,9 @@ class PostModel: Identifiable, ObservableObject, Codable {
 }
 
 struct Comment: Codable, Identifiable {
-    var uuid = UUID()
+    var id: String
     let name: String
-    let id: String
+    let ownerId: String
     let text: String
 }
 

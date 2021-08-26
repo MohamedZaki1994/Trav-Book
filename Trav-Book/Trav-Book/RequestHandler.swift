@@ -55,6 +55,29 @@ class RequestHandler {
         }
     }
 
+    func loadComments(path: String,completion:(([Comment]?, Error?) -> Void)?) {
+        ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            if snapshot.exists() {
+                var comments = [Comment]()
+                guard let dictionary = snapshot.value as? [String: Any] else {return}
+                for (_,value) in dictionary {
+                    guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
+                    do {
+                    let commentModel = try JSONDecoder().decode(Comment.self, from: data)
+                        comments.append(commentModel)
+                    }
+                    catch {
+                        print(error)
+                    }
+
+                }
+                completion?(comments,nil)
+            } else {
+                completion?(nil,nil)
+            }
+        }
+    }
+
     func loadPost(path: String ,completion:((PostModel?, Error?) -> Void)?) {
         ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
             if snapshot.exists() {

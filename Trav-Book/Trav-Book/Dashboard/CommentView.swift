@@ -31,7 +31,7 @@ struct CommentView: View {
                 if (viewModel.commentModel?.isEmpty ?? true) {
                     Text("No comments yet")
                 } else {
-                    ForEach(viewModel.commentModel!, id: \.uuid) { comment in
+                    ForEach(viewModel.commentModel!, id: \.id) { comment in
                         SingleCommentView(comment: comment)
                     }
                     Spacer()
@@ -42,7 +42,7 @@ struct CommentView: View {
 
                 HStack {
                     Button("Done") {
-                        viewModel.uploadComment(postId: postId, userId: userId, comment: Comment(name: CurrentUser.shared.name, id: CurrentUser.shared.id, text: comment))
+                        viewModel.uploadComment(postId: postId, userId: userId, comment: comment)
                         comment = ""
                     }
                     Button("Close") {

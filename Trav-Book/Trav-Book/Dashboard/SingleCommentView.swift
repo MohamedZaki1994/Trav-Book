@@ -31,11 +31,11 @@ struct SingleCommentView: View {
             })
             .alert(isPresented: $shouldShowAlert, content: {
                 Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
-                    viewModel.deleteComment(id: comment.uuid.uuidString, postId: comment.id)
+//                    viewModel.deleteComment(id: comment.uuid.uuidString, postId: comment.id)
                 }), secondaryButton: .cancel())
             })
         }.onAppear() {
-            viewModel.loadImage(userId: comment.id) { (data) in
+            viewModel.loadImage(userId: comment.ownerId) { (data) in
                 guard let uiImage = UIImage(data: data) else {return}
                 image = Image(uiImage: uiImage)
             }
