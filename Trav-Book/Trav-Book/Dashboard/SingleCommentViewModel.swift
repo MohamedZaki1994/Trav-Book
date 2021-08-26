@@ -23,6 +23,6 @@ class SingleCommentViewModel: ObservableObject {
     }
 
     func deleteComment(id: String, postId: String) {
-        FirebaseManager.shared.deleteComment(id: id, postId: postId)
+//        FirebaseManager.shared.deleteComment(id: id, postId: postId)
     }
 }

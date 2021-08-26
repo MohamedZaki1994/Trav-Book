@@ -14,6 +14,7 @@ struct SingleCommentView: View {
     @State var shouldShowDelete = true
     @State var shouldShowAlert = false
     var viewModel = SingleCommentViewModel()
+    var postId = ""
     var body: some View {
         HStack {
             if image != nil {
@@ -31,7 +32,7 @@ struct SingleCommentView: View {
             })
             .alert(isPresented: $shouldShowAlert, content: {
                 Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
-//                    viewModel.deleteComment(id: comment.uuid.uuidString, postId: comment.id)
+                    viewModel.deleteComment(id: comment.id, postId: comment.id)
                 }), secondaryButton: .cancel())
             })
         }.onAppear() {

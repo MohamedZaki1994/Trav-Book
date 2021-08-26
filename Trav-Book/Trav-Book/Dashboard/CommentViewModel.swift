@@ -25,7 +25,7 @@ class CommentViewModel: ObservableObject {
     }
 
     func uploadComment(postId: String, userId: String, comment: String) {
-        FirebaseManager.shared.uploadComment(postId: postId, userId: userId, comment: Comment(id: UUID().uuidString, name: CurrentUser.shared.name, ownerId: CurrentUser.shared.id, text: comment), numberOfComments: commentModel?.count ?? 0)
+        FirebaseManager.shared.uploadComment(userId: userId, comment: Comment(id: UUID().uuidString, name: CurrentUser.shared.name, ownerId: CurrentUser.shared.id, postId: postId, text: comment), numberOfComments: commentModel?.count ?? 0)
         status = .loading
     }
 }

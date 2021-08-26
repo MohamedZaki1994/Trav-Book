@@ -109,26 +109,26 @@ class FirebaseManager {
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
     }
 
-    func uploadComment(postId: String, userId: String, comment: Comment, numberOfComments: Int) {
-        ref.child("Ref").child("Comments/\(postId)").child(comment.id).setValue(comment.dict)
-        ref.child("Ref").child("posts/\(postId)").updateChildValues(["numberOfComments": numberOfComments + 1])
-        ref.child("UserPosts").child(userId).child(postId).updateChildValues(["numberOfComments": numberOfComments  + 1])
-        ref.child("Ref/posts/\(postId)/subscribers").observeSingleEvent(of: .value) { [weak self] (snapshot) in
+    func uploadComment(userId: String, comment: Comment, numberOfComments: Int) {
+        ref.child("Ref").child("Comments/\(comment.postId)").child(comment.id).setValue(comment.dict)
+        ref.child("Ref").child("posts/\(comment.postId)").updateChildValues(["numberOfComments": numberOfComments + 1])
+        ref.child("UserPosts").child(userId).child(comment.postId).updateChildValues(["numberOfComments": numberOfComments  + 1])
+        ref.child("Ref/posts/\(comment.postId)/subscribers").observeSingleEvent(of: .value) { [weak self] (snapshot) in
             print(snapshot)
             guard var subscribers = snapshot.value as? [String] else {return}
             if !subscribers.contains(CurrentUser.shared.id) {
                 subscribers.append(CurrentUser.shared.id)
-                self?.ref.child("Ref/posts/\(postId)").updateChildValues(["subscribers": subscribers])
+                self?.ref.child("Ref/posts/\(comment.postId)").updateChildValues(["subscribers": subscribers])
             }
         }
-        request.getData(path:("Ref/posts/\(postId)/subscribers"), modelType: [String].self) { [weak self] (model, error) in
+        request.getData(path:("Ref/posts/\(comment.postId)/subscribers"), modelType: [String].self) { [weak self] (model, error) in
             // upload the notification
             if let users = model {
                 for user in users {
                     if user != CurrentUser.shared.id {
                         self?.ref.child("Notifications/\(user)")
                         self?.request.getData(path: "Notifications/\(user)", modelType: [NotificationModel].self) { (notifications, error) in
-                            self?.ref.child("Notifications/\(user)").child(String(notifications?.count ?? 0)).setValue(["notificationOwnerId": CurrentUser.shared.id, "notificationOwnerName": CurrentUser.shared.name, "notificationOwnerImageName": CurrentUser.shared.image, "postId": postId, "isRead": false])
+                            self?.ref.child("Notifications/\(user)").child(String(notifications?.count ?? 0)).setValue(["notificationOwnerId": CurrentUser.shared.id, "notificationOwnerName": CurrentUser.shared.name, "notificationOwnerImageName": CurrentUser.shared.image, "postId": comment.postId, "isRead": false])
                         }
                     }
                 }
@@ -146,7 +146,7 @@ class FirebaseManager {
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(nil)
     }
 
-    func deleteComment(id: String, postId: String) {
+    func deleteComment(id: String, postId: String, userId: String) {
 //        ref.child("Ref").child("Comments").child(postId).
     }
 }
