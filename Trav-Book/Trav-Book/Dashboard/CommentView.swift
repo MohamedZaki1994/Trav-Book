@@ -32,7 +32,7 @@ struct CommentView: View {
                     Text("No comments yet")
                 } else {
                     ForEach(viewModel.commentModel!, id: \.id) { comment in
-                        SingleCommentView(comment: comment)
+                        SingleCommentView(comment: comment, numberOfComments: viewModel.commentModel?.count ?? 0)
                     }
                     Spacer()
                 }

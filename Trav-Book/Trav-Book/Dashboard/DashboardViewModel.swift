@@ -89,6 +89,7 @@ struct Comment: Codable, Identifiable {
     let name: String
     let ownerId: String
     let postId: String
+    let postOwnerId: String
     let text: String
 }
 

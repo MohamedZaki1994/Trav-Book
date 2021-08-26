@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SingleCommentView: View {
     var comment: Comment
+    @State var numberOfComments = 0
     @State var image: Image?
     @State var shouldShowDelete = true
     @State var shouldShowAlert = false
@@ -32,7 +33,7 @@ struct SingleCommentView: View {
             })
             .alert(isPresented: $shouldShowAlert, content: {
                 Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
-                    viewModel.deleteComment(id: comment.id, postId: comment.id)
+                    viewModel.deleteComment(comment: comment, numberOfComments: numberOfComments)
                 }), secondaryButton: .cancel())
             })
         }.onAppear() {
