@@ -11,6 +11,8 @@ import SwiftUI
 struct SingleCommentView: View {
     var comment: Comment
     @State var image: Image?
+    @State var shouldShowDelete = true
+    @State var shouldShowAlert = false
     var viewModel = SingleCommentViewModel()
     var body: some View {
         HStack {
@@ -21,6 +23,17 @@ struct SingleCommentView: View {
             }
             Text("\(comment.name): \(comment.text)")
             Spacer()
+            Text("Date")
+            Button(action: {
+                shouldShowAlert = true
+            }, label: {
+                Image(systemName: "xmark.circle.fill")
+            })
+            .alert(isPresented: $shouldShowAlert, content: {
+                Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
+                    viewModel.deleteComment(id: comment.uuid.uuidString, postId: comment.id)
+                }), secondaryButton: .cancel())
+            })
         }.onAppear() {
             viewModel.loadImage(userId: comment.id) { (data) in
                 guard let uiImage = UIImage(data: data) else {return}

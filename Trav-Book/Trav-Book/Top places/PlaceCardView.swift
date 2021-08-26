@@ -51,6 +51,7 @@ struct PlaceCardView: View {
                     .font(.system(size: 16, weight: .bold, design: .default))
                     .foregroundColor(.green)
                 NavigationLink("", destination: factory?.makeTopPlaceDetailsView(name: viewModel.dataModel?.name ?? "", image: uiImage, rate: viewModel.dataModel?.rating), isActive: $shouldGoToDetailsView)
+                    .hidden()
             }
         }
         .onAppear() {
@@ -63,7 +64,9 @@ struct PlaceCardView: View {
             }
         }
         .onTapGesture {
-            shouldGoToDetailsView = true
+            if image != nil {
+                shouldGoToDetailsView = true
+            }
         }
     }
 }

@@ -145,4 +145,8 @@ class FirebaseManager {
         ref.child("Ref").child("Comments").child(postId).setValue(nil)
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(nil)
     }
+
+    func deleteComment(id: String, postId: String) {
+//        ref.child("Ref").child("Comments").child(postId).
+    }
 }

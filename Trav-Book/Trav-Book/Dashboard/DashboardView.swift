@@ -35,7 +35,7 @@ struct DashboardView: View {
                         viewModel.status = .loading
                     })
                     .environmentObject(self.viewModel)
-                    ForEach(viewModel.posts.reversed()) { post in
+                    ForEach(viewModel.posts) { post in
                         PostView(factory: factory, post: post)
                             .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
                         

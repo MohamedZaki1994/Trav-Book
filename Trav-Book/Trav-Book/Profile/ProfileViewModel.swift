@@ -20,6 +20,9 @@ class ProfileViewModel: ObservableObject {
         request.loadPosts(path: "UserPosts/\(CurrentUser.shared.id)") { [weak self] (data, error) in
             if let data = data {
                 self?.posts = data
+                self?.posts.sort(by: {
+                    $0.date ?? 0 > $1.date ?? 0
+                })
                 self?.status = .finished
             }
         }

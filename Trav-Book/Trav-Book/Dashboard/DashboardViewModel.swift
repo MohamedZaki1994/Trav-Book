@@ -34,6 +34,9 @@ class DashboardViewModel: ObservableObject {
             }
             if let data = data {
                 self?.posts = data
+                self?.posts.sort(by: {
+                    $0.date ?? 0 > $1.date ?? 0
+                })
                 self?.status = .finished
             }
             if self?.posts.isEmpty ?? true {
