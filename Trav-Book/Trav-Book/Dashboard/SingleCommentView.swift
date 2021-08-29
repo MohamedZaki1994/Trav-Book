@@ -28,7 +28,7 @@ struct SingleCommentView: View {
             }
             Text("\(comment.name): \(comment.text)")
             Spacer()
-            Text("Date")
+                Text("\(comment.date.timeAgo())")
             Button(action: {
                 shouldShowAlert = true
             }, label: {

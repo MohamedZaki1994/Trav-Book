@@ -18,8 +18,13 @@ struct NotificationView: View {
     @State var image: Image?
     var body: some View {
         HStack {
-            image?
-                .imageIconModifier(width: 80, height: 80)
+            if image != nil {
+                image?
+                    .imageIconModifier(width: 80, height: 80)
+            } else {
+                Image("im")
+                    .imageIconModifier(width: 80, height: 80)
+            }
             Text("\(notification.notificationOwnerName) has commented on a post")
         }
         .overlay(

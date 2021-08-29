@@ -19,16 +19,11 @@ class DashboardViewModel: ObservableObject {
     var request = RequestHandler()
     let storage = Storage.storage()
 
-    var postsModel: PostModel? {
-        didSet {
-            posts.append(postsModel!)
-        }
-    }
     @Published var posts = [PostModel]()
 
     func getData() {
         status = .loading
-        request.loadPosts(path: "Ref/posts") { [weak self] (data, error) in
+        request.load(path: "Ref/posts", modelType: PostModel.self) { [weak self] (data, error) in
             if error != nil {
                 self?.status = .failure(error: error)
             }
@@ -91,6 +86,7 @@ struct Comment: Codable, Identifiable, Hashable {
     let postId: String
     let postOwnerId: String
     let text: String
+    var date: Double
 }
 
 

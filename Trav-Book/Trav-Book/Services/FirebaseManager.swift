@@ -112,7 +112,7 @@ class FirebaseManager {
     func uploadComment(comment: Comment, numberOfComments: Int) {
         ref.child("Ref").child("Comments/\(comment.postId)").child(comment.id).setValue(comment.dict)
         ref.child("Ref").child("posts/\(comment.postId)").updateChildValues(["numberOfComments": numberOfComments + 1])
-        ref.child("UserPosts").child(comment.postOwnerId).child(comment.postId).updateChildValues(["numberOfComments": numberOfComments  + 1])
+        ref.child("UserPosts").child(comment.postOwnerId).child(comment.postId).updateChildValues(["numberOfComments": numberOfComments + 1])
         ref.child("Ref/posts/\(comment.postId)/subscribers").observeSingleEvent(of: .value) { [weak self] (snapshot) in
             print(snapshot)
             guard var subscribers = snapshot.value as? [String] else {return}

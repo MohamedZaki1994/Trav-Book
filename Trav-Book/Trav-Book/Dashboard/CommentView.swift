@@ -28,11 +28,11 @@ struct CommentView: View {
                     viewModel.loadComments(userId: postId)
                 }
             case .finished:
-                if (viewModel.commentModel?.isEmpty ?? true) {
+                if (viewModel.commentModel.isEmpty ) {
                     Text("No comments yet")
                 } else {
-                    ForEach(viewModel.commentModel!, id: \.id) { comment in
-                        SingleCommentView(comment: comment, numberOfComments: viewModel.commentModel?.count ?? 0, status: viewModel.status)
+                    ForEach(viewModel.commentModel, id: \.id) { comment in
+                        SingleCommentView(comment: comment, numberOfComments: viewModel.commentModel.count, status: viewModel.status)
                     }
                     Spacer()
                 }

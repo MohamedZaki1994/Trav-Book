@@ -12,20 +12,36 @@ import Firebase
 class CommentViewModel: ObservableObject {
     let handler = RequestHandler()
     var ref: DatabaseReference = Database.database().reference()
-    @Published var commentModel: [Comment]? = [Comment]()
+    @Published var commentModel = [Comment]()
     @Published var status: Status = .initial
 
     func loadComments(userId: String) {
-        handler.loadComments(path: "Ref/Comments/\(userId)") { [weak self] (commentsDataModel, error) in
+        handler.load(path: "Ref/Comments/\(userId)", modelType: Comment.self) { [weak self] (commentsDataModel, error) in
             if error == nil, commentsDataModel != nil {
-                self?.commentModel = commentsDataModel
-                self?.status = .finished
+                if let data = commentsDataModel {
+                    self?.commentModel = data
+                    self?.commentModel.sort(by: {
+                        $0.date < $1.date
+                    })
+                    self?.status = .finished
+                }
             }
         }
+//        handler.loadComments(path: "Ref/Comments/\(userId)") { [weak self] (commentsDataModel, error) in
+//            if error == nil, commentsDataModel != nil {
+//                if let data = commentsDataModel {
+//                    self?.commentModel = data
+//                    self?.commentModel.sort(by: {
+//                        $0.date < $1.date
+//                    })
+//                    self?.status = .finished
+//                }
+//            }
+//        }
     }
 
     func uploadComment(postId: String, userId: String, comment: String) {
-        FirebaseManager.shared.uploadComment(comment: Comment(id: UUID().uuidString, name: CurrentUser.shared.name, ownerId: CurrentUser.shared.id, postId: postId, postOwnerId: userId, text: comment), numberOfComments: commentModel?.count ?? 0)
+        FirebaseManager.shared.uploadComment(comment: Comment(id: UUID().uuidString, name: CurrentUser.shared.name, ownerId: CurrentUser.shared.id, postId: postId, postOwnerId: userId, text: comment, date: Date().timeIntervalSince1970), numberOfComments: commentModel.count)
         status = .loading
     }
 }

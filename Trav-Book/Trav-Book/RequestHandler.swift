@@ -32,46 +32,22 @@ class RequestHandler {
             }})
     }
 
-    func loadPosts(path: String,completion:(([PostModel]?, Error?) -> Void)?) {
+    func load<T: Codable>(path: String, modelType: T.Type, completion:(([T]?, Error?) -> Void)?) {
         ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
             if snapshot.exists() {
-                var posts = [PostModel]()
+                var arrayOfElement = [T]()
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
                 for (_,value) in dictionary {
                     guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
                     do {
-                    let postModel = try JSONDecoder().decode(PostModel.self, from: data)
-                        posts.append(postModel)
+                    let singleElement = try JSONDecoder().decode(T.self, from: data)
+                        arrayOfElement.append(singleElement)
                     }
                     catch {
                         print(error)
                     }
-
                 }
-                completion?(posts,nil)
-            } else {
-                completion?(nil,nil)
-            }
-        }
-    }
-
-    func loadComments(path: String,completion:(([Comment]?, Error?) -> Void)?) {
-        ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
-            if snapshot.exists() {
-                var comments = [Comment]()
-                guard let dictionary = snapshot.value as? [String: Any] else {return}
-                for (_,value) in dictionary {
-                    guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
-                    do {
-                    let commentModel = try JSONDecoder().decode(Comment.self, from: data)
-                        comments.append(commentModel)
-                    }
-                    catch {
-                        print(error)
-                    }
-
-                }
-                completion?(comments,nil)
+                completion?(arrayOfElement,nil)
             } else {
                 completion?(nil,nil)
             }

@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F0A4DF3C-E5D5-40C6-9E28-45574BA56A1E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Trav-Book/RequestHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "getData(path:modelType:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "07F57039-6731-4435-9FDD-F724B2C770A5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -94,8 +78,8 @@
             filePath = "Trav-Book/RequestHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "loadPost(path:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,32 +135,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DB8CBE01-5F2D-44C4-B626-DFDF9BFF20DE"
+            uuid = "E921E35B-BCEF-4381-AD95-98FD706B5627"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Trav-Book/Services/FirebaseManager.swift"
+            filePath = "Trav-Book/Dashboard/CommentViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "loadImage(userId:completion:)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "loadComments(userId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "394D42CF-1764-41A5-BB5F-C3E979221648"
+            uuid = "47DDDCE6-6C4D-4FFA-8207-9DB91D72165C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Trav-Book/Services/FirebaseManager.swift"
+            filePath = "Trav-Book/Dashboard/CommentViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "loadImage(userId:completion:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "loadComments(userId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A8FDC83-D75A-4C05-A9E0-707889207F72"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Trav-Book/Dashboard/DashboardViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "getData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
