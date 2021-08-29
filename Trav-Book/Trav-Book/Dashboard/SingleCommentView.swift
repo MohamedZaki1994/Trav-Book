@@ -14,10 +14,13 @@ struct SingleCommentView: View {
     @State var image: Image?
     @State var shouldShowDelete = true
     @State var shouldShowAlert = false
+    @State var status: Status
     var viewModel = SingleCommentViewModel()
     var postId = ""
     var body: some View {
         HStack {
+            switch status {
+            case .finished:
             if image != nil {
                 image?.imageIconModifier(width: 50, height: 50)
             } else {
@@ -34,8 +37,12 @@ struct SingleCommentView: View {
             .alert(isPresented: $shouldShowAlert, content: {
                 Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
                     viewModel.deleteComment(comment: comment, numberOfComments: numberOfComments)
+                    status = .loading
                 }), secondaryButton: .cancel())
             })
+            default:
+                Text("")
+            }
         }.onAppear() {
             viewModel.loadImage(userId: comment.ownerId) { (data) in
                 guard let uiImage = UIImage(data: data) else {return}

@@ -15,31 +15,36 @@ struct NotificationsContainerView: View {
     @StateObject var viewModel = NotificationsContainerViewModel()
     @State var shouldOpenNotification = false
     @State var selectedPostId = ""
+
     var body: some View {
         NavigationView {
+//            ZStack(alignment: .center) {
             List {
                 switch viewModel.status {
                 case .finished:
                     if let notifications = viewModel.notificationModel {
-                        ZStack(alignment: .center) {
-                        ForEach(notifications.reversed(), id: \.self.id) { notification in
-                            NotificationView(isComingFromDeepLink: notification.id == notifications[deepLinkAtIndex].id ? isDeepLink : false, notification: notification)
-                                .onTapGesture {
-                                    shouldOpenNotification = true
-                                    let index = notifications.firstIndex { notif in
-                                        notif.notificationOwnerId == notification.notificationOwnerId &&
-                                            notif.postId == notif.postId
-                                    }
-                                    viewModel.readNotification(index: index ?? 0)
-                                    selectedPostId = notification.postId
-                                    viewModel.status = .initial
+                                ForEach(notifications, id: \.self) { notification in
+                                    ZStack() {
+
+                                    NotificationView(isComingFromDeepLink: notification.id == notifications[deepLinkAtIndex].id ? isDeepLink : false, notification: notification)
+                                        .listRowBackground(Color.red)
+                                        .onTapGesture {
+                                            shouldOpenNotification = true
+                                            let index = viewModel.notificationModel!.firstIndex { notif in
+                                                notif.id == notification.id
+                                            }
+                                            viewModel.readNotification(index: index ?? 0)
+                                            selectedPostId = notification.postId
+                                            viewModel.status = .initial
+                                        }
+                                        NavigationLink(destination: NotificationPostView(selectedPostId: $selectedPostId), isActive: self.$shouldOpenNotification) {
+                                            EmptyView()
+                                        }
+                                        .frame(width: 0, height: 0)
+                                        .hidden()
+                                            }
                                 }
-                        }
-                            NavigationLink(destination: NotificationPostView(selectedPostId: $selectedPostId), isActive: self.$shouldOpenNotification) {
-                            Rectangle().opacity(0.0)
-                        }.frame(width: 0, height: 0).hidden()
-                        .buttonStyle(PlainButtonStyle())
-                        }
+
                     } else {
                         Text("your notifications are empty")
                     }
@@ -52,8 +57,13 @@ struct NotificationsContainerView: View {
                 case .failure(error: let error):
                     Text(error.debugDescription)
                 }
-            }.navigationBarTitle("Notifications")
+            }
+            .navigationBarTitle("Notifications")
+
+
+//            }
         }
+
 //        .onAppear() {
 //            viewModel.loadNotifications()
 //        }

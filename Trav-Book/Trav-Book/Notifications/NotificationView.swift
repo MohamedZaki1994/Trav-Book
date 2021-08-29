@@ -12,18 +12,12 @@ import SwiftUI
 struct NotificationView: View {
     @State var shouldOpenNotification = false
     @State var isComingFromDeepLink = false
-    var notification: NotificationModel
+    @State var notification: NotificationModel
     var body: some View {
         HStack {
             Image("im")
-                .scaledToFit()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
-                .padding(.top)
-                .padding(.bottom)
-                .padding(.trailing)
+                .imageIconModifier(width: 80, height: 80)
             Text("\(notification.notificationOwnerName) has commented on a post")
-
         }
         .overlay(
             Rectangle()

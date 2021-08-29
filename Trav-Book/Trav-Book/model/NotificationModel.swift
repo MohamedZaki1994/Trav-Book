@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct NotificationModel: Codable, Identifiable {
-    let id = UUID()
+struct NotificationModel: Codable, Identifiable, Hashable {
+    let id: String
     let notificationOwnerId, notificationOwnerName, notificationOwnerImageName, postId: String
     let isRead: Bool
 }

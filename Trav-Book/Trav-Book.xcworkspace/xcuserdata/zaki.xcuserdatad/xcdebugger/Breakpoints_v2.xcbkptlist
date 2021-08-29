@@ -119,22 +119,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A11173A1-9468-4413-9701-A755B02195FA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Trav-Book/Notifications/NotificationsContainerView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "838F14ED-265B-4D4E-A884-121CC272D521"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -151,63 +135,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C245B0F4-0C0A-49DB-84FE-3B037E126843"
+            uuid = "245321F3-0812-4586-813A-79166FAEB2C1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Trav-Book/Dashboard/CommentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93D61563-075F-4A26-B599-36175767441E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Trav-Book/Dashboard/CommentViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "loadComments(userId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "68A018EE-3218-4A0C-9B33-326EFEB5C9F2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Trav-Book/Dashboard/SingleCommentViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "loadImage(userId:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "68A018EE-3218-4A0C-9B33-326EFEB5C9F2 - 91d873559cf6ccca"
+                  uuid = "93D61563-075F-4A26-B599-36175767441E - f4eb2cff2191aa59"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Trav_Book.SingleCommentViewModel.loadImage(userId: Swift.String, completion: Swift.Optional&lt;(Foundation.Data) -&gt; ()&gt;) -&gt; ()"
+                  symbolName = "Trav_Book.CommentViewModel.loadComments(userId: Swift.String) -&gt; ()"
                   moduleName = "Trav-Book"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Dashboard/SingleCommentViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "50">
-               </Location>
-               <Location
-                  uuid = "68A018EE-3218-4A0C-9B33-326EFEB5C9F2 - 65e5f78b9710d5c9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Trav_Book.SingleCommentViewModel.loadImage(userId: Swift.String, completion: Swift.Optional&lt;(Foundation.Data) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "Trav-Book"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Dashboard/SingleCommentViewModel.swift"
+                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Dashboard/CommentViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
                   endingLineNumber = "19"
-                  offsetFromSymbolStart = "144">
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "93D61563-075F-4A26-B599-36175767441E - 9537aadfa35c8901"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;Trav_Book.Comment&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Trav_Book.CommentViewModel.loadComments(userId: Swift.String) -&gt; ()"
+                  moduleName = "Trav-Book"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Dashboard/CommentViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "150">
                </Location>
             </Locations>
          </BreakpointContent>

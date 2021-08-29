@@ -128,7 +128,7 @@ class FirebaseManager {
                     if user != CurrentUser.shared.id {
                         self?.ref.child("Notifications/\(user)")
                         self?.request.getData(path: "Notifications/\(user)", modelType: [NotificationModel].self) { (notifications, error) in
-                            self?.ref.child("Notifications/\(user)").child(String(notifications?.count ?? 0)).setValue(["notificationOwnerId": CurrentUser.shared.id, "notificationOwnerName": CurrentUser.shared.name, "notificationOwnerImageName": CurrentUser.shared.image, "postId": comment.postId, "isRead": false])
+                            self?.ref.child("Notifications/\(user)").child(String(notifications?.count ?? 0)).setValue(["notificationOwnerId": CurrentUser.shared.id, "notificationOwnerName": CurrentUser.shared.name, "notificationOwnerImageName": CurrentUser.shared.image, "postId": comment.postId, "isRead": false, "id": UUID().uuidString])
                         }
                     }
                 }

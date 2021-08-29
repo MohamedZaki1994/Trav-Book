@@ -84,7 +84,7 @@ class PostModel: Identifiable, ObservableObject, Codable {
     }
 }
 
-struct Comment: Codable, Identifiable {
+struct Comment: Codable, Identifiable, Hashable {
     var id: String
     let name: String
     let ownerId: String
