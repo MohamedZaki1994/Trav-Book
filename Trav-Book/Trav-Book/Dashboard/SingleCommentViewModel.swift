@@ -15,11 +15,7 @@ class SingleCommentViewModel: ObservableObject {
     @Published var image: Image?
 
     func loadImage(userId: String, completion: ((Data) -> Void)?) {
-        storage.child("Users").child(userId).getData(maxSize: 1*2048*2048) { (metaData, error) in
-            if error == nil {
-                completion?(metaData!)
-            }
-        }
+        FirebaseManager.shared.loadImage(userId: userId, completion: completion)
     }
 
     func deleteComment(comment: Comment, numberOfComments: Int) {

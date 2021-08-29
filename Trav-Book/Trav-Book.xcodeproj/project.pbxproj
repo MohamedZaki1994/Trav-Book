@@ -19,6 +19,7 @@
 		353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */; };
 		353B89AB24F136C20069F664 /* BaseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353B89AA24F136C20069F664 /* BaseTabView.swift */; };
 		353BEA62266D1A4700DE269A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353BEA61266D1A4700DE269A /* InfoView.swift */; };
+		353FFE3926DBA34700551C03 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FFE3826DBA34700551C03 /* NotificationViewModel.swift */; };
 		354022C324EFDD7300F69187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C224EFDD7300F69187 /* AppDelegate.swift */; };
 		354022C524EFDD7300F69187 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354022C424EFDD7300F69187 /* SceneDelegate.swift */; };
 		354022C824EFDD7300F69187 /* Trav_Book.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 354022C624EFDD7300F69187 /* Trav_Book.xcdatamodeld */; };
@@ -93,6 +94,7 @@
 		353AFB4D25174C9B0069F5D2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		353B89AA24F136C20069F664 /* BaseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabView.swift; sourceTree = "<group>"; };
 		353BEA61266D1A4700DE269A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		353FFE3826DBA34700551C03 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		354022BF24EFDD7300F69187 /* Trav-Book.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trav-Book.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		354022C224EFDD7300F69187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		354022C424EFDD7300F69187 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				354CEB2B26930CFD0083BDEF /* NotificationsContainerView.swift */,
 				3545B16D26D39D7900C5F9BC /* NotificationsContainerViewModel.swift */,
 				354CEB9A269323E40083BDEF /* NotificationView.swift */,
+				353FFE3826DBA34700551C03 /* NotificationViewModel.swift */,
 				3552807126C3FB7F00DBC380 /* NotificationPostView.swift */,
 				354C454826CAB61700D60329 /* NotificationPostViewModel.swift */,
 			);
@@ -593,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35481D3C269DC5A500D7581E /* SingleCommentViewModel.swift in Sources */,
+				353FFE3926DBA34700551C03 /* NotificationViewModel.swift in Sources */,
 				353A6803252366FB0097B72F /* SignupView.swift in Sources */,
 				355FBAFD24F7B0FD006749AE /* PostView.swift in Sources */,
 				3553D75B269EF842003BDE8B /* TopPlaceDetailsInfoView.swift in Sources */,

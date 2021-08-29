@@ -151,4 +151,20 @@ class FirebaseManager {
         ref.child("Ref").child("posts").child(comment.postId).updateChildValues(["numberOfComments": numberOfComments - 1])
         ref.child("UserPosts").child(comment.postOwnerId).child(comment.postId).updateChildValues(["numberOfComments": numberOfComments - 1])
     }
+
+    func loadImage(userId: String, completion: ((Data) -> Void)?) {
+        if let cachedNSDataImage = cachingImage.object(forKey: NSString(string: userId)) {
+            let cachedDataImage = Data(referencing: cachedNSDataImage)
+            completion?(cachedDataImage)
+            return
+        }
+        storage.child("Users").child(userId).getData(maxSize: 1*2048*2048) { [weak self] (metaData, error) in
+            if error == nil {
+                if let metaData = metaData {
+                    self?.cachingImage.setObject(NSData(data: metaData), forKey: NSString(string: userId))
+                    completion?(metaData)
+                }
+            }
+        }
+    }
 }

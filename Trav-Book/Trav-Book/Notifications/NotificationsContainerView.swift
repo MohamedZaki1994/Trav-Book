@@ -18,7 +18,6 @@ struct NotificationsContainerView: View {
 
     var body: some View {
         NavigationView {
-//            ZStack(alignment: .center) {
             List {
                 switch viewModel.status {
                 case .finished:
@@ -26,11 +25,11 @@ struct NotificationsContainerView: View {
                                 ForEach(notifications, id: \.self) { notification in
                                     ZStack() {
 
-                                    NotificationView(isComingFromDeepLink: notification.id == notifications[deepLinkAtIndex].id ? isDeepLink : false, notification: notification)
+                                        NotificationView(isComingFromDeepLink: notification.id == notifications[deepLinkAtIndex].id ? isDeepLink : false, notification: notification, userId: notification.notificationOwnerId)
                                         .listRowBackground(Color.red)
                                         .onTapGesture {
                                             shouldOpenNotification = true
-                                            let index = viewModel.notificationModel!.firstIndex { notif in
+                                            let index = notifications.firstIndex { notif in
                                                 notif.id == notification.id
                                             }
                                             viewModel.readNotification(index: index ?? 0)
@@ -59,9 +58,6 @@ struct NotificationsContainerView: View {
                 }
             }
             .navigationBarTitle("Notifications")
-
-
-//            }
         }
 
 //        .onAppear() {
