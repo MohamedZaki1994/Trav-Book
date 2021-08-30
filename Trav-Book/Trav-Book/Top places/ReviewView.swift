@@ -57,6 +57,7 @@ struct ReviewView: View {
                 TextField("write a review", text: $reviewText).padding()
                 Button("done") {
                     viewModel.uploadReview(reviewText: reviewText, rate: lastFullStar, topPlaces: topPlaces)
+                    topPlaces.getData()
                     reviewText = ""
                     lastFullStar = 2
                 }

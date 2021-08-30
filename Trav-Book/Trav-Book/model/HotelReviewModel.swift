@@ -10,7 +10,7 @@ import Foundation
 
 struct HotelReviewModel: Codable {
     let id = UUID()
-    let name, image, review: String
+    let name, review: String
     let userId: String
     let rate: Int
 }
