@@ -55,7 +55,7 @@ struct TopPlaceDetailsInfoView: View {
             ForEach(viewModel.model?.reviews ?? [""], id: \.self) {
                 Text($0).padding()
             }
-            NavigationLink("Write a review", destination: ReviewView(viewModel: ReviewViewModel(), hotelName: viewModel.name ?? "")).padding()
+            NavigationLink("Write a review", destination: ReviewView(hotelName: viewModel.name ?? "")).padding()
         }
     }
 }

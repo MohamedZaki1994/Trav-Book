@@ -8,8 +8,9 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 struct ReviewView: View {
-    @ObservedObject var viewModel: ReviewViewModel
+    @StateObject var viewModel = ReviewViewModel()
     @State var hotelName: String
     @State var reviewText: String = ""
     @State var lastFullStar = 2
@@ -28,25 +29,7 @@ struct ReviewView: View {
             List {
                 if let reviews = viewModel.hotelReviews {
                     ForEach(reviews.reversed(), id: \.id) { review in
-                        VStack(alignment: .leading) {
-                            StarsView(isEditable: false, lastFullStar: review.rate)
-                            HStack {
-                                if image != nil {
-                                    image?.imageIconModifier(width: 80, height: 80)
-                                } else {
-                                    Image("im").imageIconModifier(width: 80, height: 80)
-                                }
-                                Text(review.name)
-                                Text(": \(review.review)")
-                            }
-                            .onAppear() {
-                                viewModel.loadImage(userId: review.userId) { (data) in
-                                    guard let uiImage = UIImage(data: data) else {return}
-                                    image = Image(uiImage: uiImage)
-                                }
-                            }
-                            .padding()
-                        }.padding()
+                        SingleReviewView(review: review)
                     }
                 }
             }

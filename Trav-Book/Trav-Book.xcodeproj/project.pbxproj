@@ -57,6 +57,8 @@
 		3552F10B26BABC5200AA6C70 /* HotelReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */; };
 		3552F10F26BABF4B00AA6C70 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */; };
 		3552F11326BADE0800AA6C70 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552F11226BADE0800AA6C70 /* StarsView.swift */; };
+		3552FB9226DD06A50045B300 /* SingleReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552FB9126DD06A50045B300 /* SingleReviewView.swift */; };
+		3552FBAC26DD08210045B300 /* SingleReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552FBAB26DD08210045B300 /* SingleReviewViewModel.swift */; };
 		3553D75B269EF842003BDE8B /* TopPlaceDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */; };
 		3557317E2694A9340025E621 /* HotelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557317D2694A9340025E621 /* HotelModel.swift */; };
 		3559527026B97346001EAA13 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559526F26B97346001EAA13 /* SearchView.swift */; };
@@ -136,6 +138,8 @@
 		3552F10A26BABC5200AA6C70 /* HotelReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelReviewModel.swift; sourceTree = "<group>"; };
 		3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		3552F11226BADE0800AA6C70 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		3552FB9126DD06A50045B300 /* SingleReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleReviewView.swift; sourceTree = "<group>"; };
+		3552FBAB26DD08210045B300 /* SingleReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleReviewViewModel.swift; sourceTree = "<group>"; };
 		3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlaceDetailsInfoView.swift; sourceTree = "<group>"; };
 		3557317D2694A9340025E621 /* HotelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelModel.swift; sourceTree = "<group>"; };
 		3559526F26B97346001EAA13 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -344,6 +348,8 @@
 				3553D75A269EF842003BDE8B /* TopPlaceDetailsInfoView.swift */,
 				3552F10626BAAFD800AA6C70 /* ReviewView.swift */,
 				3552F10E26BABF4B00AA6C70 /* ReviewViewModel.swift */,
+				3552FB9126DD06A50045B300 /* SingleReviewView.swift */,
+				3552FBAB26DD08210045B300 /* SingleReviewViewModel.swift */,
 				3552F11226BADE0800AA6C70 /* StarsView.swift */,
 			);
 			path = "Top places";
@@ -606,6 +612,7 @@
 				35B2FCF5265FC2EA00D8CD1E /* TopPlacesView.swift in Sources */,
 				3541D7DD25308C2100FAFC4A /* SignupViewmodel.swift in Sources */,
 				354CEB9F2693322F0083BDEF /* TopPlaceDetailsView.swift in Sources */,
+				3552FBAC26DD08210045B300 /* SingleReviewViewModel.swift in Sources */,
 				3559527026B97346001EAA13 /* SearchView.swift in Sources */,
 				354CEBA32693347F0083BDEF /* TopPlaceDetailsViewModel.swift in Sources */,
 				355FBAFF24F7B1B6006749AE /* DashboardView.swift in Sources */,
@@ -627,6 +634,7 @@
 				353BEA62266D1A4700DE269A /* InfoView.swift in Sources */,
 				3544CE772539BE890070D7BE /* Favorite+CoreDataProperties.swift in Sources */,
 				353AFB4E25174C9B0069F5D2 /* ProfileViewModel.swift in Sources */,
+				3552FB9226DD06A50045B300 /* SingleReviewView.swift in Sources */,
 				35F5298125669C2E0067CCCB /* RequestHandler.swift in Sources */,
 				354022CA24EFDD7300F69187 /* ContentView.swift in Sources */,
 				354C454926CAB61700D60329 /* NotificationPostViewModel.swift in Sources */,

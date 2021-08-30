@@ -84,7 +84,6 @@ class FirebaseManager {
                 completion?(true)
             }
         })
-//        ref.child("Hotels/\(hotelName)/reviews")
     }
 
     func uploadPost(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, place: String, completion: (() -> Void)? ) {

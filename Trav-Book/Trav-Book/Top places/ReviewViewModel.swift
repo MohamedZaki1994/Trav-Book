@@ -20,7 +20,6 @@ class ReviewViewModel: ObservableObject {
         request.load(path: "HotelsReviews/\(hotelName)", modelType: HotelReviewModel.self) { [weak self] (model, error) in
             self?.hotelReviews = model
             self?.status = .finished
-
         }
     }
 
