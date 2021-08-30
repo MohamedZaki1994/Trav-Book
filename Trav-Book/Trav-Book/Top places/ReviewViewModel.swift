@@ -41,4 +41,8 @@ class ReviewViewModel: ObservableObject {
             }
         }
     }
+
+    func loadImage(userId: String, completion: ((Data) -> Void)?) {
+        FirebaseManager.shared.loadImage(userId: userId, completion: completion)
+    }
 }

@@ -27,17 +27,6 @@ class CommentViewModel: ObservableObject {
                 }
             }
         }
-//        handler.loadComments(path: "Ref/Comments/\(userId)") { [weak self] (commentsDataModel, error) in
-//            if error == nil, commentsDataModel != nil {
-//                if let data = commentsDataModel {
-//                    self?.commentModel = data
-//                    self?.commentModel.sort(by: {
-//                        $0.date < $1.date
-//                    })
-//                    self?.status = .finished
-//                }
-//            }
-//        }
     }
 
     func uploadComment(postId: String, userId: String, comment: String) {

@@ -12,7 +12,7 @@ struct SingleCommentView: View {
     var comment: Comment
     @State var numberOfComments = 0
     @State var image: Image?
-    @State var shouldShowDelete = true
+    @State var shouldShowDelete = false
     @State var shouldShowAlert = false
     @State var status: Status
     var viewModel = SingleCommentViewModel()
@@ -29,17 +29,20 @@ struct SingleCommentView: View {
             Text("\(comment.name): \(comment.text)")
             Spacer()
                 Text("\(comment.date.timeAgo())")
-            Button(action: {
-                shouldShowAlert = true
-            }, label: {
-                Image(systemName: "xmark.circle.fill")
-            })
-            .alert(isPresented: $shouldShowAlert, content: {
-                Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
-                    viewModel.deleteComment(comment: comment, numberOfComments: numberOfComments)
-                    status = .loading
-                }), secondaryButton: .cancel())
-            })
+                if shouldShowDelete {
+                    Button(action: {
+                        shouldShowAlert = true
+                    }, label: {
+                        Image(systemName: "xmark.circle.fill")
+                    })
+                    .buttonStyle(BorderlessButtonStyle())
+                    .alert(isPresented: $shouldShowAlert, content: {
+                        Alert(title: Text("Delete"), message: Text("Are you sure you want delete this comment"), primaryButton: .destructive(Text("Yes"), action: {
+                            viewModel.deleteComment(comment: comment, numberOfComments: numberOfComments)
+                            status = .loading
+                        }), secondaryButton: .cancel())
+                    })
+                }
             default:
                 Text("")
             }

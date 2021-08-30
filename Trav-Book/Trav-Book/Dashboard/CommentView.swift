@@ -31,8 +31,10 @@ struct CommentView: View {
                 if (viewModel.commentModel.isEmpty ) {
                     Text("No comments yet")
                 } else {
-                    ForEach(viewModel.commentModel, id: \.id) { comment in
-                        SingleCommentView(comment: comment, numberOfComments: viewModel.commentModel.count, status: viewModel.status)
+                    List {
+                        ForEach(viewModel.commentModel, id: \.id) { comment in
+                            SingleCommentView(comment: comment, numberOfComments: viewModel.commentModel.count, shouldShowDelete: (CurrentUser.shared.id == comment.postOwnerId || CurrentUser.shared.id == comment.ownerId), status: viewModel.status)
+                        }
                     }
                     Spacer()
                 }

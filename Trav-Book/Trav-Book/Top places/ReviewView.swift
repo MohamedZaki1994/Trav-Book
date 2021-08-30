@@ -13,13 +13,14 @@ struct ReviewView: View {
     @State var hotelName: String
     @State var reviewText: String = ""
     @State var lastFullStar = 2
+    @State var image: Image?
     @EnvironmentObject var topPlaces: TopPlacesViewModel
     var body: some View {
         switch viewModel.status {
         case .initial:
             Text("")
                 .onAppear() {
-                viewModel.fetchReviews(hotelName: hotelName)
+                    viewModel.fetchReviews(hotelName: hotelName)
             }
         case .loading:
             Text("")
@@ -30,10 +31,21 @@ struct ReviewView: View {
                         VStack(alignment: .leading) {
                             StarsView(isEditable: false, lastFullStar: review.rate)
                             HStack {
-                                Image(systemName: "person")
+                                if image != nil {
+                                    image?.imageIconModifier(width: 80, height: 80)
+                                } else {
+                                    Image("im").imageIconModifier(width: 80, height: 80)
+                                }
                                 Text(review.name)
                                 Text(": \(review.review)")
-                            }.padding()
+                            }
+                            .onAppear() {
+                                viewModel.loadImage(userId: review.userId) { (data) in
+                                    guard let uiImage = UIImage(data: data) else {return}
+                                    image = Image(uiImage: uiImage)
+                                }
+                            }
+                            .padding()
                         }.padding()
                     }
                 }

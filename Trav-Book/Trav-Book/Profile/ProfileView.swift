@@ -52,18 +52,21 @@ struct ProfileView: View {
                     AuthProvider.shared.signOut()
                 } ){
                     Text("Logout")
+                        .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+                        .background(Color.black)
+                        .foregroundColor(.red)
+                        .cornerRadius(5)
+                        .padding(.top, 10)
                 }
-                .frame(width: UIScreen.main.bounds.width - 20, height: 40)
-                .background(Color.black)
-                .foregroundColor(.red)
-                .cornerRadius(5)
-                .padding(.top, 10)
 
                 List {
                     switch profileViewModel.status {
                     case .loading:
                         Text("Loading...")
                     case .finished:
+                        if profileViewModel.posts.isEmpty {
+                            Text("You don't have any posts yet")
+                        }
                         ForEach(profileViewModel.posts) { post in
                             PostView(post: post, shouldShowDelete: true)
                                 .onTapGesture {}
