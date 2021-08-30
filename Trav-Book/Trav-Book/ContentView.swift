@@ -50,15 +50,6 @@ struct ContentView: View {
             }
         }
     }
-
-    func fetchData() -> Result<String,myError> {
-        return .failure(myError.badURL)
-    }
-}
-
-protocol TestView {
-    associatedtype T = View
-    var myView: T { get set }
 }
 
 enum myError: Error {

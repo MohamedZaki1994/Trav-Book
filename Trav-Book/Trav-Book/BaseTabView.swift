@@ -17,6 +17,8 @@ struct BaseTabView: View {
     @State var deepLinkAtIndex = 0
     let dashboardViewModel = DashboardViewModel()
     let topPlaceViewModel = TopPlacesViewModel()
+    @StateObject var viewModel = BaseTabViewModel()
+    @EnvironmentObject var baseTabViewModel: BaseTabViewModel
     var factory: FactoryManager?
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -36,8 +38,9 @@ struct BaseTabView: View {
             NotificationsContainerView(isDeepLink: isDeepLink, deepLinkAtIndex: deepLinkAtIndex)
                 .tabItem {
                     Image(systemName: "bell")
-                    Text("Notifications")
+                    Text("Notifications\(viewModel.count == 0 ? "" : "\(viewModel.count)")")
                 }.tag(2)
+
             ProfileView(profileViewModel: ProfileViewModel(), viewModel: dashboardViewModel)
                 .tabItem {
                 VStack {
@@ -46,6 +49,11 @@ struct BaseTabView: View {
                 }
             }.tag(3)
         }
+        .onChange(of: selectedTab, perform: { value in
+            if selectedTab == 2 {
+                viewModel.count = 0
+            }
+        })
         .navigationBarItems(trailing:
             Button(action: {
                 self.isRefresh = false
@@ -56,15 +64,26 @@ struct BaseTabView: View {
         .buttonStyle(DefaultButtonStyle()))
         .navigationBarBackButtonHidden(true)
         .onAppear(){
-            print("Appear")
+            viewModel.loadNotifications()
         }
+    }
+}
 
+class BaseTabViewModel: ObservableObject {
+    @Published var status: Status = .initial
+    let request = RequestHandler()
+    @Published var count = 0
+
+    func loadNotifications() {
+        status = .loading
+        request.getData(path: "Notifications/\(CurrentUser.shared.id)", modelType: [NotificationModel].self) { [weak self] (model, error) in
+            model?.forEach({
+                if !$0.isRead {
+                    self?.count += 1
+                }
+            })
+            self?.status = .finished
+        }
     }
 
 }
-
-//struct BaseTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BaseTabView(isNavigation: .constant(true))
-//    }
-//}
