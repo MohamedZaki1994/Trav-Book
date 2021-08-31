@@ -32,7 +32,7 @@ struct PlaceCardView: View {
                     Text("place: \(viewModel.dataModel?.region ?? "")").font(.system(size: 15))
                     Spacer()
                     VStack(alignment: .trailing) {
-                        Text("\(String(format: "%.1f", viewModel.dataModel?.rating ?? 0)) / 5")
+                        Text("\(viewModel.rating) / 5")
                         switch rating {
                         case .none, .bad:
                             Image(systemName: "star")

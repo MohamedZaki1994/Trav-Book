@@ -15,6 +15,9 @@ class PlaceCardViewModel: ObservableObject {
     var cachingImage = NSCache<NSString, UIImage>()
     @Published var dataModel: TopPlacesModel?
     let storage = Storage.storage()
+    var rating: String {
+        return String(format: "%g", dataModel?.rating ?? 0)
+    }
     func getRating(ratingNumber: Double) -> Rating {
         switch ratingNumber {
         case 0..<2.5:
