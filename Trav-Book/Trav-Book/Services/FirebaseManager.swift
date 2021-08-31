@@ -78,7 +78,7 @@ class FirebaseManager {
 
     func uploadReview(reviewText: String, rate: Int, hotelName: String, numberOfReviews: Int, hotelIndex: Int, averageRate: NSNumber, completion: ((Bool) -> Void)?) {
         let dictionary = ["name": CurrentUser.shared.name, "userId": CurrentUser.shared.id, "review": reviewText, "rate": rate] as [String : Any]
-        ref.child("topPlaces").child(String(hotelIndex)).child("rating").setValue(averageRate)
+        ref.child("topPlaces").child(hotelName).child("rating").setValue(averageRate)
         ref.child("HotelsReviews").child(hotelName).child(CurrentUser.shared.id).updateChildValues(dictionary, withCompletionBlock: { (error, dataRef) in
             if error == nil {
                 completion?(true)
