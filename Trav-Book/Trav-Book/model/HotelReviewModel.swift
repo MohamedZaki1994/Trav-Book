@@ -13,4 +13,5 @@ struct HotelReviewModel: Codable {
     let name, review: String
     let userId: String
     let rate: Int
+    let date: Double
 }

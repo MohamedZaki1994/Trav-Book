@@ -24,6 +24,8 @@ struct SingleReviewView: View {
                 }
                 Text(review.name)
                 Text(": \(review.review)")
+                Spacer()
+                Text(review.date.timeAgo()).font(.system(size: 14))
             }
             .onAppear() {
                 viewModel.loadImage(userId: review.userId) { (data) in
