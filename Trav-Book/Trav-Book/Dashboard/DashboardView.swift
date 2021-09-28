@@ -27,9 +27,7 @@ struct DashboardView: View {
                         viewModel.getData()
                     }
                 case .loading:
-                    Text("").onAppear() {
-                        viewModel.getData()
-                    }
+                    Text("")
                 case .finished:
                     UploadPost(onDismiss: {
                         viewModel.status = .loading
@@ -38,6 +36,11 @@ struct DashboardView: View {
                     ForEach(viewModel.posts) { post in
                         PostView(factory: factory, post: post)
                             .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5))
+                            .onAppear() {
+                                if viewModel.posts.last?.id == post.id {
+                                    viewModel.loadMore()
+                                }
+                            }
                         
                     }
                 case .failure(error: let error):

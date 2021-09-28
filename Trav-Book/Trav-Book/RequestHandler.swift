@@ -31,13 +31,32 @@ class RequestHandler {
                 completion?(nil,nil)
             }})
     }
-
-    func load<T: Codable>(path: String, modelType: T.Type, completion:(([T]?, Error?) -> Void)?) {
-        ref.child(path).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+    var lastSnapshot: String? = ""
+    func load<T: Codable>(path: String, modelType: T.Type, isFirst: Bool = true, completion:(([T]?, Error?) -> Void)?) {
+        var query = ref.child(path).queryOrderedByKey()
+        if !isFirst {
+            query = query.queryEnding(atValue: lastSnapshot)
+        }
+        query.queryLimited(toLast: isFirst ? 2 : 3).observeSingleEvent(of: DataEventType.value) { (snapshot) in
             if snapshot.exists() {
                 var arrayOfElement = [T]()
                 guard let dictionary = snapshot.value as? [String: Any] else {return}
-                for (_,value) in dictionary {
+//                for (_,value) in dictionary {
+//                    guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
+//                    do {
+//                    let singleElement = try JSONDecoder().decode(T.self, from: data)
+//                        arrayOfElement.append(singleElement)
+//                    }
+//                    catch {
+//                        print(error)
+//                    }
+//                }
+                var dataSnapshot = snapshot.children.allObjects as! [DataSnapshot]
+                if !isFirst{
+                    dataSnapshot.removeLast()
+                }
+                for postSnapshot in dataSnapshot {
+                    let value = postSnapshot.value as! [String : AnyObject]
                     guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
                     do {
                     let singleElement = try JSONDecoder().decode(T.self, from: data)
@@ -47,6 +66,7 @@ class RequestHandler {
                         print(error)
                     }
                 }
+                self.lastSnapshot = (snapshot.children.allObjects.first as? DataSnapshot)?.key
                 completion?(arrayOfElement,nil)
             } else {
                 completion?(nil,nil)

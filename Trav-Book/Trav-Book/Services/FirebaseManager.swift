@@ -87,7 +87,8 @@ class FirebaseManager {
     }
 
     func uploadPost(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, place: String, completion: (() -> Void)? ) {
-        let postId = UUID().uuidString
+        let postIdRef = ref.child("Ref").child("posts").childByAutoId()
+        let postId: String = postIdRef.key ?? UUID().uuidString
         if images?.count ?? 0 > 0 {
 
             for (index,image) in images!.enumerated() {
@@ -104,7 +105,8 @@ class FirebaseManager {
             }
         }
         let path = storage.child("posts").child(postId).child("0").fullPath
-        ref.child("Ref").child("posts").child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place, "subscribers": [CurrentUser.shared.id]])
+
+        postIdRef.setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place, "subscribers": [CurrentUser.shared.id]])
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(["id": postId,"imagesNumber": numberOfImages, "name" : name,"userId":CurrentUser.shared.id , "numberOfLike": 0,"postText": text, "numberOfDislike": 0, "numberOfComments": 0, "date": Date().timeIntervalSince1970, "profileImage": path, "place": place])
     }
 

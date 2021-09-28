@@ -39,6 +39,21 @@ class DashboardViewModel: ObservableObject {
                 self?.status = .finished
             }
         }
+        status = .loading
+    }
+
+    func loadMore() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.request.load(path: "Ref/posts", modelType: PostModel.self, isFirst: false) { [weak self] (data, error) in
+                if let data = data {
+                    self?.posts.append(contentsOf: data)
+                    self?.posts.sort(by: {
+                        $0.date ?? 0 > $1.date ?? 0
+                    })
+                    self?.status = .finished
+                }
+            }
+        }
     }
 
     func uploadPost(name: String, text: String, numberOfImages: Int, images: [UIImage?]?, place: String, completion: (() -> Void)? ) {
