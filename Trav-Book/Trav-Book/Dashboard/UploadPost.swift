@@ -34,12 +34,14 @@ struct UploadPost: View {
                     }
                 }
                 else {
-                TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
+                    TextField("What's on your mind", text: self.$postText).padding(.top, 30).padding(.leading, 30)
+                    Spacer()
                     ForEach(0 ..< (image.count ), id: \.self) { im in
                     image[im].resizable().frame(width: 300, height: 200)
                 }
+
                 HStack(spacing: 20) {
-                Button("Post") {
+                Button {
                     let name = CurrentUser.shared.name
                     print(numberOfImages)
                     self.model.uploadPost(name: name, text: self.postText, numberOfImages: numberOfImages,images: wholeImages, place: place) {
@@ -51,17 +53,23 @@ struct UploadPost: View {
                     wholeImages = []
                     place = ""
                 }
+                label: {
+                    Text("post")
+                    Image(systemName: "paperplane.fill")
+                }
                     Button {
                         print("uploading")
                         self.showingImagePicker = true
                     } label: {
                         Text("upload a photo")
+                        Image(systemName: "photo")
                     }
 
                     Button {
                         print("take")
                     } label: {
                         Text("take a photo")
+                        Image(systemName: "camera")
                     }
 
             }
@@ -76,9 +84,10 @@ struct UploadPost: View {
                         }
                     }
                     TextField("which place you are in", text: $place)
-                        .padding(.leading, 15)
+                        .padding(.top, 50)
+                        .padding(.leading, 20)
 
-                    Spacer()
+                    Spacer().frame(minHeight: 0, maxHeight: 200)
             }
             })
         } .onDisappear() {

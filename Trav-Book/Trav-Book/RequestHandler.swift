@@ -32,12 +32,12 @@ class RequestHandler {
             }})
     }
     var lastSnapshot: String? = ""
-    func load<T: Codable>(path: String, modelType: T.Type, isFirst: Bool = true, completion:(([T]?, Error?) -> Void)?) {
+    func load<T: Codable>(path: String, modelType: T.Type, isFirst: Bool = true, limit: UInt = 2, completion:(([T]?, Error?) -> Void)?) {
         var query = ref.child(path).queryOrderedByKey()
         if !isFirst {
             query = query.queryEnding(atValue: lastSnapshot)
         }
-        query.queryLimited(toLast: isFirst ? 2 : 3).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+        query.queryLimited(toLast: isFirst ? limit : limit + 1).observeSingleEvent(of: DataEventType.value) { (snapshot) in
             if snapshot.exists() {
                 var arrayOfElement = [T]()
                 guard let dictionary = snapshot.value as? [String: Any] else {return}

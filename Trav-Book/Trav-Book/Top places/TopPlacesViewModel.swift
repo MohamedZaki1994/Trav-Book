@@ -20,7 +20,7 @@ class TopPlacesViewModel: ObservableObject {
     let request = RequestHandler()
     func getData() {
         status = .loading
-        request.load(path: "topPlaces", modelType: TopPlacesModel.self) { [weak self] (model, error) in
+        request.load(path: "topPlaces", modelType: TopPlacesModel.self, limit: 5) { [weak self] (model, error) in
             self?.dataModel = model
             self?.dataModel?.sort(by: {
                 $0.rating ?? 0 > $1.rating ?? 0

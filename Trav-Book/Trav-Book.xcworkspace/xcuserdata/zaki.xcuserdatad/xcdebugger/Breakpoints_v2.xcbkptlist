@@ -231,22 +231,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9BBE8A56-A803-4FFE-981A-C5C9EF371B67"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Trav-Book/Services/FirebaseManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "uploadReview(reviewText:rate:hotelName:numberOfReviews:hotelIndex:averageRate:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "57836930-479F-4AFE-817F-12C15A0BE9A1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -258,6 +242,70 @@
             endingLineNumber = "53"
             landmarkName = "load(path:modelType:isFirst:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F622AC3-8181-4A97-85C9-2BC00C173180"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Trav-Book/Top places/TopPlacesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB166A56-65AA-44D5-AD4C-D9FBF3A6B48D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Trav-Book/Top places/TopPlacesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "getData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FB166A56-65AA-44D5-AD4C-D9FBF3A6B48D - 62837b45983e80e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Trav_Book.TopPlacesViewModel.getData() -&gt; ()"
+                  moduleName = "Trav-Book"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Top%20places/TopPlacesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "89">
+               </Location>
+               <Location
+                  uuid = "FB166A56-65AA-44D5-AD4C-D9FBF3A6B48D - 3529d712a96c7ec4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;Trav_Book.TopPlacesModel&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Trav_Book.TopPlacesViewModel.getData() -&gt; ()"
+                  moduleName = "Trav-Book"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zaki/Desktop/My%20Apps/Trav-Book/Trav-Book/Trav-Book/Top%20places/TopPlacesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -142,6 +142,9 @@ class FirebaseManager {
     }
 
     func deletePost(postId: String) {
+        storage.child("posts").child("\(postId)/0").delete { (error) in
+            print(error)
+        }
         ref.child("Ref/posts/\(postId)").setValue(nil)
         ref.child("Ref").child("Comments").child(postId).setValue(nil)
         ref.child("UserPosts").child(CurrentUser.shared.id).child(postId).setValue(nil)
