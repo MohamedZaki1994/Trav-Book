@@ -21,6 +21,7 @@ struct LoginView: View {
     var body: some View {
         GeometryReader { geo in
             VStack {
+                Text("Welcome to trav book").font(.system(size: 20, weight: .bold)).padding(.top, 50)
                 VStack(spacing: 10.0){
                     TextField("Enter your Username", text: self.$username)
                         .padding()
@@ -62,27 +63,20 @@ struct LoginView: View {
                         } else {
                             self.isAlert = true
                         }
-                        //                        let fetch = LoggedUser.fetchRequest() as NSFetchRequest<LoggedUser>
-                        //                        let predicate = NSPredicate(format: "name = %@", "zaki")
-                        ////                        fetch.predicate = predicate
-                        //                        let sorter = NSSortDescriptor(key: "age", ascending: true)
-                        //                        let sorter1 = NSSortDescriptor(key: "name", ascending: false)
-                        //                        fetch.sortDescriptors = [sorter, sorter1]
-                        //                   let user = try! self.context.fetch(fetch) as? [LoggedUser]
-                        //                        print("")
                     }
+                    .frame(width: 150, height: 50)
+                    .background(Color.black)
+                    .foregroundColor(.red)
+                    .cornerRadius(5)
+
                     Button("sign up") {
                         self.isSignup = true
-                        //                        let user = LoggedUser(context: self.context)
-                        //                        user.name = "Ali"
-                        //                        user.age = 33
-                        //                        user.postss = ["1","2","3"]
-                        //                        let favorite = Favorite(context: self.context)
-                        //                        favorite.numberOfLike = 5
-                        //                        favorite.numberOfDislike = 2
-                        //                        user.addToFavorite(favorite)
-                        //                        try! self.context.save()
                     }
+                    .frame(width: 150, height: 50)
+                    .background(Color.black)
+                    .foregroundColor(.red)
+                    .cornerRadius(5)
+
                 }
 
             }

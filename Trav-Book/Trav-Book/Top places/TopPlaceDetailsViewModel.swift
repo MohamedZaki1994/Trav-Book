@@ -13,6 +13,7 @@ class TopPlaceDetailsViewModel: ObservableObject {
     var image: UIImage?
     var name: String?
     @Published var model: HotelModel?
+    @Published var hotelReviews: [HotelReviewModel]?
     let request = RequestHandler()
     var status: Status = .initial
 
@@ -21,7 +22,10 @@ class TopPlaceDetailsViewModel: ObservableObject {
         status = .loading
         request.getData(path: "Hotels/\(name!)", modelType: HotelModel.self) {[weak self] (model, error) in
             self?.model = model
-            self?.status = .finished
+            self?.request.load(path: "HotelsReviews/\(self?.name! ?? "")", modelType: HotelReviewModel.self, limit: 2) { [weak self] (model, error) in
+                self?.hotelReviews = model
+                self?.status = .finished
+            }
         }
     }
 }

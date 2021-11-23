@@ -32,7 +32,7 @@ class RequestHandler {
             }})
     }
     var lastSnapshot: String? = ""
-    func load<T: Codable>(path: String, modelType: T.Type, isFirst: Bool = true, limit: UInt = 2, completion:(([T]?, Error?) -> Void)?) {
+    func load<T: Codable>(path: String, modelType: T.Type, isFirst: Bool = true, limit: UInt = 3, completion:(([T]?, Error?) -> Void)?) {
         var query = ref.child(path).queryOrderedByKey()
         if !isFirst {
             query = query.queryEnding(atValue: lastSnapshot)
@@ -40,17 +40,6 @@ class RequestHandler {
         query.queryLimited(toLast: isFirst ? limit : limit + 1).observeSingleEvent(of: DataEventType.value) { (snapshot) in
             if snapshot.exists() {
                 var arrayOfElement = [T]()
-                guard let dictionary = snapshot.value as? [String: Any] else {return}
-//                for (_,value) in dictionary {
-//                    guard let data = try? JSONSerialization.data(withJSONObject: value, options: []) else { return }
-//                    do {
-//                    let singleElement = try JSONDecoder().decode(T.self, from: data)
-//                        arrayOfElement.append(singleElement)
-//                    }
-//                    catch {
-//                        print(error)
-//                    }
-//                }
                 var dataSnapshot = snapshot.children.allObjects as! [DataSnapshot]
                 if !isFirst{
                     dataSnapshot.removeLast()

@@ -52,8 +52,15 @@ struct TopPlaceDetailsInfoView: View {
             }
             Text("Reviews").font(.system(size: 25)).padding()
             Divider()
-            ForEach(viewModel.model?.reviews ?? [""], id: \.self) {
-                Text($0).padding()
+            if let hotelReviews = viewModel.hotelReviews {
+                ForEach(hotelReviews, id: \.id) { review in
+                    HStack {
+                        Text(review.name)
+                        Text(": \(review.review)")
+                        Spacer()
+                        Text(review.date.timeAgo()).font(.system(size: 14))
+                    }.padding()
+                }
             }
             NavigationLink("Write a review", destination: ReviewView(hotelName: viewModel.name ?? "")).padding()
         }
